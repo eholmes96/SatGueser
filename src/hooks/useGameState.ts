@@ -1,38 +1,42 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import allCities from '../cities.json'
-import type { City } from '../utils/mapboxUtils'
+import type { City, Difficulty } from '../utils/mapboxUtils'
 
-export type GamePhase = 'idle' | 'playing' | 'roundResult' | 'gameOver'
+export type { Difficulty }
+export type GamePhase = 'idle' | 'selectingDifficulty' | 'playing' | 'roundResult' | 'gameOver'
 
 export interface GameState {
   phase: GamePhase
-  round: number          // 1–5
-  cities: City[]         // 5 randomly selected cities for this game
+  difficulty: Difficulty | null
+  round: number
+  cities: City[]
   activeCityIndex: number
-  roundScores: number[]  // one entry per completed round
+  roundScores: number[]
+  roundElapsedTimes: number[]
   totalScore: number
-  elapsedSeconds: number // live elapsed time for current round
+  elapsedSeconds: number
 }
 
 const ROUND_DURATION = 30
 const ROUNDS_PER_GAME = 5
 
-// score = max(0, round((1000 - elapsed * 30) / 10) * 10)
-// Gives 1000 at t=0, 100 at t=30. Timeout yields 0 explicitly.
 function calculateScore(elapsedSeconds: number): number {
   return Math.max(0, Math.round((1000 - elapsedSeconds * 30) / 10) * 10)
 }
 
-function pickRandomCities(count: number): City[] {
-  return [...(allCities as City[])].sort(() => Math.random() - 0.5).slice(0, count)
+function pickFromDifficulty(difficulty: Difficulty): City[] {
+  const pool = (allCities as City[]).filter(c => c.difficulty === difficulty)
+  return [...pool].sort(() => Math.random() - 0.5).slice(0, ROUNDS_PER_GAME)
 }
 
 const INITIAL_STATE: GameState = {
   phase: 'idle',
+  difficulty: null,
   round: 0,
   cities: [],
   activeCityIndex: 0,
   roundScores: [],
+  roundElapsedTimes: [],
   totalScore: 0,
   elapsedSeconds: 0,
 }
@@ -42,7 +46,6 @@ export function useGameState() {
   const timerStartRef = useRef<number | null>(null)
   const intervalRef = useRef<number>(0)
 
-  // Called by ImageReveal's onLoad — starts the round timer
   const startTimer = useCallback(() => {
     clearInterval(intervalRef.current)
     const startedAt = Date.now()
@@ -62,6 +65,7 @@ export function useGameState() {
             ...s,
             phase: isLast ? 'gameOver' : 'roundResult',
             roundScores: [...s.roundScores, 0],
+            roundElapsedTimes: [...s.roundElapsedTimes, ROUND_DURATION],
             elapsedSeconds: ROUND_DURATION,
           }
         })
@@ -71,21 +75,33 @@ export function useGameState() {
     }, 200)
   }, [])
 
+  // Resets state and shows the difficulty selection screen.
+  // Called both on first "Start Game" and on "Play Again".
   const startGame = useCallback(() => {
     clearInterval(intervalRef.current)
     timerStartRef.current = null
-    const cities = pickRandomCities(ROUNDS_PER_GAME)
-    console.log(`--- New game! Cities: ${cities.map(c => c.displayName).join(', ')}`)
-    setState({ ...INITIAL_STATE, phase: 'playing', round: 1, cities })
+    setState({ ...INITIAL_STATE, phase: 'selectingDifficulty' })
   }, [])
 
-  // Captures elapsed at call time so the score is locked to the moment of the click,
-  // not when React gets around to processing the setState batch.
-  const submitGuess = useCallback((cityName: string) => {
+  // Called when the player picks a difficulty tile — begins the actual game.
+  const selectDifficulty = useCallback((difficulty: Difficulty) => {
+    const cities = pickFromDifficulty(difficulty)
+    console.log(`--- Starting ${difficulty} game! Cities: ${cities.map(c => c.displayName).join(', ')}`)
+    setState(s => ({
+      ...INITIAL_STATE,
+      phase: 'playing',
+      difficulty,
+      round: 1,
+      cities,
+    }))
+  }, [])
+
+  const submitGuess = useCallback((cityName: string): boolean => {
     const elapsed = timerStartRef.current !== null
       ? (Date.now() - timerStartRef.current) / 1000
       : ROUND_DURATION
 
+    let wasCorrect = false
     setState(s => {
       if (s.phase !== 'playing') return s
       const active = s.cities[s.activeCityIndex]
@@ -95,8 +111,7 @@ export function useGameState() {
         return s
       }
 
-      // Side effects here are intentional: clear the timer synchronously
-      // so it cannot fire between now and React committing the new phase.
+      wasCorrect = true
       clearInterval(intervalRef.current)
       timerStartRef.current = null
 
@@ -112,10 +127,12 @@ export function useGameState() {
         ...s,
         phase: isLast ? 'gameOver' : 'roundResult',
         roundScores: [...s.roundScores, score],
+        roundElapsedTimes: [...s.roundElapsedTimes, clampedElapsed],
         totalScore: newTotal,
         elapsedSeconds: clampedElapsed,
       }
     })
+    return wasCorrect
   }, [])
 
   const nextRound = useCallback(() => {
@@ -134,5 +151,5 @@ export function useGameState() {
 
   useEffect(() => () => { clearInterval(intervalRef.current) }, [])
 
-  return { state, startGame, startTimer, submitGuess, nextRound }
+  return { state, startGame, startTimer, selectDifficulty, submitGuess, nextRound }
 }

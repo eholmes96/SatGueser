@@ -17,7 +17,6 @@ function getSuggestions(query: string): string[] {
   return [...prefix, ...contains].slice(0, MAX_SUGGESTIONS)
 }
 
-// Bold the portion of the label that matches the query
 function Highlight({ text, query }: { text: string; query: string }) {
   const idx = text.toLowerCase().indexOf(query.toLowerCase())
   if (idx === -1) return <>{text}</>
@@ -31,7 +30,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
 }
 
 interface CityGuessInputProps {
-  onSubmit: (city: string) => void
+  onSubmit: (city: string) => boolean
   disabled?: boolean
 }
 
@@ -39,8 +38,11 @@ export function CityGuessInput({ onSubmit, disabled }: CityGuessInputProps) {
   const [value, setValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [highlightedIdx, setHighlightedIdx] = useState(0)
+  const [wrongFeedback, setWrongFeedback] = useState(false)
+  const [shaking, setShaking] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
+  const shakeTimerRef = useRef<number>(0)
 
   useEffect(() => {
     const results = getSuggestions(value)
@@ -48,7 +50,6 @@ export function CityGuessInput({ onSubmit, disabled }: CityGuessInputProps) {
     setHighlightedIdx(0)
   }, [value])
 
-  // Scroll highlighted item into view
   useEffect(() => {
     const list = listRef.current
     if (!list) return
@@ -56,13 +57,33 @@ export function CityGuessInput({ onSubmit, disabled }: CityGuessInputProps) {
     item?.scrollIntoView({ block: 'nearest' })
   }, [highlightedIdx])
 
+  const triggerShake = useCallback(() => {
+    clearTimeout(shakeTimerRef.current)
+    setShaking(false)
+    // Reset on next tick so re-triggering restarts the animation
+    requestAnimationFrame(() => {
+      setWrongFeedback(true)
+      setShaking(true)
+      shakeTimerRef.current = window.setTimeout(() => {
+        setShaking(false)
+        setWrongFeedback(false)
+      }, 500)
+    })
+  }, [])
+
+  useEffect(() => () => clearTimeout(shakeTimerRef.current), [])
+
   const accept = useCallback((city: string) => {
-    setValue('')
     setSuggestions([])
     setHighlightedIdx(0)
-    onSubmit(city)
+    const isCorrect = onSubmit(city)
+    if (isCorrect) {
+      setValue('')
+    } else {
+      triggerShake()
+    }
     inputRef.current?.focus()
-  }, [onSubmit])
+  }, [onSubmit, triggerShake])
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (suggestions.length === 0) return
@@ -88,7 +109,11 @@ export function CityGuessInput({ onSubmit, disabled }: CityGuessInputProps) {
   }
 
   return (
-    <div style={{ position: 'relative', width: 320 }}>
+    <div style={{
+      position: 'relative',
+      width: 320,
+      animation: shaking ? 'shake 0.45s ease-in-out' : 'none',
+    }}>
       <input
         ref={inputRef}
         type="text"
@@ -104,11 +129,12 @@ export function CityGuessInput({ onSubmit, disabled }: CityGuessInputProps) {
           padding: '0.5rem 0.75rem',
           fontSize: 16,
           boxSizing: 'border-box',
-          border: '1px solid #555',
+          border: wrongFeedback ? '1px solid #ef4444' : '1px solid #555',
           borderRadius: suggestions.length > 0 ? '4px 4px 0 0' : 4,
-          background: '#1a1a1a',
+          background: wrongFeedback ? 'rgba(239,68,68,0.15)' : '#1a1a1a',
           color: '#eee',
           outline: 'none',
+          transition: 'border-color 0.15s, background 0.15s',
         }}
       />
 
@@ -135,7 +161,6 @@ export function CityGuessInput({ onSubmit, disabled }: CityGuessInputProps) {
           {suggestions.map((city, i) => (
             <li
               key={city}
-              // mousedown fires before blur so we can prevent the input from losing focus
               onMouseDown={e => { e.preventDefault(); accept(city) }}
               onMouseEnter={() => setHighlightedIdx(i)}
               style={{

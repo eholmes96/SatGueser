@@ -3,60 +3,210 @@
     "name": "new-york",
     "displayName": "New York",
     "lat": 40.7026,
-    "lng": -74.0164
+    "lng": -74.0164,
+    "difficulty": "easy"
   },
   {
     "name": "chicago",
     "displayName": "Chicago",
     "lat": 41.8827,
-    "lng": -87.6233
+    "lng": -87.6233,
+    "difficulty": "easy"
   },
   {
     "name": "los-angeles",
     "displayName": "Los Angeles",
     "lat": 34.0430,
-    "lng": -118.2673
+    "lng": -118.2673,
+    "difficulty": "hard"
   },
   {
     "name": "san-francisco",
     "displayName": "San Francisco",
     "lat": 37.7951,
-    "lng": -122.3965
+    "lng": -122.3965,
+    "difficulty": "easy"
   },
   {
     "name": "denver",
     "displayName": "Denver",
     "lat": 39.7392,
-    "lng": -104.9903
+    "lng": -104.9903,
+    "difficulty": "medium"
   },
   {
     "name": "miami",
     "displayName": "Miami",
     "lat": 25.7750,
-    "lng": -80.1866
+    "lng": -80.1866,
+    "difficulty": "easy"
   },
   {
     "name": "seattle",
     "displayName": "Seattle",
     "lat": 47.6062,
-    "lng": -122.3321
+    "lng": -122.3321,
+    "difficulty": "easy"
   },
   {
     "name": "boston",
     "displayName": "Boston",
     "lat": 42.3601,
-    "lng": -71.0589
+    "lng": -71.0589,
+    "difficulty": "medium"
   },
   {
     "name": "austin",
     "displayName": "Austin",
     "lat": 30.2672,
-    "lng": -97.7431
+    "lng": -97.7431,
+    "difficulty": "hard"
   },
   {
     "name": "phoenix",
     "displayName": "Phoenix",
     "lat": 33.4484,
-    "lng": -112.0740
+    "lng": -112.0740,
+    "difficulty": "hard"
+  },
+  {
+    "name": "washington-dc",
+    "displayName": "Washington, DC",
+    "lat": 38.8893,
+    "lng": -77.0254,
+    "difficulty": "easy"
+  },
+  {
+    "name": "philadelphia",
+    "displayName": "Philadelphia",
+    "lat": 39.9496,
+    "lng": -75.1503,
+    "difficulty": "medium"
+  },
+  {
+    "name": "houston",
+    "displayName": "Houston",
+    "lat": 29.7563,
+    "lng": -95.3568,
+    "difficulty": "hard"
+  },
+  {
+    "name": "dallas",
+    "displayName": "Dallas",
+    "lat": 32.7894,
+    "lng": -96.8028,
+    "difficulty": "hard"
+  },
+  {
+    "name": "san-antonio",
+    "displayName": "San Antonio",
+    "lat": 29.4260,
+    "lng": -98.4861,
+    "difficulty": "medium"
+  },
+  {
+    "name": "san-diego",
+    "displayName": "San Diego",
+    "lat": 32.7341,
+    "lng": -117.1449,
+    "difficulty": "medium"
+  },
+  {
+    "name": "portland",
+    "displayName": "Portland, OR",
+    "lat": 45.5189,
+    "lng": -122.6713,
+    "difficulty": "medium"
+  },
+  {
+    "name": "minneapolis",
+    "displayName": "Minneapolis",
+    "lat": 44.9778,
+    "lng": -93.2650,
+    "difficulty": "medium"
+  },
+  {
+    "name": "detroit",
+    "displayName": "Detroit",
+    "lat": 42.3315,
+    "lng": -83.0467,
+    "difficulty": "hard"
+  },
+  {
+    "name": "atlanta",
+    "displayName": "Atlanta",
+    "lat": 33.7603,
+    "lng": -84.3935,
+    "difficulty": "hard"
+  },
+  {
+    "name": "new-orleans",
+    "displayName": "New Orleans",
+    "lat": 29.9575,
+    "lng": -90.0630,
+    "difficulty": "easy"
+  },
+  {
+    "name": "nashville",
+    "displayName": "Nashville",
+    "lat": 36.1612,
+    "lng": -86.7775,
+    "difficulty": "medium"
+  },
+  {
+    "name": "las-vegas",
+    "displayName": "Las Vegas",
+    "lat": 36.1126,
+    "lng": -115.1767,
+    "difficulty": "easy"
+  },
+  {
+    "name": "charlotte",
+    "displayName": "Charlotte",
+    "lat": 35.2251,
+    "lng": -80.8434,
+    "difficulty": "hard"
+  },
+  {
+    "name": "pittsburgh",
+    "displayName": "Pittsburgh",
+    "lat": 40.4423,
+    "lng": -80.0112,
+    "difficulty": "easy"
+  },
+  {
+    "name": "salt-lake-city",
+    "displayName": "Salt Lake City",
+    "lat": 40.7707,
+    "lng": -111.8911,
+    "difficulty": "medium"
+  },
+  {
+    "name": "indianapolis",
+    "displayName": "Indianapolis",
+    "lat": 39.7685,
+    "lng": -86.1580,
+    "difficulty": "hard"
+  },
+  {
+    "name": "kansas-city",
+    "displayName": "Kansas City",
+    "lat": 39.0392,
+    "lng": -94.5908,
+    "difficulty": "hard"
+  },
+  {
+    "name": "st-louis",
+    "displayName": "St. Louis",
+    "lat": 38.6247,
+    "lng": -90.1848,
+    "difficulty": "easy"
+  },
+  {
+    "name": "sacramento",
+    "displayName": "Sacramento",
+    "lat": 38.5765,
+    "lng": -121.4934,
+    "difficulty": "medium"
   }
 ]

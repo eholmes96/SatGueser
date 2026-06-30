@@ -1,13 +1,31 @@
 import { useState, useEffect } from 'react'
 import { useGameState } from './hooks/useGameState'
+import type { Difficulty } from './hooks/useGameState'
 import { ImageReveal } from './components/ImageReveal'
 import { CityGuessInput } from './components/CityGuessInput'
 import './App.css'
 
 type TitlePhase = 'visible' | 'exiting' | 'gone'
 
+const DIFFICULTY_CONFIG: Record<Difficulty, { label: string; desc: string; accent: string; bg: string; border: string }> = {
+  easy:   { label: 'Easy',   desc: 'Iconic coastlines & skylines', accent: '#4ade80', bg: 'rgba(74,222,128,0.08)',  border: 'rgba(74,222,128,0.35)'  },
+  medium: { label: 'Medium', desc: 'Familiar but less obvious',    accent: '#f59e0b', bg: 'rgba(245,158,11,0.08)', border: 'rgba(245,158,11,0.35)' },
+  hard:   { label: 'Hard',   desc: 'Good luck',                    accent: '#f87171', bg: 'rgba(248,113,113,0.08)',border: 'rgba(248,113,113,0.35)' },
+}
+
+const btnStyle: React.CSSProperties = {
+  padding: '0.55rem 1.5rem',
+  fontSize: 15,
+  fontWeight: 600,
+  borderRadius: 8,
+  border: '1px solid rgba(255,255,255,0.3)',
+  background: 'rgba(255,255,255,0.15)',
+  color: '#fff',
+  cursor: 'pointer',
+}
+
 function App() {
-  const { state, startGame, startTimer, submitGuess, nextRound } = useGameState()
+  const { state, startGame, startTimer, selectDifficulty, submitGuess, nextRound } = useGameState()
   const activeCity = state.cities[state.activeCityIndex]
   const timeLeft = Math.max(0, 30 - state.elapsedSeconds)
   const timerPct = Math.max(0, (timeLeft / 30) * 100)
@@ -15,6 +33,7 @@ function App() {
 
   const [titlePhase, setTitlePhase] = useState<TitlePhase>('visible')
 
+  // Title animates away as soon as we leave the idle screen
   useEffect(() => {
     if (state.phase !== 'idle' && titlePhase === 'visible') {
       setTitlePhase('exiting')
@@ -23,9 +42,10 @@ function App() {
     }
   }, [state.phase, titlePhase])
 
-  const showMap = state.phase !== 'idle'
-  const showUIBars = state.phase === 'playing' || state.phase === 'roundResult'
+  const showMap = state.phase === 'playing' || state.phase === 'roundResult' || state.phase === 'gameOver'
+  const showTopBar = state.phase === 'playing' || state.phase === 'roundResult'
   const lastScore = state.roundScores[state.roundScores.length - 1]
+  const lastElapsed = state.roundElapsedTimes[state.roundElapsedTimes.length - 1] ?? 0
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', background: '#111' }}>
@@ -40,7 +60,7 @@ function App() {
         />
       )}
 
-      {/* Title / start screen — slides up and fades when game starts */}
+      {/* Title overlay — slides up and fades on game start */}
       {titlePhase !== 'gone' && (
         <div style={{
           position: 'absolute',
@@ -85,8 +105,64 @@ function App() {
         </div>
       )}
 
-      {/* Top UI bar: Round · Timer bar · Score */}
-      {showUIBars && (
+      {/* Difficulty selection screen */}
+      {state.phase === 'selectingDifficulty' && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '2rem',
+        }}>
+          <p style={{
+            margin: 0,
+            color: '#888',
+            fontSize: 12,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+          }}>
+            Select Difficulty
+          </p>
+
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            {(['easy', 'medium', 'hard'] as const).map(d => {
+              const cfg = DIFFICULTY_CONFIG[d]
+              return (
+                <button
+                  key={d}
+                  onClick={() => selectDifficulty(d)}
+                  style={{
+                    padding: '1.5rem 2rem',
+                    minWidth: 150,
+                    background: cfg.bg,
+                    border: `1px solid ${cfg.border}`,
+                    borderRadius: 14,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    transition: 'background 0.15s',
+                  }}
+                >
+                  <span style={{ fontSize: '1.1rem', fontWeight: 700, color: cfg.accent }}>
+                    {cfg.label}
+                  </span>
+                  <span style={{ fontSize: 12, color: '#888', fontWeight: 400 }}>
+                    {cfg.desc}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Top bar: Round · Timer · Score (+ difficulty pill) */}
+      {showTopBar && (
         <div style={{
           position: 'absolute',
           top: '1.25rem',
@@ -103,17 +179,25 @@ function App() {
           minWidth: 440,
           color: '#fff',
         }}>
-          <span style={{ fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>
-            Round {state.round}/5
-          </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: 14, fontWeight: 600 }}>Round {state.round}/5</span>
+            {state.difficulty && (
+              <span style={{
+                fontSize: 10,
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                color: DIFFICULTY_CONFIG[state.difficulty].accent,
+                border: `1px solid ${DIFFICULTY_CONFIG[state.difficulty].border}`,
+                borderRadius: 4,
+                padding: '1px 5px',
+              }}>
+                {DIFFICULTY_CONFIG[state.difficulty].label}
+              </span>
+            )}
+          </div>
 
-          <div style={{
-            flex: 1,
-            height: 8,
-            background: 'rgba(255,255,255,0.2)',
-            borderRadius: 4,
-            overflow: 'hidden',
-          }}>
+          <div style={{ flex: 1, height: 8, background: 'rgba(255,255,255,0.2)', borderRadius: 4, overflow: 'hidden' }}>
             <div style={{
               width: `${timerPct}%`,
               height: '100%',
@@ -129,8 +213,8 @@ function App() {
         </div>
       )}
 
-      {/* Bottom UI bar: guess input or round result */}
-      {showUIBars && (
+      {/* Bottom bar: guess input (playing only) */}
+      {state.phase === 'playing' && (
         <div style={{
           position: 'absolute',
           bottom: '1.5rem',
@@ -141,39 +225,54 @@ function App() {
           WebkitBackdropFilter: 'blur(6px)',
           borderRadius: 12,
           padding: '0.75rem 1.25rem',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '0.6rem',
         }}>
-          {state.phase === 'playing' && (
-            <CityGuessInput onSubmit={submitGuess} disabled={false} />
-          )}
+          <CityGuessInput onSubmit={submitGuess} disabled={false} />
+        </div>
+      )}
 
-          {state.phase === 'roundResult' && activeCity && (
-            <>
-              <p style={{ margin: 0, color: '#eee', fontSize: 15 }}>
-                {lastScore === 0
-                  ? `Time's up! The city was ${activeCity.displayName}.`
-                  : `+${lastScore} pts — ${activeCity.displayName}`}
-              </p>
-              <button
-                onClick={nextRound}
-                style={{
-                  padding: '0.5rem 1.5rem',
-                  fontSize: 15,
-                  fontWeight: 600,
-                  borderRadius: 8,
-                  border: '1px solid rgba(255,255,255,0.3)',
-                  background: 'rgba(255,255,255,0.15)',
-                  color: '#fff',
-                  cursor: 'pointer',
-                }}
-              >
-                Next Round →
-              </button>
-            </>
-          )}
+      {/* Round result card */}
+      {state.phase === 'roundResult' && activeCity && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'rgba(0,0,0,0.45)',
+        }}>
+          <div style={{
+            background: 'rgba(10,10,10,0.85)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            borderRadius: 20,
+            padding: '2rem 2.75rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.6rem',
+            minWidth: 300,
+            textAlign: 'center',
+          }}>
+            <span style={{
+              fontSize: 12,
+              fontWeight: 700,
+              color: lastScore === 0 ? '#f87171' : '#4ade80',
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+            }}>
+              {lastScore === 0 ? "Time's Up" : 'Correct!'}
+            </span>
+            <p style={{ margin: 0, fontSize: '2rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>
+              {activeCity.displayName}
+            </p>
+            {lastScore > 0 && (
+              <p style={{ margin: 0, fontSize: 14, color: '#aaa' }}>{lastElapsed.toFixed(1)}s</p>
+            )}
+            <p style={{ margin: '0.25rem 0 0.75rem', fontSize: '1.75rem', fontWeight: 700, color: lastScore === 0 ? '#f87171' : '#4ade80' }}>
+              {lastScore === 0 ? '0' : `+${lastScore}`} pts
+            </p>
+            <button onClick={nextRound} style={btnStyle}>Next Round →</button>
+          </div>
         </div>
       )}
 
@@ -183,35 +282,99 @@ function App() {
           position: 'absolute',
           inset: 0,
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '1rem',
           background: 'rgba(0,0,0,0.75)',
         }}>
-          <h2 style={{ color: '#fff', margin: 0, fontSize: '2rem', fontWeight: 700 }}>Game Over</h2>
-          <p style={{ color: '#aaa', margin: 0, fontSize: 15 }}>
-            {state.roundScores.join(' · ')} pts
-          </p>
-          <p style={{ color: '#fff', fontSize: '3rem', fontWeight: 800, margin: 0, letterSpacing: '-0.02em' }}>
-            {state.totalScore}
-          </p>
-          <button
-            onClick={startGame}
-            style={{
-              marginTop: '0.5rem',
-              padding: '0.75rem 2.5rem',
-              fontSize: 16,
-              fontWeight: 600,
-              borderRadius: 10,
-              border: 'none',
-              background: '#fff',
-              color: '#111',
-              cursor: 'pointer',
-            }}
-          >
-            Play Again
-          </button>
+          <div style={{
+            background: 'rgba(10,10,10,0.9)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            borderRadius: 20,
+            padding: '2rem 2.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1rem',
+            minWidth: 340,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: '#fff' }}>Game Over</h2>
+              {state.difficulty && (
+                <span style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: DIFFICULTY_CONFIG[state.difficulty].accent,
+                  border: `1px solid ${DIFFICULTY_CONFIG[state.difficulty].border}`,
+                  borderRadius: 4,
+                  padding: '2px 6px',
+                }}>
+                  {DIFFICULTY_CONFIG[state.difficulty].label}
+                </span>
+              )}
+            </div>
+
+            {/* Per-round breakdown */}
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+              {state.cities.map((city, i) => {
+                const score = state.roundScores[i] ?? 0
+                const elapsed = state.roundElapsedTimes[i]
+                const timedOut = score === 0
+                return (
+                  <div key={city.name} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    padding: '0.4rem 0',
+                    borderBottom: i < state.cities.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+                  }}>
+                    <span style={{ flex: 1, color: '#eee', fontSize: 15, fontWeight: 500 }}>
+                      {city.displayName}
+                    </span>
+                    <span style={{ color: '#888', fontSize: 13, minWidth: 40, textAlign: 'right' }}>
+                      {timedOut ? '—' : `${elapsed?.toFixed(1)}s`}
+                    </span>
+                    <span style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      minWidth: 52,
+                      textAlign: 'right',
+                      color: timedOut ? '#f87171' : '#4ade80',
+                    }}>
+                      {timedOut ? '0' : `+${score}`}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Total */}
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginTop: '0.25rem' }}>
+              <span style={{ color: '#888', fontSize: 13 }}>Total</span>
+              <span style={{ color: '#fff', fontSize: '2rem', fontWeight: 800, letterSpacing: '-0.02em' }}>
+                {state.totalScore}
+              </span>
+              <span style={{ color: '#888', fontSize: 13 }}>pts</span>
+            </div>
+
+            <button
+              onClick={startGame}
+              style={{
+                padding: '0.7rem 2.5rem',
+                fontSize: 15,
+                fontWeight: 600,
+                borderRadius: 10,
+                border: 'none',
+                background: '#fff',
+                color: '#111',
+                cursor: 'pointer',
+              }}
+            >
+              Play Again
+            </button>
+          </div>
         </div>
       )}
     </div>
