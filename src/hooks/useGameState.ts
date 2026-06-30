@@ -87,13 +87,13 @@ export function useGameState() {
   const selectDifficulty = useCallback((difficulty: Difficulty) => {
     const cities = pickFromDifficulty(difficulty)
     console.log(`--- Starting ${difficulty} game! Cities: ${cities.map(c => c.displayName).join(', ')}`)
-    setState(s => ({
+    setState({
       ...INITIAL_STATE,
       phase: 'playing',
       difficulty,
       round: 1,
       cities,
-    }))
+    })
   }, [])
 
   const submitGuess = useCallback((cityName: string): boolean => {
