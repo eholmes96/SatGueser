@@ -3,7 +3,8 @@ import { buildMapboxStaticUrl, type City } from '../utils/mapboxUtils'
 import { easeOutQuad } from '../utils/easing'
 
 const ZOOM_LEVELS = [15, 14, 13, 12, 11, 10]
-const IMAGE_SIZE = 640
+const IMAGE_WIDTH = 640
+const IMAGE_HEIGHT = 360
 
 export function getFrameIndexForElapsedTime(
   elapsed: number,
@@ -18,15 +19,23 @@ export function getFrameIndexForElapsedTime(
 interface ImageRevealProps {
   city: City
   duration?: number
+  onLoad?: () => void
 }
 
-export function ImageReveal({ city, duration = 30000 }: ImageRevealProps) {
+export function ImageReveal({ city, duration = 30000, onLoad }: ImageRevealProps) {
   const [loaded, setLoaded] = useState(false)
   const frameRefs = useRef<(HTMLImageElement | null)[]>([])
   const rafRef = useRef<number>(0)
+  const onLoadRef = useRef(onLoad)
+  useEffect(() => { onLoadRef.current = onLoad }, [onLoad])
+
+  // Fire the onLoad callback once all frames are preloaded
+  useEffect(() => {
+    if (loaded) onLoadRef.current?.()
+  }, [loaded])
 
   const urls = ZOOM_LEVELS.map((z) =>
-    buildMapboxStaticUrl(city, z, IMAGE_SIZE, IMAGE_SIZE, true),
+    buildMapboxStaticUrl(city, z, IMAGE_WIDTH, IMAGE_HEIGHT, true),
   )
 
   useEffect(() => {
@@ -105,8 +114,8 @@ export function ImageReveal({ city, duration = 30000 }: ImageRevealProps) {
   if (!loaded) {
     return (
       <div style={{
-        width: IMAGE_SIZE,
-        height: IMAGE_SIZE,
+        position: 'absolute',
+        inset: 0,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -119,19 +128,20 @@ export function ImageReveal({ city, duration = 30000 }: ImageRevealProps) {
   }
 
   return (
-    <div style={{ position: 'relative', width: IMAGE_SIZE, height: IMAGE_SIZE, overflow: 'hidden' }}>
+    <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
       {urls.map((url, i) => (
         <img
           key={url}
           ref={(el) => { frameRefs.current[i] = el }}
           src={url}
           alt=""
-          width={IMAGE_SIZE}
-          height={IMAGE_SIZE}
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
             opacity: 0,
             willChange: 'transform, opacity',
           }}
