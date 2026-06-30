@@ -1,0 +1,62 @@
+[
+  {
+    "name": "new-york",
+    "displayName": "New York",
+    "lat": 40.7026,
+    "lng": -74.0164
+  },
+  {
+    "name": "chicago",
+    "displayName": "Chicago",
+    "lat": 41.8827,
+    "lng": -87.6233
+  },
+  {
+    "name": "los-angeles",
+    "displayName": "Los Angeles",
+    "lat": 34.0430,
+    "lng": -118.2673
+  },
+  {
+    "name": "san-francisco",
+    "displayName": "San Francisco",
+    "lat": 37.7951,
+    "lng": -122.3965
+  },
+  {
+    "name": "denver",
+    "displayName": "Denver",
+    "lat": 39.7392,
+    "lng": -104.9903
+  },
+  {
+    "name": "miami",
+    "displayName": "Miami",
+    "lat": 25.7750,
+    "lng": -80.1866
+  },
+  {
+    "name": "seattle",
+    "displayName": "Seattle",
+    "lat": 47.6062,
+    "lng": -122.3321
+  },
+  {
+    "name": "boston",
+    "displayName": "Boston",
+    "lat": 42.3601,
+    "lng": -71.0589
+  },
+  {
+    "name": "austin",
+    "displayName": "Austin",
+    "lat": 30.2672,
+    "lng": -97.7431
+  },
+  {
+    "name": "phoenix",
+    "displayName": "Phoenix",
+    "lat": 33.4484,
+    "lng": -112.0740
+  }
+]
