@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import allCities from '../cities.json'
-import type { City, Difficulty } from '../utils/mapboxUtils'
+import type { City, Difficulty, Mode } from '../utils/mapboxUtils'
+import { normalize } from '../utils/textUtils'
 
 export type { Difficulty }
 export type GamePhase = 'idle' | 'selectingDifficulty' | 'playing' | 'roundResult' | 'gameOver'
@@ -8,6 +9,7 @@ export type GamePhase = 'idle' | 'selectingDifficulty' | 'playing' | 'roundResul
 export interface GameState {
   phase: GamePhase
   difficulty: Difficulty | null
+  mode: Mode | null
   round: number
   cities: City[]
   activeCityIndex: number
@@ -24,14 +26,17 @@ function calculateScore(elapsedSeconds: number): number {
   return Math.max(0, Math.round((1000 - elapsedSeconds * 30) / 10) * 10)
 }
 
-function pickFromDifficulty(difficulty: Difficulty): City[] {
-  const pool = (allCities as City[]).filter(c => c.difficulty === difficulty)
+function pickFromDifficulty(mode: Mode, difficulty: Difficulty): City[] {
+  const pool = (allCities as City[]).filter(
+    c => c.mode === mode && c.difficulty === difficulty
+  )
   return [...pool].sort(() => Math.random() - 0.5).slice(0, ROUNDS_PER_GAME)
 }
 
 const INITIAL_STATE: GameState = {
   phase: 'idle',
   difficulty: null,
+  mode: null,
   round: 0,
   cities: [],
   activeCityIndex: 0,
@@ -84,13 +89,14 @@ export function useGameState() {
   }, [])
 
   // Called when the player picks a difficulty tile — begins the actual game.
-  const selectDifficulty = useCallback((difficulty: Difficulty) => {
-    const cities = pickFromDifficulty(difficulty)
+  const selectDifficulty = useCallback((difficulty: Difficulty, mode: Mode = 'us') => {
+    const cities = pickFromDifficulty(mode, difficulty)
     console.log(`--- Starting ${difficulty} game! Cities: ${cities.map(c => c.displayName).join(', ')}`)
     setState({
       ...INITIAL_STATE,
       phase: 'playing',
       difficulty,
+      mode,
       round: 1,
       cities,
     })
@@ -106,7 +112,7 @@ export function useGameState() {
       if (s.phase !== 'playing') return s
       const active = s.cities[s.activeCityIndex]
 
-      if (cityName.toLowerCase() !== active.displayName.toLowerCase()) {
+      if (normalize(cityName) !== normalize(active.displayName)) {
         console.log(`Wrong guess: "${cityName}"`)
         return s
       }

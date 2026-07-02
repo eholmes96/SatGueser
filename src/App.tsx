@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 import { useGameState } from './hooks/useGameState'
 import type { Difficulty } from './hooks/useGameState'
+import type { Mode } from './utils/mapboxUtils'
 import { MapReveal } from './components/MapReveal'
 import { CityGuessInput } from './components/CityGuessInput'
+import { US_CITIES } from './data/usCities'
+import { GLOBAL_CITIES } from './data/globalCities'
 import './App.css'
 
 type TitleMode = 'idle' | 'difficulty' | 'hiding' | 'gone'
@@ -11,6 +14,11 @@ const DIFFICULTY_CONFIG: Record<Difficulty, { label: string; desc: string; accen
   easy:   { label: 'Easy',   desc: 'Iconic coastlines & skylines', accent: '#4ade80', bg: 'rgba(74,222,128,0.08)',  border: 'rgba(74,222,128,0.35)'  },
   medium: { label: 'Medium', desc: 'Familiar but less obvious',    accent: '#f59e0b', bg: 'rgba(245,158,11,0.08)', border: 'rgba(245,158,11,0.35)' },
   hard:   { label: 'Hard',   desc: 'Good luck',                    accent: '#f87171', bg: 'rgba(248,113,113,0.08)',border: 'rgba(248,113,113,0.35)' },
+}
+
+const MODE_CONFIG: Record<Mode, { label: string }> = {
+  us: { label: 'US Cities' },
+  global: { label: 'Global' },
 }
 
 const btnStyle: React.CSSProperties = {
@@ -32,6 +40,11 @@ function App() {
   const barColor = timerPct > 66 ? '#22c55e' : timerPct > 33 ? '#f59e0b' : '#dc2626'
 
   const [titleMode, setTitleMode] = useState<TitleMode>('idle')
+
+  // Controls the difficulty-selection screen's mode toggle only. The
+  // authoritative mode for the running game is state.mode, set by
+  // useGameState once selectDifficulty is called.
+  const [selectedMode, setSelectedMode] = useState<Mode>('us')
 
   // Title stays visible (shrunk above the difficulty picker) until the game
   // actually starts, at which point it animates up and away.
@@ -174,6 +187,37 @@ function App() {
 
           {titleMode === 'difficulty' && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+              <div style={{
+                display: 'flex',
+                gap: '0.25rem',
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                padding: 4,
+                borderRadius: 999,
+              }}>
+                {(['us', 'global'] as const).map(m => (
+                  <button
+                    key={m}
+                    onClick={() => setSelectedMode(m)}
+                    style={{
+                      padding: '0.35rem 1rem',
+                      fontSize: 12,
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.06em',
+                      borderRadius: 999,
+                      border: 'none',
+                      cursor: 'pointer',
+                      background: selectedMode === m ? '#fff' : 'transparent',
+                      color: selectedMode === m ? '#111' : '#aaa',
+                      transition: 'background 0.15s, color 0.15s',
+                    }}
+                  >
+                    {MODE_CONFIG[m].label}
+                  </button>
+                ))}
+              </div>
+
               <p style={{
                 margin: 0,
                 color: '#888',
@@ -191,7 +235,7 @@ function App() {
                   return (
                     <button
                       key={d}
-                      onClick={() => selectDifficulty(d)}
+                      onClick={() => selectDifficulty(d, selectedMode)}
                       style={{
                         padding: '1.5rem 2rem',
                         minWidth: 150,
@@ -286,7 +330,12 @@ function App() {
           borderRadius: 12,
           padding: '0.75rem 1.25rem',
         }}>
-          <CityGuessInput onSubmit={submitGuess} disabled={false} phase={state.phase} />
+          <CityGuessInput
+            onSubmit={submitGuess}
+            disabled={false}
+            phase={state.phase}
+            citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : US_CITIES}
+          />
         </div>
       )}
 

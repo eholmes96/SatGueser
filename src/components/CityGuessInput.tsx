@@ -1,17 +1,17 @@
 import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from 'react'
-import { US_CITIES } from '../data/usCities'
 import type { GamePhase } from '../hooks/useGameState'
+import { normalize } from '../utils/textUtils'
 
 const MAX_SUGGESTIONS = 8
 const MIN_CHARS = 3
 
-function getSuggestions(query: string): string[] {
+function getSuggestions(query: string, citySuggestions: string[]): string[] {
   if (query.length < MIN_CHARS) return []
-  const q = query.toLowerCase()
+  const q = normalize(query)
   const prefix: string[] = []
   const contains: string[] = []
-  for (const city of US_CITIES) {
-    const c = city.toLowerCase()
+  for (const city of citySuggestions) {
+    const c = normalize(city)
     if (c.startsWith(q)) prefix.push(city)
     else if (c.includes(q)) contains.push(city)
   }
@@ -34,9 +34,10 @@ interface CityGuessInputProps {
   onSubmit: (city: string) => boolean
   disabled?: boolean
   phase: GamePhase
+  citySuggestions: string[]
 }
 
-export function CityGuessInput({ onSubmit, disabled, phase }: CityGuessInputProps) {
+export function CityGuessInput({ onSubmit, disabled, phase, citySuggestions }: CityGuessInputProps) {
   const [value, setValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [highlightedIdx, setHighlightedIdx] = useState(0)
@@ -47,10 +48,10 @@ export function CityGuessInput({ onSubmit, disabled, phase }: CityGuessInputProp
   const shakeTimerRef = useRef<number>(0)
 
   useEffect(() => {
-    const results = getSuggestions(value)
+    const results = getSuggestions(value, citySuggestions)
     setSuggestions(results)
     setHighlightedIdx(0)
-  }, [value])
+  }, [value, citySuggestions])
 
   // Auto-focus at the start of every round so guessing can begin without a click.
   useEffect(() => {
@@ -109,6 +110,11 @@ export function CityGuessInput({ onSubmit, disabled, phase }: CityGuessInputProp
       case 'Tab':
       case 'Enter':
         e.preventDefault()
+        // Stop this keydown from bubbling to window — otherwise the same
+        // Enter press that submits a correct guess can also be caught by
+        // App.tsx's roundResult "Enter advances round" listener once the
+        // phase flips, skipping the result popup entirely.
+        e.stopPropagation()
         accept(suggestions[highlightedIdx])
         break
       case 'Escape':

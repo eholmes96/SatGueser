@@ -4,209 +4,561 @@
     "displayName": "New York",
     "lat": 40.7026,
     "lng": -74.0164,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "chicago",
     "displayName": "Chicago",
     "lat": 41.8827,
     "lng": -87.6233,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "los-angeles",
     "displayName": "Los Angeles",
     "lat": 34.0430,
     "lng": -118.2673,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "san-francisco",
     "displayName": "San Francisco",
     "lat": 37.7951,
     "lng": -122.3965,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "denver",
     "displayName": "Denver",
     "lat": 39.7392,
     "lng": -104.9903,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "miami",
     "displayName": "Miami",
     "lat": 25.7750,
     "lng": -80.1866,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "seattle",
     "displayName": "Seattle",
     "lat": 47.6062,
     "lng": -122.3321,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "boston",
     "displayName": "Boston",
     "lat": 42.3601,
     "lng": -71.0589,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "austin",
     "displayName": "Austin",
     "lat": 30.2672,
     "lng": -97.7431,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "phoenix",
     "displayName": "Phoenix",
     "lat": 33.4484,
     "lng": -112.0740,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "washington-dc",
     "displayName": "Washington, DC",
     "lat": 38.8893,
     "lng": -77.0254,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "philadelphia",
     "displayName": "Philadelphia",
     "lat": 39.9496,
     "lng": -75.1503,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "houston",
     "displayName": "Houston",
     "lat": 29.7563,
     "lng": -95.3568,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "dallas",
     "displayName": "Dallas",
     "lat": 32.7894,
     "lng": -96.8028,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "san-antonio",
     "displayName": "San Antonio",
     "lat": 29.4260,
     "lng": -98.4861,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "san-diego",
     "displayName": "San Diego",
     "lat": 32.7341,
     "lng": -117.1449,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "portland",
     "displayName": "Portland, OR",
     "lat": 45.5189,
     "lng": -122.6713,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "minneapolis",
     "displayName": "Minneapolis",
     "lat": 44.9778,
     "lng": -93.2650,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "detroit",
     "displayName": "Detroit",
     "lat": 42.3315,
     "lng": -83.0467,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "atlanta",
     "displayName": "Atlanta",
     "lat": 33.7603,
     "lng": -84.3935,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "new-orleans",
     "displayName": "New Orleans",
     "lat": 29.9575,
     "lng": -90.0630,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "nashville",
     "displayName": "Nashville",
     "lat": 36.1612,
     "lng": -86.7775,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "las-vegas",
     "displayName": "Las Vegas",
     "lat": 36.1126,
     "lng": -115.1767,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "charlotte",
     "displayName": "Charlotte",
     "lat": 35.2251,
     "lng": -80.8434,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "pittsburgh",
     "displayName": "Pittsburgh",
     "lat": 40.4423,
     "lng": -80.0112,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "salt-lake-city",
     "displayName": "Salt Lake City",
     "lat": 40.7707,
     "lng": -111.8911,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
   },
   {
     "name": "indianapolis",
     "displayName": "Indianapolis",
     "lat": 39.7685,
     "lng": -86.1580,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "kansas-city",
     "displayName": "Kansas City",
     "lat": 39.0392,
     "lng": -94.5908,
-    "difficulty": "hard"
+    "difficulty": "hard",
+    "mode": "us"
   },
   {
     "name": "st-louis",
     "displayName": "St. Louis",
     "lat": 38.6247,
     "lng": -90.1848,
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "mode": "us"
   },
   {
     "name": "sacramento",
     "displayName": "Sacramento",
     "lat": 38.5765,
     "lng": -121.4934,
-    "difficulty": "medium"
+    "difficulty": "medium",
+    "mode": "us"
+  },
+  {
+    "name": "new-york-global",
+    "displayName": "New York, USA",
+    "lat": 40.7026,
+    "lng": -74.0164,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "United States"
+  },
+  {
+    "name": "san-francisco-global",
+    "displayName": "San Francisco, USA",
+    "lat": 37.7951,
+    "lng": -122.3965,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "United States"
+  },
+  {
+    "name": "boston-global",
+    "displayName": "Boston, USA",
+    "lat": 42.3601,
+    "lng": -71.0589,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "United States"
+  },
+  {
+    "name": "philadelphia-global",
+    "displayName": "Philadelphia, USA",
+    "lat": 39.9496,
+    "lng": -75.1503,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "United States"
+  },
+  {
+    "name": "los-angeles-global",
+    "displayName": "Los Angeles, USA",
+    "lat": 34.0430,
+    "lng": -118.2673,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "United States"
+  },
+  {
+    "name": "houston-global",
+    "displayName": "Houston, USA",
+    "lat": 29.7563,
+    "lng": -95.3568,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "United States"
+  },
+  {
+    "name": "venice",
+    "displayName": "Venice, Italy",
+    "lat": 45.4342,
+    "lng": 12.3388,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Italy"
+  },
+  {
+    "name": "dubai",
+    "displayName": "Dubai, UAE",
+    "lat": 25.1124,
+    "lng": 55.139,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "UAE"
+  },
+  {
+    "name": "rio-de-janeiro",
+    "displayName": "Rio de Janeiro, Brazil",
+    "lat": -22.9519,
+    "lng": -43.2105,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Brazil"
+  },
+  {
+    "name": "sydney",
+    "displayName": "Sydney, Australia",
+    "lat": -33.8568,
+    "lng": 151.2153,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Australia"
+  },
+  {
+    "name": "amsterdam",
+    "displayName": "Amsterdam, Netherlands",
+    "lat": 52.3702,
+    "lng": 4.8952,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Netherlands"
+  },
+  {
+    "name": "male",
+    "displayName": "Mal\u00e9, Maldives",
+    "lat": 4.1755,
+    "lng": 73.5093,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Maldives"
+  },
+  {
+    "name": "cape-town",
+    "displayName": "Cape Town, South Africa",
+    "lat": -33.9328,
+    "lng": 18.4173,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "South Africa"
+  },
+  {
+    "name": "istanbul",
+    "displayName": "Istanbul, Turkey",
+    "lat": 41.0082,
+    "lng": 28.9784,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Turkey"
+  },
+  {
+    "name": "hong-kong",
+    "displayName": "Hong Kong",
+    "lat": 22.2793,
+    "lng": 114.1628,
+    "difficulty": "easy",
+    "mode": "global"
+  },
+  {
+    "name": "barcelona",
+    "displayName": "Barcelona, Spain",
+    "lat": 41.3874,
+    "lng": 2.1686,
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Spain"
+  },
+  {
+    "name": "paris",
+    "displayName": "Paris, France",
+    "lat": 48.8738,
+    "lng": 2.295,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "France"
+  },
+  {
+    "name": "moscow",
+    "displayName": "Moscow, Russia",
+    "lat": 55.752,
+    "lng": 37.6175,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Russia"
+  },
+  {
+    "name": "tokyo",
+    "displayName": "Tokyo, Japan",
+    "lat": 35.6852,
+    "lng": 139.7528,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Japan"
+  },
+  {
+    "name": "bangkok",
+    "displayName": "Bangkok, Thailand",
+    "lat": 13.7527,
+    "lng": 100.493,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Thailand"
+  },
+  {
+    "name": "buenos-aires",
+    "displayName": "Buenos Aires, Argentina",
+    "lat": -34.6084,
+    "lng": -58.3732,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Argentina"
+  },
+  {
+    "name": "seoul",
+    "displayName": "Seoul, South Korea",
+    "lat": 37.5665,
+    "lng": 126.978,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "South Korea"
+  },
+  {
+    "name": "mumbai",
+    "displayName": "Mumbai, India",
+    "lat": 18.922,
+    "lng": 72.8347,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "India"
+  },
+  {
+    "name": "singapore",
+    "displayName": "Singapore",
+    "lat": 1.2836,
+    "lng": 103.8607,
+    "difficulty": "medium",
+    "mode": "global"
+  },
+  {
+    "name": "beijing",
+    "displayName": "Beijing, China",
+    "lat": 39.9163,
+    "lng": 116.3972,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "China"
+  },
+  {
+    "name": "auckland",
+    "displayName": "Auckland, New Zealand",
+    "lat": -36.8485,
+    "lng": 174.7633,
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "New Zealand"
+  },
+  {
+    "name": "toronto",
+    "displayName": "Toronto, Canada",
+    "lat": 43.6511,
+    "lng": -79.3809,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Canada"
+  },
+  {
+    "name": "mexico-city",
+    "displayName": "Mexico City, Mexico",
+    "lat": 19.4326,
+    "lng": -99.1332,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Mexico"
+  },
+  {
+    "name": "berlin",
+    "displayName": "Berlin, Germany",
+    "lat": 52.52,
+    "lng": 13.405,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Germany"
+  },
+  {
+    "name": "madrid",
+    "displayName": "Madrid, Spain",
+    "lat": 40.4168,
+    "lng": -3.7038,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Spain"
+  },
+  {
+    "name": "johannesburg",
+    "displayName": "Johannesburg, South Africa",
+    "lat": -26.2041,
+    "lng": 28.0473,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "South Africa"
+  },
+  {
+    "name": "warsaw",
+    "displayName": "Warsaw, Poland",
+    "lat": 52.2297,
+    "lng": 21.0122,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Poland"
+  },
+  {
+    "name": "brussels",
+    "displayName": "Brussels, Belgium",
+    "lat": 50.8503,
+    "lng": 4.3517,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Belgium"
+  },
+  {
+    "name": "lagos",
+    "displayName": "Lagos, Nigeria",
+    "lat": 6.5244,
+    "lng": 3.3792,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Nigeria"
+  },
+  {
+    "name": "nairobi",
+    "displayName": "Nairobi, Kenya",
+    "lat": -1.2921,
+    "lng": 36.8219,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Kenya"
+  },
+  {
+    "name": "manila",
+    "displayName": "Manila, Philippines",
+    "lat": 14.5995,
+    "lng": 120.9842,
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Philippines"
   }
 ]

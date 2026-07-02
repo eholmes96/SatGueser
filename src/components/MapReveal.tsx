@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import { MAPBOX_TOKEN, type City } from '../utils/mapboxUtils'
 import { easeOutQuad } from '../utils/easing'
@@ -37,6 +37,10 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
   // time, waiting on it again would stall that round's camera jump forever.
   const styleReadyRef = useRef(false)
   const [debugInfo, setDebugInfo] = useState({ lng: 0, lat: 0, zoom: 0 })
+  // Drives the friendly "couldn't load the satellite image" retry card.
+  // Mode-agnostic — MapReveal only ever sees a City's lat/lng, so this
+  // applies identically whether the round is a US or global city.
+  const [loadError, setLoadError] = useState(false)
 
   const cityRef = useRef(city)
   useEffect(() => { cityRef.current = city }, [city])
@@ -71,6 +75,11 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
     map.once('load', () => { styleReadyRef.current = true })
     map.on('error', (e) => {
       onErrorRef.current?.(`MAP_ERR: ${e.error?.message ?? 'unknown map error'}`)
+      // AbortError fires for routine canceled tile fetches (e.g. the camera
+      // moved again before a previous request finished) — not a real failure.
+      if (e.error?.name !== 'AbortError') {
+        setLoadError(true)
+      }
     })
     mapRef.current = map
 
@@ -95,6 +104,7 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
 
     cancelAnimationFrame(rafRef.current)
     clearTimeout(settleTimerRef.current)
+    setLoadError(false)
 
     const beginRound = () => {
       map.jumpTo({ center: [activeCity.lng, activeCity.lat], zoom: START_ZOOM })
@@ -135,6 +145,17 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
     }
   }, [roundToken, duration])
 
+  // Re-attempts loading the current round's imagery without touching game
+  // state (score/timer/round are untouched — this only retries the map).
+  const handleRetry = useCallback(() => {
+    setLoadError(false)
+    const map = mapRef.current
+    const activeCity = cityRef.current
+    if (map && activeCity) {
+      map.jumpTo({ center: [activeCity.lng, activeCity.lat], zoom: map.getZoom() })
+    }
+  }, [])
+
   // Diagnostic readout only — polls the map's live center/zoom so a stalled
   // round (state advanced but the camera didn't move) is visible on screen.
   useEffect(() => {
@@ -151,6 +172,55 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
   return (
     <div style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', pointerEvents: 'none' }}>
       <div ref={containerRef} style={{ position: 'absolute', inset: 0 }} />
+      {loadError && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'rgba(0,0,0,0.55)',
+          pointerEvents: 'auto',
+          zIndex: 200,
+        }}>
+          <div style={{
+            background: 'rgba(10,10,10,0.9)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            borderRadius: 20,
+            padding: '2rem 2.5rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.75rem',
+            maxWidth: 340,
+            textAlign: 'center',
+          }}>
+            <p style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: '#fff' }}>
+              Satellite image failed to load
+            </p>
+            <p style={{ margin: 0, fontSize: 13, color: '#aaa' }}>
+              This can happen with a spotty connection or a brief Mapbox hiccup.
+            </p>
+            <button
+              onClick={handleRetry}
+              style={{
+                marginTop: '0.5rem',
+                padding: '0.55rem 1.5rem',
+                fontSize: 15,
+                fontWeight: 600,
+                borderRadius: 8,
+                border: '1px solid rgba(255,255,255,0.3)',
+                background: 'rgba(255,255,255,0.15)',
+                color: '#fff',
+                cursor: 'pointer',
+              }}
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      )}
       {debug && (
         <div style={{
           position: 'absolute',
