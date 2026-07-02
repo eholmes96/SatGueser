@@ -26,11 +26,20 @@ function calculateScore(elapsedSeconds: number): number {
   return Math.max(0, Math.round((1000 - elapsedSeconds * 30) / 10) * 10)
 }
 
+function shuffle<T>(array: T[]): T[] {
+  const result = [...array]
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[result[i], result[j]] = [result[j], result[i]]
+  }
+  return result
+}
+
 function pickFromDifficulty(mode: Mode, difficulty: Difficulty): City[] {
   const pool = (allCities as City[]).filter(
     c => c.mode === mode && c.difficulty === difficulty
   )
-  return [...pool].sort(() => Math.random() - 0.5).slice(0, ROUNDS_PER_GAME)
+  return shuffle(pool).slice(0, ROUNDS_PER_GAME)
 }
 
 const INITIAL_STATE: GameState = {
