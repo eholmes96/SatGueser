@@ -132,13 +132,19 @@ export function CityGuessInput({ onSubmit, disabled, phase, citySuggestions }: C
       <input
         ref={inputRef}
         type="text"
+        name="city-guess"
         value={value}
         onChange={e => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         placeholder="Type a city name…"
         autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        inputMode="text"
         spellCheck={false}
+        data-lpignore="true"
+        data-1p-ignore="true"
         style={{
           width: '100%',
           padding: '0.5rem 0.75rem',

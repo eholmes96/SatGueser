@@ -53,12 +53,16 @@
 #root {
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   margin: 0;
   overflow: hidden;
 }
 
+html,
 body {
   margin: 0;
+  height: 100%;
+  overflow: hidden;
 }
 
 @keyframes shake {

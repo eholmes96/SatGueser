@@ -101,7 +101,15 @@ function App() {
   const lastElapsed = state.roundElapsedTimes[state.roundElapsedTimes.length - 1] ?? 0
 
   return (
-    <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', background: '#111' }}>
+    <div style={{
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100vw',
+      height: '100dvh',
+      overflow: 'hidden',
+      background: '#111',
+    }}>
 
       {/* Full-screen satellite map — single persistent instance for the whole session */}
       <div style={{
@@ -229,7 +237,15 @@ function App() {
                 Select Difficulty
               </p>
 
-              <div style={{ display: 'flex', gap: '1rem' }}>
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                gap: 'clamp(0.5rem, 3vw, 1rem)',
+                maxWidth: 'min(560px, 100vw)',
+                padding: '0 1rem',
+                boxSizing: 'border-box',
+              }}>
                 {(['easy', 'medium', 'hard'] as const).map(d => {
                   const cfg = DIFFICULTY_CONFIG[d]
                   return (
@@ -237,8 +253,8 @@ function App() {
                       key={d}
                       onClick={() => selectDifficulty(d, selectedMode)}
                       style={{
-                        padding: '1.5rem 2rem',
-                        minWidth: 150,
+                        padding: 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 5vw, 2rem)',
+                        minWidth: 'clamp(96px, 27vw, 150px)',
                         background: cfg.bg,
                         border: `1px solid ${cfg.border}`,
                         borderRadius: 14,
@@ -265,79 +281,99 @@ function App() {
         </div>
       )}
 
-      {/* Top bar: Round · Timer · Score (+ difficulty pill) */}
-      {showTopBar && (
-        <div style={{
-          position: 'absolute',
-          top: '1.25rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'rgba(0,0,0,0.6)',
-          backdropFilter: 'blur(6px)',
-          WebkitBackdropFilter: 'blur(6px)',
-          borderRadius: 12,
-          padding: '0.6rem 1.25rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1rem',
-          minWidth: 440,
-          color: '#fff',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
-            <span style={{ fontSize: 14, fontWeight: 600 }}>Round {state.round}/5</span>
-            {state.difficulty && (
-              <span style={{
-                fontSize: 10,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                color: DIFFICULTY_CONFIG[state.difficulty].accent,
-                border: `1px solid ${DIFFICULTY_CONFIG[state.difficulty].border}`,
+      {/* Top bar row — a fixed-size flex child (not position:absolute) so it
+          stays in normal flow above the compressible map row below. This is
+          what keeps it on-screen when the iOS keyboard shrinks the viewport,
+          instead of the browser scrolling the whole page to chase the input. */}
+      <div style={{
+        flex: '0 0 auto',
+        display: 'flex',
+        justifyContent: 'center',
+        paddingTop: showTopBar ? '1.25rem' : 0,
+        pointerEvents: 'none',
+      }}>
+        {showTopBar && (
+          <div style={{
+            background: 'rgba(0,0,0,0.6)',
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
+            borderRadius: 12,
+            padding: '0.6rem 1.25rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            maxWidth: 'calc(100vw - 2rem)',
+            color: '#fff',
+            pointerEvents: 'auto',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
+              <span style={{ fontSize: 14, fontWeight: 600 }}>Round {state.round}/5</span>
+              {state.difficulty && (
+                <span style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: DIFFICULTY_CONFIG[state.difficulty].accent,
+                  border: `1px solid ${DIFFICULTY_CONFIG[state.difficulty].border}`,
+                  borderRadius: 4,
+                  padding: '1px 5px',
+                }}>
+                  {DIFFICULTY_CONFIG[state.difficulty].label}
+                </span>
+              )}
+            </div>
+
+            <div style={{ width: 'min(220px, 30vw)', height: 8, background: 'rgba(255,255,255,0.2)', borderRadius: 4, overflow: 'hidden' }}>
+              <div style={{
+                width: `${timerPct}%`,
+                height: '100%',
+                background: barColor,
                 borderRadius: 4,
-                padding: '1px 5px',
-              }}>
-                {DIFFICULTY_CONFIG[state.difficulty].label}
-              </span>
-            )}
+                transition: 'width 0.2s linear, background-color 0.5s ease',
+              }} />
+            </div>
+
+            <span style={{ fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>
+              Score: {state.totalScore}
+            </span>
           </div>
+        )}
+      </div>
 
-          <div style={{ flex: 1, height: 8, background: 'rgba(255,255,255,0.2)', borderRadius: 4, overflow: 'hidden' }}>
-            <div style={{
-              width: `${timerPct}%`,
-              height: '100%',
-              background: barColor,
-              borderRadius: 4,
-              transition: 'width 0.2s linear, background-color 0.5s ease',
-            }} />
+      {/* Map row — reserves the space between the top and bottom bars. The
+          actual satellite imagery is the fixed full-bleed layer above; this
+          spacer is what makes flex:1 absorb the keyboard's height reduction
+          instead of the top/bottom bars getting squeezed or pushed off-screen. */}
+      <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', pointerEvents: 'none' }} />
+
+      {/* Bottom bar row — guess input (playing only), same fixed-size flex
+          treatment as the top bar row above. */}
+      <div style={{
+        flex: '0 0 auto',
+        display: 'flex',
+        justifyContent: 'center',
+        paddingBottom: state.phase === 'playing' ? '1.5rem' : 0,
+        pointerEvents: 'none',
+      }}>
+        {state.phase === 'playing' && (
+          <div style={{
+            background: 'rgba(0,0,0,0.6)',
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
+            borderRadius: 12,
+            padding: '0.75rem 1.25rem',
+            pointerEvents: 'auto',
+          }}>
+            <CityGuessInput
+              onSubmit={submitGuess}
+              disabled={false}
+              phase={state.phase}
+              citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : US_CITIES}
+            />
           </div>
-
-          <span style={{ fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>
-            Score: {state.totalScore}
-          </span>
-        </div>
-      )}
-
-      {/* Bottom bar: guess input (playing only) */}
-      {state.phase === 'playing' && (
-        <div style={{
-          position: 'absolute',
-          bottom: '1.5rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'rgba(0,0,0,0.6)',
-          backdropFilter: 'blur(6px)',
-          WebkitBackdropFilter: 'blur(6px)',
-          borderRadius: 12,
-          padding: '0.75rem 1.25rem',
-        }}>
-          <CityGuessInput
-            onSubmit={submitGuess}
-            disabled={false}
-            phase={state.phase}
-            citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : US_CITIES}
-          />
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Round result card */}
       {state.phase === 'roundResult' && activeCity && (
