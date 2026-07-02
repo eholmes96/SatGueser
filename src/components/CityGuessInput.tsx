@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from 'react'
 import { US_CITIES } from '../data/usCities'
+import type { GamePhase } from '../hooks/useGameState'
 
 const MAX_SUGGESTIONS = 8
 const MIN_CHARS = 3
@@ -32,9 +33,10 @@ function Highlight({ text, query }: { text: string; query: string }) {
 interface CityGuessInputProps {
   onSubmit: (city: string) => boolean
   disabled?: boolean
+  phase: GamePhase
 }
 
-export function CityGuessInput({ onSubmit, disabled }: CityGuessInputProps) {
+export function CityGuessInput({ onSubmit, disabled, phase }: CityGuessInputProps) {
   const [value, setValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [highlightedIdx, setHighlightedIdx] = useState(0)
@@ -49,6 +51,13 @@ export function CityGuessInput({ onSubmit, disabled }: CityGuessInputProps) {
     setSuggestions(results)
     setHighlightedIdx(0)
   }, [value])
+
+  // Auto-focus at the start of every round so guessing can begin without a click.
+  useEffect(() => {
+    if (phase === 'playing') {
+      inputRef.current?.focus()
+    }
+  }, [phase])
 
   useEffect(() => {
     const list = listRef.current

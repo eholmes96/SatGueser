@@ -5,7 +5,7 @@ import { MapReveal } from './components/MapReveal'
 import { CityGuessInput } from './components/CityGuessInput'
 import './App.css'
 
-type TitlePhase = 'visible' | 'exiting' | 'gone'
+type TitleMode = 'idle' | 'difficulty' | 'hiding' | 'gone'
 
 const DIFFICULTY_CONFIG: Record<Difficulty, { label: string; desc: string; accent: string; bg: string; border: string }> = {
   easy:   { label: 'Easy',   desc: 'Iconic coastlines & skylines', accent: '#4ade80', bg: 'rgba(74,222,128,0.08)',  border: 'rgba(74,222,128,0.35)'  },
@@ -31,16 +31,25 @@ function App() {
   const timerPct = Math.max(0, (timeLeft / 30) * 100)
   const barColor = timerPct > 66 ? '#22c55e' : timerPct > 33 ? '#f59e0b' : '#dc2626'
 
-  const [titlePhase, setTitlePhase] = useState<TitlePhase>('visible')
+  const [titleMode, setTitleMode] = useState<TitleMode>('idle')
 
-  // Title animates away as soon as we leave the idle screen
+  // Title stays visible (shrunk above the difficulty picker) until the game
+  // actually starts, at which point it animates up and away.
   useEffect(() => {
-    if (state.phase !== 'idle' && titlePhase === 'visible') {
-      setTitlePhase('exiting')
-      const t = setTimeout(() => setTitlePhase('gone'), 750)
-      return () => clearTimeout(t)
+    if (state.phase === 'idle') {
+      setTitleMode('idle')
+    } else if (state.phase === 'selectingDifficulty') {
+      setTitleMode('difficulty')
+    } else {
+      setTitleMode(prev => (prev === 'gone' ? 'gone' : 'hiding'))
     }
-  }, [state.phase, titlePhase])
+  }, [state.phase])
+
+  useEffect(() => {
+    if (titleMode !== 'hiding') return
+    const t = setTimeout(() => setTitleMode('gone'), 750)
+    return () => clearTimeout(t)
+  }, [titleMode])
 
   // The map is a single persistent instance, so we can't key a remount off
   // the active city (the same city can recur across separate games). Instead
@@ -117,8 +126,9 @@ function App() {
         </div>
       )}
 
-      {/* Title overlay — slides up and fades on game start */}
-      {titlePhase !== 'gone' && (
+      {/* Title + difficulty picker — title shrinks and moves above the
+          difficulty options, then slides up and fades once the game starts */}
+      {titleMode !== 'gone' && (
         <div style={{
           position: 'absolute',
           inset: 0,
@@ -126,23 +136,25 @@ function App() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '2rem',
-          transform: titlePhase === 'exiting' ? 'translateY(-100px)' : 'translateY(0)',
-          opacity: titlePhase === 'exiting' ? 0 : 1,
+          gap: titleMode === 'difficulty' ? '2.5rem' : '2rem',
+          transform: titleMode === 'hiding' ? 'translateY(-100px)' : 'translateY(0)',
+          opacity: titleMode === 'hiding' ? 0 : 1,
           transition: 'transform 0.75s ease-in, opacity 0.75s ease-in',
-          pointerEvents: titlePhase === 'exiting' ? 'none' : 'auto',
+          pointerEvents: titleMode === 'hiding' ? 'none' : 'auto',
         }}>
           <h1 style={{
-            fontSize: '5rem',
+            fontSize: titleMode === 'difficulty' ? '2.5rem' : '5rem',
             fontWeight: 800,
             color: '#fff',
             margin: 0,
             letterSpacing: '-0.03em',
             textShadow: '0 2px 24px rgba(0,0,0,0.6)',
+            transition: 'font-size 0.5s ease',
           }}>
             SatGueser
           </h1>
-          {state.phase === 'idle' && (
+
+          {titleMode === 'idle' && (
             <button
               onClick={startGame}
               style={{
@@ -159,62 +171,53 @@ function App() {
               Start Game
             </button>
           )}
-        </div>
-      )}
 
-      {/* Difficulty selection screen */}
-      {state.phase === 'selectingDifficulty' && (
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '2rem',
-        }}>
-          <p style={{
-            margin: 0,
-            color: '#888',
-            fontSize: 12,
-            fontWeight: 600,
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-          }}>
-            Select Difficulty
-          </p>
+          {titleMode === 'difficulty' && (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+              <p style={{
+                margin: 0,
+                color: '#888',
+                fontSize: 12,
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+              }}>
+                Select Difficulty
+              </p>
 
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            {(['easy', 'medium', 'hard'] as const).map(d => {
-              const cfg = DIFFICULTY_CONFIG[d]
-              return (
-                <button
-                  key={d}
-                  onClick={() => selectDifficulty(d)}
-                  style={{
-                    padding: '1.5rem 2rem',
-                    minWidth: 150,
-                    background: cfg.bg,
-                    border: `1px solid ${cfg.border}`,
-                    borderRadius: 14,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '0.4rem',
-                    transition: 'background 0.15s',
-                  }}
-                >
-                  <span style={{ fontSize: '1.1rem', fontWeight: 700, color: cfg.accent }}>
-                    {cfg.label}
-                  </span>
-                  <span style={{ fontSize: 12, color: '#888', fontWeight: 400 }}>
-                    {cfg.desc}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                {(['easy', 'medium', 'hard'] as const).map(d => {
+                  const cfg = DIFFICULTY_CONFIG[d]
+                  return (
+                    <button
+                      key={d}
+                      onClick={() => selectDifficulty(d)}
+                      style={{
+                        padding: '1.5rem 2rem',
+                        minWidth: 150,
+                        background: cfg.bg,
+                        border: `1px solid ${cfg.border}`,
+                        borderRadius: 14,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '0.4rem',
+                        transition: 'background 0.15s',
+                      }}
+                    >
+                      <span style={{ fontSize: '1.1rem', fontWeight: 700, color: cfg.accent }}>
+                        {cfg.label}
+                      </span>
+                      <span style={{ fontSize: 12, color: '#888', fontWeight: 400 }}>
+                        {cfg.desc}
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -283,7 +286,7 @@ function App() {
           borderRadius: 12,
           padding: '0.75rem 1.25rem',
         }}>
-          <CityGuessInput onSubmit={submitGuess} disabled={false} />
+          <CityGuessInput onSubmit={submitGuess} disabled={false} phase={state.phase} />
         </div>
       )}
 
