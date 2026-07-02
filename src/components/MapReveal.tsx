@@ -41,6 +41,11 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
   // Mode-agnostic — MapReveal only ever sees a City's lat/lng, so this
   // applies identically whether the round is a US or global city.
   const [loadError, setLoadError] = useState(false)
+  // Set when Mapbox returns a 403 (token valid, but restricted to specific
+  // URLs — e.g. a Vercel preview deployment whose random URL isn't
+  // whitelisted). Retrying can't fix a URL restriction, so this gets its
+  // own message with no Retry button, distinct from transient load failures.
+  const [tokenRestricted, setTokenRestricted] = useState(false)
 
   const cityRef = useRef(city)
   useEffect(() => { cityRef.current = city }, [city])
@@ -77,7 +82,14 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
       onErrorRef.current?.(`MAP_ERR: ${e.error?.message ?? 'unknown map error'}`)
       // AbortError fires for routine canceled tile fetches (e.g. the camera
       // moved again before a previous request finished) — not a real failure.
-      if (e.error?.name !== 'AbortError') {
+      if (e.error?.name === 'AbortError') return
+
+      // Mapbox's AJAXError carries an HTTP status that isn't in the public
+      // ErrorLike type, so this reads it defensively rather than via `any`.
+      const status = (e.error as { status?: number } | undefined)?.status
+      if (status === 403) {
+        setTokenRestricted(true)
+      } else {
         setLoadError(true)
       }
     })
@@ -105,6 +117,7 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
     cancelAnimationFrame(rafRef.current)
     clearTimeout(settleTimerRef.current)
     setLoadError(false)
+    setTokenRestricted(false)
 
     const beginRound = () => {
       map.jumpTo({ center: [activeCity.lng, activeCity.lat], zoom: START_ZOOM })
@@ -172,7 +185,7 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
   return (
     <div style={{ position: 'fixed', inset: 0, width: '100vw', height: '100vh', pointerEvents: 'none' }}>
       <div ref={containerRef} style={{ position: 'absolute', inset: 0 }} />
-      {loadError && (
+      {(loadError || tokenRestricted) && (
         <div style={{
           position: 'absolute',
           inset: 0,
@@ -196,28 +209,41 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
             maxWidth: 340,
             textAlign: 'center',
           }}>
-            <p style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: '#fff' }}>
-              Satellite image failed to load
-            </p>
-            <p style={{ margin: 0, fontSize: 13, color: '#aaa' }}>
-              This can happen with a spotty connection or a brief Mapbox hiccup.
-            </p>
-            <button
-              onClick={handleRetry}
-              style={{
-                marginTop: '0.5rem',
-                padding: '0.55rem 1.5rem',
-                fontSize: 15,
-                fontWeight: 600,
-                borderRadius: 8,
-                border: '1px solid rgba(255,255,255,0.3)',
-                background: 'rgba(255,255,255,0.15)',
-                color: '#fff',
-                cursor: 'pointer',
-              }}
-            >
-              Retry
-            </button>
+            {tokenRestricted ? (
+              <>
+                <p style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: '#fff' }}>
+                  Map preview isn't available in this preview deployment
+                </p>
+                <p style={{ margin: 0, fontSize: 13, color: '#aaa' }}>
+                  The Mapbox token is restricted to production. This will work once merged to production.
+                </p>
+              </>
+            ) : (
+              <>
+                <p style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: '#fff' }}>
+                  Satellite image failed to load
+                </p>
+                <p style={{ margin: 0, fontSize: 13, color: '#aaa' }}>
+                  This can happen with a spotty connection or a brief Mapbox hiccup.
+                </p>
+                <button
+                  onClick={handleRetry}
+                  style={{
+                    marginTop: '0.5rem',
+                    padding: '0.55rem 1.5rem',
+                    fontSize: 15,
+                    fontWeight: 600,
+                    borderRadius: 8,
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    background: 'rgba(255,255,255,0.15)',
+                    color: '#fff',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Retry
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
