@@ -35,11 +35,45 @@ function shuffle<T>(array: T[]): T[] {
   return result
 }
 
-function pickFromDifficulty(mode: Mode, difficulty: Difficulty): City[] {
-  const pool = (allCities as City[]).filter(
+const MAX_COUNTRY_RETRY = 30
+
+function hasConsecutiveSameCountry(cities: City[]): boolean {
+  for (let i = 1; i < cities.length; i++) {
+    if (cities[i].country && cities[i - 1].country &&
+        cities[i].country === cities[i - 1].country) {
+      return true
+    }
+  }
+  return false
+}
+
+function pickFromDifficulty(
+  mode: Mode,
+  difficulty: Difficulty,
+  excludeNames: Set<string>
+): City[] {
+  const fullPool = (allCities as City[]).filter(
     c => c.mode === mode && c.difficulty === difficulty
   )
-  return shuffle(pool).slice(0, ROUNDS_PER_GAME)
+  let workingPool = fullPool.filter(c => !excludeNames.has(c.name))
+
+  // If excluding last game's cities leaves too few to fill a game,
+  // top back up from the excluded set rather than fail.
+  if (workingPool.length < ROUNDS_PER_GAME) {
+    const needed = ROUNDS_PER_GAME - workingPool.length
+    const excludedCities = fullPool.filter(c => excludeNames.has(c.name))
+    workingPool = [...workingPool, ...shuffle(excludedCities).slice(0, needed)]
+  }
+
+  let selection = shuffle(workingPool).slice(0, ROUNDS_PER_GAME)
+  for (
+    let attempt = 0;
+    attempt < MAX_COUNTRY_RETRY && hasConsecutiveSameCountry(selection);
+    attempt++
+  ) {
+    selection = shuffle(workingPool).slice(0, ROUNDS_PER_GAME)
+  }
+  return selection
 }
 
 const INITIAL_STATE: GameState = {
@@ -59,6 +93,9 @@ export function useGameState() {
   const [state, setState] = useState<GameState>(INITIAL_STATE)
   const timerStartRef = useRef<number | null>(null)
   const intervalRef = useRef<number>(0)
+  // Tracks each mode+difficulty combo's last game's cities separately, so
+  // switching modes/tiers doesn't cross-contaminate exclusions.
+  const lastGameCitiesRef = useRef<Record<string, Set<string>>>({})
 
   const startTimer = useCallback(() => {
     clearInterval(intervalRef.current)
@@ -99,7 +136,10 @@ export function useGameState() {
 
   // Called when the player picks a difficulty tile — begins the actual game.
   const selectDifficulty = useCallback((difficulty: Difficulty, mode: Mode = 'us') => {
-    const cities = pickFromDifficulty(mode, difficulty)
+    const key = `${mode}-${difficulty}`
+    const excludeNames = lastGameCitiesRef.current[key] ?? new Set<string>()
+    const cities = pickFromDifficulty(mode, difficulty, excludeNames)
+    lastGameCitiesRef.current[key] = new Set(cities.map(c => c.name))
     console.log(`--- Starting ${difficulty} game! Cities: ${cities.map(c => c.displayName).join(', ')}`)
     setState({
       ...INITIAL_STATE,
