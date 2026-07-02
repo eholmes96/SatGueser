@@ -36,3 +36,5 @@ test-results/
 
 # Scratch file for copying prompts/context to an external AI assistant
 ClaudeSpeak.txt
+.vercel
+.env*
