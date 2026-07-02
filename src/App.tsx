@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useGameState } from './hooks/useGameState'
 import type { Difficulty } from './hooks/useGameState'
-import { ImageReveal } from './components/ImageReveal'
+import { MapReveal } from './components/MapReveal'
 import { CityGuessInput } from './components/CityGuessInput'
 import './App.css'
 
@@ -42,6 +42,37 @@ function App() {
     }
   }, [state.phase, titlePhase])
 
+  // The map is a single persistent instance, so we can't key a remount off
+  // the active city (the same city can recur across separate games). Instead
+  // bump roundToken every time we transition INTO 'playing' — that uniquely
+  // identifies each round start for MapReveal's snap+animate effect.
+  const [roundToken, setRoundToken] = useState(0)
+  const prevPhaseRef = useRef(state.phase)
+  useEffect(() => {
+    if (state.phase === 'playing' && prevPhaseRef.current !== 'playing') {
+      setRoundToken(t => t + 1)
+    }
+    prevPhaseRef.current = state.phase
+  }, [state.phase])
+
+  // The Next Round button never receives focus (the guess input it replaces
+  // is unmounted), so Enter alone wouldn't trigger it without this listener.
+  useEffect(() => {
+    if (state.phase !== 'roundResult') return
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        nextRound()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [state.phase, nextRound])
+
+  // Temporary diagnostics — surfaces map/round errors on screen so a stuck
+  // round can be reported with an actual message instead of "nothing happened".
+  const [mapError, setMapError] = useState<string | null>(null)
+
   const showMap = state.phase === 'playing' || state.phase === 'roundResult' || state.phase === 'gameOver'
   const showTopBar = state.phase === 'playing' || state.phase === 'roundResult'
   const lastScore = state.roundScores[state.roundScores.length - 1]
@@ -50,14 +81,40 @@ function App() {
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden', background: '#111' }}>
 
-      {/* Full-screen satellite imagery */}
-      {showMap && activeCity && (
-        <ImageReveal
-          key={activeCity.name}
+      {/* Full-screen satellite map — single persistent instance for the whole session */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        opacity: showMap ? 1 : 0,
+        transition: 'opacity 0.3s',
+        pointerEvents: 'none',
+      }}>
+        <MapReveal
           city={activeCity}
+          roundToken={roundToken}
           duration={30000}
-          onLoad={startTimer}
+          onRoundStart={startTimer}
+          onError={setMapError}
+          debug={!!mapError}
         />
+      </div>
+
+      {mapError && (
+        <div style={{
+          position: 'absolute',
+          top: 8,
+          left: 8,
+          maxWidth: 480,
+          fontSize: 12,
+          fontFamily: 'monospace',
+          color: '#fff',
+          background: 'rgba(220,38,38,0.9)',
+          padding: '6px 10px',
+          borderRadius: 6,
+          zIndex: 1000,
+        }}>
+          {mapError}
+        </div>
       )}
 
       {/* Title overlay — slides up and fades on game start */}
