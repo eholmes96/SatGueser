@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useGameState } from './hooks/useGameState'
+import { useGameState, ROUNDS_PER_GAME } from './hooks/useGameState'
 import type { Difficulty } from './hooks/useGameState'
 import type { Mode } from './utils/mapboxUtils'
 import { MapReveal } from './components/MapReveal'
@@ -16,10 +16,14 @@ const DIFFICULTY_CONFIG: Record<Difficulty, { label: string; desc: string; accen
   hard:   { label: 'Hard',   desc: 'Good luck',                    accent: '#f87171', bg: 'rgba(248,113,113,0.08)',border: 'rgba(248,113,113,0.35)' },
 }
 
+// Single source of truth for available modes — add a new entry here (plus
+// its Mode union member in mapboxUtils.ts and its data source) and it shows
+// up in the toggle automatically, no other list to keep in sync.
 const MODE_CONFIG: Record<Mode, { label: string }> = {
   us: { label: 'US Cities' },
   global: { label: 'Global' },
 }
+const MODES = Object.keys(MODE_CONFIG) as Mode[]
 
 const btnStyle: React.CSSProperties = {
   padding: '0.55rem 1.5rem',
@@ -129,6 +133,37 @@ function App() {
         />
       </div>
 
+      {/* Exit — returns to the difficulty/mode selection screen. selectedMode
+          is untouched by startGame(), so the mode toggle there still reflects
+          whichever mode this game was playing. */}
+      {showTopBar && (
+        <button
+          onClick={startGame}
+          aria-label="Exit to menu"
+          style={{
+            position: 'absolute',
+            top: '1rem',
+            left: '1rem',
+            width: 36,
+            height: 36,
+            fontSize: 18,
+            lineHeight: '36px',
+            textAlign: 'center',
+            padding: 0,
+            background: 'rgba(0,0,0,0.6)',
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
+            border: '1px solid rgba(255,255,255,0.2)',
+            borderRadius: 12,
+            color: '#fff',
+            cursor: 'pointer',
+            zIndex: 10,
+          }}
+        >
+          ×
+        </button>
+      )}
+
       {mapError && (
         <div style={{
           position: 'absolute',
@@ -203,7 +238,7 @@ function App() {
                 padding: 4,
                 borderRadius: 999,
               }}>
-                {(['us', 'global'] as const).map(m => (
+                {MODES.map(m => (
                   <button
                     key={m}
                     onClick={() => setSelectedMode(m)}
@@ -307,7 +342,7 @@ function App() {
             pointerEvents: 'auto',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
-              <span style={{ fontSize: 14, fontWeight: 600 }}>Round {state.round}/5</span>
+              <span style={{ fontSize: 14, fontWeight: 600 }}>Round {state.round}/{ROUNDS_PER_GAME}</span>
               {state.difficulty && (
                 <span style={{
                   fontSize: 10,
@@ -416,7 +451,9 @@ function App() {
             <p style={{ margin: '0.25rem 0 0.75rem', fontSize: '1.75rem', fontWeight: 700, color: lastScore === 0 ? '#f87171' : '#4ade80' }}>
               {lastScore === 0 ? '0' : `+${lastScore}`} pts
             </p>
-            <button onClick={nextRound} style={btnStyle}>Next Round →</button>
+            <button onClick={nextRound} style={btnStyle}>
+              {state.round >= ROUNDS_PER_GAME ? 'Summary' : 'Next Round →'}
+            </button>
           </div>
         </div>
       )}

@@ -22,7 +22,7 @@ export interface GameState {
 }
 
 const ROUND_DURATION = 30
-const ROUNDS_PER_GAME = 5
+export const ROUNDS_PER_GAME = 5
 
 function calculateScore(elapsedSeconds: number): number {
   return Math.max(0, Math.round((1000 - elapsedSeconds * 30) / 10) * 10)
@@ -131,11 +131,10 @@ export function useGameState() {
         timerStartRef.current = null
         setState(s => {
           if (s.phase !== 'playing') return s
-          const isLast = s.round >= ROUNDS_PER_GAME
           console.log(`Round ${s.round}: timed out! 0 pts. Running total: ${s.totalScore}`)
           return {
             ...s,
-            phase: isLast ? 'gameOver' : 'roundResult',
+            phase: 'roundResult',
             roundScores: [...s.roundScores, 0],
             roundElapsedTimes: [...s.roundElapsedTimes, ROUND_DURATION],
             elapsedSeconds: ROUND_DURATION,
@@ -195,14 +194,13 @@ export function useGameState() {
       const clampedElapsed = Math.min(elapsed, ROUND_DURATION)
       const score = calculateScore(clampedElapsed)
       const newTotal = s.totalScore + score
-      const isLast = s.round >= ROUNDS_PER_GAME
       console.log(
         `Round ${s.round}: ✓ "${active.displayName}" in ${clampedElapsed.toFixed(1)}s` +
         ` → ${score} pts. Running total: ${newTotal}`,
       )
       return {
         ...s,
-        phase: isLast ? 'gameOver' : 'roundResult',
+        phase: 'roundResult',
         roundScores: [...s.roundScores, score],
         roundElapsedTimes: [...s.roundElapsedTimes, clampedElapsed],
         totalScore: newTotal,
@@ -215,6 +213,10 @@ export function useGameState() {
   const nextRound = useCallback(() => {
     setState(s => {
       if (s.phase !== 'roundResult') return s
+      if (s.round >= ROUNDS_PER_GAME) {
+        console.log(`--- Game over. Final score: ${s.totalScore}`)
+        return { ...s, phase: 'gameOver' }
+      }
       console.log(`--- Advancing to round ${s.round + 1}, waiting for images to load...`)
       return {
         ...s,
