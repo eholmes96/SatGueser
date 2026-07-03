@@ -1895,5 +1895,629 @@
         "lng": -116.2228
       }
     ]
+  },
+  {
+    "name": "london",
+    "displayName": "London, England",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "England",
+    "points": [
+      {
+        "label": "Westminster / Big Ben",
+        "lat": 51.5007,
+        "lng": -0.1246
+      },
+      {
+        "label": "Tower Bridge",
+        "lat": 51.5055,
+        "lng": -0.0754
+      },
+      {
+        "label": "Canary Wharf, Isle of Dogs",
+        "lat": 51.5054,
+        "lng": -0.0235
+      }
+    ]
+  },
+  {
+    "name": "cairo",
+    "displayName": "Cairo, Egypt",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Egypt",
+    "points": [
+      {
+        "label": "Tahrir Square",
+        "lat": 30.0444,
+        "lng": 31.2357
+      },
+      {
+        "label": "Pyramids of Giza",
+        "lat": 29.9792,
+        "lng": 31.1342
+      },
+      {
+        "label": "Cairo International Airport",
+        "lat": 30.1219,
+        "lng": 31.4056
+      }
+    ]
+  },
+  {
+    "name": "rome",
+    "displayName": "Rome, Italy",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Italy",
+    "points": [
+      {
+        "label": "Colosseum",
+        "lat": 41.8902,
+        "lng": 12.4922
+      },
+      {
+        "label": "St. Peter's Basilica, Vatican City",
+        "lat": 41.9022,
+        "lng": 12.4539
+      },
+      {
+        "label": "Rome Fiumicino Airport",
+        "lat": 41.8003,
+        "lng": 12.2389
+      }
+    ]
+  },
+  {
+    "name": "stockholm",
+    "displayName": "Stockholm, Sweden",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Sweden",
+    "points": [
+      {
+        "label": "Gamla Stan (Old Town)",
+        "lat": 59.3251,
+        "lng": 18.0711
+      },
+      {
+        "label": "Drottningholm Palace",
+        "lat": 59.322,
+        "lng": 17.8867
+      },
+      {
+        "label": "Stockholm Arlanda Airport",
+        "lat": 59.6519,
+        "lng": 17.9186
+      }
+    ]
+  },
+  {
+    "name": "doha",
+    "displayName": "Doha, Qatar",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Qatar",
+    "points": [
+      {
+        "label": "Doha Corniche / West Bay",
+        "lat": 25.2854,
+        "lng": 51.531
+      },
+      {
+        "label": "The Pearl-Qatar",
+        "lat": 25.3714,
+        "lng": 51.5508
+      },
+      {
+        "label": "Hamad International Airport",
+        "lat": 25.2609,
+        "lng": 51.6138
+      }
+    ]
+  },
+  {
+    "name": "ho-chi-minh-city",
+    "displayName": "Ho Chi Minh City, Vietnam",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Vietnam",
+    "points": [
+      {
+        "label": "Bến Thành Market, District 1",
+        "lat": 10.7725,
+        "lng": 106.698
+      },
+      {
+        "label": "Tân Sơn Nhất International Airport",
+        "lat": 10.8188,
+        "lng": 106.652
+      },
+      {
+        "label": "Phú Mỹ Hưng, District 7",
+        "lat": 10.7295,
+        "lng": 106.7193
+      }
+    ]
+  },
+  {
+    "name": "shanghai",
+    "displayName": "Shanghai, China",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "China",
+    "points": [
+      {
+        "label": "The Bund",
+        "lat": 31.2397,
+        "lng": 121.49
+      },
+      {
+        "label": "Shanghai Disneyland",
+        "lat": 31.1443,
+        "lng": 121.6598
+      },
+      {
+        "label": "Shanghai Pudong International Airport",
+        "lat": 31.1443,
+        "lng": 121.8083
+      }
+    ]
+  },
+  {
+    "name": "vienna",
+    "displayName": "Vienna, Austria",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Austria",
+    "points": [
+      {
+        "label": "St. Stephen's Cathedral, Stephansplatz",
+        "lat": 48.2085,
+        "lng": 16.3731
+      },
+      {
+        "label": "Schönbrunn Palace",
+        "lat": 48.1858,
+        "lng": 16.3122
+      },
+      {
+        "label": "Vienna International Airport",
+        "lat": 48.1103,
+        "lng": 16.5697
+      }
+    ]
+  },
+  {
+    "name": "copenhagen",
+    "displayName": "Copenhagen, Denmark",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Denmark",
+    "points": [
+      {
+        "label": "Nyhavn",
+        "lat": 55.6795,
+        "lng": 12.591
+      },
+      {
+        "label": "Copenhagen Airport",
+        "lat": 55.618,
+        "lng": 12.656
+      },
+      {
+        "label": "Dyrehaven / Klampenborg",
+        "lat": 55.7853,
+        "lng": 12.58
+      }
+    ]
+  },
+  {
+    "name": "dublin",
+    "displayName": "Dublin, Ireland",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Ireland",
+    "points": [
+      {
+        "label": "O'Connell Street",
+        "lat": 53.3498,
+        "lng": -6.2603
+      },
+      {
+        "label": "Phoenix Park",
+        "lat": 53.3556,
+        "lng": -6.3297
+      },
+      {
+        "label": "Dublin Airport",
+        "lat": 53.4213,
+        "lng": -6.2701
+      }
+    ]
+  },
+  {
+    "name": "lisbon",
+    "displayName": "Lisbon, Portugal",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Portugal",
+    "points": [
+      {
+        "label": "Praça do Comércio",
+        "lat": 38.7071,
+        "lng": -9.1364
+      },
+      {
+        "label": "Belém Tower",
+        "lat": 38.6916,
+        "lng": -9.216
+      },
+      {
+        "label": "Lisbon Airport",
+        "lat": 38.7756,
+        "lng": -9.1354
+      }
+    ]
+  },
+  {
+    "name": "zurich",
+    "displayName": "Zürich, Switzerland",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Switzerland",
+    "points": [
+      {
+        "label": "Bahnhofstrasse",
+        "lat": 47.3769,
+        "lng": 8.5417
+      },
+      {
+        "label": "Lake Zürich shoreline",
+        "lat": 47.3467,
+        "lng": 8.5626
+      },
+      {
+        "label": "Zürich Airport",
+        "lat": 47.4582,
+        "lng": 8.5555
+      }
+    ]
+  },
+  {
+    "name": "athens",
+    "displayName": "Athens, Greece",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Greece",
+    "points": [
+      {
+        "label": "Acropolis",
+        "lat": 37.9715,
+        "lng": 23.7257
+      },
+      {
+        "label": "Piraeus Port",
+        "lat": 37.9483,
+        "lng": 23.642
+      },
+      {
+        "label": "Athens International Airport",
+        "lat": 37.9364,
+        "lng": 23.9445
+      }
+    ]
+  },
+  {
+    "name": "taipei",
+    "displayName": "Taipei, Taiwan",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Taiwan",
+    "points": [
+      {
+        "label": "Taipei 101",
+        "lat": 25.033,
+        "lng": 121.5654
+      },
+      {
+        "label": "National Palace Museum",
+        "lat": 25.1023,
+        "lng": 121.5486
+      },
+      {
+        "label": "Taoyuan International Airport",
+        "lat": 25.0797,
+        "lng": 121.2342
+      }
+    ]
+  },
+  {
+    "name": "havana",
+    "displayName": "Havana, Cuba",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Cuba",
+    "points": [
+      {
+        "label": "Malecón / Old Havana",
+        "lat": 23.1367,
+        "lng": -82.3589
+      },
+      {
+        "label": "José Martí International Airport",
+        "lat": 22.9892,
+        "lng": -82.4091
+      },
+      {
+        "label": "Playas del Este",
+        "lat": 23.1608,
+        "lng": -82.1547
+      }
+    ]
+  },
+  {
+    "name": "prague",
+    "displayName": "Prague, Czech Republic",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Czech Republic",
+    "points": [
+      {
+        "label": "Charles Bridge / Old Town",
+        "lat": 50.0865,
+        "lng": 14.4114
+      },
+      {
+        "label": "Prague Zoo",
+        "lat": 50.1176,
+        "lng": 14.4079
+      },
+      {
+        "label": "Václav Havel Airport Prague",
+        "lat": 50.1008,
+        "lng": 14.26
+      }
+    ]
+  },
+  {
+    "name": "budapest",
+    "displayName": "Budapest, Hungary",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Hungary",
+    "points": [
+      {
+        "label": "Chain Bridge / Danube",
+        "lat": 47.4979,
+        "lng": 19.0402
+      },
+      {
+        "label": "Heroes' Square / City Park",
+        "lat": 47.5147,
+        "lng": 19.0776
+      },
+      {
+        "label": "Budapest Ferenc Liszt International Airport",
+        "lat": 47.4298,
+        "lng": 19.2611
+      }
+    ]
+  },
+  {
+    "name": "guangzhou",
+    "displayName": "Guangzhou, China",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "China",
+    "points": [
+      {
+        "label": "Canton Tower / Pearl River",
+        "lat": 23.1066,
+        "lng": 113.3247
+      },
+      {
+        "label": "Guangzhou Baiyun International Airport",
+        "lat": 23.3924,
+        "lng": 113.2988
+      },
+      {
+        "label": "Chimelong Paradise",
+        "lat": 22.9975,
+        "lng": 113.3266
+      }
+    ]
+  },
+  {
+    "name": "chengdu",
+    "displayName": "Chengdu, China",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "China",
+    "points": [
+      {
+        "label": "Tianfu Square",
+        "lat": 30.6586,
+        "lng": 104.0647
+      },
+      {
+        "label": "Chengdu Research Base of Giant Panda Breeding",
+        "lat": 30.7331,
+        "lng": 104.1469
+      },
+      {
+        "label": "Chengdu Shuangliu International Airport",
+        "lat": 30.5785,
+        "lng": 103.9471
+      }
+    ]
+  },
+  {
+    "name": "new-delhi",
+    "displayName": "New Delhi, India",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "India",
+    "points": [
+      {
+        "label": "India Gate / Rajpath",
+        "lat": 28.6129,
+        "lng": 77.2295
+      },
+      {
+        "label": "Red Fort",
+        "lat": 28.6562,
+        "lng": 77.241
+      },
+      {
+        "label": "Indira Gandhi International Airport",
+        "lat": 28.5562,
+        "lng": 77.1
+      }
+    ]
+  },
+  {
+    "name": "chennai",
+    "displayName": "Chennai, India",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "India",
+    "points": [
+      {
+        "label": "Marina Beach",
+        "lat": 13.05,
+        "lng": 80.2824
+      },
+      {
+        "label": "Guindy National Park",
+        "lat": 13.0067,
+        "lng": 80.2206
+      },
+      {
+        "label": "Chennai International Airport",
+        "lat": 12.9941,
+        "lng": 80.1709
+      }
+    ]
+  },
+  {
+    "name": "jakarta",
+    "displayName": "Jakarta, Indonesia",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Indonesia",
+    "points": [
+      {
+        "label": "National Monument (Monas)",
+        "lat": -6.1754,
+        "lng": 106.8272
+      },
+      {
+        "label": "Ancol Dreamland",
+        "lat": -6.1223,
+        "lng": 106.8317
+      },
+      {
+        "label": "Soekarno-Hatta International Airport",
+        "lat": -6.1256,
+        "lng": 106.6559
+      }
+    ]
+  },
+  {
+    "name": "santiago",
+    "displayName": "Santiago, Chile",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Chile",
+    "points": [
+      {
+        "label": "Plaza de Armas",
+        "lat": -33.4372,
+        "lng": -70.6506
+      },
+      {
+        "label": "Estadio Nacional",
+        "lat": -33.4636,
+        "lng": -70.6119
+      },
+      {
+        "label": "Arturo Merino Benítez International Airport",
+        "lat": -33.393,
+        "lng": -70.7858
+      }
+    ]
+  },
+  {
+    "name": "lima",
+    "displayName": "Lima, Peru",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Peru",
+    "points": [
+      {
+        "label": "Plaza Mayor de Lima",
+        "lat": -12.0464,
+        "lng": -77.0428
+      },
+      {
+        "label": "Miraflores / Parque Kennedy",
+        "lat": -12.1211,
+        "lng": -77.0296
+      },
+      {
+        "label": "Jorge Chávez International Airport",
+        "lat": -12.0219,
+        "lng": -77.1143
+      }
+    ]
+  },
+  {
+    "name": "bogota",
+    "displayName": "Bogotá, Colombia",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Colombia",
+    "points": [
+      {
+        "label": "Plaza de Bolívar",
+        "lat": 4.5981,
+        "lng": -74.0758
+      },
+      {
+        "label": "Parque Simón Bolívar",
+        "lat": 4.6584,
+        "lng": -74.093
+      },
+      {
+        "label": "El Dorado International Airport",
+        "lat": 4.7016,
+        "lng": -74.1469
+      }
+    ]
+  },
+  {
+    "name": "dhaka",
+    "displayName": "Dhaka, Bangladesh",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Bangladesh",
+    "points": [
+      {
+        "label": "Old Dhaka / Sadarghat",
+        "lat": 23.7104,
+        "lng": 90.4074
+      },
+      {
+        "label": "Hatirjheel / Gulshan Lake",
+        "lat": 23.7808,
+        "lng": 90.4147
+      },
+      {
+        "label": "Hazrat Shahjalal International Airport",
+        "lat": 23.8433,
+        "lng": 90.3978
+      }
+    ]
   }
 ]
