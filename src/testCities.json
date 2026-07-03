@@ -1,0 +1,1554 @@
+[
+  {
+    "name": "new-york",
+    "displayName": "New York",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 40.7026,
+        "lng": -74.0164
+      },
+      {
+        "label": "Central Park",
+        "lat": 40.7829,
+        "lng": -73.9654
+      },
+      {
+        "label": "Empire State Building",
+        "lat": 40.7484,
+        "lng": -73.9857
+      }
+    ]
+  },
+  {
+    "name": "chicago",
+    "displayName": "Chicago",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 41.8827,
+        "lng": -87.6233
+      },
+      {
+        "label": "Soldier Field",
+        "lat": 41.8623,
+        "lng": -87.6167
+      },
+      {
+        "label": "Wrigley Field",
+        "lat": 41.9484,
+        "lng": -87.6553
+      }
+    ]
+  },
+  {
+    "name": "los-angeles",
+    "displayName": "Los Angeles",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 34.043,
+        "lng": -118.2673
+      },
+      {
+        "label": "Griffith Observatory",
+        "lat": 34.1184,
+        "lng": -118.3004
+      },
+      {
+        "label": "Dodger Stadium",
+        "lat": 34.0739,
+        "lng": -118.24
+      }
+    ]
+  },
+  {
+    "name": "san-francisco",
+    "displayName": "San Francisco",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 37.7951,
+        "lng": -122.3965
+      },
+      {
+        "label": "Golden Gate Bridge",
+        "lat": 37.8199,
+        "lng": -122.4783
+      },
+      {
+        "label": "Golden Gate Park / de Young Museum",
+        "lat": 37.7694,
+        "lng": -122.4862
+      }
+    ]
+  },
+  {
+    "name": "denver",
+    "displayName": "Denver",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 39.7392,
+        "lng": -104.9903
+      },
+      {
+        "label": "Denver City Park",
+        "lat": 39.7477,
+        "lng": -104.949
+      },
+      {
+        "label": "Empower Field at Mile High",
+        "lat": 39.7439,
+        "lng": -105.0201
+      }
+    ]
+  },
+  {
+    "name": "miami",
+    "displayName": "Miami",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 25.775,
+        "lng": -80.1866
+      },
+      {
+        "label": "South Beach / Ocean Drive",
+        "lat": 25.7907,
+        "lng": -80.13
+      },
+      {
+        "label": "Vizcaya Museum & Gardens",
+        "lat": 25.7443,
+        "lng": -80.2106
+      }
+    ]
+  },
+  {
+    "name": "seattle",
+    "displayName": "Seattle",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 47.6062,
+        "lng": -122.3321
+      },
+      {
+        "label": "University of Washington",
+        "lat": 47.6553,
+        "lng": -122.3035
+      },
+      {
+        "label": "Alki Point",
+        "lat": 47.5809,
+        "lng": -122.4076
+      }
+    ]
+  },
+  {
+    "name": "boston",
+    "displayName": "Boston",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 42.3601,
+        "lng": -71.0589
+      },
+      {
+        "label": "Fenway Park",
+        "lat": 42.3467,
+        "lng": -71.0972
+      },
+      {
+        "label": "Harvard University",
+        "lat": 42.377,
+        "lng": -71.1167
+      }
+    ]
+  },
+  {
+    "name": "austin",
+    "displayName": "Austin",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 30.2672,
+        "lng": -97.7431
+      },
+      {
+        "label": "The Domain",
+        "lat": 30.4013,
+        "lng": -97.7255
+      },
+      {
+        "label": "Circuit of the Americas",
+        "lat": 30.1328,
+        "lng": -97.6411
+      }
+    ]
+  },
+  {
+    "name": "phoenix",
+    "displayName": "Phoenix",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 33.4484,
+        "lng": -112.074
+      },
+      {
+        "label": "Camelback Mountain",
+        "lat": 33.5183,
+        "lng": -111.9647
+      },
+      {
+        "label": "Papago Park",
+        "lat": 33.4569,
+        "lng": -111.9459
+      }
+    ]
+  },
+  {
+    "name": "washington-dc",
+    "displayName": "Washington, DC",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 38.8893,
+        "lng": -77.0254
+      },
+      {
+        "label": "Washington National Cathedral",
+        "lat": 38.9313,
+        "lng": -77.0706
+      },
+      {
+        "label": "RFK Stadium / Anacostia",
+        "lat": 38.8898,
+        "lng": -76.9683
+      }
+    ]
+  },
+  {
+    "name": "philadelphia",
+    "displayName": "Philadelphia",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 39.9496,
+        "lng": -75.1503
+      },
+      {
+        "label": "Philadelphia Zoo",
+        "lat": 39.9736,
+        "lng": -75.1911
+      },
+      {
+        "label": "South Philly Sports Complex",
+        "lat": 39.9061,
+        "lng": -75.1665
+      }
+    ]
+  },
+  {
+    "name": "houston",
+    "displayName": "Houston",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 29.7563,
+        "lng": -95.3568
+      },
+      {
+        "label": "Hermann Park / Houston Zoo",
+        "lat": 29.7174,
+        "lng": -95.3903
+      },
+      {
+        "label": "NASA Johnson Space Center",
+        "lat": 29.5502,
+        "lng": -95.098
+      }
+    ]
+  },
+  {
+    "name": "dallas",
+    "displayName": "Dallas",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 32.7894,
+        "lng": -96.8028
+      },
+      {
+        "label": "Dallas Arboretum",
+        "lat": 32.8218,
+        "lng": -96.7422
+      },
+      {
+        "label": "AT&T Stadium, Arlington",
+        "lat": 32.7473,
+        "lng": -97.0945
+      }
+    ]
+  },
+  {
+    "name": "san-antonio",
+    "displayName": "San Antonio",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 29.426,
+        "lng": -98.4861
+      },
+      {
+        "label": "Brackenridge Park / Zoo",
+        "lat": 29.4614,
+        "lng": -98.4736
+      },
+      {
+        "label": "SeaWorld San Antonio",
+        "lat": 29.4529,
+        "lng": -98.7003
+      }
+    ]
+  },
+  {
+    "name": "san-diego",
+    "displayName": "San Diego",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 32.7341,
+        "lng": -117.1449
+      },
+      {
+        "label": "La Jolla Cove",
+        "lat": 32.8508,
+        "lng": -117.2713
+      },
+      {
+        "label": "SeaWorld / Mission Bay",
+        "lat": 32.7643,
+        "lng": -117.2262
+      }
+    ]
+  },
+  {
+    "name": "portland",
+    "displayName": "Portland, OR",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 45.5189,
+        "lng": -122.6713
+      },
+      {
+        "label": "Portland International Airport",
+        "lat": 45.5898,
+        "lng": -122.5951
+      },
+      {
+        "label": "Mt. Tabor Park",
+        "lat": 45.5118,
+        "lng": -122.5972
+      }
+    ]
+  },
+  {
+    "name": "minneapolis",
+    "displayName": "Minneapolis",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 44.9778,
+        "lng": -93.265
+      },
+      {
+        "label": "Lake Bde Maka Ska",
+        "lat": 44.9483,
+        "lng": -93.3066
+      },
+      {
+        "label": "Minnehaha Falls",
+        "lat": 44.9153,
+        "lng": -93.211
+      }
+    ]
+  },
+  {
+    "name": "detroit",
+    "displayName": "Detroit",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 42.3315,
+        "lng": -83.0467
+      },
+      {
+        "label": "Belle Isle Park",
+        "lat": 42.3398,
+        "lng": -82.9857
+      },
+      {
+        "label": "Detroit Zoo, Royal Oak",
+        "lat": 42.4695,
+        "lng": -83.1444
+      }
+    ]
+  },
+  {
+    "name": "atlanta",
+    "displayName": "Atlanta",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 33.7603,
+        "lng": -84.3935
+      },
+      {
+        "label": "Piedmont Park",
+        "lat": 33.7879,
+        "lng": -84.3733
+      },
+      {
+        "label": "Hartsfield-Jackson Airport",
+        "lat": 33.6407,
+        "lng": -84.4277
+      }
+    ]
+  },
+  {
+    "name": "new-orleans",
+    "displayName": "New Orleans",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 29.9575,
+        "lng": -90.063
+      },
+      {
+        "label": "City Park",
+        "lat": 30.0005,
+        "lng": -90.0952
+      },
+      {
+        "label": "Audubon Park",
+        "lat": 29.9226,
+        "lng": -90.1263
+      }
+    ]
+  },
+  {
+    "name": "nashville",
+    "displayName": "Nashville",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 36.1612,
+        "lng": -86.7775
+      },
+      {
+        "label": "Percy Warner Park",
+        "lat": 36.0806,
+        "lng": -86.8797
+      },
+      {
+        "label": "Grand Ole Opry / Opryland",
+        "lat": 36.2081,
+        "lng": -86.692
+      }
+    ]
+  },
+  {
+    "name": "las-vegas",
+    "displayName": "Las Vegas",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 36.1126,
+        "lng": -115.1767
+      },
+      {
+        "label": "Red Rock Canyon",
+        "lat": 36.1358,
+        "lng": -115.4269
+      },
+      {
+        "label": "Las Vegas Motor Speedway",
+        "lat": 36.2694,
+        "lng": -115.0106
+      }
+    ]
+  },
+  {
+    "name": "charlotte",
+    "displayName": "Charlotte",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 35.2251,
+        "lng": -80.8434
+      },
+      {
+        "label": "Freedom Park",
+        "lat": 35.193,
+        "lng": -80.839
+      },
+      {
+        "label": "Charlotte Motor Speedway",
+        "lat": 35.351,
+        "lng": -80.6828
+      }
+    ]
+  },
+  {
+    "name": "pittsburgh",
+    "displayName": "Pittsburgh",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 40.4423,
+        "lng": -80.0112
+      },
+      {
+        "label": "Schenley Park / Phipps Conservatory",
+        "lat": 40.4344,
+        "lng": -79.9425
+      },
+      {
+        "label": "Pittsburgh International Airport",
+        "lat": 40.4915,
+        "lng": -80.2329
+      }
+    ]
+  },
+  {
+    "name": "salt-lake-city",
+    "displayName": "Salt Lake City",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 40.7707,
+        "lng": -111.8911
+      },
+      {
+        "label": "University of Utah",
+        "lat": 40.7649,
+        "lng": -111.8421
+      },
+      {
+        "label": "Salt Lake City International Airport",
+        "lat": 40.7899,
+        "lng": -111.9791
+      }
+    ]
+  },
+  {
+    "name": "indianapolis",
+    "displayName": "Indianapolis",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 39.7685,
+        "lng": -86.158
+      },
+      {
+        "label": "Indianapolis Motor Speedway",
+        "lat": 39.795,
+        "lng": -86.2339
+      },
+      {
+        "label": "Fort Harrison State Park",
+        "lat": 39.8607,
+        "lng": -86.0219
+      }
+    ]
+  },
+  {
+    "name": "kansas-city",
+    "displayName": "Kansas City",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 39.0392,
+        "lng": -94.5908
+      },
+      {
+        "label": "Truman Sports Complex",
+        "lat": 39.0489,
+        "lng": -94.4839
+      },
+      {
+        "label": "Kansas City Zoo / Swope Park",
+        "lat": 39.0033,
+        "lng": -94.5486
+      }
+    ]
+  },
+  {
+    "name": "st-louis",
+    "displayName": "St. Louis",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 38.6247,
+        "lng": -90.1848
+      },
+      {
+        "label": "Forest Park / St. Louis Zoo",
+        "lat": 38.6376,
+        "lng": -90.2896
+      },
+      {
+        "label": "Lambert International Airport",
+        "lat": 38.7487,
+        "lng": -90.37
+      }
+    ]
+  },
+  {
+    "name": "sacramento",
+    "displayName": "Sacramento",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 38.5765,
+        "lng": -121.4934
+      },
+      {
+        "label": "Cal Expo / American River Parkway",
+        "lat": 38.6058,
+        "lng": -121.4453
+      },
+      {
+        "label": "UC Davis",
+        "lat": 38.5382,
+        "lng": -121.7617
+      }
+    ]
+  },
+  {
+    "name": "new-york-global",
+    "displayName": "New York, USA",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 40.7026,
+        "lng": -74.0164
+      },
+      {
+        "label": "Central Park",
+        "lat": 40.7829,
+        "lng": -73.9654
+      },
+      {
+        "label": "Empire State Building",
+        "lat": 40.7484,
+        "lng": -73.9857
+      }
+    ]
+  },
+  {
+    "name": "san-francisco-global",
+    "displayName": "San Francisco, USA",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 37.7951,
+        "lng": -122.3965
+      },
+      {
+        "label": "Golden Gate Bridge",
+        "lat": 37.8199,
+        "lng": -122.4783
+      },
+      {
+        "label": "Golden Gate Park / de Young Museum",
+        "lat": 37.7694,
+        "lng": -122.4862
+      }
+    ]
+  },
+  {
+    "name": "boston-global",
+    "displayName": "Boston, USA",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 42.3601,
+        "lng": -71.0589
+      },
+      {
+        "label": "Fenway Park",
+        "lat": 42.3467,
+        "lng": -71.0972
+      },
+      {
+        "label": "Harvard University",
+        "lat": 42.377,
+        "lng": -71.1167
+      }
+    ]
+  },
+  {
+    "name": "philadelphia-global",
+    "displayName": "Philadelphia, USA",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 39.9496,
+        "lng": -75.1503
+      },
+      {
+        "label": "Philadelphia Zoo",
+        "lat": 39.9736,
+        "lng": -75.1911
+      },
+      {
+        "label": "South Philly Sports Complex",
+        "lat": 39.9061,
+        "lng": -75.1665
+      }
+    ]
+  },
+  {
+    "name": "los-angeles-global",
+    "displayName": "Los Angeles, USA",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 34.043,
+        "lng": -118.2673
+      },
+      {
+        "label": "Griffith Observatory",
+        "lat": 34.1184,
+        "lng": -118.3004
+      },
+      {
+        "label": "Dodger Stadium",
+        "lat": 34.0739,
+        "lng": -118.24
+      }
+    ]
+  },
+  {
+    "name": "houston-global",
+    "displayName": "Houston, USA",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 29.7563,
+        "lng": -95.3568
+      },
+      {
+        "label": "Hermann Park / Houston Zoo",
+        "lat": 29.7174,
+        "lng": -95.3903
+      },
+      {
+        "label": "NASA Johnson Space Center",
+        "lat": 29.5502,
+        "lng": -95.098
+      }
+    ]
+  },
+  {
+    "name": "venice",
+    "displayName": "Venice, Italy",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Italy",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 45.4342,
+        "lng": 12.3388
+      },
+      {
+        "label": "Rialto Bridge",
+        "lat": 45.438,
+        "lng": 12.3358
+      },
+      {
+        "label": "Santa Maria della Salute",
+        "lat": 45.431,
+        "lng": 12.3339
+      }
+    ]
+  },
+  {
+    "name": "dubai",
+    "displayName": "Dubai, UAE",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "UAE",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 25.1124,
+        "lng": 55.139
+      },
+      {
+        "label": "Burj Khalifa / Downtown Dubai",
+        "lat": 25.1972,
+        "lng": 55.2744
+      },
+      {
+        "label": "Dubai International Airport",
+        "lat": 25.2532,
+        "lng": 55.3657
+      }
+    ]
+  },
+  {
+    "name": "rio-de-janeiro",
+    "displayName": "Rio de Janeiro, Brazil",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Brazil",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": -22.9519,
+        "lng": -43.2105
+      },
+      {
+        "label": "Copacabana Beach",
+        "lat": -22.9711,
+        "lng": -43.1822
+      },
+      {
+        "label": "Maracanã Stadium",
+        "lat": -22.9122,
+        "lng": -43.2302
+      }
+    ]
+  },
+  {
+    "name": "sydney",
+    "displayName": "Sydney, Australia",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Australia",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": -33.8568,
+        "lng": 151.2153
+      },
+      {
+        "label": "Bondi Beach",
+        "lat": -33.8908,
+        "lng": 151.2743
+      },
+      {
+        "label": "Sydney Olympic Park",
+        "lat": -33.847,
+        "lng": 151.0679
+      }
+    ]
+  },
+  {
+    "name": "amsterdam",
+    "displayName": "Amsterdam, Netherlands",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Netherlands",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 52.3702,
+        "lng": 4.8952
+      },
+      {
+        "label": "Schiphol Airport",
+        "lat": 52.3105,
+        "lng": 4.7683
+      },
+      {
+        "label": "Amsterdamse Bos",
+        "lat": 52.2952,
+        "lng": 4.833
+      }
+    ]
+  },
+  {
+    "name": "male",
+    "displayName": "Malé, Maldives",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Maldives",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 4.1755,
+        "lng": 73.5093
+      },
+      {
+        "label": "Velana International Airport, Hulhulé",
+        "lat": 4.1918,
+        "lng": 73.529
+      },
+      {
+        "label": "Hulhumalé (north end)",
+        "lat": 4.22,
+        "lng": 73.543
+      }
+    ]
+  },
+  {
+    "name": "cape-town",
+    "displayName": "Cape Town, South Africa",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "South Africa",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": -33.9328,
+        "lng": 18.4173
+      },
+      {
+        "label": "Table Mountain Cableway",
+        "lat": -33.9628,
+        "lng": 18.4098
+      },
+      {
+        "label": "Camps Bay Beach",
+        "lat": -33.95,
+        "lng": 18.3775
+      }
+    ]
+  },
+  {
+    "name": "istanbul",
+    "displayName": "Istanbul, Turkey",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Turkey",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 41.0082,
+        "lng": 28.9784
+      },
+      {
+        "label": "Ortaköy / Bosphorus Bridge",
+        "lat": 41.0473,
+        "lng": 29.0271
+      },
+      {
+        "label": "Istanbul Airport",
+        "lat": 41.2753,
+        "lng": 28.7519
+      }
+    ]
+  },
+  {
+    "name": "hong-kong",
+    "displayName": "Hong Kong",
+    "difficulty": "easy",
+    "mode": "global",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 22.2793,
+        "lng": 114.1628
+      },
+      {
+        "label": "Hong Kong Disneyland",
+        "lat": 22.3129,
+        "lng": 114.0413
+      },
+      {
+        "label": "Repulse Bay",
+        "lat": 22.2359,
+        "lng": 114.1955
+      }
+    ]
+  },
+  {
+    "name": "barcelona",
+    "displayName": "Barcelona, Spain",
+    "difficulty": "easy",
+    "mode": "global",
+    "country": "Spain",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 41.3874,
+        "lng": 2.1686
+      },
+      {
+        "label": "Camp Nou Stadium",
+        "lat": 41.3809,
+        "lng": 2.1228
+      },
+      {
+        "label": "Barcelona–El Prat Airport",
+        "lat": 41.2974,
+        "lng": 2.0833
+      }
+    ]
+  },
+  {
+    "name": "paris",
+    "displayName": "Paris, France",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "France",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 48.8738,
+        "lng": 2.295
+      },
+      {
+        "label": "Eiffel Tower",
+        "lat": 48.8584,
+        "lng": 2.2945
+      },
+      {
+        "label": "Louvre Museum",
+        "lat": 48.8606,
+        "lng": 2.3376
+      }
+    ]
+  },
+  {
+    "name": "moscow",
+    "displayName": "Moscow, Russia",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Russia",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 55.752,
+        "lng": 37.6175
+      },
+      {
+        "label": "Moscow State University",
+        "lat": 55.7033,
+        "lng": 37.5303
+      },
+      {
+        "label": "VDNKh Exhibition Park",
+        "lat": 55.8163,
+        "lng": 37.6407
+      }
+    ]
+  },
+  {
+    "name": "tokyo",
+    "displayName": "Tokyo, Japan",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Japan",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 35.6852,
+        "lng": 139.7528
+      },
+      {
+        "label": "Senso-ji Temple, Asakusa",
+        "lat": 35.7148,
+        "lng": 139.7967
+      },
+      {
+        "label": "Shibuya Crossing",
+        "lat": 35.6595,
+        "lng": 139.7004
+      }
+    ]
+  },
+  {
+    "name": "bangkok",
+    "displayName": "Bangkok, Thailand",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Thailand",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 13.7527,
+        "lng": 100.493
+      },
+      {
+        "label": "Chatuchak Park",
+        "lat": 13.7999,
+        "lng": 100.5502
+      },
+      {
+        "label": "Suvarnabhumi Airport",
+        "lat": 13.69,
+        "lng": 100.7501
+      }
+    ]
+  },
+  {
+    "name": "buenos-aires",
+    "displayName": "Buenos Aires, Argentina",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "Argentina",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": -34.6084,
+        "lng": -58.3732
+      },
+      {
+        "label": "Palermo Woods",
+        "lat": -34.575,
+        "lng": -58.4175
+      },
+      {
+        "label": "Ezeiza International Airport",
+        "lat": -34.8222,
+        "lng": -58.5358
+      }
+    ]
+  },
+  {
+    "name": "seoul",
+    "displayName": "Seoul, South Korea",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "South Korea",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 37.5665,
+        "lng": 126.978
+      },
+      {
+        "label": "Lotte World Tower, Jamsil",
+        "lat": 37.5125,
+        "lng": 127.1025
+      },
+      {
+        "label": "Gimpo Airport",
+        "lat": 37.5583,
+        "lng": 126.7906
+      }
+    ]
+  },
+  {
+    "name": "mumbai",
+    "displayName": "Mumbai, India",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "India",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 18.922,
+        "lng": 72.8347
+      },
+      {
+        "label": "Bandra–Worli Sea Link",
+        "lat": 19.035,
+        "lng": 72.82
+      },
+      {
+        "label": "Chhatrapati Shivaji Airport",
+        "lat": 19.0896,
+        "lng": 72.8656
+      }
+    ]
+  },
+  {
+    "name": "singapore",
+    "displayName": "Singapore",
+    "difficulty": "medium",
+    "mode": "global",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 1.2836,
+        "lng": 103.8607
+      },
+      {
+        "label": "Sentosa Island",
+        "lat": 1.254,
+        "lng": 103.8238
+      },
+      {
+        "label": "Changi Airport",
+        "lat": 1.3644,
+        "lng": 103.9915
+      }
+    ]
+  },
+  {
+    "name": "beijing",
+    "displayName": "Beijing, China",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "China",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 39.9163,
+        "lng": 116.3972
+      },
+      {
+        "label": "Summer Palace",
+        "lat": 39.9998,
+        "lng": 116.2755
+      },
+      {
+        "label": "Beijing National Stadium (Bird's Nest)",
+        "lat": 39.9928,
+        "lng": 116.3975
+      }
+    ]
+  },
+  {
+    "name": "auckland",
+    "displayName": "Auckland, New Zealand",
+    "difficulty": "medium",
+    "mode": "global",
+    "country": "New Zealand",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": -36.8485,
+        "lng": 174.7633
+      },
+      {
+        "label": "One Tree Hill / Cornwall Park",
+        "lat": -36.9008,
+        "lng": 174.7827
+      },
+      {
+        "label": "Auckland Airport",
+        "lat": -37.0082,
+        "lng": 174.785
+      }
+    ]
+  },
+  {
+    "name": "toronto",
+    "displayName": "Toronto, Canada",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Canada",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 43.6511,
+        "lng": -79.3809
+      },
+      {
+        "label": "Toronto Zoo",
+        "lat": 43.8177,
+        "lng": -79.1859
+      },
+      {
+        "label": "Toronto Pearson Airport",
+        "lat": 43.6777,
+        "lng": -79.6248
+      }
+    ]
+  },
+  {
+    "name": "mexico-city",
+    "displayName": "Mexico City, Mexico",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Mexico",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 19.4326,
+        "lng": -99.1332
+      },
+      {
+        "label": "Chapultepec Castle & Park",
+        "lat": 19.4204,
+        "lng": -99.1817
+      },
+      {
+        "label": "Estadio Azteca",
+        "lat": 19.3029,
+        "lng": -99.1505
+      }
+    ]
+  },
+  {
+    "name": "berlin",
+    "displayName": "Berlin, Germany",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Germany",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 52.52,
+        "lng": 13.405
+      },
+      {
+        "label": "Brandenburg Gate",
+        "lat": 52.5163,
+        "lng": 13.3777
+      },
+      {
+        "label": "Olympiastadion",
+        "lat": 52.5147,
+        "lng": 13.2394
+      }
+    ]
+  },
+  {
+    "name": "madrid",
+    "displayName": "Madrid, Spain",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Spain",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 40.4168,
+        "lng": -3.7038
+      },
+      {
+        "label": "Santiago Bernabéu Stadium",
+        "lat": 40.4531,
+        "lng": -3.6883
+      },
+      {
+        "label": "Madrid–Barajas Airport",
+        "lat": 40.4936,
+        "lng": -3.5668
+      }
+    ]
+  },
+  {
+    "name": "johannesburg",
+    "displayName": "Johannesburg, South Africa",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "South Africa",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": -26.2041,
+        "lng": 28.0473
+      },
+      {
+        "label": "Gold Reef City / Soweto",
+        "lat": -26.2378,
+        "lng": 27.9926
+      },
+      {
+        "label": "OR Tambo International Airport",
+        "lat": -26.1367,
+        "lng": 28.2411
+      }
+    ]
+  },
+  {
+    "name": "warsaw",
+    "displayName": "Warsaw, Poland",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Poland",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 52.2297,
+        "lng": 21.0122
+      },
+      {
+        "label": "Wilanów Palace",
+        "lat": 52.1652,
+        "lng": 21.0908
+      },
+      {
+        "label": "Warsaw Chopin Airport",
+        "lat": 52.1657,
+        "lng": 20.9671
+      }
+    ]
+  },
+  {
+    "name": "brussels",
+    "displayName": "Brussels, Belgium",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Belgium",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 50.8503,
+        "lng": 4.3517
+      },
+      {
+        "label": "Atomium",
+        "lat": 50.8949,
+        "lng": 4.3415
+      },
+      {
+        "label": "Brussels Airport, Zaventem",
+        "lat": 50.901,
+        "lng": 4.4844
+      }
+    ]
+  },
+  {
+    "name": "lagos",
+    "displayName": "Lagos, Nigeria",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Nigeria",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 6.5244,
+        "lng": 3.3792
+      },
+      {
+        "label": "Lekki Conservation Centre",
+        "lat": 6.4362,
+        "lng": 3.5566
+      },
+      {
+        "label": "Murtala Muhammed International Airport",
+        "lat": 6.5774,
+        "lng": 3.3212
+      }
+    ]
+  },
+  {
+    "name": "nairobi",
+    "displayName": "Nairobi, Kenya",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Kenya",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": -1.2921,
+        "lng": 36.8219
+      },
+      {
+        "label": "Nairobi National Park",
+        "lat": -1.3733,
+        "lng": 36.8172
+      },
+      {
+        "label": "Jomo Kenyatta International Airport",
+        "lat": -1.3192,
+        "lng": 36.9278
+      }
+    ]
+  },
+  {
+    "name": "manila",
+    "displayName": "Manila, Philippines",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Philippines",
+    "points": [
+      {
+        "label": "Original point",
+        "lat": 14.5995,
+        "lng": 120.9842
+      },
+      {
+        "label": "SM Mall of Asia",
+        "lat": 14.5352,
+        "lng": 120.9822
+      },
+      {
+        "label": "Ninoy Aquino International Airport",
+        "lat": 14.5086,
+        "lng": 121.0197
+      }
+    ]
+  }
+]
