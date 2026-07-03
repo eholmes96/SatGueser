@@ -980,7 +980,7 @@
   {
     "name": "cape-town",
     "displayName": "Cape Town, South Africa",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "mode": "global",
     "country": "South Africa",
     "points": [
@@ -1075,7 +1075,7 @@
   {
     "name": "paris",
     "displayName": "Paris, France",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "mode": "global",
     "country": "France",
     "points": [
