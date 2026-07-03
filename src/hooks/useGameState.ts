@@ -1,7 +1,9 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
-import allCities from '../cities.json'
-import type { City, Difficulty, Mode } from '../utils/mapboxUtils'
+import testCitiesJson from '../testCities.json'
+import type { City, CityWithPoints, Difficulty, Mode } from '../utils/mapboxUtils'
 import { normalize } from '../utils/textUtils'
+
+const allCities = testCitiesJson as CityWithPoints[]
 
 export type { Difficulty }
 export type GamePhase = 'idle' | 'selectingDifficulty' | 'playing' | 'roundResult' | 'gameOver'
@@ -37,7 +39,7 @@ function shuffle<T>(array: T[]): T[] {
 
 const MAX_COUNTRY_RETRY = 30
 
-function hasConsecutiveSameCountry(cities: City[]): boolean {
+function hasConsecutiveSameCountry(cities: CityWithPoints[]): boolean {
   for (let i = 1; i < cities.length; i++) {
     if (cities[i].country && cities[i - 1].country &&
         cities[i].country === cities[i - 1].country) {
@@ -51,8 +53,8 @@ function pickFromDifficulty(
   mode: Mode,
   difficulty: Difficulty,
   excludeNames: Set<string>
-): City[] {
-  const fullPool = (allCities as City[]).filter(
+): CityWithPoints[] {
+  const fullPool = allCities.filter(
     c => c.mode === mode && c.difficulty === difficulty
   )
   let workingPool = fullPool.filter(c => !excludeNames.has(c.name))
@@ -74,6 +76,25 @@ function pickFromDifficulty(
     selection = shuffle(workingPool).slice(0, ROUNDS_PER_GAME)
   }
   return selection
+}
+
+// Resolves each picked city down to one random point of interest, producing
+// the flat lat/lng shape the rest of the game (MapReveal, round results)
+// already expects — this is the only place "which point" gets decided.
+function resolveRoundCities(cities: CityWithPoints[]): City[] {
+  return cities.map(c => {
+    const point = c.points[Math.floor(Math.random() * c.points.length)]
+    console.log(`  ${c.displayName} -> starting at "${point.label}" (${point.lat}, ${point.lng})`)
+    return {
+      name: c.name,
+      displayName: c.displayName,
+      difficulty: c.difficulty,
+      mode: c.mode,
+      country: c.country,
+      lat: point.lat,
+      lng: point.lng,
+    }
+  })
 }
 
 const INITIAL_STATE: GameState = {
@@ -138,9 +159,10 @@ export function useGameState() {
   const selectDifficulty = useCallback((difficulty: Difficulty, mode: Mode = 'us') => {
     const key = `${mode}-${difficulty}`
     const excludeNames = lastGameCitiesRef.current[key] ?? new Set<string>()
-    const cities = pickFromDifficulty(mode, difficulty, excludeNames)
-    lastGameCitiesRef.current[key] = new Set(cities.map(c => c.name))
-    console.log(`--- Starting ${difficulty} game! Cities: ${cities.map(c => c.displayName).join(', ')}`)
+    const pickedCities = pickFromDifficulty(mode, difficulty, excludeNames)
+    lastGameCitiesRef.current[key] = new Set(pickedCities.map(c => c.name))
+    console.log(`--- Starting ${difficulty} game! Cities: ${pickedCities.map(c => c.displayName).join(', ')}`)
+    const cities = resolveRoundCities(pickedCities)
     setState({
       ...INITIAL_STATE,
       phase: 'playing',

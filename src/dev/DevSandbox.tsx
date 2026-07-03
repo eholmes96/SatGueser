@@ -2,31 +2,18 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import allCitiesJson from '../cities.json'
 import testCitiesJson from '../testCities.json'
-import { MAPBOX_TOKEN, type City, type Mode, type Difficulty } from '../utils/mapboxUtils'
+import { MAPBOX_TOKEN, type City, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
 import { easeOutQuad } from '../utils/easing'
 
 mapboxgl.accessToken = MAPBOX_TOKEN
 
 const allCities = allCitiesJson as City[]
 
-// Point-of-interest pilot: testCities.json gives some cities multiple named
-// start coordinates (parks, monuments, stadiums...) instead of just one, so
-// rounds can vary the start point per city. Not wired into the real game
-// yet — this sandbox is step one, for eyeballing/correcting the coordinates
-// against real satellite imagery before they're trusted anywhere else.
-interface SandboxPoint {
-  label: string
-  lat: number
-  lng: number
-}
-interface SandboxCity {
-  name: string
-  displayName: string
-  difficulty: Difficulty
-  mode: Mode
-  country?: string
-  points: SandboxPoint[]
-}
+// Point-of-interest pilot: testCities.json gives every city several candidate
+// start coordinates (landmarks) instead of just one, so real rounds vary the
+// start point per city (see useGameState's resolveRoundCities). This sandbox
+// is for eyeballing/correcting those coordinates against satellite imagery.
+type SandboxCity = CityWithPoints
 type Dataset = 'test' | 'all'
 
 const testCities = testCitiesJson as SandboxCity[]
