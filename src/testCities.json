@@ -6,7 +6,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Battery Park, Lower Manhattan",
         "lat": 40.7026,
         "lng": -74.0164
       },
@@ -29,7 +29,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Millennium Park",
         "lat": 41.8827,
         "lng": -87.6233
       },
@@ -52,7 +52,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Crypto.com Arena / LA Live",
         "lat": 34.043,
         "lng": -118.2673
       },
@@ -75,7 +75,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Embarcadero / Financial District",
         "lat": 37.7951,
         "lng": -122.3965
       },
@@ -98,7 +98,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Civic Center Park",
         "lat": 39.7392,
         "lng": -104.9903
       },
@@ -121,7 +121,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Bayfront Park",
         "lat": 25.775,
         "lng": -80.1866
       },
@@ -144,7 +144,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Seattle",
         "lat": 47.6062,
         "lng": -122.3321
       },
@@ -167,7 +167,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Boston / Government Center",
         "lat": 42.3601,
         "lng": -71.0589
       },
@@ -190,7 +190,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Austin",
         "lat": 30.2672,
         "lng": -97.7431
       },
@@ -213,7 +213,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Phoenix",
         "lat": 33.4484,
         "lng": -112.074
       },
@@ -236,7 +236,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "The National Mall",
         "lat": 38.8893,
         "lng": -77.0254
       },
@@ -259,7 +259,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Independence Hall",
         "lat": 39.9496,
         "lng": -75.1503
       },
@@ -282,7 +282,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Houston",
         "lat": 29.7563,
         "lng": -95.3568
       },
@@ -305,7 +305,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Dallas",
         "lat": 32.7894,
         "lng": -96.8028
       },
@@ -328,7 +328,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "The Alamo",
         "lat": 29.426,
         "lng": -98.4861
       },
@@ -351,7 +351,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Gaslamp Quarter",
         "lat": 32.7341,
         "lng": -117.1449
       },
@@ -374,7 +374,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Pioneer Courthouse Square",
         "lat": 45.5189,
         "lng": -122.6713
       },
@@ -397,7 +397,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Minneapolis",
         "lat": 44.9778,
         "lng": -93.265
       },
@@ -420,7 +420,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Campus Martius Park",
         "lat": 42.3315,
         "lng": -83.0467
       },
@@ -443,7 +443,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Centennial Olympic Park",
         "lat": 33.7603,
         "lng": -84.3935
       },
@@ -466,7 +466,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Jackson Square, French Quarter",
         "lat": 29.9575,
         "lng": -90.063
       },
@@ -489,7 +489,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Ryman Auditorium / Lower Broadway",
         "lat": 36.1612,
         "lng": -86.7775
       },
@@ -512,7 +512,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "The Strip (Bellagio)",
         "lat": 36.1126,
         "lng": -115.1767
       },
@@ -535,7 +535,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Uptown Charlotte",
         "lat": 35.2251,
         "lng": -80.8434
       },
@@ -558,7 +558,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Point State Park",
         "lat": 40.4423,
         "lng": -80.0112
       },
@@ -581,7 +581,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Temple Square",
         "lat": 40.7707,
         "lng": -111.8911
       },
@@ -604,7 +604,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Monument Circle",
         "lat": 39.7685,
         "lng": -86.158
       },
@@ -627,7 +627,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Power & Light District",
         "lat": 39.0392,
         "lng": -94.5908
       },
@@ -650,7 +650,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "Gateway Arch",
         "lat": 38.6247,
         "lng": -90.1848
       },
@@ -673,7 +673,7 @@
     "mode": "us",
     "points": [
       {
-        "label": "Original point",
+        "label": "California State Capitol",
         "lat": 38.5765,
         "lng": -121.4934
       },
@@ -697,7 +697,7 @@
     "country": "United States",
     "points": [
       {
-        "label": "Original point",
+        "label": "Battery Park, Lower Manhattan",
         "lat": 40.7026,
         "lng": -74.0164
       },
@@ -721,7 +721,7 @@
     "country": "United States",
     "points": [
       {
-        "label": "Original point",
+        "label": "Embarcadero / Financial District",
         "lat": 37.7951,
         "lng": -122.3965
       },
@@ -745,7 +745,7 @@
     "country": "United States",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Boston / Government Center",
         "lat": 42.3601,
         "lng": -71.0589
       },
@@ -769,7 +769,7 @@
     "country": "United States",
     "points": [
       {
-        "label": "Original point",
+        "label": "Independence Hall",
         "lat": 39.9496,
         "lng": -75.1503
       },
@@ -793,7 +793,7 @@
     "country": "United States",
     "points": [
       {
-        "label": "Original point",
+        "label": "Crypto.com Arena / LA Live",
         "lat": 34.043,
         "lng": -118.2673
       },
@@ -817,7 +817,7 @@
     "country": "United States",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Houston",
         "lat": 29.7563,
         "lng": -95.3568
       },
@@ -841,7 +841,7 @@
     "country": "Italy",
     "points": [
       {
-        "label": "Original point",
+        "label": "Grand Canal",
         "lat": 45.4342,
         "lng": 12.3388
       },
@@ -865,7 +865,7 @@
     "country": "UAE",
     "points": [
       {
-        "label": "Original point",
+        "label": "Palm Jumeirah",
         "lat": 25.1124,
         "lng": 55.139
       },
@@ -889,7 +889,7 @@
     "country": "Brazil",
     "points": [
       {
-        "label": "Original point",
+        "label": "Christ the Redeemer",
         "lat": -22.9519,
         "lng": -43.2105
       },
@@ -913,7 +913,7 @@
     "country": "Australia",
     "points": [
       {
-        "label": "Original point",
+        "label": "Sydney Opera House",
         "lat": -33.8568,
         "lng": 151.2153
       },
@@ -937,7 +937,7 @@
     "country": "Netherlands",
     "points": [
       {
-        "label": "Original point",
+        "label": "Dam Square",
         "lat": 52.3702,
         "lng": 4.8952
       },
@@ -961,7 +961,7 @@
     "country": "Maldives",
     "points": [
       {
-        "label": "Original point",
+        "label": "Republic Square (Jumhooree Maidan)",
         "lat": 4.1755,
         "lng": 73.5093
       },
@@ -985,7 +985,7 @@
     "country": "South Africa",
     "points": [
       {
-        "label": "Original point",
+        "label": "City Bowl / Company’s Garden",
         "lat": -33.9328,
         "lng": 18.4173
       },
@@ -1009,7 +1009,7 @@
     "country": "Turkey",
     "points": [
       {
-        "label": "Original point",
+        "label": "Hagia Sophia",
         "lat": 41.0082,
         "lng": 28.9784
       },
@@ -1032,7 +1032,7 @@
     "mode": "global",
     "points": [
       {
-        "label": "Original point",
+        "label": "Victoria Harbour, Central",
         "lat": 22.2793,
         "lng": 114.1628
       },
@@ -1056,7 +1056,7 @@
     "country": "Spain",
     "points": [
       {
-        "label": "Original point",
+        "label": "Passeig de Gràcia",
         "lat": 41.3874,
         "lng": 2.1686
       },
@@ -1080,7 +1080,7 @@
     "country": "France",
     "points": [
       {
-        "label": "Original point",
+        "label": "Arc de Triomphe",
         "lat": 48.8738,
         "lng": 2.295
       },
@@ -1104,7 +1104,7 @@
     "country": "Russia",
     "points": [
       {
-        "label": "Original point",
+        "label": "Red Square",
         "lat": 55.752,
         "lng": 37.6175
       },
@@ -1128,7 +1128,7 @@
     "country": "Japan",
     "points": [
       {
-        "label": "Original point",
+        "label": "Tokyo Imperial Palace",
         "lat": 35.6852,
         "lng": 139.7528
       },
@@ -1152,7 +1152,7 @@
     "country": "Thailand",
     "points": [
       {
-        "label": "Original point",
+        "label": "Grand Palace",
         "lat": 13.7527,
         "lng": 100.493
       },
@@ -1176,7 +1176,7 @@
     "country": "Argentina",
     "points": [
       {
-        "label": "Original point",
+        "label": "Plaza de Mayo",
         "lat": -34.6084,
         "lng": -58.3732
       },
@@ -1200,7 +1200,7 @@
     "country": "South Korea",
     "points": [
       {
-        "label": "Original point",
+        "label": "Seoul City Hall / Gwanghwamun Square",
         "lat": 37.5665,
         "lng": 126.978
       },
@@ -1224,7 +1224,7 @@
     "country": "India",
     "points": [
       {
-        "label": "Original point",
+        "label": "Gateway of India",
         "lat": 18.922,
         "lng": 72.8347
       },
@@ -1247,7 +1247,7 @@
     "mode": "global",
     "points": [
       {
-        "label": "Original point",
+        "label": "Marina Bay Sands",
         "lat": 1.2836,
         "lng": 103.8607
       },
@@ -1271,7 +1271,7 @@
     "country": "China",
     "points": [
       {
-        "label": "Original point",
+        "label": "Forbidden City",
         "lat": 39.9163,
         "lng": 116.3972
       },
@@ -1295,7 +1295,7 @@
     "country": "New Zealand",
     "points": [
       {
-        "label": "Original point",
+        "label": "Sky Tower",
         "lat": -36.8485,
         "lng": 174.7633
       },
@@ -1319,7 +1319,7 @@
     "country": "Canada",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Toronto / CN Tower area",
         "lat": 43.6511,
         "lng": -79.3809
       },
@@ -1343,7 +1343,7 @@
     "country": "Mexico",
     "points": [
       {
-        "label": "Original point",
+        "label": "Zócalo",
         "lat": 19.4326,
         "lng": -99.1332
       },
@@ -1367,7 +1367,7 @@
     "country": "Germany",
     "points": [
       {
-        "label": "Original point",
+        "label": "Alexanderplatz",
         "lat": 52.52,
         "lng": 13.405
       },
@@ -1391,7 +1391,7 @@
     "country": "Spain",
     "points": [
       {
-        "label": "Original point",
+        "label": "Puerta del Sol",
         "lat": 40.4168,
         "lng": -3.7038
       },
@@ -1415,7 +1415,7 @@
     "country": "South Africa",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Johannesburg",
         "lat": -26.2041,
         "lng": 28.0473
       },
@@ -1439,7 +1439,7 @@
     "country": "Poland",
     "points": [
       {
-        "label": "Original point",
+        "label": "Downtown Warsaw",
         "lat": 52.2297,
         "lng": 21.0122
       },
@@ -1463,7 +1463,7 @@
     "country": "Belgium",
     "points": [
       {
-        "label": "Original point",
+        "label": "Grand Place",
         "lat": 50.8503,
         "lng": 4.3517
       },
@@ -1487,7 +1487,7 @@
     "country": "Nigeria",
     "points": [
       {
-        "label": "Original point",
+        "label": "Lagos Island",
         "lat": 6.5244,
         "lng": 3.3792
       },
@@ -1511,7 +1511,7 @@
     "country": "Kenya",
     "points": [
       {
-        "label": "Original point",
+        "label": "Nairobi CBD",
         "lat": -1.2921,
         "lng": 36.8219
       },
@@ -1535,7 +1535,7 @@
     "country": "Philippines",
     "points": [
       {
-        "label": "Original point",
+        "label": "Quiapo",
         "lat": 14.5995,
         "lng": 120.9842
       },
