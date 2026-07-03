@@ -324,7 +324,7 @@
   {
     "name": "san-antonio",
     "displayName": "San Antonio",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "us",
     "points": [
       {
@@ -416,7 +416,7 @@
   {
     "name": "detroit",
     "displayName": "Detroit",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "mode": "us",
     "points": [
       {
@@ -600,7 +600,7 @@
   {
     "name": "indianapolis",
     "displayName": "Indianapolis",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "mode": "us",
     "points": [
       {
@@ -646,7 +646,7 @@
   {
     "name": "st-louis",
     "displayName": "St. Louis",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "mode": "us",
     "points": [
       {
@@ -1266,7 +1266,7 @@
   {
     "name": "beijing",
     "displayName": "Beijing, China",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "mode": "global",
     "country": "China",
     "points": [
@@ -1482,7 +1482,7 @@
   {
     "name": "lagos",
     "displayName": "Lagos, Nigeria",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "mode": "global",
     "country": "Nigeria",
     "points": [
