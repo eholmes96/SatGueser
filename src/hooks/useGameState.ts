@@ -1,9 +1,9 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
-import testCitiesJson from '../testCities.json'
+import citiesV2Json from '../Cities_v2.json'
 import type { City, CityWithPoints, Difficulty, Mode } from '../utils/mapboxUtils'
 import { normalize } from '../utils/textUtils'
 
-const allCities = testCitiesJson as CityWithPoints[]
+const allCities = citiesV2Json as CityWithPoints[]
 
 export type { Difficulty }
 export type GamePhase = 'idle' | 'selectingDifficulty' | 'playing' | 'roundResult' | 'gameOver'

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import allCitiesJson from '../cities.json'
-import testCitiesJson from '../testCities.json'
+import citiesV2Json from '../Cities_v2.json'
 import { MAPBOX_TOKEN, type City, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
 import { easeOutQuad } from '../utils/easing'
 
@@ -9,16 +9,16 @@ mapboxgl.accessToken = MAPBOX_TOKEN
 
 const allCities = allCitiesJson as City[]
 
-// Point-of-interest pilot: testCities.json gives every city several candidate
+// Point-of-interest pilot: Cities_v2.json gives every city several candidate
 // start coordinates (landmarks) instead of just one, so real rounds vary the
 // start point per city (see useGameState's resolveRoundCities). This sandbox
 // is for eyeballing/correcting those coordinates against satellite imagery.
 type SandboxCity = CityWithPoints
 type Dataset = 'test' | 'all'
 
-const testCities = testCitiesJson as SandboxCity[]
+const citiesV2 = citiesV2Json as SandboxCity[]
 // cities.json entries only ever had one coordinate — normalized to the same
-// { points } shape as testCities so CityPicker/DevMapView don't need to
+// { points } shape as citiesV2 so CityPicker/DevMapView don't need to
 // branch on which dataset they're rendering.
 const allCitiesNormalized: SandboxCity[] = allCities.map(c => ({
   name: c.name,
@@ -83,7 +83,7 @@ function CityPicker({ dataset, onDatasetChange, onSelect }: {
   onSelect: (city: SandboxCity) => void
 }) {
   const [mode, setMode] = useState<Mode>('us')
-  const cities = dataset === 'test' ? testCities : allCitiesNormalized
+  const cities = dataset === 'test' ? citiesV2 : allCitiesNormalized
 
   return (
     // height (not minHeight) + its own overflowY:auto makes this scrollable
@@ -104,7 +104,7 @@ function CityPicker({ dataset, onDatasetChange, onSelect }: {
         SatGueser Dev Sandbox
       </h1>
 
-      {/* Dataset toggle — testCities.json (multi-point pilot) vs the
+      {/* Dataset toggle — Cities_v2.json (multi-point pilot) vs the
           production cities.json (single point each), normalized above so
           the rest of this component doesn't care which one is active. */}
       <div style={{
@@ -116,7 +116,7 @@ function CityPicker({ dataset, onDatasetChange, onSelect }: {
         borderRadius: 999,
         marginBottom: '0.75rem',
       }}>
-        {([['test', `Test Points (${testCities.length})`], ['all', `All Cities (${allCitiesNormalized.length})`]] as const).map(([d, label]) => (
+        {([['test', `Test Points (${citiesV2.length})`], ['all', `All Cities (${allCitiesNormalized.length})`]] as const).map(([d, label]) => (
           <button
             key={d}
             onClick={() => onDatasetChange(d)}
@@ -401,7 +401,7 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
   }
 
   const handleCopyJson = async () => {
-    // Multi-point (testCities.json) entries copy as a full point object
+    // Multi-point (Cities_v2.json) entries copy as a full point object
     // (with label) ready to paste back into the points array; single-point
     // (cities.json) entries keep the old flat lat/lng fragment.
     const text = city.points.length > 1
@@ -464,7 +464,7 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
         ×
       </button>
 
-      {/* Point switcher — only shown for multi-point (testCities.json)
+      {/* Point switcher — only shown for multi-point (Cities_v2.json)
           cities. Each button re-centers the SAME map instance on that
           point (see selectPoint) rather than remounting. */}
       {city.points.length > 1 && (

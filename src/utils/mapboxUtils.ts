@@ -14,7 +14,7 @@ export interface City {
   country?: string
 }
 
-// testCities.json shape: a city with several candidate start coordinates
+// Cities_v2.json shape: a city with several candidate start coordinates
 // (landmarks) instead of one, so a round can vary where it starts each time.
 export interface CityPoint {
   label: string
