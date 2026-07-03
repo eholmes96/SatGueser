@@ -1550,5 +1550,350 @@
         "lng": 121.0197
       }
     ]
+  },
+  {
+    "name": "baltimore",
+    "displayName": "Baltimore",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Inner Harbor",
+        "lat": 39.2856,
+        "lng": -76.6122
+      },
+      {
+        "label": "Fort McHenry",
+        "lat": 39.2627,
+        "lng": -76.5797
+      },
+      {
+        "label": "Baltimore/Washington International Airport",
+        "lat": 39.1774,
+        "lng": -76.6684
+      }
+    ]
+  },
+  {
+    "name": "providence",
+    "displayName": "Providence",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Providence / Waterplace Park",
+        "lat": 41.824,
+        "lng": -71.4128
+      },
+      {
+        "label": "Roger Williams Park",
+        "lat": 41.7793,
+        "lng": -71.4145
+      },
+      {
+        "label": "T.F. Green International Airport",
+        "lat": 41.724,
+        "lng": -71.4283
+      }
+    ]
+  },
+  {
+    "name": "buffalo",
+    "displayName": "Buffalo",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Canalside / Buffalo Waterfront",
+        "lat": 42.8864,
+        "lng": -78.8784
+      },
+      {
+        "label": "Delaware Park / Buffalo Zoo",
+        "lat": 42.9339,
+        "lng": -78.8653
+      },
+      {
+        "label": "Niagara Falls",
+        "lat": 43.0828,
+        "lng": -79.067
+      }
+    ]
+  },
+  {
+    "name": "cleveland",
+    "displayName": "Cleveland",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Public Square / The Flats",
+        "lat": 41.4993,
+        "lng": -81.6944
+      },
+      {
+        "label": "Cleveland Metroparks Zoo",
+        "lat": 41.4636,
+        "lng": -81.7025
+      },
+      {
+        "label": "Cleveland Hopkins International Airport",
+        "lat": 41.4117,
+        "lng": -81.8498
+      }
+    ]
+  },
+  {
+    "name": "cincinnati",
+    "displayName": "Cincinnati",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Cincinnati / Riverfront",
+        "lat": 39.1031,
+        "lng": -84.512
+      },
+      {
+        "label": "Cincinnati Zoo & Botanical Garden",
+        "lat": 39.1425,
+        "lng": -84.5054
+      },
+      {
+        "label": "Cincinnati/Northern Kentucky International Airport",
+        "lat": 39.0489,
+        "lng": -84.6678
+      }
+    ]
+  },
+  {
+    "name": "milwaukee",
+    "displayName": "Milwaukee",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Milwaukee / Lakefront",
+        "lat": 43.0389,
+        "lng": -87.9065
+      },
+      {
+        "label": "Milwaukee County Zoo",
+        "lat": 43.0472,
+        "lng": -88.0687
+      },
+      {
+        "label": "American Family Field",
+        "lat": 43.028,
+        "lng": -87.9712
+      }
+    ]
+  },
+  {
+    "name": "louisville",
+    "displayName": "Louisville",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Louisville / Waterfront",
+        "lat": 38.2527,
+        "lng": -85.7585
+      },
+      {
+        "label": "Churchill Downs",
+        "lat": 38.202,
+        "lng": -85.7693
+      },
+      {
+        "label": "Louisville Zoo",
+        "lat": 38.1955,
+        "lng": -85.6947
+      }
+    ]
+  },
+  {
+    "name": "memphis",
+    "displayName": "Memphis",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Beale Street / Downtown Memphis",
+        "lat": 35.1495,
+        "lng": -90.049
+      },
+      {
+        "label": "Memphis Zoo / Overton Park",
+        "lat": 35.1352,
+        "lng": -89.9853
+      },
+      {
+        "label": "Memphis International Airport",
+        "lat": 35.0424,
+        "lng": -89.9767
+      }
+    ]
+  },
+  {
+    "name": "raleigh",
+    "displayName": "Raleigh",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Raleigh",
+        "lat": 35.7796,
+        "lng": -78.6382
+      },
+      {
+        "label": "William B. Umstead State Park",
+        "lat": 35.8683,
+        "lng": -78.7442
+      },
+      {
+        "label": "Raleigh-Durham International Airport",
+        "lat": 35.8776,
+        "lng": -78.7875
+      }
+    ]
+  },
+  {
+    "name": "tampa",
+    "displayName": "Tampa",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Tampa",
+        "lat": 27.9506,
+        "lng": -82.4572
+      },
+      {
+        "label": "Busch Gardens Tampa Bay",
+        "lat": 28.0344,
+        "lng": -82.4197
+      },
+      {
+        "label": "MacDill Air Force Base / Interbay Peninsula",
+        "lat": 27.8492,
+        "lng": -82.5127
+      }
+    ]
+  },
+  {
+    "name": "orlando",
+    "displayName": "Orlando",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Orlando / Lake Eola",
+        "lat": 28.5421,
+        "lng": -81.379
+      },
+      {
+        "label": "Walt Disney World / Magic Kingdom",
+        "lat": 28.4177,
+        "lng": -81.5812
+      },
+      {
+        "label": "Orlando International Airport",
+        "lat": 28.4312,
+        "lng": -81.3081
+      }
+    ]
+  },
+  {
+    "name": "oklahoma-city",
+    "displayName": "Oklahoma City",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Oklahoma City / Bricktown",
+        "lat": 35.4676,
+        "lng": -97.5164
+      },
+      {
+        "label": "Lake Hefner",
+        "lat": 35.5423,
+        "lng": -97.5883
+      },
+      {
+        "label": "Will Rogers World Airport",
+        "lat": 35.3931,
+        "lng": -97.6007
+      }
+    ]
+  },
+  {
+    "name": "albuquerque",
+    "displayName": "Albuquerque",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Albuquerque",
+        "lat": 35.0844,
+        "lng": -106.6504
+      },
+      {
+        "label": "Sandia Peak Tramway",
+        "lat": 35.2075,
+        "lng": -106.4475
+      },
+      {
+        "label": "Albuquerque International Sunport",
+        "lat": 35.0402,
+        "lng": -106.6091
+      }
+    ]
+  },
+  {
+    "name": "el-paso",
+    "displayName": "El Paso",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown El Paso / Rio Grande border",
+        "lat": 31.7587,
+        "lng": -106.4869
+      },
+      {
+        "label": "Franklin Mountains State Park",
+        "lat": 31.8935,
+        "lng": -106.4763
+      },
+      {
+        "label": "El Paso International Airport",
+        "lat": 31.8073,
+        "lng": -106.3776
+      }
+    ]
+  },
+  {
+    "name": "boise",
+    "displayName": "Boise",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Boise",
+        "lat": 43.615,
+        "lng": -116.2023
+      },
+      {
+        "label": "Lucky Peak State Park",
+        "lat": 43.545,
+        "lng": -116.0668
+      },
+      {
+        "label": "Boise Airport",
+        "lat": 43.5644,
+        "lng": -116.2228
+      }
+    ]
   }
 ]
