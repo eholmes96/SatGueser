@@ -1,33 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
-import allCitiesJson from '../cities.json'
 import citiesV2Json from '../Cities_v2.json'
-import { MAPBOX_TOKEN, type City, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
+import { MAPBOX_TOKEN, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
 import { easeOutQuad } from '../utils/easing'
 
 mapboxgl.accessToken = MAPBOX_TOKEN
-
-const allCities = allCitiesJson as City[]
 
 // Point-of-interest pilot: Cities_v2.json gives every city several candidate
 // start coordinates (landmarks) instead of just one, so real rounds vary the
 // start point per city (see useGameState's resolveRoundCities). This sandbox
 // is for eyeballing/correcting those coordinates against satellite imagery.
 type SandboxCity = CityWithPoints
-type Dataset = 'test' | 'all'
 
 const citiesV2 = citiesV2Json as SandboxCity[]
-// cities.json entries only ever had one coordinate — normalized to the same
-// { points } shape as citiesV2 so CityPicker/DevMapView don't need to
-// branch on which dataset they're rendering.
-const allCitiesNormalized: SandboxCity[] = allCities.map(c => ({
-  name: c.name,
-  displayName: c.displayName,
-  difficulty: c.difficulty,
-  mode: c.mode,
-  country: c.country,
-  points: [{ label: 'Center', lat: c.lat, lng: c.lng }],
-}))
 
 const START_ZOOM = 15
 const END_ZOOM = 10
@@ -77,13 +62,12 @@ const btnStyle: React.CSSProperties = {
   cursor: 'pointer',
 }
 
-function CityPicker({ dataset, onDatasetChange, onSelect }: {
-  dataset: Dataset
-  onDatasetChange: (d: Dataset) => void
+function CityPicker({ mode, onModeChange, onSelect }: {
+  mode: Mode
+  onModeChange: (m: Mode) => void
   onSelect: (city: SandboxCity) => void
 }) {
-  const [mode, setMode] = useState<Mode>('us')
-  const cities = dataset === 'test' ? citiesV2 : allCitiesNormalized
+  const cities = citiesV2
 
   return (
     // height (not minHeight) + its own overflowY:auto makes this scrollable
@@ -104,41 +88,6 @@ function CityPicker({ dataset, onDatasetChange, onSelect }: {
         SatGueser Dev Sandbox
       </h1>
 
-      {/* Dataset toggle — Cities_v2.json (multi-point pilot) vs the
-          production cities.json (single point each), normalized above so
-          the rest of this component doesn't care which one is active. */}
-      <div style={{
-        display: 'inline-flex',
-        gap: '0.25rem',
-        background: 'rgba(255,255,255,0.06)',
-        border: '1px solid rgba(255,255,255,0.12)',
-        padding: 4,
-        borderRadius: 999,
-        marginBottom: '0.75rem',
-      }}>
-        {([['test', `Test Points (${citiesV2.length})`], ['all', `All Cities (${allCitiesNormalized.length})`]] as const).map(([d, label]) => (
-          <button
-            key={d}
-            onClick={() => onDatasetChange(d)}
-            style={{
-              padding: '0.35rem 1rem',
-              fontSize: 12,
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
-              borderRadius: 999,
-              border: 'none',
-              cursor: 'pointer',
-              background: dataset === d ? '#fff' : 'transparent',
-              color: dataset === d ? '#111' : '#aaa',
-              transition: 'background 0.15s, color 0.15s',
-            }}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
-
       {/* Mode filter — same visual pattern as the game's US/Global toggle,
           reimplemented locally rather than imported from App.tsx. */}
       <div style={{
@@ -153,7 +102,7 @@ function CityPicker({ dataset, onDatasetChange, onSelect }: {
         {MODES.map(m => (
           <button
             key={m}
-            onClick={() => setMode(m)}
+            onClick={() => onModeChange(m)}
             style={{
               padding: '0.35rem 1rem',
               fontSize: 12,
@@ -401,12 +350,7 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
   }
 
   const handleCopyJson = async () => {
-    // Multi-point (Cities_v2.json) entries copy as a full point object
-    // (with label) ready to paste back into the points array; single-point
-    // (cities.json) entries keep the old flat lat/lng fragment.
-    const text = city.points.length > 1
-      ? `{ "label": "${point.label}", "lat": ${lat}, "lng": ${lng} }`
-      : `"lat": ${lat}, "lng": ${lng}`
+    const text = `{ "label": "${point.label}", "lat": ${lat}, "lng": ${lng} }`
     await navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
@@ -665,18 +609,19 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
 }
 
 export function DevSandbox() {
-  const [dataset, setDataset] = useState<Dataset>('test')
+  // Lifted out of CityPicker so it survives returning from the map view —
+  // CityPicker unmounts entirely while a city is selected, so state living
+  // inside it would otherwise reset back to 'us' every time.
+  const [mode, setMode] = useState<Mode>('us')
   const [selectedCity, setSelectedCity] = useState<SandboxCity | null>(null)
 
   if (!selectedCity) {
-    return <CityPicker dataset={dataset} onDatasetChange={setDataset} onSelect={setSelectedCity} />
+    return <CityPicker mode={mode} onModeChange={setMode} onSelect={setSelectedCity} />
   }
 
   return (
     <DevMapView
-      // dataset is part of the key because both datasets can contain a city
-      // with the same `name` (e.g. "new-york") but different points.
-      key={`${dataset}-${selectedCity.name}`}
+      key={selectedCity.name}
       city={selectedCity}
       onExit={() => setSelectedCity(null)}
     />
