@@ -34,9 +34,9 @@
         "lng": -87.6233
       },
       {
-        "label": "Soldier Field",
-        "lat": 41.8623,
-        "lng": -87.6167
+        "label": "Hyde Park / University of Chicago",
+        "lat": 41.7943,
+        "lng": -87.5907
       },
       {
         "label": "Wrigley Field",
@@ -108,9 +108,9 @@
         "lng": -104.949
       },
       {
-        "label": "Empower Field at Mile High",
-        "lat": 39.7439,
-        "lng": -105.0201
+        "label": "University of Denver",
+        "lat": 39.6766,
+        "lng": -104.9619
       }
     ]
   },
@@ -195,14 +195,14 @@
         "lng": -97.7431
       },
       {
-        "label": "The Domain",
-        "lat": 30.4013,
-        "lng": -97.7255
+        "label": "Mueller (former airport redevelopment)",
+        "lat": 30.2989,
+        "lng": -97.7057
       },
       {
-        "label": "Circuit of the Americas",
-        "lat": 30.1328,
-        "lng": -97.6411
+        "label": "Barton Creek Greenbelt",
+        "lat": 30.245,
+        "lng": -97.81
       }
     ]
   },
@@ -292,9 +292,9 @@
         "lng": -95.3903
       },
       {
-        "label": "NASA Johnson Space Center",
-        "lat": 29.5502,
-        "lng": -95.098
+        "label": "Uptown Houston / The Galleria",
+        "lat": 29.7396,
+        "lng": -95.4613
       }
     ]
   },
@@ -315,9 +315,9 @@
         "lng": -96.7422
       },
       {
-        "label": "AT&T Stadium, Arlington",
-        "lat": 32.7473,
-        "lng": -97.0945
+        "label": "Bishop Arts District",
+        "lat": 32.7488,
+        "lng": -96.8281
       }
     ]
   },
@@ -338,9 +338,9 @@
         "lng": -98.4736
       },
       {
-        "label": "SeaWorld San Antonio",
-        "lat": 29.4529,
-        "lng": -98.7003
+        "label": "Fort Sam Houston",
+        "lat": 29.4658,
+        "lng": -98.4331
       }
     ]
   },
@@ -356,9 +356,9 @@
         "lng": -117.1449
       },
       {
-        "label": "La Jolla Cove",
-        "lat": 32.8508,
-        "lng": -117.2713
+        "label": "Coronado / Hotel del Coronado",
+        "lat": 32.6859,
+        "lng": -117.1831
       },
       {
         "label": "SeaWorld / Mission Bay",
@@ -379,9 +379,9 @@
         "lng": -122.6713
       },
       {
-        "label": "Portland International Airport",
-        "lat": 45.5898,
-        "lng": -122.5951
+        "label": "Reed College",
+        "lat": 45.4823,
+        "lng": -122.6339
       },
       {
         "label": "Mt. Tabor Park",
@@ -407,9 +407,9 @@
         "lng": -93.3066
       },
       {
-        "label": "Minnehaha Falls",
-        "lat": 44.9153,
-        "lng": -93.211
+        "label": "Columbia Heights / Northeast Minneapolis",
+        "lat": 45.005,
+        "lng": -93.25
       }
     ]
   },
@@ -430,9 +430,9 @@
         "lng": -82.9857
       },
       {
-        "label": "Detroit Zoo, Royal Oak",
-        "lat": 42.4695,
-        "lng": -83.1444
+        "label": "Midtown Detroit / Wayne State University",
+        "lat": 42.3576,
+        "lng": -83.0666
       }
     ]
   },
@@ -494,14 +494,14 @@
         "lng": -86.7775
       },
       {
-        "label": "Percy Warner Park",
-        "lat": 36.0806,
-        "lng": -86.8797
+        "label": "Sylvan Park / The Nations",
+        "lat": 36.155,
+        "lng": -86.835
       },
       {
-        "label": "Grand Ole Opry / Opryland",
-        "lat": 36.2081,
-        "lng": -86.692
+        "label": "Inglewood",
+        "lat": 36.195,
+        "lng": -86.725
       }
     ]
   },
@@ -517,14 +517,14 @@
         "lng": -115.1767
       },
       {
-        "label": "Red Rock Canyon",
-        "lat": 36.1358,
-        "lng": -115.4269
+        "label": "Downtown Las Vegas / Fremont Street",
+        "lat": 36.1699,
+        "lng": -115.1398
       },
       {
-        "label": "Las Vegas Motor Speedway",
-        "lat": 36.2694,
-        "lng": -115.0106
+        "label": "Sunrise Manor",
+        "lat": 36.1725,
+        "lng": -115.085
       }
     ]
   },
@@ -545,9 +545,9 @@
         "lng": -80.839
       },
       {
-        "label": "Charlotte Motor Speedway",
-        "lat": 35.351,
-        "lng": -80.6828
+        "label": "NoDa Arts District",
+        "lat": 35.2447,
+        "lng": -80.8028
       }
     ]
   },
@@ -568,9 +568,9 @@
         "lng": -79.9425
       },
       {
-        "label": "Pittsburgh International Airport",
-        "lat": 40.4915,
-        "lng": -80.2329
+        "label": "Polish Hill / Bloomfield",
+        "lat": 40.4614,
+        "lng": -79.9614
       }
     ]
   },
@@ -591,9 +591,9 @@
         "lng": -111.8421
       },
       {
-        "label": "Salt Lake City International Airport",
-        "lat": 40.7899,
-        "lng": -111.9791
+        "label": "Sugar House",
+        "lat": 40.7226,
+        "lng": -111.8563
       }
     ]
   },
@@ -614,9 +614,9 @@
         "lng": -86.2339
       },
       {
-        "label": "Fort Harrison State Park",
-        "lat": 39.8607,
-        "lng": -86.0219
+        "label": "Crown Hill Cemetery",
+        "lat": 39.8103,
+        "lng": -86.1633
       }
     ]
   },
@@ -632,14 +632,14 @@
         "lng": -94.5908
       },
       {
-        "label": "Truman Sports Complex",
-        "lat": 39.0489,
-        "lng": -94.4839
+        "label": "North Kansas City",
+        "lat": 39.16,
+        "lng": -94.575
       },
       {
-        "label": "Kansas City Zoo / Swope Park",
-        "lat": 39.0033,
-        "lng": -94.5486
+        "label": "Historic Northeast / KC Museum",
+        "lat": 39.1128,
+        "lng": -94.5342
       }
     ]
   },
@@ -660,9 +660,9 @@
         "lng": -90.2896
       },
       {
-        "label": "Lambert International Airport",
-        "lat": 38.7487,
-        "lng": -90.37
+        "label": "Tower Grove Park",
+        "lat": 38.6103,
+        "lng": -90.2298
       }
     ]
   },
@@ -683,9 +683,9 @@
         "lng": -121.4453
       },
       {
-        "label": "UC Davis",
-        "lat": 38.5382,
-        "lng": -121.7617
+        "label": "Sacramento State University",
+        "lat": 38.5606,
+        "lng": -121.4238
       }
     ]
   },
@@ -827,9 +827,9 @@
         "lng": -95.3903
       },
       {
-        "label": "NASA Johnson Space Center",
-        "lat": 29.5502,
-        "lng": -95.098
+        "label": "Uptown Houston / The Galleria",
+        "lat": 29.7396,
+        "lng": -95.4613
       }
     ]
   },
@@ -865,9 +865,9 @@
     "country": "UAE",
     "points": [
       {
-        "label": "Palm Jumeirah",
-        "lat": 25.1124,
-        "lng": 55.139
+        "label": "Burj Al Arab / Jumeirah Beach",
+        "lat": 25.1412,
+        "lng": 55.1853
       },
       {
         "label": "Burj Khalifa / Downtown Dubai",
@@ -923,9 +923,9 @@
         "lng": 151.2743
       },
       {
-        "label": "Sydney Olympic Park",
-        "lat": -33.847,
-        "lng": 151.0679
+        "label": "Manly Beach",
+        "lat": -33.7969,
+        "lng": 151.2854
       }
     ]
   },
@@ -942,14 +942,14 @@
         "lng": 4.8952
       },
       {
-        "label": "Schiphol Airport",
-        "lat": 52.3105,
-        "lng": 4.7683
+        "label": "Amsterdam Zuidas",
+        "lat": 52.34,
+        "lng": 4.85
       },
       {
-        "label": "Amsterdamse Bos",
-        "lat": 52.2952,
-        "lng": 4.833
+        "label": "IJburg",
+        "lat": 52.355,
+        "lng": 5.01
       }
     ]
   },
@@ -1019,9 +1019,9 @@
         "lng": 29.0271
       },
       {
-        "label": "Istanbul Airport",
-        "lat": 41.2753,
-        "lng": 28.7519
+        "label": "Kadıköy",
+        "lat": 40.9833,
+        "lng": 29.0333
       }
     ]
   },
@@ -1037,14 +1037,14 @@
         "lng": 114.1628
       },
       {
-        "label": "Hong Kong Disneyland",
-        "lat": 22.3129,
-        "lng": 114.0413
+        "label": "Sha Tin",
+        "lat": 22.3771,
+        "lng": 114.1955
       },
       {
-        "label": "Repulse Bay",
-        "lat": 22.2359,
-        "lng": 114.1955
+        "label": "Kennedy Town",
+        "lat": 22.281,
+        "lng": 114.1288
       }
     ]
   },
@@ -1066,9 +1066,9 @@
         "lng": 2.1228
       },
       {
-        "label": "Barcelona–El Prat Airport",
-        "lat": 41.2974,
-        "lng": 2.0833
+        "label": "Park Güell",
+        "lat": 41.4145,
+        "lng": 2.1527
       }
     ]
   },
@@ -1080,9 +1080,9 @@
     "country": "France",
     "points": [
       {
-        "label": "Arc de Triomphe",
-        "lat": 48.8738,
-        "lng": 2.295
+        "label": "La Villette",
+        "lat": 48.8963,
+        "lng": 2.3822
       },
       {
         "label": "Eiffel Tower",
@@ -1090,9 +1090,9 @@
         "lng": 2.2945
       },
       {
-        "label": "Louvre Museum",
-        "lat": 48.8606,
-        "lng": 2.3376
+        "label": "Bercy",
+        "lat": 48.8388,
+        "lng": 2.3775
       }
     ]
   },
@@ -1162,9 +1162,9 @@
         "lng": 100.5502
       },
       {
-        "label": "Suvarnabhumi Airport",
-        "lat": 13.69,
-        "lng": 100.7501
+        "label": "Sukhumvit / Asok",
+        "lat": 13.7367,
+        "lng": 100.56
       }
     ]
   },
@@ -1186,9 +1186,9 @@
         "lng": -58.4175
       },
       {
-        "label": "Ezeiza International Airport",
-        "lat": -34.8222,
-        "lng": -58.5358
+        "label": "Belgrano",
+        "lat": -34.5627,
+        "lng": -58.4583
       }
     ]
   },
@@ -1210,9 +1210,9 @@
         "lng": 127.1025
       },
       {
-        "label": "Gimpo Airport",
-        "lat": 37.5583,
-        "lng": 126.7906
+        "label": "Hongdae / Mapo",
+        "lat": 37.5563,
+        "lng": 126.9236
       }
     ]
   },
@@ -1234,9 +1234,9 @@
         "lng": 72.82
       },
       {
-        "label": "Chhatrapati Shivaji Airport",
-        "lat": 19.0896,
-        "lng": 72.8656
+        "label": "Dadar",
+        "lat": 19.0178,
+        "lng": 72.8478
       }
     ]
   },
@@ -1257,9 +1257,9 @@
         "lng": 103.8238
       },
       {
-        "label": "Changi Airport",
-        "lat": 1.3644,
-        "lng": 103.9915
+        "label": "Toa Payoh",
+        "lat": 1.3343,
+        "lng": 103.8563
       }
     ]
   },
@@ -1276,9 +1276,9 @@
         "lng": 116.3972
       },
       {
-        "label": "Summer Palace",
-        "lat": 39.9998,
-        "lng": 116.2755
+        "label": "Beijing CBD / China World Trade Center",
+        "lat": 39.9086,
+        "lng": 116.4614
       },
       {
         "label": "Beijing National Stadium (Bird's Nest)",
@@ -1305,9 +1305,9 @@
         "lng": 174.7827
       },
       {
-        "label": "Auckland Airport",
-        "lat": -37.0082,
-        "lng": 174.785
+        "label": "Mission Bay",
+        "lat": -36.8469,
+        "lng": 174.8264
       }
     ]
   },
@@ -1324,14 +1324,14 @@
         "lng": -79.3809
       },
       {
-        "label": "Toronto Zoo",
-        "lat": 43.8177,
-        "lng": -79.1859
+        "label": "The Beaches",
+        "lat": 43.6706,
+        "lng": -79.2952
       },
       {
-        "label": "Toronto Pearson Airport",
-        "lat": 43.6777,
-        "lng": -79.6248
+        "label": "High Park",
+        "lat": 43.6465,
+        "lng": -79.4637
       }
     ]
   },
@@ -1353,9 +1353,9 @@
         "lng": -99.1817
       },
       {
-        "label": "Estadio Azteca",
-        "lat": 19.3029,
-        "lng": -99.1505
+        "label": "Coyoacán",
+        "lat": 19.3467,
+        "lng": -99.1618
       }
     ]
   },
@@ -1372,9 +1372,9 @@
         "lng": 13.405
       },
       {
-        "label": "Brandenburg Gate",
-        "lat": 52.5163,
-        "lng": 13.3777
+        "label": "Tempelhofer Feld",
+        "lat": 52.4875,
+        "lng": 13.4247
       },
       {
         "label": "Olympiastadion",
@@ -1401,9 +1401,9 @@
         "lng": -3.6883
       },
       {
-        "label": "Madrid–Barajas Airport",
-        "lat": 40.4936,
-        "lng": -3.5668
+        "label": "Casa de Campo",
+        "lat": 40.42,
+        "lng": -3.7583
       }
     ]
   },
@@ -1425,9 +1425,9 @@
         "lng": 27.9926
       },
       {
-        "label": "OR Tambo International Airport",
-        "lat": -26.1367,
-        "lng": 28.2411
+        "label": "Sandton",
+        "lat": -26.1076,
+        "lng": 28.0567
       }
     ]
   },
@@ -1444,9 +1444,9 @@
         "lng": 21.0122
       },
       {
-        "label": "Wilanów Palace",
-        "lat": 52.1652,
-        "lng": 21.0908
+        "label": "Praga District",
+        "lat": 52.2547,
+        "lng": 21.0397
       },
       {
         "label": "Warsaw Chopin Airport",
@@ -1473,9 +1473,9 @@
         "lng": 4.3415
       },
       {
-        "label": "Brussels Airport, Zaventem",
-        "lat": 50.901,
-        "lng": 4.4844
+        "label": "Uccle",
+        "lat": 50.8014,
+        "lng": 4.3378
       }
     ]
   },
@@ -1492,14 +1492,14 @@
         "lng": 3.3792
       },
       {
-        "label": "Lekki Conservation Centre",
-        "lat": 6.4362,
-        "lng": 3.5566
+        "label": "National Theatre / Iganmu",
+        "lat": 6.4698,
+        "lng": 3.3778
       },
       {
-        "label": "Murtala Muhammed International Airport",
-        "lat": 6.5774,
-        "lng": 3.3212
+        "label": "Ikeja / GRA",
+        "lat": 6.5833,
+        "lng": 3.35
       }
     ]
   },
@@ -1516,14 +1516,14 @@
         "lng": 36.8219
       },
       {
-        "label": "Nairobi National Park",
-        "lat": -1.3733,
-        "lng": 36.8172
+        "label": "Kibera",
+        "lat": -1.3133,
+        "lng": 36.782
       },
       {
-        "label": "Jomo Kenyatta International Airport",
-        "lat": -1.3192,
-        "lng": 36.9278
+        "label": "Ngong Road / Dagoretti",
+        "lat": -1.3,
+        "lng": 36.75
       }
     ]
   },
@@ -1545,9 +1545,9 @@
         "lng": 120.9822
       },
       {
-        "label": "Ninoy Aquino International Airport",
-        "lat": 14.5086,
-        "lng": 121.0197
+        "label": "Makati CBD",
+        "lat": 14.5547,
+        "lng": 121.0244
       }
     ]
   },
@@ -1568,9 +1568,9 @@
         "lng": -76.5797
       },
       {
-        "label": "Baltimore/Washington International Airport",
-        "lat": 39.1774,
-        "lng": -76.6684
+        "label": "Johns Hopkins University",
+        "lat": 39.3299,
+        "lng": -76.6205
       }
     ]
   },
@@ -1591,9 +1591,9 @@
         "lng": -71.4145
       },
       {
-        "label": "T.F. Green International Airport",
-        "lat": 41.724,
-        "lng": -71.4283
+        "label": "Pawtucket",
+        "lat": 41.8787,
+        "lng": -71.3826
       }
     ]
   },
@@ -1614,9 +1614,9 @@
         "lng": -78.8653
       },
       {
-        "label": "Niagara Falls",
-        "lat": 43.0828,
-        "lng": -79.067
+        "label": "Cazenovia Park",
+        "lat": 42.8447,
+        "lng": -78.8163
       }
     ]
   },
@@ -1637,9 +1637,9 @@
         "lng": -81.7025
       },
       {
-        "label": "Cleveland Hopkins International Airport",
-        "lat": 41.4117,
-        "lng": -81.8498
+        "label": "University Circle / Case Western",
+        "lat": 41.5044,
+        "lng": -81.6079
       }
     ]
   },
@@ -1660,9 +1660,9 @@
         "lng": -84.5054
       },
       {
-        "label": "Cincinnati/Northern Kentucky International Airport",
-        "lat": 39.0489,
-        "lng": -84.6678
+        "label": "Hyde Park, Cincinnati",
+        "lat": 39.1364,
+        "lng": -84.4547
       }
     ]
   },
@@ -1678,9 +1678,9 @@
         "lng": -87.9065
       },
       {
-        "label": "Milwaukee County Zoo",
-        "lat": 43.0472,
-        "lng": -88.0687
+        "label": "Bay View",
+        "lat": 42.9989,
+        "lng": -87.8973
       },
       {
         "label": "American Family Field",
@@ -1706,9 +1706,9 @@
         "lng": -85.7693
       },
       {
-        "label": "Louisville Zoo",
-        "lat": 38.1955,
-        "lng": -85.6947
+        "label": "Cherokee Park",
+        "lat": 38.2415,
+        "lng": -85.6874
       }
     ]
   },
@@ -1729,9 +1729,9 @@
         "lng": -89.9853
       },
       {
-        "label": "Memphis International Airport",
-        "lat": 35.0424,
-        "lng": -89.9767
+        "label": "South Memphis / Soulsville",
+        "lat": 35.0989,
+        "lng": -90.0128
       }
     ]
   },
@@ -1747,14 +1747,14 @@
         "lng": -78.6382
       },
       {
-        "label": "William B. Umstead State Park",
-        "lat": 35.8683,
-        "lng": -78.7442
+        "label": "NC State University",
+        "lat": 35.7847,
+        "lng": -78.6821
       },
       {
-        "label": "Raleigh-Durham International Airport",
-        "lat": 35.8776,
-        "lng": -78.7875
+        "label": "North Hills",
+        "lat": 35.8317,
+        "lng": -78.6389
       }
     ]
   },
@@ -1770,14 +1770,14 @@
         "lng": -82.4572
       },
       {
-        "label": "Busch Gardens Tampa Bay",
-        "lat": 28.0344,
-        "lng": -82.4197
+        "label": "Tampa International Airport",
+        "lat": 27.9756,
+        "lng": -82.5332
       },
       {
-        "label": "MacDill Air Force Base / Interbay Peninsula",
-        "lat": 27.8492,
-        "lng": -82.5127
+        "label": "Seminole Heights",
+        "lat": 28.0064,
+        "lng": -82.4548
       }
     ]
   },
@@ -1793,14 +1793,14 @@
         "lng": -81.379
       },
       {
-        "label": "Walt Disney World / Magic Kingdom",
-        "lat": 28.4177,
-        "lng": -81.5812
+        "label": "Winter Park",
+        "lat": 28.6,
+        "lng": -81.3392
       },
       {
-        "label": "Orlando International Airport",
-        "lat": 28.4312,
-        "lng": -81.3081
+        "label": "Conway",
+        "lat": 28.49,
+        "lng": -81.34
       }
     ]
   },
@@ -1816,14 +1816,14 @@
         "lng": -97.5164
       },
       {
-        "label": "Lake Hefner",
-        "lat": 35.5423,
-        "lng": -97.5883
+        "label": "State Capitol / Lincoln Terrace",
+        "lat": 35.51,
+        "lng": -97.49
       },
       {
-        "label": "Will Rogers World Airport",
-        "lat": 35.3931,
-        "lng": -97.6007
+        "label": "Capitol Hill",
+        "lat": 35.42,
+        "lng": -97.5231
       }
     ]
   },
@@ -1839,9 +1839,9 @@
         "lng": -106.6504
       },
       {
-        "label": "Sandia Peak Tramway",
-        "lat": 35.2075,
-        "lng": -106.4475
+        "label": "Nob Hill",
+        "lat": 35.0819,
+        "lng": -106.6122
       },
       {
         "label": "Albuquerque International Sunport",
@@ -1862,14 +1862,14 @@
         "lng": -106.4869
       },
       {
-        "label": "Franklin Mountains State Park",
-        "lat": 31.8935,
-        "lng": -106.4763
+        "label": "Fort Bliss",
+        "lat": 31.795,
+        "lng": -106.455
       },
       {
-        "label": "El Paso International Airport",
-        "lat": 31.8073,
-        "lng": -106.3776
+        "label": "Mission Valley",
+        "lat": 31.728,
+        "lng": -106.46
       }
     ]
   },
@@ -1885,9 +1885,9 @@
         "lng": -116.2023
       },
       {
-        "label": "Lucky Peak State Park",
-        "lat": 43.545,
-        "lng": -116.0668
+        "label": "West Boise / Towne Square",
+        "lat": 43.6295,
+        "lng": -116.2843
       },
       {
         "label": "Boise Airport",
@@ -1938,9 +1938,9 @@
         "lng": 31.1342
       },
       {
-        "label": "Cairo International Airport",
-        "lat": 30.1219,
-        "lng": 31.4056
+        "label": "Heliopolis",
+        "lat": 30.0808,
+        "lng": 31.3238
       }
     ]
   },
@@ -1962,9 +1962,9 @@
         "lng": 12.4539
       },
       {
-        "label": "Rome Fiumicino Airport",
-        "lat": 41.8003,
-        "lng": 12.2389
+        "label": "Garbatella",
+        "lat": 41.86,
+        "lng": 12.49
       }
     ]
   },
@@ -1981,14 +1981,14 @@
         "lng": 18.0711
       },
       {
-        "label": "Drottningholm Palace",
-        "lat": 59.322,
-        "lng": 17.8867
+        "label": "Solna / Friends Arena",
+        "lat": 59.3728,
+        "lng": 17.9737
       },
       {
-        "label": "Stockholm Arlanda Airport",
-        "lat": 59.6519,
-        "lng": 17.9186
+        "label": "Nacka",
+        "lat": 59.31,
+        "lng": 18.1642
       }
     ]
   },
@@ -2005,9 +2005,9 @@
         "lng": 51.531
       },
       {
-        "label": "The Pearl-Qatar",
-        "lat": 25.3714,
-        "lng": 51.5508
+        "label": "Katara Cultural Village",
+        "lat": 25.3592,
+        "lng": 51.5286
       },
       {
         "label": "Hamad International Airport",
@@ -2053,14 +2053,14 @@
         "lng": 121.49
       },
       {
-        "label": "Shanghai Disneyland",
-        "lat": 31.1443,
-        "lng": 121.6598
+        "label": "Xujiahui",
+        "lat": 31.1948,
+        "lng": 121.4368
       },
       {
-        "label": "Shanghai Pudong International Airport",
-        "lat": 31.1443,
-        "lng": 121.8083
+        "label": "Changning District",
+        "lat": 31.2204,
+        "lng": 121.4098
       }
     ]
   },
@@ -2082,9 +2082,9 @@
         "lng": 16.3122
       },
       {
-        "label": "Vienna International Airport",
-        "lat": 48.1103,
-        "lng": 16.5697
+        "label": "Donauinsel (Danube Island)",
+        "lat": 48.235,
+        "lng": 16.42
       }
     ]
   },
@@ -2101,14 +2101,14 @@
         "lng": 12.591
       },
       {
-        "label": "Copenhagen Airport",
-        "lat": 55.618,
-        "lng": 12.656
+        "label": "Ørestad / Amager",
+        "lat": 55.6297,
+        "lng": 12.5787
       },
       {
-        "label": "Dyrehaven / Klampenborg",
-        "lat": 55.7853,
-        "lng": 12.58
+        "label": "Hellerup",
+        "lat": 55.7333,
+        "lng": 12.5667
       }
     ]
   },
@@ -2178,9 +2178,9 @@
         "lng": 8.5626
       },
       {
-        "label": "Zürich Airport",
-        "lat": 47.4582,
-        "lng": 8.5555
+        "label": "Zürich Oerlikon",
+        "lat": 47.4114,
+        "lng": 8.5478
       }
     ]
   },
@@ -2197,14 +2197,14 @@
         "lng": 23.7257
       },
       {
-        "label": "Piraeus Port",
-        "lat": 37.9483,
-        "lng": 23.642
+        "label": "Palaio Faliro",
+        "lat": 37.9236,
+        "lng": 23.7078
       },
       {
-        "label": "Athens International Airport",
-        "lat": 37.9364,
-        "lng": 23.9445
+        "label": "Marousi / OAKA Olympic Complex",
+        "lat": 38.0294,
+        "lng": 23.7797
       }
     ]
   },
@@ -2226,9 +2226,9 @@
         "lng": 121.5486
       },
       {
-        "label": "Taoyuan International Airport",
-        "lat": 25.0797,
-        "lng": 121.2342
+        "label": "Ximending",
+        "lat": 25.0421,
+        "lng": 121.5079
       }
     ]
   },
@@ -2245,14 +2245,14 @@
         "lng": -82.3589
       },
       {
-        "label": "José Martí International Airport",
-        "lat": 22.9892,
-        "lng": -82.4091
+        "label": "Miramar",
+        "lat": 23.1092,
+        "lng": -82.4297
       },
       {
-        "label": "Playas del Este",
-        "lat": 23.1608,
-        "lng": -82.1547
+        "label": "Guanabacoa",
+        "lat": 23.1167,
+        "lng": -82.3
       }
     ]
   },
@@ -2274,9 +2274,9 @@
         "lng": 14.4079
       },
       {
-        "label": "Václav Havel Airport Prague",
-        "lat": 50.1008,
-        "lng": 14.26
+        "label": "Modřany",
+        "lat": 50.0064,
+        "lng": 14.4083
       }
     ]
   },
@@ -2298,9 +2298,9 @@
         "lng": 19.0776
       },
       {
-        "label": "Budapest Ferenc Liszt International Airport",
-        "lat": 47.4298,
-        "lng": 19.2611
+        "label": "Óbuda",
+        "lat": 47.535,
+        "lng": 19.035
       }
     ]
   },
@@ -2317,14 +2317,14 @@
         "lng": 113.3247
       },
       {
-        "label": "Guangzhou Baiyun International Airport",
-        "lat": 23.3924,
-        "lng": 113.2988
+        "label": "Haizhu Lake Wetland Park",
+        "lat": 23.075,
+        "lng": 113.24
       },
       {
-        "label": "Chimelong Paradise",
-        "lat": 22.9975,
-        "lng": 113.3266
+        "label": "Baiyun Mountain",
+        "lat": 23.1867,
+        "lng": 113.2967
       }
     ]
   },
@@ -2341,14 +2341,14 @@
         "lng": 104.0647
       },
       {
-        "label": "Chengdu Research Base of Giant Panda Breeding",
-        "lat": 30.7331,
-        "lng": 104.1469
+        "label": "Sichuan University (Wangjiang Campus)",
+        "lat": 30.6339,
+        "lng": 104.0847
       },
       {
-        "label": "Chengdu Shuangliu International Airport",
-        "lat": 30.5785,
-        "lng": 103.9471
+        "label": "Chengdu Zoo",
+        "lat": 30.6969,
+        "lng": 104.0967
       }
     ]
   },
@@ -2370,9 +2370,9 @@
         "lng": 77.241
       },
       {
-        "label": "Indira Gandhi International Airport",
-        "lat": 28.5562,
-        "lng": 77.1
+        "label": "Hauz Khas Village",
+        "lat": 28.5535,
+        "lng": 77.201
       }
     ]
   },
@@ -2389,14 +2389,14 @@
         "lng": 80.2824
       },
       {
-        "label": "Guindy National Park",
-        "lat": 13.0067,
-        "lng": 80.2206
+        "label": "T. Nagar",
+        "lat": 13.0418,
+        "lng": 80.2341
       },
       {
-        "label": "Chennai International Airport",
-        "lat": 12.9941,
-        "lng": 80.1709
+        "label": "Anna Nagar",
+        "lat": 13.085,
+        "lng": 80.2101
       }
     ]
   },
@@ -2418,9 +2418,9 @@
         "lng": 106.8317
       },
       {
-        "label": "Soekarno-Hatta International Airport",
-        "lat": -6.1256,
-        "lng": 106.6559
+        "label": "Senayan / GBK Stadium",
+        "lat": -6.2186,
+        "lng": 106.8022
       }
     ]
   },
@@ -2442,9 +2442,9 @@
         "lng": -70.6119
       },
       {
-        "label": "Arturo Merino Benítez International Airport",
-        "lat": -33.393,
-        "lng": -70.7858
+        "label": "Providencia",
+        "lat": -33.426,
+        "lng": -70.6088
       }
     ]
   },
@@ -2461,14 +2461,14 @@
         "lng": -77.0428
       },
       {
-        "label": "Miraflores / Parque Kennedy",
-        "lat": -12.1211,
-        "lng": -77.0296
+        "label": "San Isidro",
+        "lat": -12.0985,
+        "lng": -77.0335
       },
       {
-        "label": "Jorge Chávez International Airport",
-        "lat": -12.0219,
-        "lng": -77.1143
+        "label": "Bellavista, Callao",
+        "lat": -12.0567,
+        "lng": -77.1
       }
     ]
   },
@@ -2490,9 +2490,9 @@
         "lng": -74.093
       },
       {
-        "label": "El Dorado International Airport",
-        "lat": 4.7016,
-        "lng": -74.1469
+        "label": "Chapinero",
+        "lat": 4.6483,
+        "lng": -74.0648
       }
     ]
   },
@@ -2504,9 +2504,9 @@
     "country": "Bangladesh",
     "points": [
       {
-        "label": "Old Dhaka / Sadarghat",
-        "lat": 23.7104,
-        "lng": 90.4074
+        "label": "Mirpur",
+        "lat": 23.8069,
+        "lng": 90.3687
       },
       {
         "label": "Hatirjheel / Gulshan Lake",
