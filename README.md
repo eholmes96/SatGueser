@@ -9,7 +9,9 @@ Watch a satellite view slowly zoom out from a city, and race the clock to guess 
 - Each game is 5 rounds. Every round shows a different city, starting fully zoomed in on a satellite view that gradually zooms out over 30 seconds.
 - Type a guess into the autocomplete input — the sooner you guess correctly, the more points you score. Guessing after the timer runs out scores 0 for that round.
 - **Difficulty**: Easy, Medium, or Hard — controls how obscure the round's cities are.
-- **Mode**: US Cities or Global — pick before you start. US mode draws from well-known American metros; Global mode adds international cities and matches guesses regardless of accents (e.g. typing "sao paulo" still matches "São Paulo, Brazil").
+- **Mode**: Daily Challenge, US Cities, or Global — pick before you start.
+  - US mode draws from well-known American metros; Global mode adds international cities and matches guesses regardless of accents (e.g. typing "sao paulo" still matches "São Paulo, Brazil").
+  - Daily Challenge has no difficulty picker — everyone gets the same fixed 5-city set (2 easy/2 medium/1 hard, ~30% US/70% non-US) for the day, rotating at midnight Eastern time and playable once per day. Harder rounds score more (2x medium, 3x hard), and you can copy a shareable result once you finish.
 
 ## Tech stack
 
@@ -46,6 +48,30 @@ Deployed on [Vercel](https://vercel.com/). `vercel.json` rewrites all routes to 
 ## Version history
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
+
+**2026-07-06 — Daily Challenge mode**
+- Added a Daily Challenge, shown as the first option in the mode selector: a fixed 5-city run (2 easy + 2 medium + 1 hard) that's identical for every player and rotates at midnight Eastern time, playable once per day via a local completion record (with a read-only recap shown if you reopen it after finishing).
+- Each daily round independently rolls US vs. non-US at 30%/70% odds before picking a city, deduping the handful of cities that exist as both a US and a Global entry so the same real place can't be drawn twice in one day.
+- Harder daily rounds now score more (medium 2x, hard 3x the normal time-based score), with an Easy/Medium/Hard column added to both the end-of-game breakdown and the recap card.
+- Added a shareable, Wordle-style result (copy-to-clipboard with a per-round emoji row) and a day-streak counter.
+- Added a "Reset Daily Challenge" button to the dev sandbox for replaying without waiting for the real midnight rollover.
+- Rebalanced Global mode's difficulty mix to skew harder overall (was 20 easy/26 medium/16 hard, now 20/20/22), weighing both satellite-view distinctiveness and real-world name recognition rather than geography alone.
+
+**2026-07-05 — Cleanup**
+- Fixed error handler ordering in the map reveal component and removed leftover debug logging.
+
+**2026-07-04 — Landmark accuracy pass**
+- Replaced 106 landmark points across 68 cities that were geographically part of a metro area but too far from its actual urban core to feel connected to it — the worst offenders were international airports, typically built miles outside downtown by design.
+- Removed the dev sandbox's legacy single-point dataset toggle (unused by the real game, which had fully moved to the multi-point data) and fixed the sandbox's mode toggle resetting every time you returned to the city picker.
+
+**2026-07-03 — Multi-point cities & content expansion**
+- Wired multi-point cities into real gameplay: every city now offers several candidate start landmarks instead of one fixed point, picked at random per round.
+- Added 15 more US cities and 26 more global cities, and rebalanced several individual cities' difficulty ratings (including Beijing, Detroit, St. Louis, Lagos, Paris, and Cape Town) based on how recognizable they actually are from a satellite view.
+- Added an exit button during play, fixed the last round skipping straight to the Game Over screen instead of showing its round-result card first, and made the mode toggle's button list derive from a single config object instead of a hardcoded list.
+
+**2026-07-02 — Dev sandbox**
+- Added a `/dev` sandbox route for manually tuning zoom and map style per city, fully decoupled from the game UI and never linked to from it.
+- Added multi-point pilot data (multiple candidate landmarks per city) and wired it into the sandbox for preview, ahead of using it in real gameplay.
 
 **2026-07-02 — Mobile fixes & preview-deployment handling**
 - Fixed the on-screen keyboard covering the top status bar on iOS by switching to `100dvh` and restructuring the top/bottom bars as flex children instead of absolutely-positioned overlays.
