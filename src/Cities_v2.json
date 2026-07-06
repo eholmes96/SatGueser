@@ -764,7 +764,7 @@
   {
     "name": "philadelphia-global",
     "displayName": "Philadelphia, USA",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "United States",
     "points": [
@@ -788,7 +788,7 @@
   {
     "name": "los-angeles-global",
     "displayName": "Los Angeles, USA",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "mode": "global",
     "country": "United States",
     "points": [
@@ -1099,7 +1099,7 @@
   {
     "name": "moscow",
     "displayName": "Moscow, Russia",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "mode": "global",
     "country": "Russia",
     "points": [
@@ -1123,7 +1123,7 @@
   {
     "name": "tokyo",
     "displayName": "Tokyo, Japan",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "mode": "global",
     "country": "Japan",
     "points": [
@@ -1243,7 +1243,7 @@
   {
     "name": "singapore",
     "displayName": "Singapore",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "mode": "global",
     "points": [
       {
@@ -1290,7 +1290,7 @@
   {
     "name": "auckland",
     "displayName": "Auckland, New Zealand",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "New Zealand",
     "points": [
@@ -1338,7 +1338,7 @@
   {
     "name": "mexico-city",
     "displayName": "Mexico City, Mexico",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "mode": "global",
     "country": "Mexico",
     "points": [
@@ -1362,7 +1362,7 @@
   {
     "name": "berlin",
     "displayName": "Berlin, Germany",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "mode": "global",
     "country": "Germany",
     "points": [
@@ -1386,7 +1386,7 @@
   {
     "name": "madrid",
     "displayName": "Madrid, Spain",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "mode": "global",
     "country": "Spain",
     "points": [
@@ -1482,7 +1482,7 @@
   {
     "name": "lagos",
     "displayName": "Lagos, Nigeria",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "Nigeria",
     "points": [
@@ -1971,7 +1971,7 @@
   {
     "name": "stockholm",
     "displayName": "Stockholm, Sweden",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "mode": "global",
     "country": "Sweden",
     "points": [
@@ -1995,7 +1995,7 @@
   {
     "name": "doha",
     "displayName": "Doha, Qatar",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "mode": "global",
     "country": "Qatar",
     "points": [
@@ -2019,7 +2019,7 @@
   {
     "name": "ho-chi-minh-city",
     "displayName": "Ho Chi Minh City, Vietnam",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "mode": "global",
     "country": "Vietnam",
     "points": [
@@ -2067,7 +2067,7 @@
   {
     "name": "vienna",
     "displayName": "Vienna, Austria",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "Austria",
     "points": [
@@ -2091,7 +2091,7 @@
   {
     "name": "copenhagen",
     "displayName": "Copenhagen, Denmark",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "Denmark",
     "points": [
@@ -2163,7 +2163,7 @@
   {
     "name": "zurich",
     "displayName": "Zürich, Switzerland",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "Switzerland",
     "points": [
@@ -2211,7 +2211,7 @@
   {
     "name": "taipei",
     "displayName": "Taipei, Taiwan",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "Taiwan",
     "points": [
@@ -2307,7 +2307,7 @@
   {
     "name": "guangzhou",
     "displayName": "Guangzhou, China",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "China",
     "points": [
@@ -2331,7 +2331,7 @@
   {
     "name": "chengdu",
     "displayName": "Chengdu, China",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "China",
     "points": [
@@ -2379,7 +2379,7 @@
   {
     "name": "chennai",
     "displayName": "Chennai, India",
-    "difficulty": "medium",
+    "difficulty": "hard",
     "mode": "global",
     "country": "India",
     "points": [
