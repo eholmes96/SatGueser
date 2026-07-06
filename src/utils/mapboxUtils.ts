@@ -4,6 +4,11 @@ export type Difficulty = 'easy' | 'medium' | 'hard'
 
 export type Mode = 'us' | 'global'
 
+// The game-level mode selector supports one option beyond the per-city Mode
+// above: 'daily' picks a fixed cross-mode set of cities (see
+// utils/dailyChallenge.ts) rather than filtering by a single Mode.
+export type GameMode = Mode | 'daily'
+
 export interface City {
   name: string
   displayName: string

@@ -1,29 +1,30 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useGameState, ROUNDS_PER_GAME } from './hooks/useGameState'
-import type { Difficulty } from './hooks/useGameState'
-import type { Mode } from './utils/mapboxUtils'
+import type { GameMode } from './utils/mapboxUtils'
 import { MapReveal } from './components/MapReveal'
 import { CityGuessInput } from './components/CityGuessInput'
+import { DailyRecapCard } from './components/DailyRecapCard'
 import { US_CITIES } from './data/usCities'
 import { GLOBAL_CITIES } from './data/globalCities'
+import { buildShareText } from './utils/dailyChallenge'
+import { DIFFICULTY_CONFIG } from './utils/difficultyConfig'
 import './App.css'
+
+const DAILY_CITIES = [...US_CITIES, ...GLOBAL_CITIES]
 
 type TitleMode = 'idle' | 'difficulty' | 'hiding' | 'gone'
 
-const DIFFICULTY_CONFIG: Record<Difficulty, { label: string; desc: string; accent: string; bg: string; border: string }> = {
-  easy:   { label: 'Easy',   desc: 'Iconic coastlines & skylines', accent: '#4ade80', bg: 'rgba(74,222,128,0.08)',  border: 'rgba(74,222,128,0.35)'  },
-  medium: { label: 'Medium', desc: 'Familiar but less obvious',    accent: '#f59e0b', bg: 'rgba(245,158,11,0.08)', border: 'rgba(245,158,11,0.35)' },
-  hard:   { label: 'Hard',   desc: 'Good luck',                    accent: '#f87171', bg: 'rgba(248,113,113,0.08)',border: 'rgba(248,113,113,0.35)' },
-}
-
 // Single source of truth for available modes — add a new entry here (plus
-// its Mode union member in mapboxUtils.ts and its data source) and it shows
-// up in the toggle automatically, no other list to keep in sync.
-const MODE_CONFIG: Record<Mode, { label: string }> = {
+// its GameMode union member in mapboxUtils.ts and its data source) and it
+// shows up in the toggle automatically, no other list to keep in sync.
+// Object key order drives the toggle's render order, so 'daily' is listed
+// first to satisfy "Daily Challenge is the first option."
+const MODE_CONFIG: Record<GameMode, { label: string }> = {
+  daily: { label: 'Daily Challenge' },
   us: { label: 'US Cities' },
   global: { label: 'Global' },
 }
-const MODES = Object.keys(MODE_CONFIG) as Mode[]
+const MODES = Object.keys(MODE_CONFIG) as GameMode[]
 
 const btnStyle: React.CSSProperties = {
   padding: '0.55rem 1.5rem',
@@ -37,7 +38,7 @@ const btnStyle: React.CSSProperties = {
 }
 
 function App() {
-  const { state, startGame, startTimer, selectDifficulty, submitGuess, nextRound } = useGameState()
+  const { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus } = useGameState()
   const activeCity = state.cities[state.activeCityIndex]
   const timeLeft = Math.max(0, 30 - state.elapsedSeconds)
   const timerPct = Math.max(0, (timeLeft / 30) * 100)
@@ -47,8 +48,18 @@ function App() {
 
   // Controls the difficulty-selection screen's mode toggle only. The
   // authoritative mode for the running game is state.mode, set by
-  // useGameState once selectDifficulty is called.
-  const [selectedMode, setSelectedMode] = useState<Mode>('us')
+  // useGameState once selectDifficulty/startDailyChallenge is called.
+  const [selectedMode, setSelectedMode] = useState<GameMode>('us')
+
+  // Shared by the daily game-over screen and the pre-game recap card.
+  const [copied, setCopied] = useState(false)
+  const handleCopyResult = useCallback(() => {
+    if (!dailyStatus.record) return
+    const text = buildShareText(dailyStatus.record.dateKey, dailyStatus.record, dailyStatus.streak)
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }, [dailyStatus.record, dailyStatus.streak])
 
   // Title stays visible (shrunk above the difficulty picker) until the game
   // actually starts, at which point it animates up and away.
@@ -261,56 +272,85 @@ function App() {
                 ))}
               </div>
 
-              <p style={{
-                margin: 0,
-                color: '#888',
-                fontSize: 12,
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.12em',
-              }}>
-                Select Difficulty
-              </p>
+              {selectedMode === 'daily' ? (
+                dailyStatus.completed && dailyStatus.record ? (
+                  <DailyRecapCard
+                    record={dailyStatus.record}
+                    streak={dailyStatus.streak}
+                    onCopy={handleCopyResult}
+                    copied={copied}
+                  />
+                ) : (
+                  <button
+                    onClick={startDailyChallenge}
+                    style={{
+                      padding: '0.8rem 2.5rem',
+                      fontSize: 18,
+                      fontWeight: 600,
+                      borderRadius: 10,
+                      border: 'none',
+                      background: '#fff',
+                      color: '#111',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Play Daily Challenge
+                  </button>
+                )
+              ) : (
+                <>
+                  <p style={{
+                    margin: 0,
+                    color: '#888',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                  }}>
+                    Select Difficulty
+                  </p>
 
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
-                gap: 'clamp(0.5rem, 3vw, 1rem)',
-                maxWidth: 'min(560px, 100vw)',
-                padding: '0 1rem',
-                boxSizing: 'border-box',
-              }}>
-                {(['easy', 'medium', 'hard'] as const).map(d => {
-                  const cfg = DIFFICULTY_CONFIG[d]
-                  return (
-                    <button
-                      key={d}
-                      onClick={() => selectDifficulty(d, selectedMode)}
-                      style={{
-                        padding: 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 5vw, 2rem)',
-                        minWidth: 'clamp(96px, 27vw, 150px)',
-                        background: cfg.bg,
-                        border: `1px solid ${cfg.border}`,
-                        borderRadius: 14,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        gap: '0.4rem',
-                        transition: 'background 0.15s',
-                      }}
-                    >
-                      <span style={{ fontSize: '1.1rem', fontWeight: 700, color: cfg.accent }}>
-                        {cfg.label}
-                      </span>
-                      <span style={{ fontSize: 12, color: '#888', fontWeight: 400 }}>
-                        {cfg.desc}
-                      </span>
-                    </button>
-                  )
-                })}
-              </div>
+                  <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    gap: 'clamp(0.5rem, 3vw, 1rem)',
+                    maxWidth: 'min(560px, 100vw)',
+                    padding: '0 1rem',
+                    boxSizing: 'border-box',
+                  }}>
+                    {(['easy', 'medium', 'hard'] as const).map(d => {
+                      const cfg = DIFFICULTY_CONFIG[d]
+                      return (
+                        <button
+                          key={d}
+                          onClick={() => selectDifficulty(d, selectedMode)}
+                          style={{
+                            padding: 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 5vw, 2rem)',
+                            minWidth: 'clamp(96px, 27vw, 150px)',
+                            background: cfg.bg,
+                            border: `1px solid ${cfg.border}`,
+                            borderRadius: 14,
+                            cursor: 'pointer',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '0.4rem',
+                            transition: 'background 0.15s',
+                          }}
+                        >
+                          <span style={{ fontSize: '1.1rem', fontWeight: 700, color: cfg.accent }}>
+                            {cfg.label}
+                          </span>
+                          <span style={{ fontSize: 12, color: '#888', fontWeight: 400 }}>
+                            {cfg.desc}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
@@ -404,7 +444,7 @@ function App() {
               onSubmit={submitGuess}
               disabled={false}
               phase={state.phase}
-              citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : US_CITIES}
+              citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : state.mode === 'daily' ? DAILY_CITIES : US_CITIES}
             />
           </div>
         )}
@@ -481,7 +521,9 @@ function App() {
             minWidth: 340,
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: '#fff' }}>Game Over</h2>
+              <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: '#fff' }}>
+                {state.mode === 'daily' ? 'Daily Challenge Complete' : 'Game Over'}
+              </h2>
               {state.difficulty && (
                 <span style={{
                   fontSize: 11,
@@ -515,6 +557,19 @@ function App() {
                     <span style={{ flex: 1, color: '#eee', fontSize: 15, fontWeight: 500 }}>
                       {city.displayName}
                     </span>
+                    {state.mode === 'daily' && (
+                      <span style={{
+                        fontSize: 11,
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em',
+                        minWidth: 46,
+                        textAlign: 'right',
+                        color: DIFFICULTY_CONFIG[city.difficulty].accent,
+                      }}>
+                        {DIFFICULTY_CONFIG[city.difficulty].label}
+                      </span>
+                    )}
                     <span style={{ color: '#888', fontSize: 13, minWidth: 40, textAlign: 'right' }}>
                       {timedOut ? '—' : `${elapsed?.toFixed(1)}s`}
                     </span>
@@ -541,21 +596,50 @@ function App() {
               <span style={{ color: '#888', fontSize: 13 }}>pts</span>
             </div>
 
-            <button
-              onClick={startGame}
-              style={{
-                padding: '0.7rem 2.5rem',
-                fontSize: 15,
-                fontWeight: 600,
-                borderRadius: 10,
-                border: 'none',
-                background: '#fff',
-                color: '#111',
-                cursor: 'pointer',
-              }}
-            >
-              Play Again
-            </button>
+            {state.mode === 'daily' && dailyStatus.streak > 1 && (
+              <p style={{ margin: 0, fontSize: 14, fontWeight: 600, color: '#f59e0b' }}>
+                🔥 {dailyStatus.streak}-day streak
+              </p>
+            )}
+
+            {state.mode === 'daily' ? (
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <button onClick={handleCopyResult} style={btnStyle}>
+                  {copied ? 'Copied!' : 'Copy Result'}
+                </button>
+                <button
+                  onClick={startGame}
+                  style={{
+                    padding: '0.55rem 1.5rem',
+                    fontSize: 15,
+                    fontWeight: 600,
+                    borderRadius: 8,
+                    border: 'none',
+                    background: '#fff',
+                    color: '#111',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Back to Menu
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={startGame}
+                style={{
+                  padding: '0.7rem 2.5rem',
+                  fontSize: 15,
+                  fontWeight: 600,
+                  borderRadius: 10,
+                  border: 'none',
+                  background: '#fff',
+                  color: '#111',
+                  cursor: 'pointer',
+                }}
+              >
+                Play Again
+              </button>
+            )}
           </div>
         </div>
       )}

@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl'
 import citiesV2Json from '../Cities_v2.json'
 import { MAPBOX_TOKEN, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
 import { easeOutQuad } from '../utils/easing'
+import { resetDailyChallengeStorage } from '../utils/dailyChallengeStorage'
 
 mapboxgl.accessToken = MAPBOX_TOKEN
 
@@ -69,6 +70,16 @@ function CityPicker({ mode, onModeChange, onSelect }: {
 }) {
   const cities = citiesV2
 
+  // Lets a tester replay the Daily Challenge without waiting for the real
+  // midnight-ET rollover — clears the localStorage record entirely (today's
+  // completion AND the streak). Only reachable from this dev-only screen.
+  const [dailyReset, setDailyReset] = useState(false)
+  const handleResetDaily = useCallback(() => {
+    resetDailyChallengeStorage()
+    setDailyReset(true)
+    setTimeout(() => setDailyReset(false), 1500)
+  }, [])
+
   return (
     // height (not minHeight) + its own overflowY:auto makes this scrollable
     // on its own terms — #root/html/body are overflow:hidden globally (for
@@ -84,9 +95,14 @@ function CityPicker({ mode, onModeChange, onSelect }: {
       color: '#eee',
       fontFamily: 'system-ui, sans-serif',
     }}>
-      <h1 style={{ margin: '0 0 1.5rem', fontSize: '1.75rem', fontWeight: 800 }}>
-        SatGueser Dev Sandbox
-      </h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', marginBottom: '1.5rem' }}>
+        <h1 style={{ margin: 0, fontSize: '1.75rem', fontWeight: 800 }}>
+          SatGueser Dev Sandbox
+        </h1>
+        <button onClick={handleResetDaily} style={btnStyle}>
+          {dailyReset ? 'Daily Challenge reset!' : 'Reset Daily Challenge'}
+        </button>
+      </div>
 
       {/* Mode filter — same visual pattern as the game's US/Global toggle,
           reimplemented locally rather than imported from App.tsx. */}

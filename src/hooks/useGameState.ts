@@ -1,7 +1,16 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import citiesV2Json from '../Cities_v2.json'
-import type { City, CityWithPoints, Difficulty, Mode } from '../utils/mapboxUtils'
+import type { City, CityWithPoints, Difficulty, GameMode, Mode } from '../utils/mapboxUtils'
 import { normalize } from '../utils/textUtils'
+import { shuffle, resolveRoundCities } from '../utils/roundBuilding'
+import { getEasternDateKey } from '../utils/easternDate'
+import { buildDailyChallengeCities, DAILY_SCORE_MULTIPLIER } from '../utils/dailyChallenge'
+import {
+  getDailyChallengeStorage,
+  getTodayStatus,
+  recordCompletion,
+  type DailyChallengeRecord,
+} from '../utils/dailyChallengeStorage'
 
 const allCities = citiesV2Json as CityWithPoints[]
 
@@ -11,7 +20,7 @@ export type GamePhase = 'idle' | 'selectingDifficulty' | 'playing' | 'roundResul
 export interface GameState {
   phase: GamePhase
   difficulty: Difficulty | null
-  mode: Mode | null
+  mode: GameMode | null
   round: number
   cities: City[]
   activeCityIndex: number
@@ -19,6 +28,10 @@ export interface GameState {
   roundElapsedTimes: number[]
   totalScore: number
   elapsedSeconds: number
+  // Eastern-time date key captured once when a daily-challenge run starts,
+  // so completion is stamped with the day that was actually played even if
+  // the run happens to straddle the midnight-ET rollover.
+  dailyDateKey: string | null
 }
 
 const ROUND_DURATION = 30
@@ -26,15 +39,6 @@ export const ROUNDS_PER_GAME = 5
 
 function calculateScore(elapsedSeconds: number): number {
   return Math.max(0, Math.round((1000 - elapsedSeconds * 30) / 10) * 10)
-}
-
-function shuffle<T>(array: T[]): T[] {
-  const result = [...array]
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[result[i], result[j]] = [result[j], result[i]]
-  }
-  return result
 }
 
 const MAX_COUNTRY_RETRY = 30
@@ -78,24 +82,6 @@ function pickFromDifficulty(
   return selection
 }
 
-// Resolves each picked city down to one random point of interest, producing
-// the flat lat/lng shape the rest of the game (MapReveal, round results)
-// already expects — this is the only place "which point" gets decided.
-function resolveRoundCities(cities: CityWithPoints[]): City[] {
-  return cities.map(c => {
-    const point = c.points[Math.floor(Math.random() * c.points.length)]
-    return {
-      name: c.name,
-      displayName: c.displayName,
-      difficulty: c.difficulty,
-      mode: c.mode,
-      country: c.country,
-      lat: point.lat,
-      lng: point.lng,
-    }
-  })
-}
-
 const INITIAL_STATE: GameState = {
   phase: 'idle',
   difficulty: null,
@@ -107,6 +93,13 @@ const INITIAL_STATE: GameState = {
   roundElapsedTimes: [],
   totalScore: 0,
   elapsedSeconds: 0,
+  dailyDateKey: null,
+}
+
+export interface DailyStatus {
+  completed: boolean
+  record?: DailyChallengeRecord
+  streak: number
 }
 
 export function useGameState() {
@@ -116,6 +109,16 @@ export function useGameState() {
   // Tracks each mode+difficulty combo's last game's cities separately, so
   // switching modes/tiers doesn't cross-contaminate exclusions.
   const lastGameCitiesRef = useRef<Record<string, Set<string>>>({})
+
+  // Read once at mount from whatever's already in localStorage — re-read
+  // happens explicitly (via recordCompletion's return value) after a run
+  // finishes, not on every render.
+  const [dailyStatus, setDailyStatus] = useState<DailyStatus>(() => {
+    const todayKey = getEasternDateKey()
+    const storage = getDailyChallengeStorage()
+    const { completed, record } = getTodayStatus(todayKey)
+    return { completed, record, streak: storage.streak }
+  })
 
   const startTimer = useCallback(() => {
     clearInterval(intervalRef.current)
@@ -169,6 +172,28 @@ export function useGameState() {
     })
   }, [])
 
+  // Called when the player picks the Daily Challenge option. No difficulty
+  // choice — the day's fixed 5-city set is deterministic per Eastern date.
+  // Defensively re-checks completion (the UI already gates this via
+  // dailyStatus, this is belt-and-suspenders) so it can't be double-started.
+  const startDailyChallenge = useCallback(() => {
+    const todayKey = getEasternDateKey()
+    if (getTodayStatus(todayKey).completed) return
+
+    clearInterval(intervalRef.current)
+    timerStartRef.current = null
+    const cities = buildDailyChallengeCities(allCities, todayKey)
+    setState({
+      ...INITIAL_STATE,
+      phase: 'playing',
+      difficulty: null,
+      mode: 'daily',
+      round: 1,
+      cities,
+      dailyDateKey: todayKey,
+    })
+  }, [])
+
   const submitGuess = useCallback((cityName: string): boolean => {
     const elapsed = timerStartRef.current !== null
       ? (Date.now() - timerStartRef.current) / 1000
@@ -188,7 +213,8 @@ export function useGameState() {
       timerStartRef.current = null
 
       const clampedElapsed = Math.min(elapsed, ROUND_DURATION)
-      const score = calculateScore(clampedElapsed)
+      const baseScore = calculateScore(clampedElapsed)
+      const score = s.mode === 'daily' ? baseScore * DAILY_SCORE_MULTIPLIER[active.difficulty] : baseScore
       const newTotal = s.totalScore + score
       return {
         ...s,
@@ -220,5 +246,24 @@ export function useGameState() {
 
   useEffect(() => () => { clearInterval(intervalRef.current) }, [])
 
-  return { state, startGame, startTimer, selectDifficulty, submitGuess, nextRound }
+  // Persists a completed daily run exactly once, on the transition into
+  // 'gameOver' for a mode==='daily' game. Kept as its own effect (rather
+  // than folded into a setState updater, unlike the interval handling above)
+  // so the localStorage write stays a clean side effect separate from state
+  // transitions. recordCompletion is itself idempotent per day, so this is
+  // safe even if the effect fires more than once for the same completion.
+  useEffect(() => {
+    if (state.phase !== 'gameOver' || state.mode !== 'daily' || !state.dailyDateKey) return
+    const rounds = state.cities.map((c, i) => ({
+      cityName: c.name,
+      displayName: c.displayName,
+      difficulty: c.difficulty,
+      score: state.roundScores[i] ?? 0,
+      elapsedSeconds: state.roundElapsedTimes[i] ?? 0,
+    }))
+    const updated = recordCompletion(state.dailyDateKey, { totalScore: state.totalScore, rounds })
+    setDailyStatus({ completed: true, record: updated.lastCompleted, streak: updated.streak })
+  }, [state.phase, state.mode, state.dailyDateKey, state.cities, state.roundScores, state.roundElapsedTimes, state.totalScore])
+
+  return { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus }
 }
