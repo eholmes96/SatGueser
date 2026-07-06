@@ -79,10 +79,11 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
     map.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-right')
     map.once('load', () => { styleReadyRef.current = true })
     map.on('error', (e) => {
-      onErrorRef.current?.(`MAP_ERR: ${e.error?.message ?? 'unknown map error'}`)
       // AbortError fires for routine canceled tile fetches (e.g. the camera
       // moved again before a previous request finished) — not a real failure.
       if (e.error?.name === 'AbortError') return
+
+      onErrorRef.current?.(`MAP_ERR: ${e.error?.message ?? 'unknown map error'}`)
 
       // Mapbox's AJAXError carries an HTTP status that isn't in the public
       // ErrorLike type, so this reads it defensively rather than via `any`.

@@ -84,7 +84,6 @@ function pickFromDifficulty(
 function resolveRoundCities(cities: CityWithPoints[]): City[] {
   return cities.map(c => {
     const point = c.points[Math.floor(Math.random() * c.points.length)]
-    console.log(`  ${c.displayName} -> starting at "${point.label}" (${point.lat}, ${point.lng})`)
     return {
       name: c.name,
       displayName: c.displayName,
@@ -131,7 +130,6 @@ export function useGameState() {
         timerStartRef.current = null
         setState(s => {
           if (s.phase !== 'playing') return s
-          console.log(`Round ${s.round}: timed out! 0 pts. Running total: ${s.totalScore}`)
           return {
             ...s,
             phase: 'roundResult',
@@ -160,7 +158,6 @@ export function useGameState() {
     const excludeNames = lastGameCitiesRef.current[key] ?? new Set<string>()
     const pickedCities = pickFromDifficulty(mode, difficulty, excludeNames)
     lastGameCitiesRef.current[key] = new Set(pickedCities.map(c => c.name))
-    console.log(`--- Starting ${difficulty} game! Cities: ${pickedCities.map(c => c.displayName).join(', ')}`)
     const cities = resolveRoundCities(pickedCities)
     setState({
       ...INITIAL_STATE,
@@ -183,7 +180,6 @@ export function useGameState() {
       const active = s.cities[s.activeCityIndex]
 
       if (normalize(cityName) !== normalize(active.displayName)) {
-        console.log(`Wrong guess: "${cityName}"`)
         return s
       }
 
@@ -194,10 +190,6 @@ export function useGameState() {
       const clampedElapsed = Math.min(elapsed, ROUND_DURATION)
       const score = calculateScore(clampedElapsed)
       const newTotal = s.totalScore + score
-      console.log(
-        `Round ${s.round}: ✓ "${active.displayName}" in ${clampedElapsed.toFixed(1)}s` +
-        ` → ${score} pts. Running total: ${newTotal}`,
-      )
       return {
         ...s,
         phase: 'roundResult',
@@ -214,10 +206,8 @@ export function useGameState() {
     setState(s => {
       if (s.phase !== 'roundResult') return s
       if (s.round >= ROUNDS_PER_GAME) {
-        console.log(`--- Game over. Final score: ${s.totalScore}`)
         return { ...s, phase: 'gameOver' }
       }
-      console.log(`--- Advancing to round ${s.round + 1}, waiting for images to load...`)
       return {
         ...s,
         phase: 'playing',
