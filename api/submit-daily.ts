@@ -1,6 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { createClient } from '@supabase/supabase-js'
-import citiesV2Json from '../src/Cities_v2.json'
+// Node's native ESM loader (Node 24 on Vercel) requires the import attribute
+// for JSON; without it the function crashes at load with
+// ERR_IMPORT_ATTRIBUTE_MISSING. The app's own Vite build doesn't need this
+// (it bundles the JSON), but this file is compiled unbundled by Vercel.
+import citiesV2Json from '../src/Cities_v2.json' with { type: 'json' }
 import type { CityWithPoints } from '../src/utils/mapboxUtils'
 import { buildDailyChallengeCities } from '../src/utils/dailyChallenge'
 import { scoreRound, ROUND_DURATION } from '../src/utils/scoring'
