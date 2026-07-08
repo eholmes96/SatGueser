@@ -5,6 +5,7 @@ import { normalize } from '../utils/textUtils'
 import { shuffle, resolveRoundCities } from '../utils/roundBuilding'
 import { getEasternDateKey } from '../utils/easternDate'
 import { buildDailyChallengeCities } from '../utils/dailyChallenge'
+import { calculateScore, ROUND_DURATION } from '../utils/scoring'
 import { DIFFICULTY_SCORE_MULTIPLIER } from '../utils/difficultyConfig'
 import {
   getDailyChallengeStorage,
@@ -35,12 +36,7 @@ export interface GameState {
   dailyDateKey: string | null
 }
 
-const ROUND_DURATION = 30
 export const ROUNDS_PER_GAME = 5
-
-function calculateScore(elapsedSeconds: number): number {
-  return Math.max(0, Math.round((1000 - elapsedSeconds * 30) / 10) * 10)
-}
 
 const MAX_COUNTRY_RETRY = 30
 
