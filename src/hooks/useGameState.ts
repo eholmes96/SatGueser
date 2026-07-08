@@ -13,6 +13,7 @@ import {
   recordCompletion,
   type DailyChallengeRecord,
 } from '../utils/dailyChallengeStorage'
+import { submitDailyRun } from '../lib/submitDaily'
 
 const allCities = citiesV2Json as CityWithPoints[]
 
@@ -260,6 +261,16 @@ export function useGameState() {
     }))
     const updated = recordCompletion(state.dailyDateKey, { totalScore: state.totalScore, rounds })
     setDailyStatus({ completed: true, record: updated.lastCompleted, streak: updated.streak })
+
+    // Sync to the server for signed-in players. Non-blocking: guests and
+    // network failures fall back to the localStorage streak set above. When the
+    // server responds, its authoritative streak (which the streak leaderboard
+    // reads) overrides the optimistic local one.
+    submitDailyRun(state.dailyDateKey, rounds).then(result => {
+      if (result) {
+        setDailyStatus(prev => ({ ...prev, streak: result.currentStreak }))
+      }
+    })
   }, [state.phase, state.mode, state.dailyDateKey, state.cities, state.roundScores, state.roundElapsedTimes, state.totalScore])
 
   return { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus }
