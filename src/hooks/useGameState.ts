@@ -4,7 +4,8 @@ import type { City, CityWithPoints, Difficulty, GameMode, Mode } from '../utils/
 import { normalize } from '../utils/textUtils'
 import { shuffle, resolveRoundCities } from '../utils/roundBuilding'
 import { getEasternDateKey } from '../utils/easternDate'
-import { buildDailyChallengeCities, DAILY_SCORE_MULTIPLIER } from '../utils/dailyChallenge'
+import { buildDailyChallengeCities } from '../utils/dailyChallenge'
+import { DIFFICULTY_SCORE_MULTIPLIER } from '../utils/difficultyConfig'
 import {
   getDailyChallengeStorage,
   getTodayStatus,
@@ -214,7 +215,7 @@ export function useGameState() {
 
       const clampedElapsed = Math.min(elapsed, ROUND_DURATION)
       const baseScore = calculateScore(clampedElapsed)
-      const score = s.mode === 'daily' ? baseScore * DAILY_SCORE_MULTIPLIER[active.difficulty] : baseScore
+      const score = baseScore * DIFFICULTY_SCORE_MULTIPLIER[active.difficulty]
       const newTotal = s.totalScore + score
       return {
         ...s,

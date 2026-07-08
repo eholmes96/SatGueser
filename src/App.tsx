@@ -7,7 +7,7 @@ import { DailyRecapCard } from './components/DailyRecapCard'
 import { US_CITIES } from './data/usCities'
 import { GLOBAL_CITIES } from './data/globalCities'
 import { buildShareText } from './utils/dailyChallenge'
-import { DIFFICULTY_CONFIG } from './utils/difficultyConfig'
+import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER } from './utils/difficultyConfig'
 import './App.css'
 
 const DAILY_CITIES = [...US_CITIES, ...GLOBAL_CITIES]
@@ -490,6 +490,11 @@ function App() {
             )}
             <p style={{ margin: '0.25rem 0 0.75rem', fontSize: '1.75rem', fontWeight: 700, color: lastScore === 0 ? '#f87171' : '#4ade80' }}>
               {lastScore === 0 ? '0' : `+${lastScore}`} pts
+              {lastScore > 0 && DIFFICULTY_SCORE_MULTIPLIER[activeCity.difficulty] > 1 && (
+                <span style={{ fontSize: '1rem', fontWeight: 600, color: '#888', marginLeft: '0.4rem' }}>
+                  ×{DIFFICULTY_SCORE_MULTIPLIER[activeCity.difficulty]}
+                </span>
+              )}
             </p>
             <button onClick={nextRound} style={btnStyle}>
               {state.round >= ROUNDS_PER_GAME ? 'Summary' : 'Next Round →'}
@@ -581,6 +586,11 @@ function App() {
                       color: timedOut ? '#f87171' : '#4ade80',
                     }}>
                       {timedOut ? '0' : `+${score}`}
+                      {!timedOut && DIFFICULTY_SCORE_MULTIPLIER[city.difficulty] > 1 && (
+                        <span style={{ fontSize: 11, fontWeight: 600, color: '#888', marginLeft: '0.3rem' }}>
+                          ×{DIFFICULTY_SCORE_MULTIPLIER[city.difficulty]}
+                        </span>
+                      )}
                     </span>
                   </div>
                 )

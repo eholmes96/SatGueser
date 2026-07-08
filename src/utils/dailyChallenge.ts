@@ -46,15 +46,6 @@ const TIERS: { difficulty: Difficulty; count: number }[] = [
 // happen to exist in a given difficulty tier's pool.
 const US_PROBABILITY = 0.3
 
-// Daily-only scoring boost: harder rounds are worth more. Applied on top of
-// the normal time-based score (see useGameState.ts's calculateScore) — only
-// for mode==='daily' games, not the regular difficulty-select modes.
-export const DAILY_SCORE_MULTIPLIER: Record<Difficulty, number> = {
-  easy: 1,
-  medium: 2,
-  hard: 3,
-}
-
 // Builds the day's fixed 5-city set: 2 easy + 2 medium + 1 hard, drawn from
 // the deduped us+global pool, deterministic per dateKey so every player gets
 // the identical draw.
