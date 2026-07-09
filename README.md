@@ -13,10 +13,22 @@ Watch a satellite view slowly zoom out from a city, and race the clock to guess 
   - US mode draws from well-known American metros; Global mode adds international cities and matches guesses regardless of accents (e.g. typing "sao paulo" still matches "São Paulo, Brazil").
   - Daily Challenge has no difficulty picker — everyone gets the same fixed 5-city set (2 easy/2 medium/1 hard, ~30% US/70% non-US) for the day, rotating at midnight Eastern time and playable once per day. Harder rounds score more (2x medium, 3x hard), and you can copy a shareable result once you finish.
 
+## Accounts, leaderboards & stats
+
+Optional — the game is fully playable as a guest, with progress and streaks stored in `localStorage`. Sign in with a passwordless email magic link (the account bubble in the bottom-right corner) to:
+
+- **Get on the leaderboards** — your daily scores and streaks are recorded to a daily top-scores board and an all-time streak board, exposed as public functions that return only a display name and score (never email or raw round data). An in-app view of these is still to come; for now the Stats page shows your own history.
+- **Keep your streak across devices** — once you're signed in, streaks become server-authoritative.
+- **See your Stats** — open the account menu → **Stats** for a Daily score-over-time line chart and per-difficulty Games/Best/Avg cards for US Cities and Global.
+
+Daily Challenge submissions go through a Vercel serverless function (`/api/submit-daily`) that re-derives the score from the day's deterministic city set and writes it with the Supabase service role — so a daily score can't be faked from the browser. US and Global games draw random cities (not comparable across players), so they're recorded as personal history under row-level security rather than a leaderboard. The database schema, RLS policies, and leaderboard functions live in `supabase/migrations/`.
+
 ## Tech stack
 
 - [React 19](https://react.dev/) + TypeScript, built with [Vite](https://vite.dev/)
 - [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/) for the satellite reveal map
+- [Supabase](https://supabase.com/) — Postgres, passwordless Auth, and row-level security backing accounts, leaderboards, and stats (all optional; the app runs standalone without it)
+- A [Vercel](https://vercel.com/) serverless function (`/api/submit-daily`) for server-validated daily scoring
 - [oxlint](https://oxc.rs/docs/guide/usage/linter.html) for linting
 
 ## Getting started
@@ -27,6 +39,8 @@ cp .env.example .env.local
 ```
 
 Edit `.env.local` and set `VITE_MAPBOX_TOKEN` to a Mapbox public token (get one free at [account.mapbox.com/access-tokens](https://account.mapbox.com/access-tokens/)). `.env.local` is gitignored and should never be committed.
+
+The backend (accounts, leaderboards, stats) is **optional** — leave the Supabase vars blank to run fully as a guest on `localStorage`. To enable it, set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` (the `sb_publishable_…` key, from your Supabase project's API settings) and apply the migrations in `supabase/migrations/` via the Supabase SQL editor. See `.env.example` for the full list.
 
 ```bash
 npm run dev
@@ -43,11 +57,26 @@ npm run dev
 
 ## Deployment
 
-Deployed on [Vercel](https://vercel.com/). `vercel.json` rewrites all routes to `index.html` for correct SPA routing. When setting up the Vercel project, set `VITE_MAPBOX_TOKEN` as an environment variable in the project settings — Vite inlines it at build time, so it must be present on Vercel, not just in your local `.env.local`.
+Deployed on [Vercel](https://vercel.com/). `vercel.json` rewrites all routes to `index.html` for correct SPA routing (the `/api` function takes precedence, so it isn't affected).
+
+Environment variables to set in the Vercel project — note that the two prefixes behave differently:
+
+- **`VITE_`-prefixed** (`VITE_MAPBOX_TOKEN`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`) are **inlined by Vite at build time**, so they must be present on Vercel, not just in your local `.env.local`, and a change requires a rebuild.
+- **Server-only** (`SUPABASE_URL` and `SUPABASE_SECRET_KEY`, the `sb_secret_…` service-role key) are read at runtime by the `/api/submit-daily` function. Never give these a `VITE_` prefix — the secret key bypasses row-level security and must never reach the browser bundle.
+
+The `/api/submit-daily` function is pre-bundled from `functions-src/` into a self-contained file by `npm run build` (see `scripts/build-api.mjs`), so it can reuse the app's scoring code without Vercel's per-file build tripping over the shared imports. For magic-link sign-in to complete, add your production URL and `http://localhost:5173/**` under Supabase → Authentication → URL Configuration.
 
 ## Version history
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
+
+**2026-07-08 — Accounts, leaderboards & stats**
+- Added optional passwordless sign-in (Supabase Auth email magic link) via an account bubble in the bottom-right corner; the game still runs fully as a guest on `localStorage` when signed out or when Supabase isn't configured.
+- Daily Challenge results are now submitted through a Vercel serverless function (`/api/submit-daily`) that authenticates the player, re-derives the score server-side from the day's deterministic city set, and writes it with the service role — so daily and streak leaderboards can't be spoofed from the client. Streaks became server-authoritative.
+- Added public daily and all-time-streak leaderboards, exposed as security-definer functions that return only a display name and score (no email, user id, or raw round data).
+- US Cities and Global games are now recorded to the player's personal history (direct insert under row-level security; these modes draw random cities, so they're personal stats rather than a leaderboard).
+- Added a **Stats** page (opened from the account menu): a Daily score-over-time line chart, plus per-difficulty Games/Best/Avg cards for US Cities and Global that mirror the game's difficulty picker.
+- Added the Supabase backend — schema, row-level security policies, and leaderboard/submit functions in `supabase/migrations/` — plus the `/api/submit-daily` serverless function and its build step.
 
 **2026-07-06 — Daily Challenge mode**
 - Added a Daily Challenge, shown as the first option in the mode selector: a fixed 5-city run (2 easy + 2 medium + 1 hard) that's identical for every player and rotates at midnight Eastern time, playable once per day via a local completion record (with a read-only recap shown if you reopen it after finishing).
