@@ -1,13 +1,22 @@
 import { useState, useEffect } from 'react'
+import type { Difficulty, Mode } from '../utils/mapboxUtils'
+import { DIFFICULTY_CONFIG } from '../utils/difficultyConfig'
 import { supabase } from '../lib/supabase'
 import { ScoreLineChart, type ScorePoint } from './ScoreLineChart'
 
 // Full-screen player stats overlay, opened from the account menu. Mirrors the
 // main menu's Daily / US / Global segmented selector. The Daily tab charts the
-// player's own daily scores over time (read from daily_results, which the
-// owner can select under RLS); US and Global are intentionally blank for now.
+// player's own daily scores over time (read from daily_results). The US and
+// Global tabs show one card per difficulty (games / best / avg), mirroring the
+// game's Select-Difficulty screen — read from game_results. Both tables are
+// owner-selectable under RLS, so the public key returns only this user's rows.
 
 type Tab = 'daily' | 'us' | 'global'
+
+interface GameRow { mode: Mode; difficulty: Difficulty; total_score: number }
+
+const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard']
+const MODE_LABEL: Record<Mode, string> = { us: 'US Cities', global: 'Global' }
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'daily', label: 'Daily Challenge' },
@@ -17,11 +26,13 @@ const TABS: { id: Tab; label: string }[] = [
 
 export function StatsPage({ onClose }: { onClose: () => void }) {
   const [tab, setTab] = useState<Tab>('daily')
-  const [rows, setRows] = useState<ScorePoint[] | null>(null) // null = loading
+  const [rows, setRows] = useState<ScorePoint[] | null>(null) // daily; null = loading
+  const [games, setGames] = useState<GameRow[] | null>(null)  // us/global; null = loading
 
   useEffect(() => {
     let active = true
-    if (!supabase) { setRows([]); return }
+    if (!supabase) { setRows([]); setGames([]); return }
+
     supabase
       .from('daily_results')
       .select('date_key, total_score')
@@ -31,6 +42,16 @@ export function StatsPage({ onClose }: { onClose: () => void }) {
         if (error) { console.warn('StatsPage: daily_results fetch failed', error.message); setRows([]) }
         else setRows((data ?? []).map(r => ({ dateKey: r.date_key as string, score: r.total_score as number })))
       })
+
+    supabase
+      .from('game_results')
+      .select('mode, difficulty, total_score')
+      .then(({ data, error }) => {
+        if (!active) return
+        if (error) { console.warn('StatsPage: game_results fetch failed', error.message); setGames([]) }
+        else setGames((data ?? []) as GameRow[])
+      })
+
     return () => { active = false }
   }, [])
 
@@ -135,8 +156,77 @@ export function StatsPage({ onClose }: { onClose: () => void }) {
           </div>
         )}
 
-        {tab !== 'daily' && <Placeholder text="Coming soon." />}
+        {tab !== 'daily' && (
+          games === null
+            ? <Placeholder text="Loading…" />
+            : <DifficultyCards mode={tab} games={games} />
+        )}
       </div>
+    </div>
+  )
+}
+
+// Per-difficulty summary cards for a US/Global mode, mirroring the game's
+// Select-Difficulty screen. Always renders all three tiers (zeros when unplayed)
+// so the layout stays stable regardless of history.
+function DifficultyCards({ mode, games }: { mode: Mode; games: GameRow[] }) {
+  const stats = DIFFICULTIES.map(difficulty => {
+    const scores = games
+      .filter(g => g.mode === mode && g.difficulty === difficulty)
+      .map(g => g.total_score)
+    const count = scores.length
+    return {
+      difficulty,
+      count,
+      best: count ? Math.max(...scores) : null,
+      avg: count ? Math.round(scores.reduce((a, b) => a + b, 0) / count) : null,
+    }
+  })
+  const total = stats.reduce((s, x) => s + x.count, 0)
+
+  return (
+    <div>
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: 'clamp(0.5rem, 3vw, 1rem)',
+      }}>
+        {stats.map(s => {
+          const cfg = DIFFICULTY_CONFIG[s.difficulty]
+          return (
+            <div key={s.difficulty} style={{
+              background: cfg.bg,
+              border: `1px solid ${cfg.border}`,
+              borderRadius: 14,
+              padding: '1.25rem 1.5rem',
+              minWidth: 'clamp(140px, 40vw, 180px)',
+              boxSizing: 'border-box',
+            }}>
+              <div style={{ color: cfg.accent, fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.85rem' }}>
+                {cfg.label}
+              </div>
+              <CardStat label="Games" value={String(s.count)} />
+              <CardStat label="Best" value={s.best === null ? '—' : String(s.best)} />
+              <CardStat label="Avg" value={s.avg === null ? '—' : String(s.avg)} />
+            </div>
+          )
+        })}
+      </div>
+      {total === 0 && (
+        <div style={{ textAlign: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem', marginTop: '1.5rem' }}>
+          No {MODE_LABEL[mode]} games recorded yet — play one to fill this in.
+        </div>
+      )}
+    </div>
+  )
+}
+
+function CardStat({ label, value }: { label: string; value: string }) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1.5rem', padding: '0.2rem 0', fontSize: '0.92rem' }}>
+      <span style={{ color: 'rgba(255,255,255,0.5)' }}>{label}</span>
+      <span style={{ color: '#f5f5f5', fontWeight: 700 }}>{value}</span>
     </div>
   )
 }
