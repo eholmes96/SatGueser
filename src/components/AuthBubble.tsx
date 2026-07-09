@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import type { Session } from '@supabase/supabase-js'
 import { supabase, isSupabaseConfigured } from '../lib/supabase'
+import { StatsPage } from './StatsPage'
 
 // A small persistent auth control that lives in the bottom-right corner on
 // every screen. Signed out, it's a bubble that opens a centered popup asking
@@ -24,6 +25,7 @@ export function AuthBubble() {
   const [session, setSession] = useState<Session | null>(null)
   const [popup, setPopup] = useState<Popup>('closed')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [showStats, setShowStats] = useState(false)
   const [email, setEmail] = useState('')
   const [sending, setSending] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -141,6 +143,14 @@ export function AuthBubble() {
               boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
             }}
           >
+            <button
+              onClick={() => { setMenuOpen(false); setShowStats(true) }}
+              role="menuitem"
+              style={{ ...menuItemStyle, color: '#e5e5e5' }}
+            >
+              Stats
+            </button>
+            <div style={{ height: 1, background: 'rgba(255,255,255,0.1)', margin: '0.35rem 0.3rem' }} />
             <div style={{ padding: '0.5rem 0.6rem', fontSize: '0.72rem', color: '#9ca3af' }}>Signed in as</div>
             <div style={{ padding: '0 0.6rem 0.5rem', fontSize: '0.85rem', color: '#e5e5e5', wordBreak: 'break-all' }}>{userEmail}</div>
             <button onClick={signOut} role="menuitem" style={menuItemStyle}>Sign out</button>
@@ -211,6 +221,9 @@ export function AuthBubble() {
           </div>
         </>
       )}
+
+      {/* Full-screen player stats, opened from the menu */}
+      {showStats && <StatsPage onClose={() => setShowStats(false)} />}
     </>
   )
 }
