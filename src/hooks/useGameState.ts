@@ -14,6 +14,7 @@ import {
   type DailyChallengeRecord,
 } from '../utils/dailyChallengeStorage'
 import { submitDailyRun } from '../lib/submitDaily'
+import { submitGameResult } from '../lib/submitGameResult'
 
 const allCities = citiesV2Json as CityWithPoints[]
 
@@ -107,6 +108,11 @@ export function useGameState() {
   // Tracks each mode+difficulty combo's last game's cities separately, so
   // switching modes/tiers doesn't cross-contaminate exclusions.
   const lastGameCitiesRef = useRef<Record<string, Set<string>>>({})
+  // Guards the US/Global result insert so a re-render (or StrictMode's
+  // double-invoked effects) can't record the same finished game twice.
+  // game_results has no unique constraint, so this dedup must live here; it's
+  // reset when a new US/Global game starts (selectDifficulty).
+  const gameResultSubmittedRef = useRef(false)
 
   // Read once at mount from whatever's already in localStorage — re-read
   // happens explicitly (via recordCompletion's return value) after a run
@@ -155,6 +161,7 @@ export function useGameState() {
 
   // Called when the player picks a difficulty tile — begins the actual game.
   const selectDifficulty = useCallback((difficulty: Difficulty, mode: Mode = 'us') => {
+    gameResultSubmittedRef.current = false
     const key = `${mode}-${difficulty}`
     const excludeNames = lastGameCitiesRef.current[key] ?? new Set<string>()
     const pickedCities = pickFromDifficulty(mode, difficulty, excludeNames)
@@ -272,6 +279,27 @@ export function useGameState() {
       }
     })
   }, [state.phase, state.mode, state.dailyDateKey, state.cities, state.roundScores, state.roundElapsedTimes, state.totalScore])
+
+  // Records a finished US/Global game to the player's personal history exactly
+  // once, on the transition into 'gameOver'. These modes aren't a leaderboard,
+  // so this is a plain best-effort insert (see submitGameResult) rather than
+  // the validated Edge-Function path the Daily Challenge uses. The ref guard
+  // prevents a duplicate row if this effect re-runs for the same completion.
+  useEffect(() => {
+    if (state.phase !== 'gameOver' || !state.difficulty) return
+    if (state.mode !== 'us' && state.mode !== 'global') return
+    if (gameResultSubmittedRef.current) return
+    gameResultSubmittedRef.current = true
+
+    const rounds = state.cities.map((c, i) => ({
+      cityName: c.name,
+      displayName: c.displayName,
+      difficulty: c.difficulty,
+      score: state.roundScores[i] ?? 0,
+      elapsedSeconds: state.roundElapsedTimes[i] ?? 0,
+    }))
+    submitGameResult(state.mode, state.difficulty, state.totalScore, rounds)
+  }, [state.phase, state.mode, state.difficulty, state.cities, state.roundScores, state.roundElapsedTimes, state.totalScore])
 
   return { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus }
 }
