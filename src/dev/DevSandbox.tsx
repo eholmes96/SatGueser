@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import citiesV2Json from '../Cities_v2.json'
 import { MAPBOX_TOKEN, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
+import { islands, ISLAND_CATEGORIES, type Island } from '../utils/islands'
 import { easeOutQuad } from '../utils/easing'
 import { resetDailyChallengeStorage } from '../utils/dailyChallengeStorage'
 
@@ -12,24 +13,29 @@ mapboxgl.accessToken = MAPBOX_TOKEN
 // start point per city (see useGameState's resolveRoundCities). This sandbox
 // is for eyeballing/correcting those coordinates against satellite imagery.
 type SandboxCity = CityWithPoints
+// A sandbox row is either a city (Cities_v2) or an island. They share
+// name/displayName/difficulty/mode/points; `mode === 'islands'` discriminates
+// the union (islands add area/length/hints and per-island zoom bounds).
+type SandboxEntry = SandboxCity | Island
+// Sandbox-local mode: the game's Mode plus a dev-only 'islands'. Kept local so
+// adding it here never leaks into the game's own mode selector.
+type SandboxMode = Mode | 'islands'
 
 const citiesV2 = citiesV2Json as SandboxCity[]
 
+// City reveal defaults. Islands override these per-entry (see DevMapView).
 const START_ZOOM = 15
 const END_ZOOM = 10
 const LEG_DURATION = 30000
-// Manual-inspection headroom — the auto-loop never travels here on its own,
-// only reachable by dragging the slider. See DevMapView's startLeg().
-const SLIDER_MIN = 8
-const SLIDER_MAX = 18
 
-const MODES: Mode[] = ['us', 'global']
+const MODES: SandboxMode[] = ['us', 'global', 'islands']
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard']
 // Self-contained copy of the game's mode labels — deliberately not imported
 // from App.tsx, to keep the sandbox fully decoupled from game components.
-const MODE_CONFIG: Record<Mode, { label: string }> = {
+const MODE_CONFIG: Record<SandboxMode, { label: string }> = {
   us: { label: 'US Cities' },
   global: { label: 'Global' },
+  islands: { label: 'Islands' },
 }
 
 const STYLE_OPTIONS = {
@@ -64,11 +70,16 @@ const btnStyle: React.CSSProperties = {
 }
 
 function CityPicker({ mode, onModeChange, onSelect }: {
-  mode: Mode
-  onModeChange: (m: Mode) => void
-  onSelect: (city: SandboxCity) => void
+  mode: SandboxMode
+  onModeChange: (m: SandboxMode) => void
+  onSelect: (entry: SandboxEntry) => void
 }) {
-  const cities = citiesV2
+  // Islands come from their own dataset with a 4th 'undetermined' bucket; cities
+  // keep the usual three difficulties. Both share the mode → category → buttons
+  // grouping below (the empty-group guard hides categories with no entries).
+  const isIslands = mode === 'islands'
+  const entries: SandboxEntry[] = isIslands ? islands : citiesV2
+  const categories: string[] = isIslands ? ISLAND_CATEGORIES : DIFFICULTIES
 
   // Lets a tester replay the Daily Challenge without waiting for the real
   // midnight-ET rollover — clears the localStorage record entirely (today's
@@ -138,27 +149,32 @@ function CityPicker({ mode, onModeChange, onSelect }: {
         ))}
       </div>
 
-      {DIFFICULTIES.map(difficulty => {
-        const filtered = cities.filter(c => c.mode === mode && c.difficulty === difficulty)
+      {categories.map(category => {
+        const filtered = entries.filter(c => c.mode === mode && c.difficulty === category)
         if (filtered.length === 0) return null
         return (
-          <div key={difficulty} style={{ marginBottom: '1.25rem' }}>
+          <div key={category} style={{ marginBottom: '1.25rem' }}>
             <h3 style={{ fontSize: 12, fontWeight: 600, color: '#aaa', margin: '0 0 0.5rem' }}>
-              {difficulty} ({filtered.length})
+              {category} ({filtered.length})
             </h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-              {filtered.map(city => (
+              {filtered.map(entry => (
                 <button
-                  key={city.name}
-                  onClick={() => onSelect(city)}
+                  key={entry.name}
+                  onClick={() => onSelect(entry)}
                   style={{
                     ...btnStyle,
                     padding: '0.5rem 0.9rem',
                   }}
                 >
-                  {city.displayName}
-                  {city.points.length > 1 && (
-                    <span style={{ opacity: 0.55, fontSize: 11, marginLeft: 5 }}>×{city.points.length}</span>
+                  {entry.displayName}
+                  {entry.mode === 'islands' && (
+                    <span style={{ opacity: 0.55, fontSize: 11, marginLeft: 5 }}>
+                      {entry.lengthKm ? `${entry.lengthKm} km` : `${Math.round(entry.areaKm2 / 1000)}k km²`}
+                    </span>
+                  )}
+                  {entry.mode !== 'islands' && entry.points.length > 1 && (
+                    <span style={{ opacity: 0.55, fontSize: 11, marginLeft: 5 }}>×{entry.points.length}</span>
                   )}
                 </button>
               ))}
@@ -170,7 +186,13 @@ function CityPicker({ mode, onModeChange, onSelect }: {
   )
 }
 
-function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void }) {
+function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }) {
+  // Per-island reveal bounds when previewing an island; cities keep the shared
+  // 15→10 defaults. Everything below reads these (via refs, so the RAF closures
+  // stay fresh) instead of the old module-level START_ZOOM/END_ZOOM constants.
+  const initialStart = city.mode === 'islands' ? city.startZoom : START_ZOOM
+  const initialEnd = city.mode === 'islands' ? city.endZoom : END_ZOOM
+
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<mapboxgl.Map | null>(null)
   const rafRef = useRef<number>(0)
@@ -179,21 +201,32 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
   // the existing map instance instead, so switching points feels instant.
   const [pointIndex, setPointIndex] = useState(0)
   const point = city.points[pointIndex]
-  // 1 = zooming out (decreasing, heading toward END_ZOOM), -1 = zooming in
-  // (increasing, heading toward START_ZOOM). Preserved across pause/resume
+  // 1 = zooming out (decreasing, heading toward endZoom), -1 = zooming in
+  // (increasing, heading toward startZoom). Preserved across pause/resume
   // and drag so a resume from mid-band continues the same direction.
   const directionRef = useRef<1 | -1>(1)
   // The single source of truth for "what zoom is the map at right now" —
   // tick() is a stable useCallback closure, so it can never read fresh
   // React state; every read/write of the live zoom goes through this ref.
-  const zoomRef = useRef(START_ZOOM)
+  const zoomRef = useRef(initialStart)
+  // Editable reveal bounds (islands only, via the Set start/end buttons). Held
+  // in refs too so the RAF leg math reads the current values, not a stale close.
+  const [startZoom, setStartZoom] = useState(initialStart)
+  const [endZoom, setEndZoom] = useState(initialEnd)
+  const startZoomRef = useRef(initialStart)
+  const endZoomRef = useRef(initialEnd)
+  useEffect(() => { startZoomRef.current = startZoom }, [startZoom])
+  useEffect(() => { endZoomRef.current = endZoom }, [endZoom])
+  // Slider travel: the reveal band plus manual-inspection headroom on each side.
+  const sliderMin = Math.min(startZoom, endZoom) - 2
+  const sliderMax = Math.max(startZoom, endZoom) + 3
   // Timestamp anchor + start/end/duration for the CURRENT leg. A "leg" is
   // recomputed fresh every time playback (re)starts (via startLeg()), so
   // resuming from a manual drag or an interrupted mid-band position both
   // just become "a leg from wherever we are now to the relevant edge."
   const legStartRef = useRef<number | null>(null)
-  const legStartZoomRef = useRef(START_ZOOM)
-  const legEndZoomRef = useRef(END_ZOOM)
+  const legStartZoomRef = useRef(initialStart)
+  const legEndZoomRef = useRef(initialEnd)
   const legDurationRef = useRef(LEG_DURATION)
 
   const [lat, setLat] = useState(point.lat)
@@ -205,7 +238,7 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
   const pausedRef = useRef(paused)
   useEffect(() => { pausedRef.current = paused }, [paused])
 
-  const [liveZoom, setLiveZoom] = useState(START_ZOOM)
+  const [liveZoom, setLiveZoom] = useState(initialStart)
   const [liveCenter, setLiveCenter] = useState({ lat, lng })
   const [copied, setCopied] = useState(false)
   const [styleKey, setStyleKey] = useState<StyleKey>('satellite')
@@ -215,7 +248,9 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
   const applyZoom = useCallback((zoom: number) => {
     const map = mapRef.current
     if (!map) return
-    const clamped = Math.min(Math.max(zoom, SLIDER_MIN), SLIDER_MAX)
+    const lo = Math.min(startZoomRef.current, endZoomRef.current) - 2
+    const hi = Math.max(startZoomRef.current, endZoomRef.current) + 3
+    const clamped = Math.min(Math.max(zoom, lo), hi)
     map.setZoom(clamped)
     zoomRef.current = clamped
     setLiveZoom(clamped)
@@ -230,8 +265,8 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
   // next leg (15 -> 10) is the classic full-length loop, forever after.
   const startLeg = useCallback(() => {
     const from = zoomRef.current
-    const to = directionRef.current === 1 ? END_ZOOM : START_ZOOM
-    const fullSpan = START_ZOOM - END_ZOOM
+    const to = directionRef.current === 1 ? endZoomRef.current : startZoomRef.current
+    const fullSpan = startZoomRef.current - endZoomRef.current
     legStartZoomRef.current = from
     legEndZoomRef.current = to
     legDurationRef.current = fullSpan === 0 ? LEG_DURATION : LEG_DURATION * Math.abs(to - from) / fullSpan
@@ -270,7 +305,7 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
       container: containerRef.current,
       style: STYLE_OPTIONS.satellite.url,
       center: [centerRef.current.lng, centerRef.current.lat],
-      zoom: START_ZOOM,
+      zoom: startZoomRef.current,
       attributionControl: false,
       interactive: false,
       dragPan: false,
@@ -285,8 +320,8 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
     mapRef.current = map
 
     map.once('load', () => {
-      legStartZoomRef.current = START_ZOOM
-      legEndZoomRef.current = END_ZOOM
+      legStartZoomRef.current = startZoomRef.current
+      legEndZoomRef.current = endZoomRef.current
       legDurationRef.current = LEG_DURATION
       rafRef.current = requestAnimationFrame(tick)
     })
@@ -313,8 +348,8 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
     if (paused) {
       // Resume direction rules: >=15 -> out, <=10 -> in, otherwise preserve
       // whatever direction was already in progress when interrupted.
-      if (zoomRef.current >= START_ZOOM) directionRef.current = 1
-      else if (zoomRef.current <= END_ZOOM) directionRef.current = -1
+      if (zoomRef.current >= startZoomRef.current) directionRef.current = 1
+      else if (zoomRef.current <= endZoomRef.current) directionRef.current = -1
       setPaused(false)
       startLeg()
     } else {
@@ -335,10 +370,10 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
     directionRef.current = 1
     const map = mapRef.current
     if (map) {
-      map.jumpTo({ center: [centerRef.current.lng, centerRef.current.lat], zoom: START_ZOOM })
+      map.jumpTo({ center: [centerRef.current.lng, centerRef.current.lat], zoom: startZoomRef.current })
     }
-    zoomRef.current = START_ZOOM
-    setLiveZoom(START_ZOOM)
+    zoomRef.current = startZoomRef.current
+    setLiveZoom(startZoomRef.current)
     setPaused(false)
     startLeg()
   }
@@ -357,16 +392,37 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
     directionRef.current = 1
     const map = mapRef.current
     if (map) {
-      map.jumpTo({ center: [p.lng, p.lat], zoom: START_ZOOM })
+      map.jumpTo({ center: [p.lng, p.lat], zoom: startZoomRef.current })
     }
-    zoomRef.current = START_ZOOM
-    setLiveZoom(START_ZOOM)
+    zoomRef.current = startZoomRef.current
+    setLiveZoom(startZoomRef.current)
     setPaused(false)
     startLeg()
   }
 
+  const round1 = (v: number) => Math.round(v * 10) / 10
+
+  // Islands: capture the currently-framed zoom as the new start/end bound, so a
+  // reveal can be tuned by scrubbing the slider and read back via Copy JSON.
+  const captureStart = () => { const z = round1(liveZoom); setStartZoom(z); startZoomRef.current = z }
+  const captureEnd = () => { const z = round1(liveZoom); setEndZoom(z); endZoomRef.current = z }
+
   const handleCopyJson = async () => {
-    const text = `{ "label": "${point.label}", "lat": ${lat}, "lng": ${lng} }`
+    const text = city.mode === 'islands'
+      ? JSON.stringify({
+          name: city.name,
+          displayName: city.displayName,
+          difficulty: city.difficulty,
+          mode: 'islands',
+          areaKm2: city.areaKm2,
+          lengthKm: city.lengthKm,
+          lists: city.lists,
+          startZoom,
+          endZoom,
+          hints: city.hints,
+          points: [{ label: point.label, lat, lng }],
+        }, null, 2)
+      : `{ "label": "${point.label}", "lat": ${lat}, "lng": ${lng} }`
     await navigator.clipboard.writeText(text)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
@@ -395,7 +451,7 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
     changeStyle(styleKey === 'satellite' ? 'satellite-streets' : 'satellite')
   }
 
-  const showHighZoomNote = liveZoom > START_ZOOM && isSatelliteFamily(styleKey)
+  const showHighZoomNote = liveZoom > startZoom && isSatelliteFamily(styleKey)
   const labelsOn = styleKey === 'satellite-streets'
   const labelsToggleEnabled = isSatelliteFamily(styleKey)
 
@@ -515,8 +571,8 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
         <div style={{ position: 'relative', width: 28, height: 220 }}>
           <input
             type="range"
-            min={SLIDER_MIN}
-            max={SLIDER_MAX}
+            min={sliderMin}
+            max={sliderMax}
             step={0.1}
             value={liveZoom}
             onChange={handleSliderChange}
@@ -560,6 +616,14 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
         )}
         <div>difficulty: {city.difficulty}</div>
         <div>mode: {city.mode}</div>
+        {city.mode === 'islands' && (
+          <>
+            <div>area: {city.areaKm2.toLocaleString()} km²</div>
+            {city.lengthKm != null && <div>length: {city.lengthKm.toLocaleString()} km</div>}
+            <div>lists: {city.lists.join(', ')}</div>
+            <div>zoom range: {startZoom} → {endZoom}</div>
+          </>
+        )}
         <div>zoom: {liveZoom.toFixed(2)}</div>
         <div>center: {liveCenter.lat.toFixed(4)}, {liveCenter.lng.toFixed(4)}</div>
 
@@ -616,6 +680,16 @@ function DevMapView({ city, onExit }: { city: SandboxCity; onExit: () => void })
           </label>
         </div>
 
+        {city.mode === 'islands' && (
+          <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.4rem' }}>
+            <button onClick={captureStart} style={{ ...btnStyle, flex: 1, fontSize: 11, padding: '0.4rem 0.5rem' }}>
+              Set start = {liveZoom.toFixed(1)}
+            </button>
+            <button onClick={captureEnd} style={{ ...btnStyle, flex: 1, fontSize: 11, padding: '0.4rem 0.5rem' }}>
+              Set end = {liveZoom.toFixed(1)}
+            </button>
+          </div>
+        )}
         <button onClick={handleCopyJson} style={{ ...btnStyle, marginTop: '0.4rem' }}>
           {copied ? 'Copied!' : 'Copy JSON'}
         </button>
@@ -628,8 +702,8 @@ export function DevSandbox() {
   // Lifted out of CityPicker so it survives returning from the map view —
   // CityPicker unmounts entirely while a city is selected, so state living
   // inside it would otherwise reset back to 'us' every time.
-  const [mode, setMode] = useState<Mode>('us')
-  const [selectedCity, setSelectedCity] = useState<SandboxCity | null>(null)
+  const [mode, setMode] = useState<SandboxMode>('us')
+  const [selectedCity, setSelectedCity] = useState<SandboxEntry | null>(null)
 
   if (!selectedCity) {
     return <CityPicker mode={mode} onModeChange={setMode} onSelect={setSelectedCity} />
