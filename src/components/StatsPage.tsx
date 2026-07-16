@@ -11,17 +11,18 @@ import { ScoreLineChart, type ScorePoint } from './ScoreLineChart'
 // game's Select-Difficulty screen — read from game_results. Both tables are
 // owner-selectable under RLS, so the public key returns only this user's rows.
 
-type Tab = 'daily' | 'us' | 'global'
+type Tab = 'daily' | 'us' | 'global' | 'islands'
 
 interface GameRow { mode: Mode; difficulty: Difficulty; total_score: number }
 
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard']
-const MODE_LABEL: Record<Mode, string> = { us: 'US Cities', global: 'Global' }
+const MODE_LABEL: Record<Mode, string> = { us: 'US Cities', global: 'Global', islands: 'Islands' }
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'daily', label: 'Daily Challenge' },
   { id: 'us', label: 'US Cities' },
   { id: 'global', label: 'Global' },
+  { id: 'islands', label: 'Islands' },
 ]
 
 export function StatsPage({ onClose }: { onClose: () => void }) {

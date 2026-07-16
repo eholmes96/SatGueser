@@ -2545,7 +2545,11 @@ function resolveRoundCities(cities, rng = Math.random) {
       mode: c.mode,
       country: c.country,
       lat: point.lat,
-      lng: point.lng
+      lng: point.lng,
+      // Islands carry per-round zoom bounds + hints; undefined for cities.
+      startZoom: c.startZoom,
+      endZoom: c.endZoom,
+      hints: c.hints
     };
   });
 }

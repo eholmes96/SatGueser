@@ -3,6 +3,7 @@ import citiesV2Json from '../Cities_v2.json'
 import type { City, CityWithPoints, Difficulty, GameMode, Mode } from '../utils/mapboxUtils'
 import { normalize } from '../utils/textUtils'
 import { shuffle, resolveRoundCities } from '../utils/roundBuilding'
+import { playableIslands } from '../utils/islands'
 import { getEasternDateKey } from '../utils/easternDate'
 import { buildDailyChallengeCities } from '../utils/dailyChallenge'
 import { calculateScore, ROUND_DURATION } from '../utils/scoring'
@@ -57,7 +58,11 @@ function pickFromDifficulty(
   difficulty: Difficulty,
   excludeNames: Set<string>
 ): CityWithPoints[] {
-  const fullPool = allCities.filter(
+  // Islands draw from their own pool (data/islands.json via playableIslands);
+  // every other mode draws from Cities_v2. Both share the mode+difficulty
+  // filter and the dedupe/top-up/shuffle logic below.
+  const source = mode === 'islands' ? playableIslands : allCities
+  const fullPool = source.filter(
     c => c.mode === mode && c.difficulty === difficulty
   )
   let workingPool = fullPool.filter(c => !excludeNames.has(c.name))
@@ -280,14 +285,15 @@ export function useGameState() {
     })
   }, [state.phase, state.mode, state.dailyDateKey, state.cities, state.roundScores, state.roundElapsedTimes, state.totalScore])
 
-  // Records a finished US/Global game to the player's personal history exactly
-  // once, on the transition into 'gameOver'. These modes aren't a leaderboard,
-  // so this is a plain best-effort insert (see submitGameResult) rather than
-  // the validated Edge-Function path the Daily Challenge uses. The ref guard
-  // prevents a duplicate row if this effect re-runs for the same completion.
+  // Records a finished US/Global/Islands game to the player's personal history
+  // exactly once, on the transition into 'gameOver'. These modes aren't a
+  // leaderboard, so this is a plain best-effort insert (see submitGameResult)
+  // rather than the validated Edge-Function path the Daily Challenge uses. The
+  // ref guard prevents a duplicate row if this effect re-runs for the same
+  // completion.
   useEffect(() => {
     if (state.phase !== 'gameOver' || !state.difficulty) return
-    if (state.mode !== 'us' && state.mode !== 'global') return
+    if (state.mode !== 'us' && state.mode !== 'global' && state.mode !== 'islands') return
     if (gameResultSubmittedRef.current) return
     gameResultSubmittedRef.current = true
 

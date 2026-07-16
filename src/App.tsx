@@ -6,6 +6,7 @@ import { CityGuessInput } from './components/CityGuessInput'
 import { DailyRecapCard } from './components/DailyRecapCard'
 import { US_CITIES } from './data/usCities'
 import { GLOBAL_CITIES } from './data/globalCities'
+import { ISLAND_NAMES } from './utils/islands'
 import { buildShareText } from './utils/dailyChallenge'
 import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER } from './utils/difficultyConfig'
 import './App.css'
@@ -23,6 +24,7 @@ const MODE_CONFIG: Record<GameMode, { label: string }> = {
   daily: { label: 'Daily Challenge' },
   us: { label: 'US Cities' },
   global: { label: 'Global' },
+  islands: { label: 'Islands' },
 }
 const MODES = Object.keys(MODE_CONFIG) as GameMode[]
 
@@ -37,6 +39,40 @@ const btnStyle: React.CSSProperties = {
   cursor: 'pointer',
 }
 
+// Islands-only Hint UI. A revealed hint appears as a "received" text-message
+// bubble (rounded, with the bottom-left corner squared off as the tail),
+// stacked above the guess row.
+const hintBubbleStyle: React.CSSProperties = {
+  maxWidth: 340,
+  alignSelf: 'flex-start',
+  // Semi-transparent + backdrop blur (like the other HUD panels) — this also
+  // promotes the bubble to a compositing layer so it paints ABOVE the Mapbox
+  // WebGL canvas; a plain opaque div renders under it.
+  background: 'rgba(58,58,60,0.82)',
+  backdropFilter: 'blur(6px)',
+  WebkitBackdropFilter: 'blur(6px)',
+  color: '#f5f5f5',
+  fontSize: 14,
+  lineHeight: 1.35,
+  padding: '0.5rem 0.85rem',
+  borderRadius: 18,
+  borderBottomLeftRadius: 5,
+  boxShadow: '0 1px 3px rgba(0,0,0,0.45)',
+}
+
+const hintButtonStyle = (disabled: boolean): React.CSSProperties => ({
+  flex: '0 0 auto',
+  padding: '0.5rem 0.85rem',
+  fontSize: 13,
+  fontWeight: 700,
+  borderRadius: 8,
+  border: '1px solid rgba(255,255,255,0.25)',
+  background: disabled ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.14)',
+  color: disabled ? '#666' : '#fff',
+  cursor: disabled ? 'default' : 'pointer',
+  whiteSpace: 'nowrap',
+})
+
 function App() {
   const { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus } = useGameState()
   const activeCity = state.cities[state.activeCityIndex]
@@ -50,6 +86,10 @@ function App() {
   // authoritative mode for the running game is state.mode, set by
   // useGameState once selectDifficulty/startDailyChallenge is called.
   const [selectedMode, setSelectedMode] = useState<GameMode>('us')
+
+  // Islands-only: how many of the active island's hints the player has revealed
+  // this round (reset per round via the roundToken effect below).
+  const [hintsShown, setHintsShown] = useState(0)
 
   // Shared by the daily game-over screen and the pre-game recap card.
   const [copied, setCopied] = useState(false)
@@ -91,6 +131,9 @@ function App() {
     }
     prevPhaseRef.current = state.phase
   }, [state.phase])
+
+  // Fresh round → hide any hints revealed on the previous one.
+  useEffect(() => { setHintsShown(0) }, [roundToken])
 
   // The Next Round button never receives focus (the guess input it replaces
   // is unmounted), so Enter alone wouldn't trigger it without this listener.
@@ -432,20 +475,42 @@ function App() {
         pointerEvents: 'none',
       }}>
         {state.phase === 'playing' && (
-          <div style={{
-            background: 'rgba(0,0,0,0.6)',
-            backdropFilter: 'blur(6px)',
-            WebkitBackdropFilter: 'blur(6px)',
-            borderRadius: 12,
-            padding: '0.75rem 1.25rem',
-            pointerEvents: 'auto',
-          }}>
-            <CityGuessInput
-              onSubmit={submitGuess}
-              disabled={false}
-              phase={state.phase}
-              citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : state.mode === 'daily' ? DAILY_CITIES : US_CITIES}
-            />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', pointerEvents: 'auto', maxWidth: '92vw' }}>
+            {/* Revealed hint bubbles (islands only), stacked like a text thread. */}
+            {activeCity?.hints && hintsShown > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                {activeCity.hints.slice(0, hintsShown).map((h, i) => (
+                  <div key={i} style={hintBubbleStyle}>{h}</div>
+                ))}
+              </div>
+            )}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.6rem',
+              background: 'rgba(0,0,0,0.6)',
+              backdropFilter: 'blur(6px)',
+              WebkitBackdropFilter: 'blur(6px)',
+              borderRadius: 12,
+              padding: '0.75rem 1.25rem',
+            }}>
+              <CityGuessInput
+                onSubmit={submitGuess}
+                disabled={false}
+                phase={state.phase}
+                citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : state.mode === 'islands' ? ISLAND_NAMES : state.mode === 'daily' ? DAILY_CITIES : US_CITIES}
+              />
+              {activeCity?.hints && activeCity.hints.length > 0 && (
+                <button
+                  onClick={() => setHintsShown(n => Math.min(n + 1, activeCity.hints!.length))}
+                  disabled={hintsShown >= activeCity.hints.length}
+                  style={hintButtonStyle(hintsShown >= activeCity.hints.length)}
+                  aria-label="Reveal a hint"
+                >
+                  Hint {hintsShown}/{activeCity.hints.length}
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>

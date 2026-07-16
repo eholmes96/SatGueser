@@ -27,6 +27,10 @@ export function resolveRoundCities(cities: CityWithPoints[], rng: () => number =
       country: c.country,
       lat: point.lat,
       lng: point.lng,
+      // Islands carry per-round zoom bounds + hints; undefined for cities.
+      startZoom: c.startZoom,
+      endZoom: c.endZoom,
+      hints: c.hints,
     }
   })
 }

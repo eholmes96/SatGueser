@@ -120,8 +120,13 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
     setLoadError(false)
     setTokenRestricted(false)
 
+    // Islands carry their own reveal bounds (islands vary hugely in size);
+    // cities leave these undefined and fall back to the shared 15→10 constants.
+    const startZoom = activeCity.startZoom ?? START_ZOOM
+    const endZoom = activeCity.endZoom ?? END_ZOOM
+
     const beginRound = () => {
-      map.jumpTo({ center: [activeCity.lng, activeCity.lat], zoom: START_ZOOM })
+      map.jumpTo({ center: [activeCity.lng, activeCity.lat], zoom: startZoom })
 
       settleTimerRef.current = window.setTimeout(() => {
         onRoundStartRef.current?.()
@@ -132,7 +137,7 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
           const elapsed = timestamp - startTime
           const t = Math.min(elapsed / duration, 1)
           const eased = easeOutQuad(t)
-          map.setZoom(START_ZOOM - eased * (START_ZOOM - END_ZOOM))
+          map.setZoom(startZoom - eased * (startZoom - endZoom))
 
           if (t < 1) {
             rafRef.current = requestAnimationFrame(tick)

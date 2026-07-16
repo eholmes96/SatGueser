@@ -14,9 +14,11 @@ mapboxgl.accessToken = MAPBOX_TOKEN
 // is for eyeballing/correcting those coordinates against satellite imagery.
 type SandboxCity = CityWithPoints
 // A sandbox row is either a city (Cities_v2) or an island. They share
-// name/displayName/difficulty/mode/points; `mode === 'islands'` discriminates
-// the union (islands add area/length/hints and per-island zoom bounds).
+// name/displayName/difficulty/mode/points; islands add area/length/hints and
+// per-island zoom bounds. Now that the game's Mode includes 'islands', mode no
+// longer discriminates the union at the type level, so narrow on isIsland().
 type SandboxEntry = SandboxCity | Island
+const isIsland = (e: SandboxEntry): e is Island => 'areaKm2' in e
 // Sandbox-local mode: the game's Mode plus a dev-only 'islands'. Kept local so
 // adding it here never leaks into the game's own mode selector.
 type SandboxMode = Mode | 'islands'
@@ -168,12 +170,12 @@ function CityPicker({ mode, onModeChange, onSelect }: {
                   }}
                 >
                   {entry.displayName}
-                  {entry.mode === 'islands' && (
+                  {isIsland(entry) && (
                     <span style={{ opacity: 0.55, fontSize: 11, marginLeft: 5 }}>
                       {entry.lengthKm ? `${entry.lengthKm} km` : `${Math.round(entry.areaKm2 / 1000)}k km²`}
                     </span>
                   )}
-                  {entry.mode !== 'islands' && entry.points.length > 1 && (
+                  {!isIsland(entry) && entry.points.length > 1 && (
                     <span style={{ opacity: 0.55, fontSize: 11, marginLeft: 5 }}>×{entry.points.length}</span>
                   )}
                 </button>
@@ -190,8 +192,8 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
   // Per-island reveal bounds when previewing an island; cities keep the shared
   // 15→10 defaults. Everything below reads these (via refs, so the RAF closures
   // stay fresh) instead of the old module-level START_ZOOM/END_ZOOM constants.
-  const initialStart = city.mode === 'islands' ? city.startZoom : START_ZOOM
-  const initialEnd = city.mode === 'islands' ? city.endZoom : END_ZOOM
+  const initialStart = isIsland(city) ? city.startZoom : START_ZOOM
+  const initialEnd = isIsland(city) ? city.endZoom : END_ZOOM
 
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<mapboxgl.Map | null>(null)
@@ -408,7 +410,7 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
   const captureEnd = () => { const z = round1(liveZoom); setEndZoom(z); endZoomRef.current = z }
 
   const handleCopyJson = async () => {
-    const text = city.mode === 'islands'
+    const text = isIsland(city)
       ? JSON.stringify({
           name: city.name,
           displayName: city.displayName,
@@ -616,7 +618,7 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
         )}
         <div>difficulty: {city.difficulty}</div>
         <div>mode: {city.mode}</div>
-        {city.mode === 'islands' && (
+        {isIsland(city) && (
           <>
             <div>area: {city.areaKm2.toLocaleString()} km²</div>
             {city.lengthKm != null && <div>length: {city.lengthKm.toLocaleString()} km</div>}
@@ -680,7 +682,7 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
           </label>
         </div>
 
-        {city.mode === 'islands' && (
+        {isIsland(city) && (
           <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.4rem' }}>
             <button onClick={captureStart} style={{ ...btnStyle, flex: 1, fontSize: 11, padding: '0.4rem 0.5rem' }}>
               Set start = {liveZoom.toFixed(1)}
