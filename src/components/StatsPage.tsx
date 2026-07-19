@@ -30,6 +30,13 @@ export function StatsPage({ onClose }: { onClose: () => void }) {
   const [rows, setRows] = useState<ScorePoint[] | null>(null) // daily; null = loading
   const [games, setGames] = useState<GameRow[] | null>(null)  // us/global; null = loading
 
+  // Escape closes the overlay, mirroring the top-left × button.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
   useEffect(() => {
     let active = true
     if (!supabase) { setRows([]); setGames([]); return }

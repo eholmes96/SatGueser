@@ -74,7 +74,7 @@ const hintButtonStyle = (disabled: boolean): React.CSSProperties => ({
 })
 
 function App() {
-  const { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus } = useGameState()
+  const { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus, isNewHighScore } = useGameState()
   const activeCity = state.cities[state.activeCityIndex]
   const timeLeft = Math.max(0, 30 - state.elapsedSeconds)
   const timerPct = Math.max(0, (timeLeft / 30) * 100)
@@ -609,6 +609,28 @@ function App() {
                 </span>
               )}
             </div>
+
+            {/* New personal best for this mode+difficulty (all 4 modes). */}
+            {isNewHighScore && (
+              <div style={{
+                alignSelf: 'stretch',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 1rem',
+                borderRadius: 10,
+                background: 'linear-gradient(90deg, rgba(59,130,246,0.22), rgba(37,99,235,0.34))',
+                border: '1px solid rgba(96,165,250,0.6)',
+                color: '#dbeafe',
+                fontWeight: 800,
+                fontSize: 15,
+                letterSpacing: '0.02em',
+              }}>
+                <span style={{ fontSize: 20 }} aria-hidden="true">🏅</span>
+                New High Score!
+              </div>
+            )}
 
             {/* Per-round breakdown */}
             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>

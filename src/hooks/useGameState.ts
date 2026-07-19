@@ -16,6 +16,7 @@ import {
 } from '../utils/dailyChallengeStorage'
 import { submitDailyRun } from '../lib/submitDaily'
 import { submitGameResult } from '../lib/submitGameResult'
+import { recordHighScore, highScoreKey } from '../utils/highScores'
 
 const allCities = citiesV2Json as CityWithPoints[]
 
@@ -118,6 +119,12 @@ export function useGameState() {
   // game_results has no unique constraint, so this dedup must live here; it's
   // reset when a new US/Global game starts (selectDifficulty).
   const gameResultSubmittedRef = useRef(false)
+  // Whether the just-finished game set a new personal best (per mode+difficulty),
+  // for the game-over "new high score" banner. Set once on gameOver, guarded by
+  // highScoreCheckedRef against StrictMode's double-invoked effects (recordHighScore
+  // both reads and writes, so it must run exactly once); reset when a game starts.
+  const [isNewHighScore, setIsNewHighScore] = useState(false)
+  const highScoreCheckedRef = useRef(false)
 
   // Read once at mount from whatever's already in localStorage — re-read
   // happens explicitly (via recordCompletion's return value) after a run
@@ -167,6 +174,8 @@ export function useGameState() {
   // Called when the player picks a difficulty tile — begins the actual game.
   const selectDifficulty = useCallback((difficulty: Difficulty, mode: Mode = 'us') => {
     gameResultSubmittedRef.current = false
+    highScoreCheckedRef.current = false
+    setIsNewHighScore(false)
     const key = `${mode}-${difficulty}`
     const excludeNames = lastGameCitiesRef.current[key] ?? new Set<string>()
     const pickedCities = pickFromDifficulty(mode, difficulty, excludeNames)
@@ -192,6 +201,8 @@ export function useGameState() {
 
     clearInterval(intervalRef.current)
     timerStartRef.current = null
+    highScoreCheckedRef.current = false
+    setIsNewHighScore(false)
     const cities = buildDailyChallengeCities(allCities, todayKey)
     setState({
       ...INITIAL_STATE,
@@ -307,5 +318,15 @@ export function useGameState() {
     submitGameResult(state.mode, state.difficulty, state.totalScore, rounds)
   }, [state.phase, state.mode, state.difficulty, state.cities, state.roundScores, state.roundElapsedTimes, state.totalScore])
 
-  return { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus }
+  // Flags (and records) a new personal best on gameOver, once per game — across
+  // all four modes, keyed per mode+difficulty (Daily is its own single key).
+  // Guarded like the submit effects above so recordHighScore runs exactly once.
+  useEffect(() => {
+    if (state.phase !== 'gameOver' || !state.mode) return
+    if (highScoreCheckedRef.current) return
+    highScoreCheckedRef.current = true
+    setIsNewHighScore(recordHighScore(highScoreKey(state.mode, state.difficulty), state.totalScore))
+  }, [state.phase, state.mode, state.difficulty, state.totalScore])
+
+  return { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus, isNewHighScore }
 }
