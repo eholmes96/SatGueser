@@ -8,10 +8,12 @@ Watch a satellite view slowly zoom out from a city, and race the clock to guess 
 
 - Each game is 5 rounds. Every round shows a different city, starting fully zoomed in on a satellite view that gradually zooms out over 30 seconds.
 - Type a guess into the autocomplete input — the sooner you guess correctly, the more points you score. Guessing after the timer runs out scores 0 for that round.
-- **Difficulty**: Easy, Medium, or Hard — controls how obscure the round's cities are.
-- **Mode**: Daily Challenge, US Cities, or Global — pick before you start.
+- **Difficulty**: Easy, Medium, or Hard — controls how obscure the round's cities (or islands) are.
+- **Mode**: Daily Challenge, US Cities, Global, or Islands — pick before you start.
   - US mode draws from well-known American metros; Global mode adds international cities and matches guesses regardless of accents (e.g. typing "sao paulo" still matches "São Paulo, Brazil").
+  - Islands mode guesses real islands instead of cities, each revealed at its own zoom level (a tiny island like Key West and a landmass like Greenland can't share one zoom range). An optional **Hint** button next to the guess input reveals up to two clues per island, shown as chat-style bubbles; hints don't cost points.
   - Daily Challenge has no difficulty picker — everyone gets the same fixed 5-city set (2 easy/2 medium/1 hard, ~30% US/70% non-US) for the day, rotating at midnight Eastern time and playable once per day. Harder rounds score more (2x medium, 3x hard), and you can copy a shareable result once you finish.
+- **New High Score** 🏅 — beating your personal best pops a banner on the game summary. Bests are tracked per mode and, for US/Global/Islands, per difficulty too (so Easy/Medium/Hard each have their own record) — stored locally, so it works for guests too.
 
 ## Accounts, leaderboards & stats
 
@@ -19,9 +21,9 @@ Optional — the game is fully playable as a guest, with progress and streaks st
 
 - **Get on the leaderboards** — your daily scores and streaks are recorded to a daily top-scores board and an all-time streak board, exposed as public functions that return only a display name and score (never email or raw round data). An in-app view of these is still to come; for now the Stats page shows your own history.
 - **Keep your streak across devices** — once you're signed in, streaks become server-authoritative.
-- **See your Stats** — open the account menu → **Stats** for a Daily score-over-time line chart and per-difficulty Games/Best/Avg cards for US Cities and Global.
+- **See your Stats** — open the account menu → **Stats** for a Daily score-over-time line chart and per-difficulty Games/Best/Avg cards for US Cities, Global, and Islands. Press **Esc** or the × in the top left to close it.
 
-Daily Challenge submissions go through a Vercel serverless function (`/api/submit-daily`) that re-derives the score from the day's deterministic city set and writes it with the Supabase service role — so a daily score can't be faked from the browser. US and Global games draw random cities (not comparable across players), so they're recorded as personal history under row-level security rather than a leaderboard. The database schema, RLS policies, and leaderboard functions live in `supabase/migrations/`.
+Daily Challenge submissions go through a Vercel serverless function (`/api/submit-daily`) that re-derives the score from the day's deterministic city set and writes it with the Supabase service role — so a daily score can't be faked from the browser. US, Global, and Islands games draw random cities/islands (not comparable across players), so they're recorded as personal history under row-level security rather than a leaderboard. The database schema, RLS policies, and leaderboard functions live in `supabase/migrations/`.
 
 ## Tech stack
 
@@ -69,6 +71,20 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 ## Version history
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
+
+**2026-07-19 — New High Score banner & Stats polish**
+- Beating a personal best now shows a 🏅 "New High Score!" banner on the game summary, across all four modes. Bests are tracked per mode, and per difficulty for US/Global/Islands (Easy/Medium/Hard each have an independent record), stored in `localStorage` so it works for guests.
+- The Stats page now closes on **Esc**, matching the top-left × button.
+
+**2026-07-16 — Islands becomes a playable game mode**
+- Islands joins Daily Challenge / US Cities / Global as a full fourth mode — same 5-round flow, difficulty picker, and scoring, with round results and personal history recorded just like US/Global.
+- Each island reveals at its own satellite zoom range instead of the fixed city zoom, since islands span orders of magnitude in size (a landmass like Greenland vs. a speck like Key West).
+- Added an optional **Hint** button beside the guess input, Islands-only: each click reveals one of an island's two clues as a chat-style bubble. Hints are free and don't affect scoring.
+- Added a **Islands** tab to the Stats page (per-difficulty Games/Best/Avg cards, matching US/Global) and a database migration allowing `'islands'` as a recorded game mode.
+
+**2026-07-13 — Islands dataset & dev sandbox**
+- Built an initial Islands dataset (29 islands spanning the biggest, most populated, and most-visited lists worldwide) with coordinates, land area, length, two hints, and a per-island satellite reveal zoom range seeded from a logarithmic formula and hand-tuned per island.
+- Added an Islands mode to the `/dev` sandbox (alongside US Cities and Global) for previewing and tuning each island's reveal zoom before it became playable, grouped into Easy/Medium/Hard/Undetermined.
 
 **2026-07-08 — Accounts, leaderboards & stats**
 - Added optional passwordless sign-in (Supabase Auth email magic link) via an account bubble in the bottom-right corner; the game still runs fully as a guest on `localStorage` when signed out or when Supabase isn't configured.
