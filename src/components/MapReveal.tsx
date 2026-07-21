@@ -42,9 +42,11 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
   // applies identically whether the round is a US or global city.
   const [loadError, setLoadError] = useState(false)
   // Set when Mapbox returns a 403 (token valid, but restricted to specific
-  // URLs — e.g. a Vercel preview deployment whose random URL isn't
-  // whitelisted). Retrying can't fix a URL restriction, so this gets its
-  // own message with no Retry button, distinct from transient load failures.
+  // URLs — the current domain isn't on the token's allow-list, whether
+  // that's a Vercel preview's random URL or a production domain the token
+  // hasn't been updated for yet). Retrying can't fix a URL restriction, so
+  // this gets its own message with no Retry button, distinct from transient
+  // load failures.
   const [tokenRestricted, setTokenRestricted] = useState(false)
 
   const cityRef = useRef(city)
@@ -218,10 +220,11 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
             {tokenRestricted ? (
               <>
                 <p style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: '#fff' }}>
-                  Map preview isn't available in this preview deployment
+                  Map imagery isn't available on this domain
                 </p>
                 <p style={{ margin: 0, fontSize: 13, color: '#aaa' }}>
-                  The Mapbox token is restricted to production. This will work once merged to production.
+                  The Mapbox token doesn't allow this URL yet. If this domain was just added, it can take a
+                  few minutes to take effect.
                 </p>
               </>
             ) : (
