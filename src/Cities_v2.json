@@ -48,7 +48,7 @@
   {
     "name": "los-angeles",
     "displayName": "Los Angeles",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "mode": "us",
     "points": [
       {
@@ -1623,7 +1623,7 @@
   {
     "name": "cleveland",
     "displayName": "Cleveland",
-    "difficulty": "easy",
+    "difficulty": "medium",
     "mode": "us",
     "points": [
       {
@@ -2517,6 +2517,236 @@
         "label": "Hazrat Shahjalal International Airport",
         "lat": 23.8433,
         "lng": 90.3978
+      }
+    ]
+  },
+  {
+    "name": "san-jose",
+    "displayName": "San Jose",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown San Jose / Plaza de César Chávez",
+        "lat": 37.3327,
+        "lng": -121.8896
+      },
+      {
+        "label": "SAP Center",
+        "lat": 37.3327,
+        "lng": -121.9012
+      },
+      {
+        "label": "San Jose Mineta International Airport",
+        "lat": 37.3639,
+        "lng": -121.9289
+      }
+    ]
+  },
+  {
+    "name": "spokane",
+    "displayName": "Spokane",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Spokane / Riverfront Park",
+        "lat": 47.6588,
+        "lng": -117.426
+      },
+      {
+        "label": "Gonzaga University",
+        "lat": 47.6677,
+        "lng": -117.4021
+      },
+      {
+        "label": "Spokane International Airport",
+        "lat": 47.6198,
+        "lng": -117.5336
+      }
+    ]
+  },
+  {
+    "name": "cheyenne",
+    "displayName": "Cheyenne",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Cheyenne",
+        "lat": 41.14,
+        "lng": -104.8202
+      },
+      {
+        "label": "Cheyenne Frontier Days Park",
+        "lat": 41.1461,
+        "lng": -104.7986
+      },
+      {
+        "label": "Cheyenne Regional Airport",
+        "lat": 41.1557,
+        "lng": -104.8117
+      }
+    ]
+  },
+  {
+    "name": "santa-fe",
+    "displayName": "Santa Fe",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Santa Fe Plaza",
+        "lat": 35.687,
+        "lng": -105.9378
+      },
+      {
+        "label": "Canyon Road Arts District",
+        "lat": 35.6858,
+        "lng": -105.9236
+      },
+      {
+        "label": "Santa Fe Regional Airport",
+        "lat": 35.6167,
+        "lng": -106.0892
+      }
+    ]
+  },
+  {
+    "name": "omaha",
+    "displayName": "Omaha",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Omaha / Old Market",
+        "lat": 41.2565,
+        "lng": -95.9345
+      },
+      {
+        "label": "Henry Doorly Zoo",
+        "lat": 41.2334,
+        "lng": -95.9339
+      },
+      {
+        "label": "Eppley Airfield",
+        "lat": 41.3032,
+        "lng": -95.894
+      }
+    ]
+  },
+  {
+    "name": "des-moines",
+    "displayName": "Des Moines",
+    "difficulty": "hard",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Des Moines",
+        "lat": 41.5868,
+        "lng": -93.625
+      },
+      {
+        "label": "Iowa State Capitol",
+        "lat": 41.591,
+        "lng": -93.6034
+      },
+      {
+        "label": "Des Moines International Airport",
+        "lat": 41.534,
+        "lng": -93.6631
+      }
+    ]
+  },
+  {
+    "name": "madison",
+    "displayName": "Madison",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Wisconsin State Capitol / Isthmus",
+        "lat": 43.0747,
+        "lng": -89.3844
+      },
+      {
+        "label": "UW–Madison / Lake Mendota",
+        "lat": 43.0766,
+        "lng": -89.4125
+      },
+      {
+        "label": "Dane County Regional Airport",
+        "lat": 43.1399,
+        "lng": -89.3375
+      }
+    ]
+  },
+  {
+    "name": "norfolk",
+    "displayName": "Norfolk",
+    "difficulty": "medium",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Downtown Norfolk / Waterside",
+        "lat": 36.8508,
+        "lng": -76.2859
+      },
+      {
+        "label": "Naval Station Norfolk",
+        "lat": 36.9312,
+        "lng": -76.3078
+      },
+      {
+        "label": "Norfolk International Airport",
+        "lat": 36.8946,
+        "lng": -76.2012
+      }
+    ]
+  },
+  {
+    "name": "savannah",
+    "displayName": "Savannah",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Forsyth Park",
+        "lat": 32.0721,
+        "lng": -81.0952
+      },
+      {
+        "label": "Historic District / River Street",
+        "lat": 32.0809,
+        "lng": -81.0912
+      },
+      {
+        "label": "Savannah/Hilton Head International Airport",
+        "lat": 32.1276,
+        "lng": -81.2021
+      }
+    ]
+  },
+  {
+    "name": "san-juan",
+    "displayName": "San Juan",
+    "difficulty": "easy",
+    "mode": "us",
+    "points": [
+      {
+        "label": "Old San Juan / Castillo San Felipe del Morro",
+        "lat": 18.4712,
+        "lng": -66.1246
+      },
+      {
+        "label": "Condado",
+        "lat": 18.4586,
+        "lng": -66.0755
+      },
+      {
+        "label": "Luis Muñoz Marín International Airport",
+        "lat": 18.4394,
+        "lng": -66.0018
       }
     ]
   }
