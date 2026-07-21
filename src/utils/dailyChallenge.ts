@@ -90,7 +90,7 @@ function roundEmoji(elapsedSeconds: number, score: number): string {
   return '🟥'
 }
 
-const SHARE_URL = 'https://satgueser.vercel.app'
+const SHARE_URL = 'https://satgueser.app'
 
 export function buildShareText(dateKey: string, record: DailyChallengeRecord, streak: number): string {
   const puzzleNumber = daysBetween(DAILY_CHALLENGE_EPOCH_DATE_KEY, dateKey) + 1
