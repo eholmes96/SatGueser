@@ -85,11 +85,25 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
       // moved again before a previous request finished) — not a real failure.
       if (e.error?.name === 'AbortError') return
 
-      onErrorRef.current?.(`MAP_ERR: ${e.error?.message ?? 'unknown map error'}`)
+      // Mapbox's AJAXError carries an HTTP status + the failing request's URL
+      // that aren't in the public ErrorLike type, so this reads them
+      // defensively rather than via `any`.
+      const { status, url } = (e.error as { status?: number; url?: string } | undefined) ?? {}
 
-      // Mapbox's AJAXError carries an HTTP status that isn't in the public
-      // ErrorLike type, so this reads it defensively rather than via `any`.
-      const status = (e.error as { status?: number } | undefined)?.status
+      // The map instance also fires 'error' for requests that have nothing to
+      // do with the visible satellite imagery — most notably Mapbox's
+      // background telemetry ping, which can independently 403 without the
+      // actual tiles being affected at all. Scoping to the satellite tile
+      // endpoint (the only tile source this app uses) avoids a background
+      // request's unrelated failure blocking the round with a false "this
+      // domain isn't allowed" error.
+      const isTileRequest = !!url && url.includes('/v4/mapbox.satellite/')
+      if (!isTileRequest) {
+        onErrorRef.current?.(`MAP_ERR (ignored, non-tile): ${e.error?.message ?? 'unknown map error'} url=${url ?? 'n/a'}`)
+        return
+      }
+
+      onErrorRef.current?.(`MAP_ERR: ${e.error?.message ?? 'unknown map error'}`)
       if (status === 403) {
         setTokenRestricted(true)
       } else {
