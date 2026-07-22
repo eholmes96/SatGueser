@@ -8,6 +8,8 @@ import { US_CITIES } from './data/usCities'
 import { GLOBAL_CITIES } from './data/globalCities'
 import { ISLAND_NAMES } from './utils/islands'
 import { buildShareText } from './utils/dailyChallenge'
+import { buildDirectionalHint } from './utils/geo'
+import { getGuessCoords } from './utils/guessCoords'
 import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER } from './utils/difficultyConfig'
 import './App.css'
 
@@ -91,6 +93,14 @@ function App() {
   // this round (reset per round via the roundToken effect below).
   const [hintsShown, setHintsShown] = useState(0)
 
+  // Distance/direction hint history for this round (all modes) — one entry per
+  // wrong guess, e.g. "2,445 mi ⬅️ away from Los Angeles". Purely presentational,
+  // so it lives here rather than in GameState; each wrong guess appends rather
+  // than replacing (so the player can see how they're converging), rendered
+  // like the islands hint thread below. Reset per round via the roundToken
+  // effect below.
+  const [directionHints, setDirectionHints] = useState<string[]>([])
+
   // Shared by the daily game-over screen and the pre-game recap card.
   const [copied, setCopied] = useState(false)
   const handleCopyResult = useCallback(() => {
@@ -133,7 +143,23 @@ function App() {
   }, [state.phase])
 
   // Fresh round → hide any hints revealed on the previous one.
-  useEffect(() => { setHintsShown(0) }, [roundToken])
+  useEffect(() => { setHintsShown(0); setDirectionHints([]) }, [roundToken])
+
+  // Wraps submitGuess to derive the directional hint on a wrong guess. Safe to
+  // read activeCity from the closure: a wrong guess changes no game state, so
+  // the captured value is still the current round's target. A guessed name
+  // with no known coords (shouldn't happen — every autocomplete pool carries
+  // coords) just degrades to the existing shake-only feedback.
+  const handleGuess = useCallback((cityName: string): boolean => {
+    const correct = submitGuess(cityName)
+    if (!correct && activeCity) {
+      const coords = getGuessCoords(cityName)
+      if (coords) {
+        setDirectionHints(prev => [...prev, buildDirectionalHint(coords, activeCity, cityName)])
+      }
+    }
+    return correct
+  }, [submitGuess, activeCity])
 
   // The Next Round button never receives focus (the guess input it replaces
   // is unmounted), so Enter alone wouldn't trigger it without this listener.
@@ -484,6 +510,17 @@ function App() {
                 ))}
               </div>
             )}
+            {/* Wrong-guess distance/direction hints (all modes) — same "received
+                text message" bubble thread as the islands hints above, one
+                entry per wrong guess so the player can see how they're
+                converging instead of losing earlier guesses. */}
+            {directionHints.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                {directionHints.map((hint, i) => (
+                  <div key={i} style={hintBubbleStyle}>{hint}</div>
+                ))}
+              </div>
+            )}
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -495,7 +532,7 @@ function App() {
               padding: '0.75rem 1.25rem',
             }}>
               <CityGuessInput
-                onSubmit={submitGuess}
+                onSubmit={handleGuess}
                 disabled={false}
                 phase={state.phase}
                 citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : state.mode === 'islands' ? ISLAND_NAMES : state.mode === 'daily' ? DAILY_CITIES : US_CITIES}
