@@ -78,6 +78,58 @@
     "points": [{ "label": "Center", "lat": 24.555, "lng": -81.78 }]
   },
   {
+    "name": "ireland",
+    "displayName": "Ireland*",
+    "difficulty": "easy",
+    "mode": "islands",
+    "areaKm2": 84421,
+    "lengthKm": 486,
+    "lists": ["populated"],
+    "startZoom": 8,
+    "endZoom": 5,
+    "hints": ["Known as the Emerald Isle", "Divided between the Republic of Ireland and Northern Ireland"],
+    "points": [{ "label": "Center", "lat": 53.1, "lng": -8.0 }]
+  },
+  {
+    "name": "jamaica",
+    "displayName": "Jamaica*",
+    "difficulty": "easy",
+    "mode": "islands",
+    "areaKm2": 10991,
+    "lengthKm": 235,
+    "lists": ["visited"],
+    "startZoom": 10,
+    "endZoom": 7,
+    "hints": ["Caribbean island known worldwide for reggae music", "Birthplace of Bob Marley and Usain Bolt"],
+    "points": [{ "label": "Center", "lat": 18.15, "lng": -77.3 }]
+  },
+  {
+    "name": "new-zealand",
+    "displayName": "New Zealand*",
+    "difficulty": "easy",
+    "mode": "islands",
+    "areaKm2": 268021,
+    "lengthKm": 1600,
+    "lists": ["notable"],
+    "startZoom": 7,
+    "endZoom": 4,
+    "hints": ["Two main islands in the South Pacific", "Famous for dramatic fjords and 'Lord of the Rings' filming locations"],
+    "points": [{ "label": "Center", "lat": -41.5, "lng": 173.5 }]
+  },
+  {
+    "name": "long-island",
+    "displayName": "Long Island*",
+    "difficulty": "easy",
+    "mode": "islands",
+    "areaKm2": 3629,
+    "lengthKm": 190,
+    "lists": ["notable"],
+    "startZoom": 10,
+    "endZoom": 7,
+    "hints": ["Extends east from New York City", "Home to the Hamptons and JFK Airport"],
+    "points": [{ "label": "Center", "lat": 40.8, "lng": -73.0 }]
+  },
+  {
     "name": "new-guinea",
     "displayName": "New Guinea",
     "difficulty": "medium",
@@ -273,6 +325,58 @@
     "points": [{ "label": "Center", "lat": 20.42, "lng": -86.92 }]
   },
   {
+    "name": "tasmania",
+    "displayName": "Tasmania*",
+    "difficulty": "medium",
+    "mode": "islands",
+    "areaKm2": 68401,
+    "lengthKm": 296,
+    "lists": ["notable"],
+    "startZoom": 9,
+    "endZoom": 6,
+    "hints": ["Heart-shaped island south of mainland Australia", "Known for pristine wilderness and Tasmanian devils"],
+    "points": [{ "label": "Center", "lat": -42.0, "lng": 146.8 }]
+  },
+  {
+    "name": "corsica",
+    "displayName": "Corsica*",
+    "difficulty": "medium",
+    "mode": "islands",
+    "areaKm2": 8680,
+    "lengthKm": 183,
+    "lists": ["visited"],
+    "startZoom": 10,
+    "endZoom": 7,
+    "hints": ["Napoleon Bonaparte's birthplace", "A French island in the Mediterranean, just north of Sardinia"],
+    "points": [{ "label": "Center", "lat": 42.15, "lng": 9.1 }]
+  },
+  {
+    "name": "malta",
+    "displayName": "Malta*",
+    "difficulty": "medium",
+    "mode": "islands",
+    "areaKm2": 246,
+    "lengthKm": 27,
+    "lists": ["visited"],
+    "startZoom": 13,
+    "endZoom": 8,
+    "hints": ["Small island nation south of Sicily", "One of the most densely populated countries in the world"],
+    "points": [{ "label": "Center", "lat": 35.9, "lng": 14.45 }]
+  },
+  {
+    "name": "mackinac-island",
+    "displayName": "Mackinac Island*",
+    "difficulty": "medium",
+    "mode": "islands",
+    "areaKm2": 10.3,
+    "lengthKm": 5.6,
+    "lists": ["visited"],
+    "startZoom": 15,
+    "endZoom": 10,
+    "hints": ["Small island in Lake Huron, Michigan", "Famous for banning cars and its historic fudge shops"],
+    "points": [{ "label": "Center", "lat": 45.85, "lng": -84.62 }]
+  },
+  {
     "name": "sumatra",
     "displayName": "Sumatra",
     "difficulty": "hard",
@@ -375,5 +479,31 @@
     "endZoom": 6,
     "hints": ["French territory in the South Pacific", "Surrounded by one of the world's largest coral reefs"],
     "points": [{ "label": "Center", "lat": -21.5, "lng": 165.5 }]
+  },
+  {
+    "name": "zanzibar",
+    "displayName": "Zanzibar*",
+    "difficulty": "hard",
+    "mode": "islands",
+    "areaKm2": 1464,
+    "lengthKm": 85,
+    "lists": ["visited"],
+    "startZoom": 11,
+    "endZoom": 8,
+    "hints": ["Tanzanian island in the Indian Ocean", "Historic Stone Town and centuries of spice trade"],
+    "points": [{ "label": "Center", "lat": -6.13, "lng": 39.5 }]
+  },
+  {
+    "name": "easter-island",
+    "displayName": "Easter Island*",
+    "difficulty": "hard",
+    "mode": "islands",
+    "areaKm2": 163.6,
+    "lengthKm": 24,
+    "lists": ["notable"],
+    "startZoom": 14,
+    "endZoom": 8,
+    "hints": ["One of the most remote inhabited islands on Earth", "Famous for its giant moai stone statues"],
+    "points": [{ "label": "Center", "lat": -27.11, "lng": -109.35 }]
   }
 ]
