@@ -131,7 +131,7 @@
   },
   {
     "name": "hispaniola",
-    "displayName": "Hispaniola*",
+    "displayName": "Hispaniola",
     "difficulty": "easy",
     "mode": "islands",
     "areaKm2": 76192,
@@ -352,7 +352,7 @@
   },
   {
     "name": "corsica",
-    "displayName": "Corsica*",
+    "displayName": "Corsica",
     "difficulty": "medium",
     "mode": "islands",
     "areaKm2": 8680,
@@ -443,7 +443,7 @@
   },
   {
     "name": "aruba",
-    "displayName": "Aruba*",
+    "displayName": "Aruba",
     "difficulty": "medium",
     "mode": "islands",
     "areaKm2": 180,
@@ -560,7 +560,7 @@
   },
   {
     "name": "zanzibar",
-    "displayName": "Zanzibar*",
+    "displayName": "Zanzibar",
     "difficulty": "hard",
     "mode": "islands",
     "areaKm2": 1464,
@@ -599,7 +599,7 @@
   },
   {
     "name": "milos",
-    "displayName": "Milos*",
+    "displayName": "Milos",
     "difficulty": "hard",
     "mode": "islands",
     "areaKm2": 151,
@@ -612,7 +612,7 @@
   },
   {
     "name": "lesvos",
-    "displayName": "Lesvos*",
+    "displayName": "Lesvos",
     "difficulty": "hard",
     "mode": "islands",
     "areaKm2": 1633,
@@ -625,7 +625,7 @@
   },
   {
     "name": "kos",
-    "displayName": "Kos*",
+    "displayName": "Kos",
     "difficulty": "hard",
     "mode": "islands",
     "areaKm2": 290,
