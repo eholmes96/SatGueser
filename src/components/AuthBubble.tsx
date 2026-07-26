@@ -3,11 +3,13 @@ import type { Session } from '@supabase/supabase-js'
 import { supabase, isSupabaseConfigured } from '../lib/supabase'
 import { StatsPage } from './StatsPage'
 
-// A small persistent auth control that lives in the bottom-right corner on
-// every screen. Signed out, it's a bubble that opens a centered popup asking
-// for an email; we send a Supabase magic link and the popup shows a
-// "check your email" state. Signed in, the bubble becomes an initial-avatar
-// that opens a tiny menu with the email and a Sign out action.
+// A small persistent control that lives in the bottom-right corner on every
+// screen. Clicking it always opens a small menu (Blog, plus either "Sign in"
+// or Stats/Sign out depending on session) — Blog needs to be reachable by
+// signed-out visitors too, so the old "guest click jumps straight to the
+// email popup" behavior became a menu item instead. Signed in, the bubble
+// becomes an initial-avatar; "Sign in" opens a centered popup asking for an
+// email, and we send a Supabase magic link.
 //
 // Entirely self-contained: it manages its own session via supabase.auth and
 // renders nothing when Supabase isn't configured (guest-only builds), so the
@@ -21,7 +23,7 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 }
 
-export function AuthBubble() {
+export function AuthBubble({ onNavigate }: { onNavigate: (path: string) => void }) {
   const [session, setSession] = useState<Session | null>(null)
   const [popup, setPopup] = useState<Popup>('closed')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -78,18 +80,17 @@ export function AuthBubble() {
     if (supabase) await supabase.auth.signOut()
   }, [])
 
-  // Guest-only build: no backend, nothing to sign into.
-  if (!isSupabaseConfigured) return null
-
   const userEmail = session?.user.email ?? ''
   const initial = userEmail.charAt(0).toUpperCase() || '?'
 
   return (
     <>
-      {/* The bubble itself */}
+      {/* The bubble itself — always opens the menu now, since Blog needs to
+          be reachable by signed-out visitors (and guest-only builds with no
+          Supabase configured at all), not just an "email popup" shortcut. */}
       <button
-        onClick={() => (session ? setMenuOpen(o => !o) : setPopup('email'))}
-        aria-label={session ? 'Account' : 'Sign in'}
+        onClick={() => setMenuOpen(o => !o)}
+        aria-label={session ? 'Account' : isSupabaseConfigured ? 'Sign in' : 'Menu'}
         style={{
           position: 'fixed',
           bottom: '1rem',
@@ -124,8 +125,10 @@ export function AuthBubble() {
         )}
       </button>
 
-      {/* Signed-in menu */}
-      {session && menuOpen && (
+      {/* Menu — Blog is always available; auth-related items only appear
+          when Supabase is actually configured (guest-only builds just get
+          Blog, since there's nothing to sign into). */}
+      {menuOpen && (
         <>
           <div onClick={() => setMenuOpen(false)} style={backdropStyle(false)} />
           <div
@@ -144,16 +147,38 @@ export function AuthBubble() {
             }}
           >
             <button
-              onClick={() => { setMenuOpen(false); setShowStats(true) }}
+              onClick={() => { setMenuOpen(false); onNavigate('/blog') }}
               role="menuitem"
               style={{ ...menuItemStyle, color: '#e5e5e5' }}
             >
-              Stats
+              Blog
             </button>
-            <div style={{ height: 1, background: 'rgba(255,255,255,0.1)', margin: '0.35rem 0.3rem' }} />
-            <div style={{ padding: '0.5rem 0.6rem', fontSize: '0.72rem', color: '#9ca3af' }}>Signed in as</div>
-            <div style={{ padding: '0 0.6rem 0.5rem', fontSize: '0.85rem', color: '#e5e5e5', wordBreak: 'break-all' }}>{userEmail}</div>
-            <button onClick={signOut} role="menuitem" style={menuItemStyle}>Sign out</button>
+
+            {isSupabaseConfigured && session && (
+              <>
+                <button
+                  onClick={() => { setMenuOpen(false); setShowStats(true) }}
+                  role="menuitem"
+                  style={{ ...menuItemStyle, color: '#e5e5e5' }}
+                >
+                  Stats
+                </button>
+                <div style={{ height: 1, background: 'rgba(255,255,255,0.1)', margin: '0.35rem 0.3rem' }} />
+                <div style={{ padding: '0.5rem 0.6rem', fontSize: '0.72rem', color: '#9ca3af' }}>Signed in as</div>
+                <div style={{ padding: '0 0.6rem 0.5rem', fontSize: '0.85rem', color: '#e5e5e5', wordBreak: 'break-all' }}>{userEmail}</div>
+                <button onClick={signOut} role="menuitem" style={menuItemStyle}>Sign out</button>
+              </>
+            )}
+
+            {isSupabaseConfigured && !session && (
+              <button
+                onClick={() => { setMenuOpen(false); setPopup('email') }}
+                role="menuitem"
+                style={{ ...menuItemStyle, color: '#e5e5e5' }}
+              >
+                Sign in
+              </button>
+            )}
           </div>
         </>
       )}
