@@ -2,22 +2,15 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import './index.css'
-import App from './App.tsx'
 import { DevSandbox } from './dev/DevSandbox.tsx'
-import { AuthBubble } from './components/AuthBubble.tsx'
+import { Root } from './Root.tsx'
 
-// No router — this is the only route besides the game itself, and it's a
-// local tuning tool, never linked to from the game UI.
+// /dev is a local tuning tool, never linked to from the game UI, so it's
+// kept as its own pathname check outside the Root/useRoute dispatch.
 const isDevSandbox = window.location.pathname === '/dev'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {isDevSandbox ? <DevSandbox /> : (
-      <>
-        <App />
-        {/* Fixed bottom-right auth control, shared across every game screen. */}
-        <AuthBubble />
-      </>
-    )}
+    {isDevSandbox ? <DevSandbox /> : <Root />}
   </StrictMode>,
 )
