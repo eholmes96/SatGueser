@@ -2749,5 +2749,400 @@
         "lng": -66.0018
       }
     ]
+  },
+  {
+    "name": "kuala-lumpur",
+    "displayName": "Kuala Lumpur, Malaysia",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Malaysia",
+    "points": [
+      {
+        "label": "Petronas Towers",
+        "lat": 3.1579,
+        "lng": 101.7116
+      },
+      {
+        "label": "Merdeka Square",
+        "lat": 3.1478,
+        "lng": 101.6944
+      }
+    ]
+  },
+  {
+    "name": "karachi",
+    "displayName": "Karachi, Pakistan",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Pakistan",
+    "points": [
+      {
+        "label": "Mazar-e-Quaid (Jinnah's Mausoleum)",
+        "lat": 24.8615,
+        "lng": 67.0303
+      },
+      {
+        "label": "Clifton Beach",
+        "lat": 24.8007,
+        "lng": 67.0294
+      }
+    ]
+  },
+  {
+    "name": "colombo",
+    "displayName": "Colombo, Sri Lanka",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Sri Lanka",
+    "points": [
+      {
+        "label": "Galle Face Green",
+        "lat": 6.9224,
+        "lng": 79.8442
+      },
+      {
+        "label": "Colombo Fort",
+        "lat": 6.9344,
+        "lng": 79.8428
+      }
+    ]
+  },
+  {
+    "name": "almaty",
+    "displayName": "Almaty, Kazakhstan",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Kazakhstan",
+    "points": [
+      {
+        "label": "Republic Square",
+        "lat": 43.238,
+        "lng": 76.945
+      },
+      {
+        "label": "Kok Tobe Hill",
+        "lat": 43.2333,
+        "lng": 76.9694
+      }
+    ]
+  },
+  {
+    "name": "tehran",
+    "displayName": "Tehran, Iran",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Iran",
+    "points": [
+      {
+        "label": "Azadi Tower",
+        "lat": 35.6997,
+        "lng": 51.338
+      },
+      {
+        "label": "Valiasr Square",
+        "lat": 35.7038,
+        "lng": 51.4088
+      }
+    ]
+  },
+  {
+    "name": "riyadh",
+    "displayName": "Riyadh, Saudi Arabia",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Saudi Arabia",
+    "points": [
+      {
+        "label": "Kingdom Centre Tower",
+        "lat": 24.7116,
+        "lng": 46.6753
+      },
+      {
+        "label": "Al Faisaliah Tower",
+        "lat": 24.6912,
+        "lng": 46.6851
+      }
+    ]
+  },
+  {
+    "name": "casablanca",
+    "displayName": "Casablanca, Morocco",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Morocco",
+    "points": [
+      {
+        "label": "Hassan II Mosque",
+        "lat": 33.6086,
+        "lng": -7.6325
+      },
+      {
+        "label": "Place Mohammed V",
+        "lat": 33.5928,
+        "lng": -7.6184
+      }
+    ]
+  },
+  {
+    "name": "addis-ababa",
+    "displayName": "Addis Ababa, Ethiopia",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Ethiopia",
+    "points": [
+      {
+        "label": "Meskel Square",
+        "lat": 9.0107,
+        "lng": 38.7613
+      },
+      {
+        "label": "Piazza District",
+        "lat": 9.0359,
+        "lng": 38.7503
+      }
+    ]
+  },
+  {
+    "name": "accra",
+    "displayName": "Accra, Ghana",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Ghana",
+    "points": [
+      {
+        "label": "Black Star Square",
+        "lat": 5.5453,
+        "lng": -0.1935
+      },
+      {
+        "label": "Osu",
+        "lat": 5.556,
+        "lng": -0.1969
+      }
+    ]
+  },
+  {
+    "name": "kyiv",
+    "displayName": "Kyiv, Ukraine",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Ukraine",
+    "points": [
+      {
+        "label": "Maidan Nezalezhnosti",
+        "lat": 50.4501,
+        "lng": 30.5234
+      },
+      {
+        "label": "Kyiv Pechersk Lavra",
+        "lat": 50.4344,
+        "lng": 30.557
+      }
+    ]
+  },
+  {
+    "name": "bucharest",
+    "displayName": "Bucharest, Romania",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Romania",
+    "points": [
+      {
+        "label": "Palace of the Parliament",
+        "lat": 44.4268,
+        "lng": 26.0873
+      },
+      {
+        "label": "Herăstrău Park",
+        "lat": 44.4711,
+        "lng": 26.0784
+      }
+    ]
+  },
+  {
+    "name": "helsinki",
+    "displayName": "Helsinki, Finland",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Finland",
+    "points": [
+      {
+        "label": "Senate Square",
+        "lat": 60.1699,
+        "lng": 24.9524
+      },
+      {
+        "label": "Suomenlinna",
+        "lat": 60.1454,
+        "lng": 24.988
+      }
+    ]
+  },
+  {
+    "name": "oslo",
+    "displayName": "Oslo, Norway",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Norway",
+    "points": [
+      {
+        "label": "Oslo Opera House",
+        "lat": 59.9075,
+        "lng": 10.7529
+      },
+      {
+        "label": "Frogner Park (Vigeland)",
+        "lat": 59.927,
+        "lng": 10.7003
+      }
+    ]
+  },
+  {
+    "name": "montevideo",
+    "displayName": "Montevideo, Uruguay",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Uruguay",
+    "points": [
+      {
+        "label": "Plaza Independencia",
+        "lat": -34.9058,
+        "lng": -56.199
+      },
+      {
+        "label": "Pocitos / Rambla",
+        "lat": -34.9138,
+        "lng": -56.1441
+      }
+    ]
+  },
+  {
+    "name": "quito",
+    "displayName": "Quito, Ecuador",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Ecuador",
+    "points": [
+      {
+        "label": "Plaza Grande",
+        "lat": -0.2201,
+        "lng": -78.5123
+      },
+      {
+        "label": "Basílica del Voto Nacional",
+        "lat": -0.2151,
+        "lng": -78.5063
+      }
+    ]
+  },
+  {
+    "name": "medellin",
+    "displayName": "Medellín, Colombia",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Colombia",
+    "points": [
+      {
+        "label": "Plaza Botero",
+        "lat": 6.2486,
+        "lng": -75.5658
+      },
+      {
+        "label": "Parque Explora / Jardín Botánico",
+        "lat": 6.2716,
+        "lng": -75.5654
+      }
+    ]
+  },
+  {
+    "name": "guadalajara",
+    "displayName": "Guadalajara, Mexico",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "Mexico",
+    "points": [
+      {
+        "label": "Guadalajara Cathedral",
+        "lat": 20.6767,
+        "lng": -103.3475
+      },
+      {
+        "label": "Chapultepec Avenue",
+        "lat": 20.6721,
+        "lng": -103.3765
+      }
+    ]
+  },
+  {
+    "name": "atlanta-global",
+    "displayName": "Atlanta, USA",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Centennial Olympic Park",
+        "lat": 33.7603,
+        "lng": -84.3935
+      },
+      {
+        "label": "Piedmont Park",
+        "lat": 33.7879,
+        "lng": -84.3733
+      },
+      {
+        "label": "Hartsfield-Jackson Airport",
+        "lat": 33.6407,
+        "lng": -84.4277
+      }
+    ]
+  },
+  {
+    "name": "phoenix-global",
+    "displayName": "Phoenix, USA",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Downtown Phoenix",
+        "lat": 33.4484,
+        "lng": -112.074
+      },
+      {
+        "label": "Camelback Mountain",
+        "lat": 33.5183,
+        "lng": -111.9647
+      },
+      {
+        "label": "Papago Park",
+        "lat": 33.4569,
+        "lng": -111.9459
+      }
+    ]
+  },
+  {
+    "name": "dallas-global",
+    "displayName": "Dallas, USA",
+    "difficulty": "hard",
+    "mode": "global",
+    "country": "United States",
+    "points": [
+      {
+        "label": "Downtown Dallas",
+        "lat": 32.7894,
+        "lng": -96.8028
+      },
+      {
+        "label": "Dallas Arboretum",
+        "lat": 32.8218,
+        "lng": -96.7422
+      },
+      {
+        "label": "Bishop Arts District",
+        "lat": 32.7488,
+        "lng": -96.8281
+      }
+    ]
   }
 ]

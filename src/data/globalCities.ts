@@ -147,9 +147,9 @@ const CURATED_GLOBAL_CITIES: SuggestionCity[] = [
 
 // Same guarantee as usCities.ts: merge in any Cities_v2.json global-mode
 // target missing from the curated list, so a target city can never become
-// unguessable. All 62 current global targets already appear above, but this
-// keeps that true automatically as Cities_v2.json changes rather than by
-// convention.
+// unguessable. Most of the 82 current global targets already appear above,
+// but this keeps that true automatically as Cities_v2.json changes rather
+// than by convention.
 const curatedNames = new Set(CURATED_GLOBAL_CITIES.map(c => c.name.toLowerCase()))
 const missingGlobalTargets: SuggestionCity[] = (citiesV2Json as CityWithPoints[])
   .filter(c => c.mode === 'global' && !curatedNames.has(c.displayName.toLowerCase()))
