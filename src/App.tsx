@@ -278,15 +278,18 @@ function App() {
           transition: 'transform 0.75s ease-in, opacity 0.75s ease-in',
           pointerEvents: titleMode === 'hiding' ? 'none' : 'auto',
         }}>
-          <h1 style={{
-            fontSize: titleMode === 'difficulty' ? '2.5rem' : '5rem',
-            fontWeight: 800,
-            color: '#fff',
-            margin: 0,
-            letterSpacing: '-0.03em',
-            textShadow: '0 2px 24px rgba(0,0,0,0.6)',
-            transition: 'font-size 0.5s ease',
-          }}>
+          <h1
+            className={titleMode === 'idle' ? 'title-zoom-out' : undefined}
+            style={{
+              fontSize: titleMode === 'difficulty' ? '2.5rem' : '5rem',
+              fontWeight: 800,
+              color: '#fff',
+              margin: 0,
+              letterSpacing: '-0.03em',
+              textShadow: '0 2px 24px rgba(0,0,0,0.6)',
+              transition: 'font-size 0.5s ease',
+            }}
+          >
             SatGueser
           </h1>
 

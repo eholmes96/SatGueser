@@ -1,0 +1,23 @@
+@keyframes title-zoom-out {
+  from {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.title-zoom-out {
+  animation: title-zoom-out 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-zoom-out {
+    animation: none;
+  }
+}
