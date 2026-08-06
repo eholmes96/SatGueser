@@ -129,6 +129,42 @@ function App() {
     return () => clearTimeout(t)
   }, [titleMode])
 
+  // Keeps the Start Game button glued to the bottom of the zooming title:
+  // the title-zoom-out animation scales the h1 from its own center, so as it
+  // shrinks from 2.4x to 1x its bottom edge sweeps down then back up. Rather
+  // than hand-tuning a second CSS keyframe track (which would silently drift
+  // out of sync if title-zoom-out's duration/easing ever changes), this reads
+  // the h1's LIVE computed scale every frame and mirrors the exact bottom-edge
+  // displacement onto the button via a direct DOM write (bypassing React
+  // state for the hot path, same pattern as MapReveal/DevSandbox's zoom
+  // loops) — so the gap between text and button stays visually constant by
+  // construction, however the animation ends up being tuned later. offsetHeight
+  // is unaffected by the CSS transform, so it always reads the true unscaled
+  // box height regardless of where in the animation we sample it.
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const startButtonRef = useRef<HTMLButtonElement>(null)
+  useEffect(() => {
+    if (titleMode !== 'idle') return
+    let raf: number
+    const tick = () => {
+      const h1 = titleRef.current
+      const btn = startButtonRef.current
+      if (h1 && btn) {
+        const transform = getComputedStyle(h1).transform
+        const scale = transform === 'none' ? 1 : new DOMMatrix(transform).a
+        const offset = Math.max(0, (scale - 1) * (h1.offsetHeight / 2))
+        btn.style.transform = `translateY(${offset}px)`
+        if (offset > 0.5) {
+          raf = requestAnimationFrame(tick)
+          return
+        }
+        btn.style.transform = 'translateY(0px)'
+      }
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [titleMode])
+
   // The map is a single persistent instance, so we can't key a remount off
   // the active city (the same city can recur across separate games). Instead
   // bump roundToken every time we transition INTO 'playing' — that uniquely
@@ -279,6 +315,7 @@ function App() {
           pointerEvents: titleMode === 'hiding' ? 'none' : 'auto',
         }}>
           <h1
+            ref={titleRef}
             className={titleMode === 'idle' ? 'title-zoom-out' : undefined}
             style={{
               fontSize: titleMode === 'difficulty' ? '2.5rem' : '5rem',
@@ -295,6 +332,7 @@ function App() {
 
           {titleMode === 'idle' && (
             <button
+              ref={startButtonRef}
               onClick={startGame}
               style={{
                 padding: '0.8rem 2.5rem',
