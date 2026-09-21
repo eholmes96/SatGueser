@@ -4,6 +4,7 @@ import type { City, CityWithPoints, Difficulty, GameMode, Mode } from '../utils/
 import { normalize } from '../utils/textUtils'
 import { shuffle, resolveRoundCities } from '../utils/roundBuilding'
 import { playableIslands } from '../utils/islands'
+import { playableAirports } from '../utils/airports'
 import { getEasternDateKey } from '../utils/easternDate'
 import { buildDailyChallengeCities } from '../utils/dailyChallenge'
 import { calculateScore, ROUND_DURATION } from '../utils/scoring'
@@ -61,9 +62,10 @@ function pickFromDifficulty(
   excludeNames: Set<string>
 ): CityWithPoints[] {
   // Islands draw from their own pool (data/islands.json via playableIslands);
+  // Airports draw from theirs (data/airports.json via playableAirports);
   // every other mode draws from Cities_v2. Both share the mode+difficulty
   // filter and the dedupe/top-up/shuffle logic below.
-  const source = mode === 'islands' ? playableIslands : allCities
+  const source = mode === 'islands' ? playableIslands : mode === 'airports' ? playableAirports : allCities
   const fullPool = source.filter(
     c => c.mode === mode && c.difficulty === difficulty
   )
@@ -315,7 +317,7 @@ export function useGameState() {
   // completion.
   useEffect(() => {
     if (state.phase !== 'gameOver' || !state.difficulty) return
-    if (state.mode !== 'us' && state.mode !== 'global' && state.mode !== 'islands') return
+    if (state.mode !== 'us' && state.mode !== 'global' && state.mode !== 'islands' && state.mode !== 'airports') return
     if (gameResultSubmittedRef.current) return
     gameResultSubmittedRef.current = true
 

@@ -11,9 +11,24 @@ import { buildShareText } from './utils/dailyChallenge'
 import { buildDirectionalHint } from './utils/geo'
 import { getGuessCoords } from './utils/guessCoords'
 import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER } from './utils/difficultyConfig'
+import { airports } from './utils/airports'
+import type { SuggestionEntry } from './utils/suggestionMatching'
 import './App.css'
 
 const DAILY_CITIES = [...US_CITIES, ...GLOBAL_CITIES]
+
+// Airports is intentionally excluded from DAILY_CITIES above — it never
+// joins the Daily Challenge pool. Its own autocomplete pool ranks an IATA
+// code match above any city-name match, which ranks above any airport-name
+// match, globally across all airports (see suggestionMatching.ts).
+const AIRPORT_SUGGESTIONS: SuggestionEntry[] = airports.map(a => ({
+  display: a.displayName,
+  fields: [
+    { value: a.iata, tier: 0 },
+    { value: a.city, tier: 1 },
+    { value: a.airportName, tier: 2 },
+  ],
+}))
 
 type TitleMode = 'idle' | 'difficulty' | 'hiding' | 'gone'
 
@@ -27,6 +42,7 @@ const MODE_CONFIG: Record<GameMode, { label: string }> = {
   us: { label: 'US Cities' },
   global: { label: 'Global' },
   islands: { label: 'Islands' },
+  airports: { label: 'Airports' },
 }
 const MODES = Object.keys(MODE_CONFIG) as GameMode[]
 
@@ -535,7 +551,7 @@ function App() {
                 onSubmit={handleGuess}
                 disabled={false}
                 phase={state.phase}
-                citySuggestions={state.mode === 'global' ? GLOBAL_CITIES : state.mode === 'islands' ? ISLAND_NAMES : state.mode === 'daily' ? DAILY_CITIES : US_CITIES}
+                citySuggestions={state.mode === 'airports' ? AIRPORT_SUGGESTIONS : state.mode === 'global' ? GLOBAL_CITIES : state.mode === 'islands' ? ISLAND_NAMES : state.mode === 'daily' ? DAILY_CITIES : US_CITIES}
               />
               {activeCity?.hints && activeCity.hints.length > 0 && (
                 <button

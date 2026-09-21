@@ -9,10 +9,11 @@ Watch a satellite view slowly zoom out from a city, and race the clock to guess 
 - Each game is 5 rounds. Every round shows a different city, starting fully zoomed in on a satellite view that gradually zooms out over 30 seconds.
 - Type a guess into the autocomplete input — the sooner you guess correctly, the more points you score. Guessing after the timer runs out scores 0 for that round.
 - **Difficulty**: Easy, Medium, or Hard — controls how obscure the round's cities (or islands) are.
-- **Mode**: Daily Challenge, US Cities, Global, or Islands — pick before you start.
+- **Mode**: Daily Challenge, US Cities, Global, Islands, or Airports — pick before you start.
   - US mode draws from well-known American metros; Global mode adds international cities and matches guesses regardless of accents (e.g. typing "sao paulo" still matches "São Paulo, Brazil").
   - Islands mode guesses real islands instead of cities, each revealed at its own zoom level (a tiny island like Key West and a landmass like Greenland can't share one zoom range). An optional **Hint** button next to the guess input reveals up to two clues per island, shown as chat-style bubbles; hints don't cost points.
-  - Daily Challenge has no difficulty picker — everyone gets the same fixed 5-city set (2 easy/2 medium/1 hard, ~30% US/70% non-US) for the day, rotating at midnight Eastern time and playable once per day. Harder rounds score more (2x medium, 3x hard), and you can copy a shareable result once you finish.
+  - Airports mode guesses real airports, shown as "{City} {Airport Name} (IATA code)" (e.g. "Chicago O'Hare (ORD)") — type the city, the airport's name, or its 3-letter IATA code and any of them autocompletes to the right answer, with IATA-code matches ranked highest, then city-name matches, then airport-name matches. Each airport reveals at its own much tighter zoom range than cities, starting on the terminal rather than the runway.
+  - Daily Challenge has no difficulty picker — everyone gets the same fixed 5-city set (2 easy/2 medium/1 hard, ~30% US/70% non-US) for the day, rotating at midnight Eastern time and playable once per day. Harder rounds score more (2x medium, 3x hard), and you can copy a shareable result once you finish. Airports is not part of the Daily Challenge pool.
 - **New High Score** 🏅 — beating your personal best pops a banner on the game summary. Bests are tracked per mode and, for US/Global/Islands, per difficulty too (so Easy/Medium/Hard each have their own record) — stored locally, so it works for guests too.
 
 ## Accounts, leaderboards & stats
@@ -71,6 +72,13 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 ## Version history
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
+
+**2026-09-21 — Airports mode**
+- Added Airports as a fifth game mode (Easy/Medium/Hard, like US/Global/Islands), launched with 15 hand-curated airports (5 per difficulty) spanning six continents. Answers display as "{City} {Airport Name} (IATA)", e.g. "Paris Charles De Gaulle (CDG)".
+- Typing the city, the airport's proper name, or its 3-letter IATA code all autocomplete to the correct airport. Added a new prioritized-matching system (`src/utils/suggestionMatching.ts`) so an IATA-code match always ranks above a city-name match, which always ranks above an airport-name match — generalized from the existing US/Global/Islands/Daily autocomplete with no behavior change for those modes.
+- Airports reveal at their own much tighter, hand-tuned per-airport zoom range (closer to the Islands pattern than the city default), framed to start on the terminal rather than the runway.
+- Airports is intentionally excluded from the Daily Challenge pool. Added the same per-difficulty Games/Best/Avg Stats tracking, cross-device high scores, and wrong-guess distance/direction hints that US/Global/Islands already have.
+- Also regenerated the pre-bundled `/api/submit-daily` serverless function, which had gone stale since 2026-07-20 and was missing the Global hard-tier cities added 2026-08-02 — that staleness meant server-side Daily Challenge scoring could have failed for any round drawing one of those newer cities.
 
 **2026-07-19 — New High Score banner & Stats polish**
 - Beating a personal best now shows a 🏅 "New High Score!" banner on the game summary, across all four modes. Bests are tracked per mode, and per difficulty for US/Global/Islands (Easy/Medium/Hard each have an independent record), stored in `localStorage` so it works for guests.

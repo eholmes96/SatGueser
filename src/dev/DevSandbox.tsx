@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl'
 import citiesV2Json from '../Cities_v2.json'
 import { MAPBOX_TOKEN, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
 import { islands, ISLAND_CATEGORIES, type Island } from '../utils/islands'
+import { airports, type Airport } from '../utils/airports'
 import { easeOutQuad } from '../utils/easing'
 import { resetDailyChallengeStorage } from '../utils/dailyChallengeStorage'
 
@@ -13,12 +14,19 @@ mapboxgl.accessToken = MAPBOX_TOKEN
 // start point per city (see useGameState's resolveRoundCities). This sandbox
 // is for eyeballing/correcting those coordinates against satellite imagery.
 type SandboxCity = CityWithPoints
-// A sandbox row is either a city (Cities_v2) or an island. They share
-// name/displayName/difficulty/mode/points; islands add area/length/hints and
-// per-island zoom bounds. Now that the game's Mode includes 'islands', mode no
-// longer discriminates the union at the type level, so narrow on isIsland().
-type SandboxEntry = SandboxCity | Island
+// A sandbox row is either a city (Cities_v2), an island, or an airport. They
+// share name/displayName/difficulty/mode/points; islands add area/length/hints
+// and per-island zoom bounds, airports add city/airportName/iata/country and
+// per-airport zoom bounds. Now that the game's Mode includes 'islands' and
+// 'airports', mode no longer discriminates the union at the type level, so
+// narrow on isIsland()/isAirport().
+type SandboxEntry = SandboxCity | Island | Airport
 const isIsland = (e: SandboxEntry): e is Island => 'areaKm2' in e
+const isAirport = (e: SandboxEntry): e is Airport => 'iata' in e
+// True for any entry with its own hand-tuned zoom bounds (islands, airports)
+// rather than the shared city START_ZOOM/END_ZOOM defaults — gates the
+// zoom-tuning UI (initial bounds + the Set start/end capture buttons).
+const hasCustomZoom = (e: SandboxEntry): e is Island | Airport => isIsland(e) || isAirport(e)
 // Sandbox-local mode: the game's Mode plus a dev-only 'islands'. Kept local so
 // adding it here never leaks into the game's own mode selector.
 type SandboxMode = Mode | 'islands'
@@ -30,7 +38,7 @@ const START_ZOOM = 15
 const END_ZOOM = 10
 const LEG_DURATION = 30000
 
-const MODES: SandboxMode[] = ['us', 'global', 'islands']
+const MODES: SandboxMode[] = ['us', 'global', 'islands', 'airports']
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard']
 // Self-contained copy of the game's mode labels — deliberately not imported
 // from App.tsx, to keep the sandbox fully decoupled from game components.
@@ -38,6 +46,7 @@ const MODE_CONFIG: Record<SandboxMode, { label: string }> = {
   us: { label: 'US Cities' },
   global: { label: 'Global' },
   islands: { label: 'Islands' },
+  airports: { label: 'Airports' },
 }
 
 const STYLE_OPTIONS = {
@@ -80,7 +89,7 @@ function CityPicker({ mode, onModeChange, onSelect }: {
   // keep the usual three difficulties. Both share the mode → category → buttons
   // grouping below (the empty-group guard hides categories with no entries).
   const isIslands = mode === 'islands'
-  const entries: SandboxEntry[] = isIslands ? islands : citiesV2
+  const entries: SandboxEntry[] = mode === 'islands' ? islands : mode === 'airports' ? airports : citiesV2
   const categories: string[] = isIslands ? ISLAND_CATEGORIES : DIFFICULTIES
 
   // Lets a tester replay the Daily Challenge without waiting for the real
@@ -192,8 +201,8 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
   // Per-island reveal bounds when previewing an island; cities keep the shared
   // 15→10 defaults. Everything below reads these (via refs, so the RAF closures
   // stay fresh) instead of the old module-level START_ZOOM/END_ZOOM constants.
-  const initialStart = isIsland(city) ? city.startZoom : START_ZOOM
-  const initialEnd = isIsland(city) ? city.endZoom : END_ZOOM
+  const initialStart = hasCustomZoom(city) ? city.startZoom : START_ZOOM
+  const initialEnd = hasCustomZoom(city) ? city.endZoom : END_ZOOM
 
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<mapboxgl.Map | null>(null)
@@ -424,6 +433,21 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
           hints: city.hints,
           points: [{ label: point.label, lat, lng }],
         }, null, 2)
+      : isAirport(city)
+      ? JSON.stringify({
+          name: city.name,
+          city: city.city,
+          airportName: city.airportName,
+          iata: city.iata,
+          displayName: city.displayName,
+          difficulty: city.difficulty,
+          mode: 'airports',
+          country: city.country,
+          startZoom,
+          endZoom,
+          hints: city.hints,
+          points: [{ label: point.label, lat, lng }],
+        }, null, 2)
       : `{ "label": "${point.label}", "lat": ${lat}, "lng": ${lng} }`
     await navigator.clipboard.writeText(text)
     setCopied(true)
@@ -626,6 +650,9 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
             <div>zoom range: {startZoom} → {endZoom}</div>
           </>
         )}
+        {isAirport(city) && (
+          <div>{city.city} — {city.airportName} ({city.iata})</div>
+        )}
         <div>zoom: {liveZoom.toFixed(2)}</div>
         <div>center: {liveCenter.lat.toFixed(4)}, {liveCenter.lng.toFixed(4)}</div>
 
@@ -682,7 +709,7 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
           </label>
         </div>
 
-        {isIsland(city) && (
+        {hasCustomZoom(city) && (
           <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.4rem' }}>
             <button onClick={captureStart} style={{ ...btnStyle, flex: 1, fontSize: 11, padding: '0.4rem 0.5rem' }}>
               Set start = {liveZoom.toFixed(1)}
