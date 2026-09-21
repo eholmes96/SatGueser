@@ -2753,6 +2753,723 @@ var Cities_v2_default = [
         lng: -66.0018
       }
     ]
+  },
+  {
+    name: "kuala-lumpur",
+    displayName: "Kuala Lumpur, Malaysia",
+    difficulty: "hard",
+    mode: "global",
+    country: "Malaysia",
+    points: [
+      {
+        label: "Petronas Towers",
+        lat: 3.1579,
+        lng: 101.7116
+      },
+      {
+        label: "Merdeka Square",
+        lat: 3.1478,
+        lng: 101.6944
+      }
+    ]
+  },
+  {
+    name: "karachi",
+    displayName: "Karachi, Pakistan",
+    difficulty: "hard",
+    mode: "global",
+    country: "Pakistan",
+    points: [
+      {
+        label: "Mazar-e-Quaid (Jinnah's Mausoleum)",
+        lat: 24.8615,
+        lng: 67.0303
+      },
+      {
+        label: "Clifton Beach",
+        lat: 24.8007,
+        lng: 67.0294
+      }
+    ]
+  },
+  {
+    name: "colombo",
+    displayName: "Colombo, Sri Lanka",
+    difficulty: "hard",
+    mode: "global",
+    country: "Sri Lanka",
+    points: [
+      {
+        label: "Galle Face Green",
+        lat: 6.9224,
+        lng: 79.8442
+      },
+      {
+        label: "Colombo Fort",
+        lat: 6.9344,
+        lng: 79.8428
+      }
+    ]
+  },
+  {
+    name: "almaty",
+    displayName: "Almaty, Kazakhstan",
+    difficulty: "hard",
+    mode: "global",
+    country: "Kazakhstan",
+    points: [
+      {
+        label: "Republic Square",
+        lat: 43.238,
+        lng: 76.945
+      },
+      {
+        label: "Kok Tobe Hill",
+        lat: 43.2333,
+        lng: 76.9694
+      }
+    ]
+  },
+  {
+    name: "tehran",
+    displayName: "Tehran, Iran",
+    difficulty: "hard",
+    mode: "global",
+    country: "Iran",
+    points: [
+      {
+        label: "Azadi Tower",
+        lat: 35.6997,
+        lng: 51.338
+      },
+      {
+        label: "Valiasr Square",
+        lat: 35.7038,
+        lng: 51.4088
+      }
+    ]
+  },
+  {
+    name: "riyadh",
+    displayName: "Riyadh, Saudi Arabia",
+    difficulty: "hard",
+    mode: "global",
+    country: "Saudi Arabia",
+    points: [
+      {
+        label: "Kingdom Centre Tower",
+        lat: 24.7116,
+        lng: 46.6753
+      },
+      {
+        label: "Al Faisaliah Tower",
+        lat: 24.6912,
+        lng: 46.6851
+      }
+    ]
+  },
+  {
+    name: "casablanca",
+    displayName: "Casablanca, Morocco",
+    difficulty: "hard",
+    mode: "global",
+    country: "Morocco",
+    points: [
+      {
+        label: "Hassan II Mosque",
+        lat: 33.6086,
+        lng: -7.6325
+      },
+      {
+        label: "Place Mohammed V",
+        lat: 33.5928,
+        lng: -7.6184
+      }
+    ]
+  },
+  {
+    name: "addis-ababa",
+    displayName: "Addis Ababa, Ethiopia",
+    difficulty: "hard",
+    mode: "global",
+    country: "Ethiopia",
+    points: [
+      {
+        label: "Meskel Square",
+        lat: 9.0107,
+        lng: 38.7613
+      },
+      {
+        label: "Piazza District",
+        lat: 9.0359,
+        lng: 38.7503
+      }
+    ]
+  },
+  {
+    name: "accra",
+    displayName: "Accra, Ghana",
+    difficulty: "hard",
+    mode: "global",
+    country: "Ghana",
+    points: [
+      {
+        label: "Black Star Square",
+        lat: 5.5453,
+        lng: -0.1935
+      },
+      {
+        label: "Osu",
+        lat: 5.556,
+        lng: -0.1969
+      }
+    ]
+  },
+  {
+    name: "kyiv",
+    displayName: "Kyiv, Ukraine",
+    difficulty: "hard",
+    mode: "global",
+    country: "Ukraine",
+    points: [
+      {
+        label: "Maidan Nezalezhnosti",
+        lat: 50.4501,
+        lng: 30.5234
+      },
+      {
+        label: "Kyiv Pechersk Lavra",
+        lat: 50.4344,
+        lng: 30.557
+      }
+    ]
+  },
+  {
+    name: "bucharest",
+    displayName: "Bucharest, Romania",
+    difficulty: "hard",
+    mode: "global",
+    country: "Romania",
+    points: [
+      {
+        label: "Palace of the Parliament",
+        lat: 44.4268,
+        lng: 26.0873
+      },
+      {
+        label: "Her\u0103str\u0103u Park",
+        lat: 44.4711,
+        lng: 26.0784
+      }
+    ]
+  },
+  {
+    name: "helsinki",
+    displayName: "Helsinki, Finland",
+    difficulty: "hard",
+    mode: "global",
+    country: "Finland",
+    points: [
+      {
+        label: "Senate Square",
+        lat: 60.1699,
+        lng: 24.9524
+      },
+      {
+        label: "Suomenlinna",
+        lat: 60.1454,
+        lng: 24.988
+      }
+    ]
+  },
+  {
+    name: "oslo",
+    displayName: "Oslo, Norway",
+    difficulty: "hard",
+    mode: "global",
+    country: "Norway",
+    points: [
+      {
+        label: "Oslo Opera House",
+        lat: 59.9075,
+        lng: 10.7529
+      },
+      {
+        label: "Frogner Park (Vigeland)",
+        lat: 59.927,
+        lng: 10.7003
+      }
+    ]
+  },
+  {
+    name: "montevideo",
+    displayName: "Montevideo, Uruguay",
+    difficulty: "hard",
+    mode: "global",
+    country: "Uruguay",
+    points: [
+      {
+        label: "Plaza Independencia",
+        lat: -34.9058,
+        lng: -56.199
+      },
+      {
+        label: "Pocitos / Rambla",
+        lat: -34.9138,
+        lng: -56.1441
+      }
+    ]
+  },
+  {
+    name: "quito",
+    displayName: "Quito, Ecuador",
+    difficulty: "hard",
+    mode: "global",
+    country: "Ecuador",
+    points: [
+      {
+        label: "Plaza Grande",
+        lat: -0.2201,
+        lng: -78.5123
+      },
+      {
+        label: "Bas\xEDlica del Voto Nacional",
+        lat: -0.2151,
+        lng: -78.5063
+      }
+    ]
+  },
+  {
+    name: "medellin",
+    displayName: "Medell\xEDn, Colombia",
+    difficulty: "hard",
+    mode: "global",
+    country: "Colombia",
+    points: [
+      {
+        label: "Plaza Botero",
+        lat: 6.2486,
+        lng: -75.5658
+      },
+      {
+        label: "Parque Explora / Jard\xEDn Bot\xE1nico",
+        lat: 6.2716,
+        lng: -75.5654
+      }
+    ]
+  },
+  {
+    name: "guadalajara",
+    displayName: "Guadalajara, Mexico",
+    difficulty: "hard",
+    mode: "global",
+    country: "Mexico",
+    points: [
+      {
+        label: "Guadalajara Cathedral",
+        lat: 20.6767,
+        lng: -103.3475
+      },
+      {
+        label: "Chapultepec Avenue",
+        lat: 20.6721,
+        lng: -103.3765
+      }
+    ]
+  },
+  {
+    name: "atlanta-global",
+    displayName: "Atlanta, USA",
+    difficulty: "hard",
+    mode: "global",
+    country: "United States",
+    points: [
+      {
+        label: "Centennial Olympic Park",
+        lat: 33.7603,
+        lng: -84.3935
+      },
+      {
+        label: "Piedmont Park",
+        lat: 33.7879,
+        lng: -84.3733
+      },
+      {
+        label: "Hartsfield-Jackson Airport",
+        lat: 33.6407,
+        lng: -84.4277
+      }
+    ]
+  },
+  {
+    name: "phoenix-global",
+    displayName: "Phoenix, USA",
+    difficulty: "hard",
+    mode: "global",
+    country: "United States",
+    points: [
+      {
+        label: "Downtown Phoenix",
+        lat: 33.4484,
+        lng: -112.074
+      },
+      {
+        label: "Camelback Mountain",
+        lat: 33.5183,
+        lng: -111.9647
+      },
+      {
+        label: "Papago Park",
+        lat: 33.4569,
+        lng: -111.9459
+      }
+    ]
+  },
+  {
+    name: "dallas-global",
+    displayName: "Dallas, USA",
+    difficulty: "hard",
+    mode: "global",
+    country: "United States",
+    points: [
+      {
+        label: "Downtown Dallas",
+        lat: 32.7894,
+        lng: -96.8028
+      },
+      {
+        label: "Dallas Arboretum",
+        lat: 32.8218,
+        lng: -96.7422
+      },
+      {
+        label: "Bishop Arts District",
+        lat: 32.7488,
+        lng: -96.8281
+      }
+    ]
+  },
+  {
+    name: "anchorage",
+    displayName: "Anchorage",
+    difficulty: "easy",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Anchorage",
+        lat: 61.2181,
+        lng: -149.9003
+      },
+      {
+        label: "Point Woronzof / Cook Inlet",
+        lat: 61.1926,
+        lng: -149.9989
+      },
+      {
+        label: "Lake Hood Seaplane Base",
+        lat: 61.1795,
+        lng: -149.9757
+      }
+    ]
+  },
+  {
+    name: "honolulu",
+    displayName: "Honolulu",
+    difficulty: "easy",
+    mode: "us",
+    points: [
+      {
+        label: "Waikiki Beach",
+        lat: 21.2793,
+        lng: -157.8292
+      },
+      {
+        label: "Diamond Head",
+        lat: 21.262,
+        lng: -157.8055
+      },
+      {
+        label: "Downtown Honolulu / Aloha Tower",
+        lat: 21.3069,
+        lng: -157.865
+      }
+    ]
+  },
+  {
+    name: "key-west-fl",
+    displayName: "Key West, FL",
+    difficulty: "easy",
+    mode: "us",
+    points: [
+      {
+        label: "Duval Street / Old Town",
+        lat: 24.5586,
+        lng: -81.7963
+      },
+      {
+        label: "Southernmost Point",
+        lat: 24.5465,
+        lng: -81.7975
+      },
+      {
+        label: "Key West International Airport",
+        lat: 24.5561,
+        lng: -81.7595
+      }
+    ]
+  },
+  {
+    name: "jacksonville",
+    displayName: "Jacksonville",
+    difficulty: "medium",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Jacksonville",
+        lat: 30.3322,
+        lng: -81.6557
+      },
+      {
+        label: "Jacksonville Beach",
+        lat: 30.2947,
+        lng: -81.3931
+      },
+      {
+        label: "Naval Air Station Jacksonville",
+        lat: 30.2358,
+        lng: -81.6804
+      }
+    ]
+  },
+  {
+    name: "tucson",
+    displayName: "Tucson",
+    difficulty: "medium",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Tucson",
+        lat: 32.2217,
+        lng: -110.9265
+      },
+      {
+        label: "University of Arizona",
+        lat: 32.2319,
+        lng: -110.9501
+      },
+      {
+        label: "Saguaro National Park (West)",
+        lat: 32.2967,
+        lng: -111.1622
+      }
+    ]
+  },
+  {
+    name: "oakland",
+    displayName: "Oakland",
+    difficulty: "medium",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Oakland",
+        lat: 37.8044,
+        lng: -122.2712
+      },
+      {
+        label: "Port of Oakland",
+        lat: 37.7955,
+        lng: -122.3231
+      },
+      {
+        label: "Lake Merritt",
+        lat: 37.8058,
+        lng: -122.2508
+      }
+    ]
+  },
+  {
+    name: "palm-springs",
+    displayName: "Palm Springs",
+    difficulty: "medium",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Palm Springs",
+        lat: 33.8303,
+        lng: -116.5453
+      },
+      {
+        label: "Palm Springs Aerial Tramway",
+        lat: 33.8305,
+        lng: -116.6122
+      },
+      {
+        label: "Indian Canyons",
+        lat: 33.7767,
+        lng: -116.5453
+      }
+    ]
+  },
+  {
+    name: "long-beach",
+    displayName: "Long Beach",
+    difficulty: "medium",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Long Beach",
+        lat: 33.7701,
+        lng: -118.1937
+      },
+      {
+        label: "Port of Long Beach",
+        lat: 33.7542,
+        lng: -118.2165
+      },
+      {
+        label: "Long Beach Airport",
+        lat: 33.8177,
+        lng: -118.1516
+      }
+    ]
+  },
+  {
+    name: "sedona",
+    displayName: "Sedona",
+    difficulty: "medium",
+    mode: "us",
+    points: [
+      {
+        label: "Uptown Sedona",
+        lat: 34.8697,
+        lng: -111.761
+      },
+      {
+        label: "Bell Rock",
+        lat: 34.7987,
+        lng: -111.7648
+      },
+      {
+        label: "Chapel of the Holy Cross",
+        lat: 34.8278,
+        lng: -111.769
+      }
+    ]
+  },
+  {
+    name: "asheville",
+    displayName: "Asheville",
+    difficulty: "hard",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Asheville",
+        lat: 35.5951,
+        lng: -82.5515
+      },
+      {
+        label: "Biltmore Estate",
+        lat: 35.5407,
+        lng: -82.5514
+      },
+      {
+        label: "Asheville Regional Airport",
+        lat: 35.4362,
+        lng: -82.5418
+      }
+    ]
+  },
+  {
+    name: "columbus",
+    displayName: "Columbus",
+    difficulty: "hard",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Columbus",
+        lat: 39.9612,
+        lng: -82.9988
+      },
+      {
+        label: "Ohio State University",
+        lat: 40.0067,
+        lng: -83.0305
+      },
+      {
+        label: "John Glenn Columbus International Airport",
+        lat: 39.998,
+        lng: -82.8919
+      }
+    ]
+  },
+  {
+    name: "fresno",
+    displayName: "Fresno",
+    difficulty: "hard",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Fresno",
+        lat: 36.7378,
+        lng: -119.7871
+      },
+      {
+        label: "Fresno State",
+        lat: 36.8135,
+        lng: -119.7462
+      },
+      {
+        label: "Woodward Park",
+        lat: 36.8397,
+        lng: -119.7639
+      }
+    ]
+  },
+  {
+    name: "wichita",
+    displayName: "Wichita",
+    difficulty: "hard",
+    mode: "us",
+    points: [
+      {
+        label: "Downtown Wichita",
+        lat: 37.6872,
+        lng: -97.3301
+      },
+      {
+        label: "Wichita State University",
+        lat: 37.7189,
+        lng: -97.2913
+      },
+      {
+        label: "Arkansas River / Century II",
+        lat: 37.6836,
+        lng: -97.3395
+      }
+    ]
+  },
+  {
+    name: "provincetown",
+    displayName: "Provincetown",
+    difficulty: "hard",
+    mode: "us",
+    points: [
+      {
+        label: "Provincetown Harbor",
+        lat: 42.0526,
+        lng: -70.1786
+      },
+      {
+        label: "Pilgrim Monument",
+        lat: 42.05,
+        lng: -70.1837
+      },
+      {
+        label: "Race Point",
+        lat: 42.0645,
+        lng: -70.2478
+      }
+    ]
   }
 ];
 
@@ -2814,8 +3531,30 @@ var EASTERN_DATE_FORMATTER = new Intl.DateTimeFormat("en-CA", {
 function getEasternDateKey(date = /* @__PURE__ */ new Date()) {
   return EASTERN_DATE_FORMATTER.format(date);
 }
+function parseDateKey(dateKey) {
+  const [y, m, d] = dateKey.split("-").map(Number);
+  return { y, m, d };
+}
+function formatDateKey(utcMs) {
+  const d = new Date(utcMs);
+  const y = d.getUTCFullYear();
+  const m = String(d.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(d.getUTCDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+function previousDateKey(dateKey) {
+  const { y, m, d } = parseDateKey(dateKey);
+  return formatDateKey(Date.UTC(y, m - 1, d) - 24 * 60 * 60 * 1e3);
+}
+function daysBetween(dateKeyA, dateKeyB) {
+  const a = parseDateKey(dateKeyA);
+  const b = parseDateKey(dateKeyB);
+  const msPerDay = 24 * 60 * 60 * 1e3;
+  return Math.round((Date.UTC(b.y, b.m - 1, b.d) - Date.UTC(a.y, a.m - 1, a.d)) / msPerDay);
+}
 
 // src/utils/dailyChallenge.ts
+var DAILY_CHALLENGE_EPOCH_DATE_KEY = "2026-07-06";
 var GLOBAL_TWIN_SUFFIX = "-global";
 function canonicalCityKey(slug) {
   return slug.endsWith(GLOBAL_TWIN_SUFFIX) ? slug.slice(0, -GLOBAL_TWIN_SUFFIX.length) : slug;
@@ -2837,13 +3576,13 @@ var TIERS = [
   { difficulty: "hard", count: 1 }
 ];
 var US_PROBABILITY = 0.3;
-function buildDailyChallengeCities(allCities2, dateKey) {
+var LOOKBACK_DAYS = 7;
+function pickTierCities(deduped, dateKey, excluded) {
   const rng = mulberry32(hashStringToSeed(dateKey));
-  const deduped = dedupeCitiesByCanonicalKey(allCities2);
   const picked = [];
   for (const { difficulty, count } of TIERS) {
-    const usPool = shuffle(deduped.filter((c) => c.difficulty === difficulty && c.mode === "us"), rng);
-    const globalPool = shuffle(deduped.filter((c) => c.difficulty === difficulty && c.mode === "global"), rng);
+    const usPool = shuffle(withoutStarvingPool(deduped.filter((c) => c.difficulty === difficulty && c.mode === "us"), excluded, count), rng);
+    const globalPool = shuffle(withoutStarvingPool(deduped.filter((c) => c.difficulty === difficulty && c.mode === "global"), excluded, count), rng);
     let usIndex = 0;
     let globalIndex = 0;
     for (let i = 0; i < count; i++) {
@@ -2851,6 +3590,39 @@ function buildDailyChallengeCities(allCities2, dateKey) {
       picked.push(wantsUs ? usPool[usIndex++] : globalPool[globalIndex++]);
     }
   }
+  return { picked, rng };
+}
+function withoutStarvingPool(pool, excluded, minNeeded) {
+  if (excluded.size === 0) return pool;
+  const filtered = pool.filter((c) => !excluded.has(canonicalCityKey(c.name)));
+  return filtered.length >= minNeeded ? filtered : pool;
+}
+var dailyKeysCache = /* @__PURE__ */ new Map();
+function getExcludedKeys(dateKey) {
+  const excluded = /* @__PURE__ */ new Set();
+  let cursor = dateKey;
+  for (let i = 0; i < LOOKBACK_DAYS; i++) {
+    cursor = previousDateKey(cursor);
+    const keys = dailyKeysCache.get(cursor);
+    if (!keys) break;
+    for (const key of keys) excluded.add(key);
+  }
+  return excluded;
+}
+function ensureDailyKeysCached(deduped, upToDateKey) {
+  const missing = [];
+  for (let d = upToDateKey; daysBetween(DAILY_CHALLENGE_EPOCH_DATE_KEY, d) >= 0 && !dailyKeysCache.has(d); d = previousDateKey(d)) {
+    missing.push(d);
+  }
+  for (const d of missing.reverse()) {
+    const { picked } = pickTierCities(deduped, d, getExcludedKeys(d));
+    dailyKeysCache.set(d, new Set(picked.map((c) => canonicalCityKey(c.name))));
+  }
+}
+function buildDailyChallengeCities(allCities2, dateKey) {
+  const deduped = dedupeCitiesByCanonicalKey(allCities2);
+  ensureDailyKeysCached(deduped, previousDateKey(dateKey));
+  const { picked, rng } = pickTierCities(deduped, dateKey, getExcludedKeys(dateKey));
   const ordered = shuffle(picked, rng);
   return resolveRoundCities(ordered, rng);
 }

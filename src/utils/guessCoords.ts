@@ -3,6 +3,7 @@ import type { CityWithPoints } from './mapboxUtils'
 import { US_CITY_COORDS } from '../data/usCities'
 import { GLOBAL_CITY_COORDS } from '../data/globalCities'
 import { playableIslands } from './islands'
+import { playableAirports } from './airports'
 import { normalize } from './textUtils'
 import type { LatLng } from './geo'
 
@@ -25,6 +26,9 @@ for (const c of citiesV2Json as CityWithPoints[]) {
 }
 for (const i of playableIslands) {
   coordsByName.set(normalize(i.displayName), i.points[0])
+}
+for (const a of playableAirports) {
+  coordsByName.set(normalize(a.displayName), a.points[0])
 }
 for (const c of [...US_CITY_COORDS, ...GLOBAL_CITY_COORDS]) {
   coordsByName.set(normalize(c.name), { lat: c.lat, lng: c.lng })

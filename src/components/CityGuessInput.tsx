@@ -1,22 +1,6 @@
 import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from 'react'
 import type { GamePhase } from '../hooks/useGameState'
-import { normalize } from '../utils/textUtils'
-
-const MAX_SUGGESTIONS = 8
-const MIN_CHARS = 3
-
-function getSuggestions(query: string, citySuggestions: string[]): string[] {
-  if (query.length < MIN_CHARS) return []
-  const q = normalize(query)
-  const prefix: string[] = []
-  const contains: string[] = []
-  for (const city of citySuggestions) {
-    const c = normalize(city)
-    if (c.startsWith(q)) prefix.push(city)
-    else if (c.includes(q)) contains.push(city)
-  }
-  return [...prefix, ...contains].slice(0, MAX_SUGGESTIONS)
-}
+import { getSuggestions, type SuggestionPool } from '../utils/suggestionMatching'
 
 function Highlight({ text, query }: { text: string; query: string }) {
   const idx = text.toLowerCase().indexOf(query.toLowerCase())
@@ -34,7 +18,7 @@ interface CityGuessInputProps {
   onSubmit: (city: string) => boolean
   disabled?: boolean
   phase: GamePhase
-  citySuggestions: string[]
+  citySuggestions: SuggestionPool
 }
 
 export function CityGuessInput({ onSubmit, disabled, phase, citySuggestions }: CityGuessInputProps) {

@@ -2,7 +2,7 @@ export const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN as string
 
 export type Difficulty = 'easy' | 'medium' | 'hard'
 
-export type Mode = 'us' | 'global' | 'islands'
+export type Mode = 'us' | 'global' | 'islands' | 'airports'
 
 // The game-level mode selector supports one option beyond the per-city Mode
 // above: 'daily' picks a fixed cross-mode set of cities (see
