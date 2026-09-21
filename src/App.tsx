@@ -10,7 +10,7 @@ import { ISLAND_NAMES } from './utils/islands'
 import { buildShareText } from './utils/dailyChallenge'
 import { buildDirectionalHint } from './utils/geo'
 import { getGuessCoords } from './utils/guessCoords'
-import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER } from './utils/difficultyConfig'
+import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficultyDesc } from './utils/difficultyConfig'
 import { airports } from './utils/airports'
 import type { SuggestionEntry } from './utils/suggestionMatching'
 import './App.css'
@@ -428,7 +428,7 @@ function App() {
                             {cfg.label}
                           </span>
                           <span style={{ fontSize: 12, color: '#888', fontWeight: 400 }}>
-                            {cfg.desc}
+                            {getDifficultyDesc(d, selectedMode)}
                           </span>
                         </button>
                       )
