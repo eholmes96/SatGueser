@@ -11,24 +11,17 @@ import { buildShareText } from './utils/dailyChallenge'
 import { buildDirectionalHint } from './utils/geo'
 import { getGuessCoords } from './utils/guessCoords'
 import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficultyDesc } from './utils/difficultyConfig'
-import { airports } from './utils/airports'
-import type { SuggestionEntry } from './utils/suggestionMatching'
+import { AIRPORT_SUGGESTIONS } from './utils/airports'
 import './App.css'
 
 const DAILY_CITIES = [...US_CITIES, ...GLOBAL_CITIES]
 
 // Airports is intentionally excluded from DAILY_CITIES above — it never
-// joins the Daily Challenge pool. Its own autocomplete pool ranks an IATA
-// code match above any city-name match, which ranks above any airport-name
-// match, globally across all airports (see suggestionMatching.ts).
-const AIRPORT_SUGGESTIONS: SuggestionEntry[] = airports.map(a => ({
-  display: a.displayName,
-  fields: [
-    { value: a.iata, tier: 0 },
-    { value: a.city, tier: 1 },
-    { value: a.airportName, tier: 2 },
-  ],
-}))
+// joins the Daily Challenge pool. Its autocomplete pool (built in
+// utils/airports.ts) ranks an IATA code match above any city-name match,
+// which ranks above any airport-name match, globally across all entries
+// (see suggestionMatching.ts), and includes extra recognizable airports
+// beyond the playable set (see utils/airports.ts for details).
 
 type TitleMode = 'idle' | 'difficulty' | 'hiding' | 'gone'
 
