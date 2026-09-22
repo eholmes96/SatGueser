@@ -3,7 +3,7 @@ import type { CityWithPoints } from './mapboxUtils'
 import { US_CITY_COORDS } from '../data/usCities'
 import { GLOBAL_CITY_COORDS } from '../data/globalCities'
 import { playableIslands } from './islands'
-import { playableAirports } from './airports'
+import { playableAirports, EXTRA_AIRPORT_COORDS } from './airports'
 import { normalize } from './textUtils'
 import type { LatLng } from './geo'
 
@@ -29,6 +29,13 @@ for (const i of playableIslands) {
 }
 for (const a of playableAirports) {
   coordsByName.set(normalize(a.displayName), a.points[0])
+}
+// Non-playable airports (the wider ~100-busiest autocomplete pool, see
+// utils/airports.ts) still need coords: guessing one of them wrong should
+// get the same distance/direction hint as any other guess, not silently
+// nothing just because it was never a possible answer.
+for (const a of EXTRA_AIRPORT_COORDS) {
+  coordsByName.set(normalize(a.displayName), a.coords)
 }
 for (const c of [...US_CITY_COORDS, ...GLOBAL_CITY_COORDS]) {
   coordsByName.set(normalize(c.name), { lat: c.lat, lng: c.lng })

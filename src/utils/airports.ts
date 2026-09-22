@@ -1,5 +1,6 @@
 import type { CityPoint, CityWithPoints, Difficulty } from './mapboxUtils'
 import type { SuggestionEntry } from './suggestionMatching'
+import type { LatLng } from './geo'
 import airportsJson from '../data/airports.json'
 import busiestExtraJson from '../data/busiestAirportsExtra.json'
 
@@ -52,10 +53,13 @@ interface BusiestAirportRef {
   city: string
   airportName: string
   iata: string
+  lat: number
+  lng: number
 }
 
 const busiestExtra = busiestExtraJson as BusiestAirportRef[]
 const playableIata = new Set(airports.map(a => a.iata.toUpperCase()))
+const dedupedExtra = busiestExtra.filter(a => !playableIata.has(a.iata.toUpperCase()))
 
 function toSuggestionEntry(a: { city: string; airportName: string; iata: string; displayName?: string }): SuggestionEntry {
   return {
@@ -70,5 +74,16 @@ function toSuggestionEntry(a: { city: string; airportName: string; iata: string;
 
 export const AIRPORT_SUGGESTIONS: SuggestionEntry[] = [
   ...airports.map(toSuggestionEntry),
-  ...busiestExtra.filter(a => !playableIata.has(a.iata.toUpperCase())).map(toSuggestionEntry),
+  ...dedupedExtra.map(toSuggestionEntry),
 ]
+
+// Coordinates for the extra (non-playable) airports, so guessing one of them
+// still gets the wrong-guess distance/direction hint — same treatment as
+// every other guessable name (see utils/guessCoords.ts). Approximate
+// (~2 decimal) city/airport-level precision, consistent with the curated
+// city coordinate lists — this only needs to support "how far and which
+// way," not pinpoint accuracy.
+export const EXTRA_AIRPORT_COORDS: { displayName: string; coords: LatLng }[] = dedupedExtra.map(a => ({
+  displayName: `${a.city} ${a.airportName} (${a.iata})`,
+  coords: { lat: a.lat, lng: a.lng },
+}))
