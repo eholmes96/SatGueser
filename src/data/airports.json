@@ -343,5 +343,695 @@
         "lng": 89.4246
       }
     ]
+  },
+  {
+    "name": "lhr",
+    "city": "London",
+    "airportName": "Heathrow",
+    "iata": "LHR",
+    "displayName": "London Heathrow (LHR)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "United Kingdom",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "For years the busiest airport in Europe, and long the world's busiest for international passenger traffic",
+      "Sits west of a capital city, having borrowed its name from a small village once located on the site"
+    ],
+    "points": [
+      {
+        "label": "Terminal 5",
+        "lat": 51.4700,
+        "lng": -0.4543
+      }
+    ]
+  },
+  {
+    "name": "hnd",
+    "city": "Tokyo",
+    "airportName": "Haneda",
+    "iata": "HND",
+    "displayName": "Tokyo Haneda (HND)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "Japan",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Sits on reclaimed land jutting into a bay, closer to the city center than the region's other major international gateway",
+      "One of the world's busiest airports by passenger traffic, though for decades it handled mostly domestic flights while a newer airport across town took most international routes"
+    ],
+    "points": [
+      {
+        "label": "International Terminal",
+        "lat": 35.5523,
+        "lng": 139.7800
+      }
+    ]
+  },
+  {
+    "name": "ams",
+    "city": "Amsterdam",
+    "airportName": "Schiphol",
+    "iata": "AMS",
+    "displayName": "Amsterdam Schiphol (AMS)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "Netherlands",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "According to popular legend its name derives from an old word for 'ship hole', a nod to vessels once lost in the marshy, drained lake it now sits on",
+      "One of Europe's busiest hubs, with runways laid out in a distinctive spoke-like pattern"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 52.3081,
+        "lng": 4.7642
+      }
+    ]
+  },
+  {
+    "name": "icn",
+    "city": "Seoul",
+    "airportName": "Incheon International",
+    "iata": "ICN",
+    "displayName": "Seoul Incheon International (ICN)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "South Korea",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Built on reclaimed land that merged two small islands off the country's west coast",
+      "Regularly ranked among the world's best airports, with an ice-skating rink and a golf course inside its grounds"
+    ],
+    "points": [
+      {
+        "label": "Terminal 2",
+        "lat": 37.4691,
+        "lng": 126.4510
+      }
+    ]
+  },
+  {
+    "name": "pkx",
+    "city": "Beijing",
+    "airportName": "Daxing International",
+    "iata": "PKX",
+    "displayName": "Beijing Daxing International (PKX)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "China",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Its main terminal, designed by a famous late architect, sprawls outward from a central courtyard in a shape often compared to a sea creature",
+      "One of the newest mega-hubs in its country, built to relieve pressure on an older namesake airport across town"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 39.5092,
+        "lng": 116.4110
+      }
+    ]
+  },
+  {
+    "name": "hkg",
+    "city": "Hong Kong",
+    "airportName": "International Airport",
+    "iata": "HKG",
+    "displayName": "Hong Kong International Airport (HKG)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "Hong Kong",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Built almost entirely on reclaimed land, flattening two small islands into a single artificial platform",
+      "Replaced a famously cramped former airport where planes once had to weave between apartment blocks on final approach"
+    ],
+    "points": [
+      {
+        "label": "Terminal 1",
+        "lat": 22.3080,
+        "lng": 113.9185
+      }
+    ]
+  },
+  {
+    "name": "ist",
+    "city": "Istanbul",
+    "airportName": "Airport",
+    "iata": "IST",
+    "displayName": "Istanbul Airport (IST)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "Turkey",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "One of the largest airports in the world by size, built on a sea coast in a city split between two continents",
+      "Opened in the late 2010s to replace an older namesake airport as the country's main hub"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 41.2753,
+        "lng": 28.7519
+      }
+    ]
+  },
+  {
+    "name": "jfk",
+    "city": "New York",
+    "airportName": "John F. Kennedy",
+    "iata": "JFK",
+    "displayName": "New York John F. Kennedy (JFK)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "United States",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Renamed in the early 1960s after an assassinated president, having previously been known by the name of a golf course that once occupied the site",
+      "One of the country's busiest gateways for international travel, spread across a cluster of separately built terminals"
+    ],
+    "points": [
+      {
+        "label": "Terminal 4",
+        "lat": 40.6430,
+        "lng": -73.7794
+      }
+    ]
+  },
+  {
+    "name": "fra",
+    "city": "Frankfurt",
+    "airportName": "Airport",
+    "iata": "FRA",
+    "displayName": "Frankfurt Airport (FRA)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "Germany",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "The busiest airport in its country, serving as the main hub for a major European flag carrier",
+      "Connected directly to a high-speed rail station built beneath one of its terminals"
+    ],
+    "points": [
+      {
+        "label": "Terminal 1",
+        "lat": 50.0490,
+        "lng": 8.5737
+      }
+    ]
+  },
+  {
+    "name": "lax",
+    "city": "Los Angeles",
+    "airportName": "International Airport",
+    "iata": "LAX",
+    "displayName": "Los Angeles International Airport (LAX)",
+    "difficulty": "easy",
+    "mode": "airports",
+    "country": "United States",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Its iconic white, spider-legged structure near the entrance was built in 1961 in a futuristic style and now houses a restaurant with runway views",
+      "One of the world's busiest airports despite having no direct rail connection to the city center for most of its history"
+    ],
+    "points": [
+      {
+        "label": "Tom Bradley International Terminal",
+        "lat": 33.9428,
+        "lng": -118.4100
+      }
+    ]
+  },
+  {
+    "name": "yyz",
+    "city": "Toronto",
+    "airportName": "Pearson",
+    "iata": "YYZ",
+    "displayName": "Toronto Pearson (YYZ)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "Canada",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "The busiest airport in its country, named after a former prime minister who won a Nobel Peace Prize",
+      "Its terminal uses a curved, semicircular layout designed to minimize walking distance between gates"
+    ],
+    "points": [
+      {
+        "label": "Terminal 1",
+        "lat": 43.6816,
+        "lng": -79.6115
+      }
+    ]
+  },
+  {
+    "name": "mad",
+    "city": "Madrid",
+    "airportName": "Barajas",
+    "iata": "MAD",
+    "displayName": "Madrid Barajas (MAD)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "Spain",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Its newest terminal features an undulating roof clad in bamboo, its supporting columns shifting color from yellow toward blue",
+      "A major hub for a national flag carrier that belongs to one of the world's largest airline alliances"
+    ],
+    "points": [
+      {
+        "label": "Terminal 4",
+        "lat": 40.4913,
+        "lng": -3.5931
+      }
+    ]
+  },
+  {
+    "name": "fco",
+    "city": "Rome",
+    "airportName": "Fiumicino",
+    "iata": "FCO",
+    "displayName": "Rome Fiumicino (FCO)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "Italy",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Named after a Renaissance polymath who sketched early flying-machine designs centuries before powered flight existed",
+      "Sits near the mouth of a river not far from where an ancient port once served the capital"
+    ],
+    "points": [
+      {
+        "label": "Terminal 3",
+        "lat": 41.7946,
+        "lng": 12.2503
+      }
+    ]
+  },
+  {
+    "name": "bom",
+    "city": "Mumbai",
+    "airportName": "Chhatrapati Shivaji Maharaj",
+    "iata": "BOM",
+    "displayName": "Mumbai Chhatrapati Shivaji Maharaj (BOM)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "India",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Renamed in the early 2000s after a 17th-century warrior-king who founded a regional empire",
+      "One of the busiest airports in the world to rely on two runways that intersect each other rather than run in parallel"
+    ],
+    "points": [
+      {
+        "label": "Terminal 2",
+        "lat": 19.0974,
+        "lng": 72.8742
+      }
+    ]
+  },
+  {
+    "name": "cgk",
+    "city": "Jakarta",
+    "airportName": "Soekarno–Hatta",
+    "iata": "CGK",
+    "displayName": "Jakarta Soekarno–Hatta (CGK)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "Indonesia",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Named jointly after the country's first president and vice president",
+      "Its original terminals were designed with traditional peaked roofs inspired by local architecture"
+    ],
+    "points": [
+      {
+        "label": "Terminal 3",
+        "lat": -6.1256,
+        "lng": 106.6560
+      }
+    ]
+  },
+  {
+    "name": "mex",
+    "city": "Mexico City",
+    "airportName": "Benito Juárez",
+    "iata": "MEX",
+    "displayName": "Mexico City Benito Juárez (MEX)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "Mexico",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Named after a 19th-century president and reformer of Indigenous descent",
+      "One of the highest-elevation major airports in the world, thin air that reduces the lift some aircraft generate on takeoff"
+    ],
+    "points": [
+      {
+        "label": "Terminal 2",
+        "lat": 19.4363,
+        "lng": -99.0721
+      }
+    ]
+  },
+  {
+    "name": "jnb",
+    "city": "Johannesburg",
+    "airportName": "O.R. Tambo",
+    "iata": "JNB",
+    "displayName": "Johannesburg O.R. Tambo (JNB)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "South Africa",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Named after an anti-apartheid leader who spent decades in exile leading a liberation movement",
+      "The busiest airport on its continent by many measures, sitting at a higher elevation than most major hubs"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": -26.1348,
+        "lng": 28.2405
+      }
+    ]
+  },
+  {
+    "name": "mia",
+    "city": "Miami",
+    "airportName": "International Airport",
+    "iata": "MIA",
+    "displayName": "Miami International Airport (MIA)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "United States",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "A major gateway between its country and Latin America, long handling more international cargo than any other airport in its country",
+      "Its terminal buildings sit inside a loop formed by parallel runways on either side"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 25.7952,
+        "lng": -80.2796
+      }
+    ]
+  },
+  {
+    "name": "zrh",
+    "city": "Zurich",
+    "airportName": "Airport",
+    "iata": "ZRH",
+    "displayName": "Zurich Airport (ZRH)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "Switzerland",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Hub for a flag carrier whose logo is a stylized white cross, echoing the country's flag",
+      "Its three runways form a triangular pattern, a layout common at airports built in the mid-20th century"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 47.4515,
+        "lng": 8.5646
+      }
+    ]
+  },
+  {
+    "name": "cai",
+    "city": "Cairo",
+    "airportName": "International Airport",
+    "iata": "CAI",
+    "displayName": "Cairo International Airport (CAI)",
+    "difficulty": "medium",
+    "mode": "airports",
+    "country": "Egypt",
+    "startZoom": 16,
+    "endZoom": 12,
+    "hints": [
+      "Not far from the desert plateau where some of the world's most famous ancient monuments still stand",
+      "For much of its history the busiest airport on its continent, serving as the hub for the region's oldest airline"
+    ],
+    "points": [
+      {
+        "label": "Terminal 3",
+        "lat": 30.1219,
+        "lng": 31.4056
+      }
+    ]
+  },
+  {
+    "name": "lua",
+    "city": "Lukla",
+    "airportName": "Tenzing–Hillary",
+    "iata": "LUA",
+    "displayName": "Lukla Tenzing–Hillary (LUA)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Nepal",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Often cited as one of the most dangerous airports in the world, its short runway ends at a mountainside on one end and a sheer drop on the other",
+      "The main gateway for trekkers heading toward the world's tallest mountain"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 27.6868,
+        "lng": 86.7295
+      }
+    ]
+  },
+  {
+    "name": "sab",
+    "city": "Saba",
+    "airportName": "Juancho E. Yrausquin",
+    "iata": "SAB",
+    "displayName": "Saba Juancho E. Yrausquin (SAB)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Caribbean Netherlands",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Home to what is often cited as the shortest runway used by scheduled commercial aircraft anywhere in the world",
+      "Serves a tiny volcanic island in the Caribbean where mountains rise almost directly out of the sea"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 17.6453,
+        "lng": -63.2206
+      }
+    ]
+  },
+  {
+    "name": "brr",
+    "city": "Barra",
+    "airportName": "Airport",
+    "iata": "BRR",
+    "displayName": "Barra Airport (BRR)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "United Kingdom",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "The only airport in the world with scheduled flights that land on a tidal beach, its runway disappearing under the sea at high tide",
+      "Located on a remote island chain off the northwest coast of its country"
+    ],
+    "points": [
+      {
+        "label": "Traigh Mhòr Beach",
+        "lat": 57.0228,
+        "lng": -7.4431
+      }
+    ]
+  },
+  {
+    "name": "cvf",
+    "city": "Courchevel",
+    "airportName": "Altiport",
+    "iata": "CVF",
+    "displayName": "Courchevel Altiport (CVF)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "France",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Its short, steeply sloped runway is often cited as one of the most difficult in the world for pilots to land on",
+      "Serves a cluster of ski resorts high in the Alps and once featured in the opening sequence of a James Bond film"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 45.3958,
+        "lng": 6.6325
+      }
+    ]
+  },
+  {
+    "name": "tgu",
+    "city": "Tegucigalpa",
+    "airportName": "Toncontín",
+    "iata": "TGU",
+    "displayName": "Tegucigalpa Toncontín (TGU)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Honduras",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Its short runway sits in a valley ringed by hills, forcing pilots into a steep, banking final approach",
+      "For years considered one of the most challenging airports in the Americas for commercial jets"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 14.0608,
+        "lng": -87.2172
+      }
+    ]
+  },
+  {
+    "name": "lyr",
+    "city": "Longyearbyen",
+    "airportName": "Svalbard Airport",
+    "iata": "LYR",
+    "displayName": "Longyearbyen Svalbard Airport (LYR)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Norway",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "The world's northernmost airport with scheduled passenger flights",
+      "Built on permafrost, requiring special foundations to keep the ground beneath it from thawing"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 78.2410,
+        "lng": 15.4593
+      }
+    ]
+  },
+  {
+    "name": "fnc",
+    "city": "Madeira",
+    "airportName": "Cristiano Ronaldo International",
+    "iata": "FNC",
+    "displayName": "Madeira Cristiano Ronaldo International (FNC)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Portugal",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Its runway was extended out over the ocean on a platform supported by hundreds of concrete pillars",
+      "Renamed in 2017 after a footballer born on the island it serves"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 32.6978,
+        "lng": -16.7746
+      }
+    ]
+  },
+  {
+    "name": "jsi",
+    "city": "Skiathos",
+    "airportName": "Island National Airport",
+    "iata": "JSI",
+    "displayName": "Skiathos Island National Airport (JSI)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Greece",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Planes pass just above a public road and a small beach on final approach, drawing plane-spotters who gather beneath the flight path",
+      "Serves a small Greek island in a chain known for its pine forests and sandy coves"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 39.1771,
+        "lng": 23.5037
+      }
+    ]
+  },
+  {
+    "name": "sxm",
+    "city": "Sint Maarten",
+    "airportName": "Princess Juliana International",
+    "iata": "SXM",
+    "displayName": "Sint Maarten Princess Juliana International (SXM)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Sint Maarten",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Famous for jets passing just a few dozen feet above sunbathers on the beach at the end of its runway",
+      "Shares a small Caribbean island with a French territory across an unmarked border"
+    ],
+    "points": [
+      {
+        "label": "Maho Beach end",
+        "lat": 18.0410,
+        "lng": -63.1089
+      }
+    ]
+  },
+  {
+    "name": "sbh",
+    "city": "St. Barthélemy",
+    "airportName": "Gustaf III",
+    "iata": "SBH",
+    "displayName": "St. Barthélemy Gustaf III (SBH)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "France",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Its short runway begins right after a hill that pilots must clear on final approach, then ends near a beach",
+      "Serves a small, upscale French Caribbean island known for luxury tourism"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 17.9027,
+        "lng": -62.8397
+      }
+    ]
   }
 ]
