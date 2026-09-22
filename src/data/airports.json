@@ -8,13 +8,19 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "United States",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "One of the world's busiest airports by aircraft movements",
       "Named after a WWII Navy pilot, whose restored fighter plane is displayed inside one of the terminals"
     ],
-    "points": [{ "label": "Terminal 2", "lat": 41.9786, "lng": -87.9048 }]
+    "points": [
+      {
+        "label": "Terminal 2",
+        "lat": 41.9786,
+        "lng": -87.9048
+      }
+    ]
   },
   {
     "name": "cdg",
@@ -25,13 +31,19 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "France",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "The busiest airport in its country, with one terminal built as a distinctive circular building",
       "Named after a 20th-century president and wartime resistance leader, not for the city it serves"
     ],
-    "points": [{ "label": "Terminal 1", "lat": 49.0044, "lng": 2.5544 }]
+    "points": [
+      {
+        "label": "Terminal 1",
+        "lat": 49.0044,
+        "lng": 2.5544
+      }
+    ]
   },
   {
     "name": "dxb",
@@ -42,13 +54,19 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "United Arab Emirates",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "For years running, the world's busiest airport for international passenger traffic",
       "Home hub to a national airline known for its all-white jets with gold Arabic script along the fuselage"
     ],
-    "points": [{ "label": "Terminal 3", "lat": 25.2528, "lng": 55.3644 }]
+    "points": [
+      {
+        "label": "Terminal 3",
+        "lat": 25.2528,
+        "lng": 55.3644
+      }
+    ]
   },
   {
     "name": "sin",
@@ -59,13 +77,19 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "Singapore",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "Regularly ranked among the world's best airports, with an indoor waterfall and a rooftop pool inside its terminals",
       "Sits at the eastern tip of a small island nation known for strict public rules and a famous chili crab dish"
     ],
-    "points": [{ "label": "Terminal 3", "lat": 1.3551, "lng": 103.9849 }]
+    "points": [
+      {
+        "label": "Terminal 3",
+        "lat": 1.3551,
+        "lng": 103.9849
+      }
+    ]
   },
   {
     "name": "syd",
@@ -76,13 +100,19 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "Australia",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "One of its runways extends out into a bay, making planes appear to land right over the water",
       "Named for a pioneering aviator who co-piloted the first flight across the Pacific Ocean to the country it serves"
     ],
-    "points": [{ "label": "International Terminal", "lat": -33.9461, "lng": 151.177 }]
+    "points": [
+      {
+        "label": "International Terminal",
+        "lat": -33.9461,
+        "lng": 151.177
+      }
+    ]
   },
   {
     "name": "den",
@@ -99,7 +129,13 @@
       "Its main terminal's tent-shaped roof was designed to echo the snow-capped mountains on the horizon",
       "One of the largest airports on Earth by land area, big enough to contain a small city"
     ],
-    "points": [{ "label": "Jeppesen Terminal", "lat": 39.8493, "lng": -104.6738 }]
+    "points": [
+      {
+        "label": "Jeppesen Terminal",
+        "lat": 39.8493,
+        "lng": -104.6738
+      }
+    ]
   },
   {
     "name": "muc",
@@ -116,7 +152,13 @@
       "Named after a Bavarian statesman rather than the city it serves",
       "A major hub for a national airline whose logo is a stylized flying crane"
     ],
-    "points": [{ "label": "Terminal 2", "lat": 48.354, "lng": 11.797 }]
+    "points": [
+      {
+        "label": "Terminal 2",
+        "lat": 48.354,
+        "lng": 11.797
+      }
+    ]
   },
   {
     "name": "doh",
@@ -133,7 +175,13 @@
       "Named after a former ruling emir rather than the city it serves",
       "Built partly on land reclaimed from the Gulf to host a fast-growing national airline's hub"
     ],
-    "points": [{ "label": "Terminal 1", "lat": 25.261, "lng": 51.6136 }]
+    "points": [
+      {
+        "label": "Terminal 1",
+        "lat": 25.261,
+        "lng": 51.6136
+      }
+    ]
   },
   {
     "name": "bkk",
@@ -150,7 +198,13 @@
       "Its name is a Sanskrit-derived word for 'Golden Land' and has nothing to do with the city it serves",
       "Built over a former swamp, its control tower is one of the tallest in the world"
     ],
-    "points": [{ "label": "Main Terminal", "lat": 13.69, "lng": 100.7501 }]
+    "points": [
+      {
+        "label": "Main Terminal",
+        "lat": 13.69,
+        "lng": 100.7501
+      }
+    ]
   },
   {
     "name": "gru",
@@ -167,7 +221,13 @@
       "The busiest airport on its entire continent, measured by passenger traffic",
       "Named after a separate municipality that has since been absorbed into a sprawling metropolitan area"
     ],
-    "points": [{ "label": "Terminal 3", "lat": -23.4356, "lng": -46.4731 }]
+    "points": [
+      {
+        "label": "Terminal 3",
+        "lat": -23.4356,
+        "lng": -46.4731
+      }
+    ]
   },
   {
     "name": "wlg",
@@ -179,29 +239,41 @@
     "mode": "airports",
     "country": "New Zealand",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "Perched on a narrow strip of land between a harbour and the open sea, notorious among pilots for fierce crosswinds",
       "For years its terminal displayed giant fantasy-film props overhead, made by the special-effects studio based in the city it serves"
     ],
-    "points": [{ "label": "Terminal", "lat": -41.3272, "lng": 174.805 }]
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": -41.3272,
+        "lng": 174.805
+      }
+    ]
   },
   {
-    "name": "sfj",
-    "city": "Kangerlussuaq",
-    "airportName": "Airport",
-    "iata": "SFJ",
-    "displayName": "Kangerlussuaq Airport (SFJ)",
+    "name": "mjt",
+    "city": "Mytilene",
+    "airportName": "Odysseas Elytis",
+    "iata": "MJT",
+    "displayName": "Mytilene Odysseas Elytis (MJT)",
     "difficulty": "hard",
     "mode": "airports",
-    "country": "Greenland",
+    "country": "Greece",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
-      "Built during World War II as a US military airbase, at the head of one of the world's longest fjords",
-      "For decades this was the main gateway for international flights into the world's largest non-continental island"
+      "The runway hugs the coastline so tightly that the final approach skims low over open water just before touchdown.",
+      "It is named for a Nobel Prize-winning poet born on this very island."
     ],
-    "points": [{ "label": "Terminal", "lat": 67.0122, "lng": -50.7116 }]
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 39.0576,
+        "lng": 26.5989
+      }
+    ]
   },
   {
     "name": "mgq",
@@ -213,12 +285,18 @@
     "mode": "airports",
     "country": "Somalia",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "Named after the first president of the country it serves, not the coastal capital itself",
       "Sits on the Indian Ocean coastline of the horn-shaped region of a continent"
     ],
-    "points": [{ "label": "Terminal", "lat": 2.0136, "lng": 45.3047 }]
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 2.0136,
+        "lng": 45.3047
+      }
+    ]
   },
   {
     "name": "gib",
@@ -230,12 +308,18 @@
     "mode": "airports",
     "country": "Gibraltar",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "Its single runway crosses directly over the only road linking this territory to its neighboring country",
       "Overlooked by a famous limestone rock at the mouth of a strait separating two continents"
     ],
-    "points": [{ "label": "Terminal", "lat": 36.1531, "lng": -5.346 }]
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 36.1531,
+        "lng": -5.346
+      }
+    ]
   },
   {
     "name": "pbh",
@@ -247,11 +331,17 @@
     "mode": "airports",
     "country": "Bhutan",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "Surrounded by Himalayan peaks so steep that only a small number of pilots are certified to land here",
       "The sole international gateway to a Buddhist mountain kingdom known for measuring 'Gross National Happiness'"
     ],
-    "points": [{ "label": "Terminal", "lat": 27.4032, "lng": 89.4246 }]
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 27.4032,
+        "lng": 89.4246
+      }
+    ]
   }
 ]
