@@ -8,8 +8,8 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "United States",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "One of the world's busiest airports by aircraft movements",
       "Named after a WWII Navy pilot, whose restored fighter plane is displayed inside one of the terminals"
@@ -31,8 +31,8 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "France",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "The busiest airport in its country, with one terminal built as a distinctive circular building",
       "Named after a 20th-century president and wartime resistance leader, not for the city it serves"
@@ -54,8 +54,8 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "United Arab Emirates",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "For years running, the world's busiest airport for international passenger traffic",
       "Home hub to a national airline known for its all-white jets with gold Arabic script along the fuselage"
@@ -77,8 +77,8 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "Singapore",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "Regularly ranked among the world's best airports, with an indoor waterfall and a rooftop pool inside its terminals",
       "Sits at the eastern tip of a small island nation known for strict public rules and a famous chili crab dish"
@@ -100,8 +100,8 @@
     "difficulty": "easy",
     "mode": "airports",
     "country": "Australia",
-    "startZoom": 15,
-    "endZoom": 11,
+    "startZoom": 16,
+    "endZoom": 12,
     "hints": [
       "One of its runways extends out into a bay, making planes appear to land right over the water",
       "Named for a pioneering aviator who co-piloted the first flight across the Pacific Ocean to the country it serves"
@@ -239,7 +239,7 @@
     "mode": "airports",
     "country": "New Zealand",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "Perched on a narrow strip of land between a harbour and the open sea, notorious among pilots for fierce crosswinds",
       "For years its terminal displayed giant fantasy-film props overhead, made by the special-effects studio based in the city it serves"
@@ -262,7 +262,7 @@
     "mode": "airports",
     "country": "Greece",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "The runway hugs the coastline so tightly that the final approach skims low over open water just before touchdown.",
       "It is named for a Nobel Prize-winning poet born on this very island."
@@ -285,7 +285,7 @@
     "mode": "airports",
     "country": "Somalia",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "Named after the first president of the country it serves, not the coastal capital itself",
       "Sits on the Indian Ocean coastline of the horn-shaped region of a continent"
@@ -308,7 +308,7 @@
     "mode": "airports",
     "country": "Gibraltar",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "Its single runway crosses directly over the only road linking this territory to its neighboring country",
       "Overlooked by a famous limestone rock at the mouth of a strait separating two continents"
@@ -331,7 +331,7 @@
     "mode": "airports",
     "country": "Bhutan",
     "startZoom": 17,
-    "endZoom": 13,
+    "endZoom": 12,
     "hints": [
       "Surrounded by Himalayan peaks so steep that only a small number of pilots are certified to land here",
       "The sole international gateway to a Buddhist mountain kingdom known for measuring 'Gross National Happiness'"
