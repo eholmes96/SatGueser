@@ -3628,8 +3628,6 @@ function buildDailyChallengeCities(allCities2, dateKey) {
 }
 
 // src/utils/difficultyConfig.ts
-var BASE_DIFFICULTIES = ["easy", "medium", "hard"];
-var AIRPORT_DIFFICULTIES = [...BASE_DIFFICULTIES, "extreme"];
 var DIFFICULTY_SCORE_MULTIPLIER = {
   easy: 1,
   medium: 2,

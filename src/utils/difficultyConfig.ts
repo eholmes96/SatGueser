@@ -9,11 +9,8 @@ export const DIFFICULTY_CONFIG: Record<Difficulty, { label: string; desc: string
   extreme:{ label: 'Extreme',desc: 'Where?',                       accent: '#a78bfa', bg: 'rgba(167,139,250,0.08)',border: 'rgba(167,139,250,0.35)' },
 }
 
-const BASE_DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard']
-const AIRPORT_DIFFICULTIES: Difficulty[] = [...BASE_DIFFICULTIES, 'extreme']
-
 export function getDifficulties(mode: GameMode): Difficulty[] {
-  return mode === 'airports' ? AIRPORT_DIFFICULTIES : BASE_DIFFICULTIES
+  return mode === 'airports' ? ['easy', 'medium', 'hard', 'extreme'] : ['easy', 'medium', 'hard']
 }
 
 // Only "Easy" needs mode-specific wording — Islands and Airports don't have

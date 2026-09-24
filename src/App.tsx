@@ -322,11 +322,17 @@ function App() {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
               <div style={{
                 display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
                 gap: '0.25rem',
+                rowGap: 4,
+                maxWidth: 'calc(100vw - 2rem)',
+                boxSizing: 'border-box',
                 background: 'rgba(255,255,255,0.06)',
                 border: '1px solid rgba(255,255,255,0.12)',
                 padding: 4,
-                borderRadius: 999,
+                // Caps to a full pill on one row; a rounded rect once it wraps.
+                borderRadius: 22,
               }}>
                 {MODES.map(m => (
                   <button
@@ -338,6 +344,7 @@ function App() {
                       fontWeight: 700,
                       textTransform: 'uppercase',
                       letterSpacing: '0.06em',
+                      whiteSpace: 'nowrap',
                       borderRadius: 999,
                       border: 'none',
                       cursor: 'pointer',
