@@ -39,7 +39,7 @@ const END_ZOOM = 10
 const LEG_DURATION = 30000
 
 const MODES: SandboxMode[] = ['us', 'global', 'islands', 'airports']
-const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard']
+const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard', 'extreme']
 // Self-contained copy of the game's mode labels — deliberately not imported
 // from App.tsx, to keep the sandbox fully decoupled from game components.
 const MODE_CONFIG: Record<SandboxMode, { label: string }> = {

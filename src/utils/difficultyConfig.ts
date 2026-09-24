@@ -6,6 +6,14 @@ export const DIFFICULTY_CONFIG: Record<Difficulty, { label: string; desc: string
   easy:   { label: 'Easy',   desc: 'Iconic grids & coastlines',    accent: '#4ade80', bg: 'rgba(74,222,128,0.08)',  border: 'rgba(74,222,128,0.35)'  },
   medium: { label: 'Medium', desc: 'Familiar but less obvious',    accent: '#f59e0b', bg: 'rgba(245,158,11,0.08)', border: 'rgba(245,158,11,0.35)' },
   hard:   { label: 'Hard',   desc: 'Good luck',                    accent: '#f87171', bg: 'rgba(248,113,113,0.08)',border: 'rgba(248,113,113,0.35)' },
+  extreme:{ label: 'Extreme',desc: 'Where?',                       accent: '#a78bfa', bg: 'rgba(167,139,250,0.08)',border: 'rgba(167,139,250,0.35)' },
+}
+
+const BASE_DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard']
+const AIRPORT_DIFFICULTIES: Difficulty[] = [...BASE_DIFFICULTIES, 'extreme']
+
+export function getDifficulties(mode: GameMode): Difficulty[] {
+  return mode === 'airports' ? AIRPORT_DIFFICULTIES : BASE_DIFFICULTIES
 }
 
 // Only "Easy" needs mode-specific wording — Islands and Airports don't have
@@ -31,4 +39,5 @@ export const DIFFICULTY_SCORE_MULTIPLIER: Record<Difficulty, number> = {
   easy: 1,
   medium: 2,
   hard: 3,
+  extreme: 4,
 }

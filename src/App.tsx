@@ -10,7 +10,7 @@ import { ISLAND_NAMES } from './utils/islands'
 import { buildShareText } from './utils/dailyChallenge'
 import { buildDirectionalHint } from './utils/geo'
 import { getGuessCoords } from './utils/guessCoords'
-import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficultyDesc } from './utils/difficultyConfig'
+import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficulties, getDifficultyDesc } from './utils/difficultyConfig'
 import { AIRPORT_SUGGESTIONS } from './utils/airports'
 import './App.css'
 
@@ -97,6 +97,7 @@ function App() {
   // authoritative mode for the running game is state.mode, set by
   // useGameState once selectDifficulty/startDailyChallenge is called.
   const [selectedMode, setSelectedMode] = useState<GameMode>('us')
+  const difficultyTiers = getDifficulties(selectedMode)
 
   // Islands-only: how many of the active island's hints the player has revealed
   // this round (reset per round via the roundToken effect below).
@@ -393,11 +394,14 @@ function App() {
                     flexWrap: 'wrap',
                     justifyContent: 'center',
                     gap: 'clamp(0.5rem, 3vw, 1rem)',
-                    maxWidth: 'min(560px, 100vw)',
+                    // Four tiers would wrap 3+1; lay them out 2x2 instead.
+                    ...(difficultyTiers.length === 4
+                      ? { width: '100%', maxWidth: 'min(400px, 100vw)' }
+                      : { maxWidth: 'min(560px, 100vw)' }),
                     padding: '0 1rem',
                     boxSizing: 'border-box',
                   }}>
-                    {(['easy', 'medium', 'hard'] as const).map(d => {
+                    {difficultyTiers.map(d => {
                       const cfg = DIFFICULTY_CONFIG[d]
                       return (
                         <button
@@ -405,7 +409,9 @@ function App() {
                           onClick={() => selectDifficulty(d, selectedMode)}
                           style={{
                             padding: 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 5vw, 2rem)',
-                            minWidth: 'clamp(96px, 27vw, 150px)',
+                            ...(difficultyTiers.length === 4
+                              ? { width: 'calc(50% - clamp(0.25rem, 1.5vw, 0.5rem))', boxSizing: 'border-box' }
+                              : { minWidth: 'clamp(96px, 27vw, 150px)' }),
                             background: cfg.bg,
                             border: `1px solid ${cfg.border}`,
                             borderRadius: 14,

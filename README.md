@@ -73,6 +73,12 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
 
+**2026-09-24 — Airports: 44 airports and a new Extreme tier**
+- Airports grows from 15 to 44 airports. The new additions include LHR, HND, JFK, PKX, YYZ, MAD, BOM, CAI, Lukla, Saba, Courchevel, Svalbard and Madeira. The easy/medium picks moved out of the autocomplete-only list of busy airports and became playable answers.
+- New **Extreme** tier ("Where?", ×4 score multiplier), Airports only. It's for places few people know at all, let alone their airports: Paro, Lukla, Skiathos, Mytilene, Saba and Courchevel. US/Global/Islands/Daily keep Easy/Medium/Hard.
+- Other tier changes: Gibraltar moved to Medium. Barra was removed because its beach runway isn't visible on satellite imagery. Svalbard was recentred, with its start zoom set to 15.
+- New migration `20260924000000_extreme_difficulty.sql` widens the `game_results.difficulty` CHECK to accept `'extreme'`.
+
 **2026-09-21 — Airports mode**
 - Added Airports as a fifth game mode (Easy/Medium/Hard, like US/Global/Islands), launched with 15 hand-curated airports (5 per difficulty) spanning six continents. Answers display as "{City} {Airport Name} (IATA)", e.g. "Paris Charles De Gaulle (CDG)".
 - Typing the city, the airport's proper name, or its 3-letter IATA code all autocomplete to the correct airport. Added a new prioritized-matching system (`src/utils/suggestionMatching.ts`) so an IATA-code match always ranks above a city-name match, which always ranks above an airport-name match — generalized from the existing US/Global/Islands/Daily autocomplete with no behavior change for those modes.
