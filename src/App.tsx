@@ -401,10 +401,9 @@ function App() {
                     flexWrap: 'wrap',
                     justifyContent: 'center',
                     gap: 'clamp(0.5rem, 3vw, 1rem)',
-                    // Four tiers would wrap 3+1; lay them out 2x2 instead.
-                    ...(difficultyTiers.length === 4
-                      ? { width: '100%', maxWidth: 'min(400px, 100vw)' }
-                      : { maxWidth: 'min(560px, 100vw)' }),
+                    // Two tiles per row: 2+1 for three tiers, 2x2 for four.
+                    width: '100%',
+                    maxWidth: 'min(400px, 100vw)',
                     padding: '0 1rem',
                     boxSizing: 'border-box',
                   }}>
@@ -416,9 +415,8 @@ function App() {
                           onClick={() => selectDifficulty(d, selectedMode)}
                           style={{
                             padding: 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 5vw, 2rem)',
-                            ...(difficultyTiers.length === 4
-                              ? { width: 'calc(50% - clamp(0.25rem, 1.5vw, 0.5rem))', boxSizing: 'border-box' }
-                              : { minWidth: 'clamp(96px, 27vw, 150px)' }),
+                            width: 'calc(50% - clamp(0.25rem, 1.5vw, 0.5rem))',
+                            boxSizing: 'border-box',
                             background: cfg.bg,
                             border: `1px solid ${cfg.border}`,
                             borderRadius: 14,
