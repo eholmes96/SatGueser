@@ -874,6 +874,144 @@
     ]
   },
   {
+    "name": "ktm",
+    "city": "Kathmandu",
+    "airportName": "Tribhuvan International",
+    "iata": "KTM",
+    "displayName": "Kathmandu Tribhuvan International (KTM)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Nepal",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "The only international gateway to its mountainous country, sitting in a bowl-shaped valley ringed by hills",
+      "Named after a 20th-century king who restored his family's power after a century of hereditary prime ministers"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 27.6966,
+        "lng": 85.3591
+      }
+    ]
+  },
+  {
+    "name": "mle",
+    "city": "Malé",
+    "airportName": "Velana International",
+    "iata": "MLE",
+    "displayName": "Malé Velana International (MLE)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Maldives",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Takes up almost an entire island of its own, linked to a densely packed capital by ferry and bridge",
+      "Many arriving travelers skip the city entirely, flying on to their resort by seaplane from a lagoon beside the runway"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 4.1918,
+        "lng": 73.5291
+      }
+    ]
+  },
+  {
+    "name": "bob",
+    "city": "Bora Bora",
+    "airportName": "Motu Mute",
+    "iata": "BOB",
+    "displayName": "Bora Bora Motu Mute (BOB)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "French Polynesia",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Built on a flat reef islet during World War II, with passengers reaching the main island by boat",
+      "The island it serves is famous for overwater bungalows ringing a turquoise lagoon beneath a jagged volcanic peak"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": -16.4443,
+        "lng": -151.7514
+      }
+    ]
+  },
+  {
+    "name": "zqn",
+    "city": "Queenstown",
+    "airportName": "Airport",
+    "iata": "ZQN",
+    "displayName": "Queenstown Airport (ZQN)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "New Zealand",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Jets thread between steep mountains on approach, including a range named for looking 'remarkable'",
+      "Serves a lakeside resort town famous as a hub for bungee jumping and adventure sports"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": -45.0211,
+        "lng": 168.739
+      }
+    ]
+  },
+  {
+    "name": "ush",
+    "city": "Ushuaia",
+    "airportName": "Malvinas Argentinas",
+    "iata": "USH",
+    "displayName": "Ushuaia Malvinas Argentinas (USH)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Argentina",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Its runway sits on a peninsula jutting into a channel named after a famous naturalist's survey ship",
+      "Serves a city that bills itself as the southernmost in the world, a launch point for Antarctic cruises"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": -54.8433,
+        "lng": -68.2958
+      }
+    ]
+  },
+  {
+    "name": "kef",
+    "city": "Reykjavík",
+    "airportName": "Keflavík",
+    "iata": "KEF",
+    "displayName": "Reykjavík Keflavík (KEF)",
+    "difficulty": "hard",
+    "mode": "airports",
+    "country": "Iceland",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Built as a US military base during World War II on a barren, lava-covered peninsula",
+      "Sits a 45-minute drive from the capital it serves, which has its own smaller domestic airport right downtown"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 63.985,
+        "lng": -22.6056
+      }
+    ]
+  },
+  {
     "name": "mjt",
     "city": "Mytilene",
     "airportName": "Odysseas Elytis",
@@ -1008,6 +1146,144 @@
         "label": "Terminal",
         "lat": 39.1771,
         "lng": 23.5037
+      }
+    ]
+  },
+  {
+    "name": "fun",
+    "city": "Funafuti",
+    "airportName": "International Airport",
+    "iata": "FUN",
+    "displayName": "Funafuti International Airport (FUN)",
+    "difficulty": "extreme",
+    "mode": "airports",
+    "country": "Tuvalu",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Its runway covers a large share of a thin coral atoll, and between flights locals use it for football, games and even sleeping",
+      "Serves the capital of one of the world's smallest and lowest-lying nations, threatened by rising seas"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": -8.525,
+        "lng": 179.196
+      }
+    ]
+  },
+  {
+    "name": "ldh",
+    "city": "Lord Howe Island",
+    "airportName": "Airport",
+    "iata": "LDH",
+    "displayName": "Lord Howe Island Airport (LDH)",
+    "difficulty": "extreme",
+    "mode": "airports",
+    "country": "Australia",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Its short runway crosses the narrow waist of a tiny crescent-shaped island",
+      "Visitor numbers are capped to protect a World Heritage lagoon and the world's southernmost coral reef"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": -31.5382,
+        "lng": 159.077
+      }
+    ]
+  },
+  {
+    "name": "hle",
+    "city": "Saint Helena",
+    "airportName": "Airport",
+    "iata": "HLE",
+    "displayName": "Saint Helena Airport (HLE)",
+    "difficulty": "extreme",
+    "mode": "airports",
+    "country": "Saint Helena",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Built on a clifftop plateau, it was nicknamed 'the world's most useless airport' after wind shear delayed its opening",
+      "Serves a remote South Atlantic island where an exiled French emperor spent his final years"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": -15.9589,
+        "lng": -5.6461
+      }
+    ]
+  },
+  {
+    "name": "agx",
+    "city": "Agatti",
+    "airportName": "Airport",
+    "iata": "AGX",
+    "displayName": "Agatti Airport (AGX)",
+    "difficulty": "extreme",
+    "mode": "airports",
+    "country": "India",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "Its runway stretches almost the full length of a narrow coral island",
+      "The only airport in an Indian island territory scattered across the Arabian Sea"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 10.8243,
+        "lng": 72.176
+      }
+    ]
+  },
+  {
+    "name": "ixl",
+    "city": "Leh",
+    "airportName": "Kushok Bakula Rimpochee",
+    "iata": "IXL",
+    "displayName": "Leh Kushok Bakula Rimpochee (IXL)",
+    "difficulty": "extreme",
+    "mode": "airports",
+    "country": "India",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "One of the highest commercial airports in the world, where flights mostly run in the morning before the winds pick up",
+      "Named after a revered local Buddhist lama, it serves a high-desert Himalayan town dotted with monasteries"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 34.1359,
+        "lng": 77.5465
+      }
+    ]
+  },
+  {
+    "name": "fae",
+    "city": "Faroe Islands",
+    "airportName": "Vágar",
+    "iata": "FAE",
+    "displayName": "Faroe Islands Vágar (FAE)",
+    "difficulty": "extreme",
+    "mode": "airports",
+    "country": "Faroe Islands",
+    "startZoom": 17,
+    "endZoom": 12,
+    "hints": [
+      "The only airport in its island group, built by British forces during World War II",
+      "Sits between a lake and a fjord on a windswept North Atlantic archipelago known for sheep and turf-roofed houses"
+    ],
+    "points": [
+      {
+        "label": "Terminal",
+        "lat": 62.0636,
+        "lng": -7.2772
       }
     ]
   }
