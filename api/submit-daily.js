@@ -3631,7 +3631,8 @@ function buildDailyChallengeCities(allCities2, dateKey) {
 var DIFFICULTY_SCORE_MULTIPLIER = {
   easy: 1,
   medium: 2,
-  hard: 3
+  hard: 3,
+  extreme: 4
 };
 
 // src/utils/scoring.ts

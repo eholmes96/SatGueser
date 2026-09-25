@@ -10,7 +10,7 @@ import { ISLAND_NAMES } from './utils/islands'
 import { buildShareText } from './utils/dailyChallenge'
 import { buildDirectionalHint } from './utils/geo'
 import { getGuessCoords } from './utils/guessCoords'
-import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficultyDesc } from './utils/difficultyConfig'
+import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficulties, getDifficultyDesc } from './utils/difficultyConfig'
 import { AIRPORT_SUGGESTIONS } from './utils/airports'
 import './App.css'
 
@@ -97,6 +97,7 @@ function App() {
   // authoritative mode for the running game is state.mode, set by
   // useGameState once selectDifficulty/startDailyChallenge is called.
   const [selectedMode, setSelectedMode] = useState<GameMode>('us')
+  const difficultyTiers = getDifficulties(selectedMode)
 
   // Islands-only: how many of the active island's hints the player has revealed
   // this round (reset per round via the roundToken effect below).
@@ -321,11 +322,17 @@ function App() {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
               <div style={{
                 display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
                 gap: '0.25rem',
+                rowGap: 4,
+                maxWidth: 'calc(100vw - 2rem)',
+                boxSizing: 'border-box',
                 background: 'rgba(255,255,255,0.06)',
                 border: '1px solid rgba(255,255,255,0.12)',
                 padding: 4,
-                borderRadius: 999,
+                // Caps to a full pill on one row; a rounded rect once it wraps.
+                borderRadius: 22,
               }}>
                 {MODES.map(m => (
                   <button
@@ -337,6 +344,7 @@ function App() {
                       fontWeight: 700,
                       textTransform: 'uppercase',
                       letterSpacing: '0.06em',
+                      whiteSpace: 'nowrap',
                       borderRadius: 999,
                       border: 'none',
                       cursor: 'pointer',
@@ -393,11 +401,13 @@ function App() {
                     flexWrap: 'wrap',
                     justifyContent: 'center',
                     gap: 'clamp(0.5rem, 3vw, 1rem)',
-                    maxWidth: 'min(560px, 100vw)',
+                    // Two tiles per row: 2+1 for three tiers, 2x2 for four.
+                    width: '100%',
+                    maxWidth: 'min(400px, 100vw)',
                     padding: '0 1rem',
                     boxSizing: 'border-box',
                   }}>
-                    {(['easy', 'medium', 'hard'] as const).map(d => {
+                    {difficultyTiers.map(d => {
                       const cfg = DIFFICULTY_CONFIG[d]
                       return (
                         <button
@@ -405,7 +415,8 @@ function App() {
                           onClick={() => selectDifficulty(d, selectedMode)}
                           style={{
                             padding: 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 5vw, 2rem)',
-                            minWidth: 'clamp(96px, 27vw, 150px)',
+                            width: 'calc(50% - clamp(0.25rem, 1.5vw, 0.5rem))',
+                            boxSizing: 'border-box',
                             background: cfg.bg,
                             border: `1px solid ${cfg.border}`,
                             borderRadius: 14,

@@ -7,20 +7,6 @@
     "lng": -84.43
   },
   {
-    "city": "Los Angeles",
-    "airportName": "International Airport",
-    "iata": "LAX",
-    "lat": 33.94,
-    "lng": -118.41
-  },
-  {
-    "city": "New York",
-    "airportName": "John F. Kennedy",
-    "iata": "JFK",
-    "lat": 40.64,
-    "lng": -73.78
-  },
-  {
     "city": "New York",
     "airportName": "LaGuardia",
     "iata": "LGA",
@@ -47,13 +33,6 @@
     "iata": "SFO",
     "lat": 37.62,
     "lng": -122.38
-  },
-  {
-    "city": "Miami",
-    "airportName": "International Airport",
-    "iata": "MIA",
-    "lat": 25.8,
-    "lng": -80.29
   },
   {
     "city": "Las Vegas",
@@ -112,25 +91,11 @@
     "lng": -81.31
   },
   {
-    "city": "Toronto",
-    "airportName": "Pearson",
-    "iata": "YYZ",
-    "lat": 43.68,
-    "lng": -79.63
-  },
-  {
     "city": "Vancouver",
     "airportName": "International Airport",
     "iata": "YVR",
     "lat": 49.19,
     "lng": -123.18
-  },
-  {
-    "city": "Mexico City",
-    "airportName": "Benito Juárez",
-    "iata": "MEX",
-    "lat": 19.44,
-    "lng": -99.07
   },
   {
     "city": "Cancún",
@@ -183,38 +148,10 @@
   },
   {
     "city": "London",
-    "airportName": "Heathrow",
-    "iata": "LHR",
-    "lat": 51.47,
-    "lng": -0.45
-  },
-  {
-    "city": "London",
     "airportName": "Gatwick",
     "iata": "LGW",
     "lat": 51.15,
     "lng": -0.18
-  },
-  {
-    "city": "Amsterdam",
-    "airportName": "Schiphol",
-    "iata": "AMS",
-    "lat": 52.31,
-    "lng": 4.76
-  },
-  {
-    "city": "Frankfurt",
-    "airportName": "Airport",
-    "iata": "FRA",
-    "lat": 50.04,
-    "lng": 8.56
-  },
-  {
-    "city": "Madrid",
-    "airportName": "Barajas",
-    "iata": "MAD",
-    "lat": 40.47,
-    "lng": -3.56
   },
   {
     "city": "Barcelona",
@@ -224,32 +161,11 @@
     "lng": 2.08
   },
   {
-    "city": "Rome",
-    "airportName": "Fiumicino",
-    "iata": "FCO",
-    "lat": 41.8,
-    "lng": 12.25
-  },
-  {
-    "city": "Istanbul",
-    "airportName": "Airport",
-    "iata": "IST",
-    "lat": 41.26,
-    "lng": 28.74
-  },
-  {
     "city": "Moscow",
     "airportName": "Sheremetyevo",
     "iata": "SVO",
     "lat": 55.97,
     "lng": 37.41
-  },
-  {
-    "city": "Zurich",
-    "airportName": "Airport",
-    "iata": "ZRH",
-    "lat": 47.46,
-    "lng": 8.55
   },
   {
     "city": "Vienna",
@@ -393,13 +309,6 @@
   },
   {
     "city": "Tokyo",
-    "airportName": "Haneda",
-    "iata": "HND",
-    "lat": 35.55,
-    "lng": 139.78
-  },
-  {
-    "city": "Tokyo",
     "airportName": "Narita",
     "iata": "NRT",
     "lat": 35.76,
@@ -411,13 +320,6 @@
     "iata": "PEK",
     "lat": 40.08,
     "lng": 116.58
-  },
-  {
-    "city": "Beijing",
-    "airportName": "Daxing",
-    "iata": "PKX",
-    "lat": 39.51,
-    "lng": 116.41
   },
   {
     "city": "Shanghai",
@@ -441,20 +343,6 @@
     "lng": 113.81
   },
   {
-    "city": "Hong Kong",
-    "airportName": "International Airport",
-    "iata": "HKG",
-    "lat": 22.31,
-    "lng": 113.91
-  },
-  {
-    "city": "Seoul",
-    "airportName": "Incheon",
-    "iata": "ICN",
-    "lat": 37.46,
-    "lng": 126.44
-  },
-  {
     "city": "Taipei",
     "airportName": "Taoyuan",
     "iata": "TPE",
@@ -469,25 +357,11 @@
     "lng": 101.71
   },
   {
-    "city": "Jakarta",
-    "airportName": "Soekarno–Hatta",
-    "iata": "CGK",
-    "lat": -6.13,
-    "lng": 106.66
-  },
-  {
     "city": "Manila",
     "airportName": "Ninoy Aquino",
     "iata": "MNL",
     "lat": 14.51,
     "lng": 121.02
-  },
-  {
-    "city": "Mumbai",
-    "airportName": "Chhatrapati Shivaji Maharaj",
-    "iata": "BOM",
-    "lat": 19.09,
-    "lng": 72.87
   },
   {
     "city": "Delhi",
@@ -558,20 +432,6 @@
     "iata": "PER",
     "lat": -31.94,
     "lng": 115.97
-  },
-  {
-    "city": "Johannesburg",
-    "airportName": "O.R. Tambo",
-    "iata": "JNB",
-    "lat": -26.14,
-    "lng": 28.24
-  },
-  {
-    "city": "Cairo",
-    "airportName": "International Airport",
-    "iata": "CAI",
-    "lat": 30.12,
-    "lng": 31.41
   },
   {
     "city": "Addis Ababa",

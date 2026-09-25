@@ -33,11 +33,12 @@ Copy `.env.example` → `.env.local` and set `VITE_MAPBOX_TOKEN` at minimum to g
 ## Architecture notes
 
 ### Game modes
-Four modes: Daily Challenge, US Cities, Global Cities, Islands.
+Five modes: Daily Challenge, US Cities, Global Cities, Islands, Airports.
 
 - **Daily Challenge** — fixed 5-city run (2 easy/2 medium/1 hard), deterministic per Eastern calendar day, one play/day (localStorage for guests, server-authoritative for signed-in players). 30/70 US-vs-non-US roll per round. Harder rounds worth more (2× medium, 3× hard). Wordle-style shareable result + streak counter. "Last 7 days" exclusion prevents repeat cities.
 - **US Cities / Global / Islands** — random picks from datasets, personal history only (not leaderboard), per-difficulty personal bests.
 - **Islands** — each island has its own satellite reveal zoom range (tuned by hand via `/dev` sandbox), two hints revealable as chat-style bubbles.
+- **Airports** — per-airport zoom + hints like Islands; never in the Daily pool. Only mode with a 4th **Extreme** tier (`getDifficulties(mode)` in `difficultyConfig.ts` is the source of truth for which tiers a mode shows). Every tier needs ≥5 entries (`ROUNDS_PER_GAME`) or the game breaks.
 
 ### Serverless API
 `/api/submit-daily` is pre-bundled from `functions-src/` by `scripts/build-api.mjs` so it can reuse app scoring code without Vercel's per-file build choking on shared imports. It authenticates the player, re-derives the daily score server-side, and writes it with the service-role key.

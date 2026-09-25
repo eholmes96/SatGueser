@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { Difficulty, Mode } from '../utils/mapboxUtils'
-import { DIFFICULTY_CONFIG } from '../utils/difficultyConfig'
+import { DIFFICULTY_CONFIG, getDifficulties } from '../utils/difficultyConfig'
 import { supabase } from '../lib/supabase'
 import { ScoreLineChart, type ScorePoint } from './ScoreLineChart'
 
@@ -15,7 +15,6 @@ type Tab = 'daily' | 'us' | 'global' | 'islands' | 'airports'
 
 interface GameRow { mode: Mode; difficulty: Difficulty; total_score: number }
 
-const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard']
 const MODE_LABEL: Record<Mode, string> = { us: 'US Cities', global: 'Global', islands: 'Islands', airports: 'Airports' }
 
 const TABS: { id: Tab; label: string }[] = [
@@ -176,10 +175,10 @@ export function StatsPage({ onClose }: { onClose: () => void }) {
 }
 
 // Per-difficulty summary cards for a US/Global mode, mirroring the game's
-// Select-Difficulty screen. Always renders all three tiers (zeros when unplayed)
-// so the layout stays stable regardless of history.
+// Select-Difficulty screen. Always renders every tier the mode offers (zeros
+// when unplayed) so the layout stays stable regardless of history.
 function DifficultyCards({ mode, games }: { mode: Mode; games: GameRow[] }) {
-  const stats = DIFFICULTIES.map(difficulty => {
+  const stats = getDifficulties(mode).map(difficulty => {
     const scores = games
       .filter(g => g.mode === mode && g.difficulty === difficulty)
       .map(g => g.total_score)
