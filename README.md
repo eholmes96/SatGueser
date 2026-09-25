@@ -2,19 +2,19 @@
 
 The hottest satellite based geography quiz game.
 
-Watch a satellite view slowly zoom out from a city, and race the clock to guess where you're looking at before the reveal finishes.
+Watch a satellite view slowly zoom out from a city, island, or airport, and race the clock to guess where you're looking at before the reveal finishes.
 
 ## Gameplay
 
-- Each game is 5 rounds. Every round shows a different city, starting fully zoomed in on a satellite view that gradually zooms out over 30 seconds.
+- Each game is 5 rounds. Every round shows a different place, starting fully zoomed in on a satellite view that gradually zooms out over 30 seconds.
 - Type a guess into the autocomplete input — the sooner you guess correctly, the more points you score. Guessing after the timer runs out scores 0 for that round.
-- **Difficulty**: Easy, Medium, or Hard — controls how obscure the round's cities (or islands) are.
+- **Difficulty**: Easy, Medium, or Hard, which controls how obscure the round's places are. Airports adds a fourth tier, **Extreme** ("Where?"), for places most people couldn't find on a map.
 - **Mode**: Daily Challenge, US Cities, Global, Islands, or Airports — pick before you start.
   - US mode draws from well-known American metros; Global mode adds international cities and matches guesses regardless of accents (e.g. typing "sao paulo" still matches "São Paulo, Brazil").
   - Islands mode guesses real islands instead of cities, each revealed at its own zoom level (a tiny island like Key West and a landmass like Greenland can't share one zoom range). An optional **Hint** button next to the guess input reveals up to two clues per island, shown as chat-style bubbles; hints don't cost points.
-  - Airports mode guesses real airports, shown as "{City} {Airport Name} (IATA code)" (e.g. "Chicago O'Hare (ORD)") — type the city, the airport's name, or its 3-letter IATA code and any of them autocompletes to the right answer, with IATA-code matches ranked highest, then city-name matches, then airport-name matches. Each airport reveals at its own much tighter zoom range than cities, starting on the terminal rather than the runway.
+  - Airports mode guesses real airports, shown as "{City} {Airport Name} (IATA code)" (e.g. "Chicago O'Hare (ORD)") — type the city, the airport's name, or its 3-letter IATA code and any of them autocompletes to the right answer, with IATA-code matches ranked highest, then city-name matches, then airport-name matches. Each airport reveals at its own much tighter zoom range than cities, starting on the terminal rather than the runway. There are 55 airports across four tiers: Easy (the world's busiest hubs), Medium, Hard (known places with unfamiliar airports) and Extreme (places most players have never heard of). Extreme rounds score 4x.
   - Daily Challenge has no difficulty picker — everyone gets the same fixed 5-city set (2 easy/2 medium/1 hard, ~30% US/70% non-US) for the day, rotating at midnight Eastern time and playable once per day. Harder rounds score more (2x medium, 3x hard), and you can copy a shareable result once you finish. Airports is not part of the Daily Challenge pool.
-- **New High Score** 🏅 — beating your personal best pops a banner on the game summary. Bests are tracked per mode and, for US/Global/Islands, per difficulty too (so Easy/Medium/Hard each have their own record) — stored locally, so it works for guests too.
+- **New High Score** 🏅 — beating your personal best pops a banner on the game summary. Bests are tracked per mode and, for US/Global/Islands/Airports, per difficulty too (so each tier has its own record) — stored locally, so it works for guests too.
 
 ## Accounts, leaderboards & stats
 
@@ -22,9 +22,9 @@ Optional — the game is fully playable as a guest, with progress and streaks st
 
 - **Get on the leaderboards** — your daily scores and streaks are recorded to a daily top-scores board and an all-time streak board, exposed as public functions that return only a display name and score (never email or raw round data). An in-app view of these is still to come; for now the Stats page shows your own history.
 - **Keep your streak across devices** — once you're signed in, streaks become server-authoritative.
-- **See your Stats** — open the account menu → **Stats** for a Daily score-over-time line chart and per-difficulty Games/Best/Avg cards for US Cities, Global, and Islands. Press **Esc** or the × in the top left to close it.
+- **See your Stats** — open the account menu → **Stats** for a Daily score-over-time line chart and per-difficulty Games/Best/Avg cards for US Cities, Global, Islands, and Airports (including Extreme). Press **Esc** or the × in the top left to close it.
 
-Daily Challenge submissions go through a Vercel serverless function (`/api/submit-daily`) that re-derives the score from the day's deterministic city set and writes it with the Supabase service role — so a daily score can't be faked from the browser. US, Global, and Islands games draw random cities/islands (not comparable across players), so they're recorded as personal history under row-level security rather than a leaderboard. The database schema, RLS policies, and leaderboard functions live in `supabase/migrations/`.
+Daily Challenge submissions go through a Vercel serverless function (`/api/submit-daily`) that re-derives the score from the day's deterministic city set and writes it with the Supabase service role — so a daily score can't be faked from the browser. US, Global, Islands, and Airports games draw random places (not comparable across players), so they're recorded as personal history under row-level security rather than a leaderboard. The database schema, RLS policies, and leaderboard functions live in `supabase/migrations/`.
 
 ## Tech stack
 
@@ -72,6 +72,11 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 ## Version history
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
+
+**2026-09-25 — Mobile menu layout & share preview**
+- The five-tab mode selector now wraps onto two rows on narrow screens instead of running off the left edge of the phone.
+- Difficulty tiles always sit two per row: Easy and Medium on top with Hard centred below, or a 2×2 grid for Airports.
+- The link-preview card (`public/og-image.png` plus the page's title and description meta tags) now covers every mode. The pills read Cities, Islands and Airports. The title is "Guess the Place from Space", and the description says you can "compete across cities, islands, and airports". The image URL now carries a `?v=` version so chat apps stop showing their cached copy of the old card.
 
 **2026-09-24 — Airports: 55 airports and a new Extreme tier**
 - Airports grows from 15 to 55 airports (Easy 15, Medium 16, Hard 13, Extreme 11). The new additions include LHR, HND, JFK, PKX, YYZ, MAD, BOM, CAI, Lukla, Saba, Courchevel, Svalbard and Madeira. The easy/medium picks moved out of the autocomplete-only list of busy airports and became playable answers.
