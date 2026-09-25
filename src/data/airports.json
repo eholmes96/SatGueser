@@ -984,7 +984,7 @@
       {
         "label": "Terminal",
         "lat": -54.8433,
-        "lng": -68.2958
+        "lng": -68.307
       }
     ]
   },
@@ -1192,29 +1192,6 @@
         "label": "Terminal",
         "lat": -31.5382,
         "lng": 159.077
-      }
-    ]
-  },
-  {
-    "name": "hle",
-    "city": "Saint Helena",
-    "airportName": "Airport",
-    "iata": "HLE",
-    "displayName": "Saint Helena Airport (HLE)",
-    "difficulty": "extreme",
-    "mode": "airports",
-    "country": "Saint Helena",
-    "startZoom": 17,
-    "endZoom": 12,
-    "hints": [
-      "Built on a clifftop plateau, it was nicknamed 'the world's most useless airport' after wind shear delayed its opening",
-      "Serves a remote South Atlantic island where an exiled French emperor spent his final years"
-    ],
-    "points": [
-      {
-        "label": "Terminal",
-        "lat": -15.9589,
-        "lng": -5.6461
       }
     ]
   },

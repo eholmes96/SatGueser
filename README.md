@@ -73,11 +73,11 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
 
-**2026-09-24 — Airports: 56 airports and a new Extreme tier**
-- Airports grows from 15 to 56 airports (Easy 15, Medium 16, Hard 13, Extreme 12). The new additions include LHR, HND, JFK, PKX, YYZ, MAD, BOM, CAI, Lukla, Saba, Courchevel, Svalbard and Madeira. The easy/medium picks moved out of the autocomplete-only list of busy airports and became playable answers.
-- Hard added Kathmandu, Malé, Bora Bora, Queenstown, Ushuaia and Reykjavík Keflavík: places you've heard of, with airports you haven't. Extreme added Funafuti, Lord Howe Island, Saint Helena, Agatti, Leh and the Faroe Islands (Vágar): places most people can't find on a map.
+**2026-09-24 — Airports: 55 airports and a new Extreme tier**
+- Airports grows from 15 to 55 airports (Easy 15, Medium 16, Hard 13, Extreme 11). The new additions include LHR, HND, JFK, PKX, YYZ, MAD, BOM, CAI, Lukla, Saba, Courchevel, Svalbard and Madeira. The easy/medium picks moved out of the autocomplete-only list of busy airports and became playable answers.
+- Hard added Kathmandu, Malé, Bora Bora, Queenstown, Ushuaia and Reykjavík Keflavík: places you've heard of, with airports you haven't. Extreme added Funafuti, Lord Howe Island, Agatti, Leh and the Faroe Islands (Vágar): places most people can't find on a map.
 - New **Extreme** tier ("Where?", ×4 score multiplier), Airports only. It's for places few people know at all, let alone their airports: Paro, Lukla, Skiathos, Mytilene, Saba and Courchevel. US/Global/Islands/Daily keep Easy/Medium/Hard.
-- Other tier changes: Gibraltar moved to Medium. Barra was removed because its beach runway isn't visible on satellite imagery. Svalbard was recentred, with its start zoom set to 15.
+- Other tier changes: Gibraltar moved to Medium. Barra and Saint Helena were removed because neither airport is visible on satellite imagery. Ushuaia was nudged west so the reveal doesn't open on a cloud over the runway. Svalbard was recentred, with its start zoom set to 15.
 - New migration `20260924000000_extreme_difficulty.sql` widens the `game_results.difficulty` CHECK to accept `'extreme'`.
 
 **2026-09-21 — Airports mode**
