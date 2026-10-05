@@ -18,10 +18,20 @@ export function calculateScore(elapsedSeconds: number): number {
   return Math.max(0, Math.round((1000 - elapsedSeconds * 30) / 10) * 10)
 }
 
+// Each wrong guess pushes the round's *score* clock forward by this much (the
+// zoom keeps running on true time). 10/3s is exactly 100 points at
+// calculateScore's 30 pts/s, so a wrong guess costs 100 × the multiplier.
+export const WRONG_GUESS_PENALTY_SECONDS = 10 / 3
+
 // Full per-round score including the difficulty multiplier (easy 1x / medium
-// 2x / hard 3x). This is the exact value submitGuess stores and the Edge
-// Function re-derives when validating a daily submission.
-export function scoreRound(elapsedSeconds: number, difficulty: Difficulty): number {
+// 2x / hard 3x / extreme 4x) and the wrong-guess penalty. This is the exact
+// value submitGuess stores and the daily-submit function re-derives when
+// validating a daily submission. Returns 0 for a timeout — the true clock
+// reaching ROUND_DURATION, or penalties running the score clock out first —
+// and a correct guess always scores at least 100 × multiplier, so 0 ⇔ timed out.
+export function scoreRound(elapsedSeconds: number, difficulty: Difficulty, wrongGuesses = 0): number {
   const clamped = Math.min(Math.max(elapsedSeconds, 0), ROUND_DURATION)
-  return calculateScore(clamped) * DIFFICULTY_SCORE_MULTIPLIER[difficulty]
+  const scoreClock = clamped + wrongGuesses * WRONG_GUESS_PENALTY_SECONDS
+  if (clamped >= ROUND_DURATION || scoreClock >= ROUND_DURATION) return 0
+  return calculateScore(scoreClock) * DIFFICULTY_SCORE_MULTIPLIER[difficulty]
 }

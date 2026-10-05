@@ -19,7 +19,9 @@ import { getEasternDateKey } from '../src/utils/easternDate'
 // exact same buildDailyChallengeCities / scoreRound the browser ran — and only
 // the value it computes itself is stored.
 //
-// Trust model: the client sends only each round's elapsedSeconds. Difficulty
+// Trust model: the client sends only each round's elapsedSeconds and
+// wrongGuesses (wrong guesses only ever lower a score, so under-reporting them
+// gains nothing faking elapsedSeconds couldn't already). Difficulty
 // (and thus the 1x/2x/3x multiplier) is re-derived here from the deterministic
 // day, so a tampered client can't claim all-hard rounds; and the score curve is
 // recomputed, so it can't inflate the total. What this design canNOT prove is
@@ -35,7 +37,7 @@ const SUPABASE_SECRET_KEY = process.env.SUPABASE_SECRET_KEY
 
 interface SubmitBody {
   dateKey: string
-  rounds: { elapsedSeconds: number }[]
+  rounds: { elapsedSeconds: number; wrongGuesses?: number }[]
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -89,12 +91,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const verifiedRounds = cities.map((city, i) => {
     const raw = Number(rounds[i]?.elapsedSeconds)
     const elapsed = Number.isFinite(raw) ? Math.min(Math.max(raw, 0), ROUND_DURATION) : ROUND_DURATION
-    // A round that ran the full clock is a timeout (no correct guess) and scores
-    // 0 — matching the client, where scoreRound's positive floor is bypassed for
-    // an expired round. Anything under the limit is a correct guess, scored on
-    // the shared time+difficulty curve.
-    const score = elapsed >= ROUND_DURATION ? 0 : scoreRound(elapsed, city.difficulty)
-    return { difficulty: city.difficulty, elapsedSeconds: elapsed, score }
+    // Missing (pre-penalty client) or junk counts as no wrong guesses.
+    const rawWrong = Number(rounds[i]?.wrongGuesses)
+    const wrongGuesses = Number.isFinite(rawWrong) && rawWrong > 0 ? Math.floor(rawWrong) : 0
+    // scoreRound returns 0 for a timeout — the full clock ran out, or wrong
+    // guesses ran the score clock out first — exactly as the client scored it.
+    // Anything else is a correct guess on the shared time+penalty+difficulty curve.
+    const score = scoreRound(elapsed, city.difficulty, wrongGuesses)
+    return { difficulty: city.difficulty, elapsedSeconds: elapsed, wrongGuesses, score }
   })
 
   const totalScore = verifiedRounds.reduce((sum, r) => sum + r.score, 0)

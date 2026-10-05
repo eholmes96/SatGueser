@@ -4,8 +4,9 @@ import type { DailyRoundResult } from '../utils/dailyChallengeStorage'
 // Client half of the daily submission. Sends the finished run to the
 // /api/submit-daily Vercel Function, which authenticates the user, re-derives
 // the score, and writes the leaderboard row + streak. We deliberately send only
-// each round's elapsedSeconds — the server recomputes difficulty and score, so
-// there's no point shipping (or trusting) the client's own totals.
+// each round's elapsedSeconds and wrongGuesses — the server recomputes
+// difficulty and score, so there's no point shipping (or trusting) the
+// client's own totals.
 //
 // This is best-effort and non-blocking: guests (no Supabase session) simply
 // skip it and keep their localStorage record, and a network/one-per-day error
@@ -35,7 +36,7 @@ export async function submitDailyRun(
       },
       body: JSON.stringify({
         dateKey,
-        rounds: rounds.map(r => ({ elapsedSeconds: r.elapsedSeconds })),
+        rounds: rounds.map(r => ({ elapsedSeconds: r.elapsedSeconds, wrongGuesses: r.wrongGuesses ?? 0 })),
       }),
     })
     if (!res.ok) {

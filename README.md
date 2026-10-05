@@ -73,11 +73,11 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
 
-**2026-10-05 — Islands: wrong guesses cost points (trial)**
-- In Islands, each wrong guess moves the round's score clock forward 3⅓ seconds, which works out to −100 points × the difficulty multiplier. The zoom keeps running on true time, so the map never jumps. The timer bar follows the score clock and drops visibly on each wrong guess.
+**2026-10-05 — Wrong guesses cost points; arrows follow the flat map**
+- In every mode, each wrong guess moves the round's score clock forward 3⅓ seconds, which works out to −100 points × the difficulty multiplier. The zoom keeps running on true time, so the map never jumps. The timer bar follows the score clock and drops visibly on each wrong guess. (Trialled on Islands first, then rolled out to US Cities, Global, Airports and Daily.)
 - If wrong guesses run the score clock out before the 30 seconds are up, the round ends as Time's Up and scores 0.
-- The game-over scorecard has a new red column between time and score showing each round's wrong guesses (`0`, `-1`, `-2`, …). The time column still shows the true time.
-- Islands only for now. Other modes, including Daily (which is scored server-side), are unchanged.
+- The game-over scorecard and the Daily recap card have a new red column between time and score showing each round's wrong guesses (`0`, `-1`, `-2`, …). The time column still shows the true time.
+- Daily is still scored server-side: the client now sends each round's wrong-guess count, and `/api/submit-daily` re-scores with the same `scoreRound` (in `src/utils/scoring.ts`) the browser uses. Daily scores from before this change didn't include the penalty. The share-text squares are now coloured by the score clock, so a quick round full of wrong guesses no longer shares as 🟩.
 - The wrong-guess arrow (all modes) now points the way the answer lies on a flat map, instead of the starting heading of the shortest route over the globe. Sardinia → Tasmania used to show ➡️ and Great Britain → New Zealand showed ⬆️ (over the pole); both now show ↘️. Distances are unchanged.
 
 **2026-09-25 — Mobile menu layout & share preview**
