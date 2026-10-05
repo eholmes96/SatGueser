@@ -12,7 +12,8 @@ import { buildDirectionalHint } from './utils/geo'
 import { getGuessCoords } from './utils/guessCoords'
 import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficulties, getDifficultyDesc } from './utils/difficultyConfig'
 import { AIRPORT_SUGGESTIONS } from './utils/airports'
-import { ROUND_DURATION, WRONG_GUESS_PENALTY_SECONDS, hasWrongGuessPenalty } from './utils/scoring'
+import { ROUND_DURATION } from './utils/scoring'
+import { WRONG_GUESS_PENALTY_SECONDS, hasWrongGuessPenalty } from './utils/wrongGuessPenalty'
 import './App.css'
 
 const DAILY_CITIES = [...US_CITIES, ...GLOBAL_CITIES]

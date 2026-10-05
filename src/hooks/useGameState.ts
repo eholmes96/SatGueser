@@ -7,7 +7,8 @@ import { playableIslands } from '../utils/islands'
 import { playableAirports } from '../utils/airports'
 import { getEasternDateKey } from '../utils/easternDate'
 import { buildDailyChallengeCities } from '../utils/dailyChallenge'
-import { calculateScore, ROUND_DURATION, WRONG_GUESS_PENALTY_SECONDS, hasWrongGuessPenalty } from '../utils/scoring'
+import { calculateScore, ROUND_DURATION } from '../utils/scoring'
+import { WRONG_GUESS_PENALTY_SECONDS, hasWrongGuessPenalty } from '../utils/wrongGuessPenalty'
 import { DIFFICULTY_SCORE_MULTIPLIER } from '../utils/difficultyConfig'
 import {
   getDailyChallengeStorage,
