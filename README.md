@@ -73,6 +73,12 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
 
+**2026-10-05 — Islands: wrong guesses cost points (trial)**
+- In Islands, each wrong guess moves the round's score clock forward 3⅓ seconds, which works out to −100 points × the difficulty multiplier. The zoom keeps running on true time, so the map never jumps. The timer bar follows the score clock and drops visibly on each wrong guess.
+- If wrong guesses run the score clock out before the 30 seconds are up, the round ends as Time's Up and scores 0.
+- The game-over scorecard has a new red column between time and score showing each round's wrong guesses (`0`, `-1`, `-2`, …). The time column still shows the true time.
+- Islands only for now. Other modes, including Daily (which is scored server-side), are unchanged.
+
 **2026-09-25 — Mobile menu layout & share preview**
 - The five-tab mode selector now wraps onto two rows on narrow screens instead of running off the left edge of the phone.
 - Difficulty tiles always sit two per row: Easy and Medium on top with Hard centred below, or a 2×2 grid for Airports.

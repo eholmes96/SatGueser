@@ -12,6 +12,7 @@ import { buildDirectionalHint } from './utils/geo'
 import { getGuessCoords } from './utils/guessCoords'
 import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficulties, getDifficultyDesc } from './utils/difficultyConfig'
 import { AIRPORT_SUGGESTIONS } from './utils/airports'
+import { ROUND_DURATION, WRONG_GUESS_PENALTY_SECONDS, hasWrongGuessPenalty } from './utils/scoring'
 import './App.css'
 
 const DAILY_CITIES = [...US_CITIES, ...GLOBAL_CITIES]
@@ -87,8 +88,12 @@ const hintButtonStyle = (disabled: boolean): React.CSSProperties => ({
 function App() {
   const { state, startGame, startTimer, selectDifficulty, startDailyChallenge, submitGuess, nextRound, dailyStatus, isNewHighScore } = useGameState()
   const activeCity = state.cities[state.activeCityIndex]
-  const timeLeft = Math.max(0, 30 - state.elapsedSeconds)
-  const timerPct = Math.max(0, (timeLeft / 30) * 100)
+  // The bar tracks the score clock, so it drops on each penalized wrong guess
+  // while the zoom (MapReveal) keeps running on true time.
+  const showWrongGuesses = hasWrongGuessPenalty(state.mode)
+  const penaltySeconds = showWrongGuesses ? state.wrongGuesses * WRONG_GUESS_PENALTY_SECONDS : 0
+  const timeLeft = Math.max(0, ROUND_DURATION - state.elapsedSeconds - penaltySeconds)
+  const timerPct = Math.max(0, (timeLeft / ROUND_DURATION) * 100)
   const barColor = timerPct > 66 ? '#22c55e' : timerPct > 33 ? '#f59e0b' : '#dc2626'
 
   const [titleMode, setTitleMode] = useState<TitleMode>('idle')
@@ -156,8 +161,9 @@ function App() {
   useEffect(() => { setHintsShown(0); setDirectionHints([]) }, [roundToken])
 
   // Wraps submitGuess to derive the directional hint on a wrong guess. Safe to
-  // read activeCity from the closure: a wrong guess changes no game state, so
-  // the captured value is still the current round's target. A guessed name
+  // read activeCity from the closure: a wrong guess never changes the active
+  // city (at most the wrong-guess count), so the captured value is still the
+  // current round's target. A guessed name
   // with no known coords (shouldn't happen — every autocomplete pool carries
   // coords) just degrades to the existing shake-only feedback.
   const handleGuess = useCallback((cityName: string): boolean => {
@@ -694,6 +700,7 @@ function App() {
               {state.cities.map((city, i) => {
                 const score = state.roundScores[i] ?? 0
                 const elapsed = state.roundElapsedTimes[i]
+                const wrong = state.roundWrongGuesses[i] ?? 0
                 const timedOut = score === 0
                 return (
                   <div key={city.name} style={{
@@ -722,6 +729,11 @@ function App() {
                     <span style={{ color: '#888', fontSize: 13, minWidth: 40, textAlign: 'right' }}>
                       {timedOut ? '—' : `${elapsed?.toFixed(1)}s`}
                     </span>
+                    {showWrongGuesses && (
+                      <span style={{ color: '#f87171', fontSize: 13, fontWeight: 600, minWidth: 24, textAlign: 'right' }}>
+                        {wrong === 0 ? '0' : `-${wrong}`}
+                      </span>
+                    )}
                     <span style={{
                       fontSize: 13,
                       fontWeight: 600,

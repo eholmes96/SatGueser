@@ -3644,6 +3644,7 @@ function scoreRound(elapsedSeconds, difficulty) {
   const clamped = Math.min(Math.max(elapsedSeconds, 0), ROUND_DURATION);
   return calculateScore(clamped) * DIFFICULTY_SCORE_MULTIPLIER[difficulty];
 }
+var WRONG_GUESS_PENALTY_SECONDS = 10 / 3;
 
 // functions-src/submit-daily.ts
 var allCities = Cities_v2_default;

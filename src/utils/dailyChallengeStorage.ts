@@ -9,6 +9,9 @@ export interface DailyRoundResult {
   difficulty: Difficulty
   score: number
   elapsedSeconds: number
+  // Wrong guesses this round — only recorded for modes with the wrong-guess
+  // penalty (see hasWrongGuessPenalty).
+  wrongGuesses?: number
 }
 
 export interface DailyChallengeRecord {
