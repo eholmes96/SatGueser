@@ -1,5 +1,6 @@
-// Great-circle math for the wrong-guess directional hint. Pure trig on WGS84
-// decimal degrees — no geo library needed at "which way is the answer" scale.
+// Geo math for the wrong-guess directional hint: great-circle distance, flat-map
+// direction. Pure trig on WGS84 decimal degrees — no geo library needed at
+// "which way is the answer" scale.
 
 export interface LatLng {
   lat: number
@@ -21,16 +22,22 @@ export function haversineMiles(a: LatLng, b: LatLng): number {
   return 2 * EARTH_RADIUS_MI * Math.asin(Math.sqrt(h))
 }
 
-// Initial bearing of the great circle from `from` toward `to`, in degrees
-// clockwise from north, normalized to [0, 360). The periodic trig handles
-// dateline crossings (e.g. Tokyo→Seattle correctly comes out northeast).
-export function initialBearingDeg(from: LatLng, to: LatLng): number {
-  const φ1 = toRad(from.lat)
-  const φ2 = toRad(to.lat)
-  const dLng = toRad(to.lng - from.lng)
-  const y = Math.sin(dLng) * Math.cos(φ2)
-  const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(dLng)
-  return ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360
+// Rhumb-line bearing from `from` toward `to`, in degrees clockwise from north,
+// normalized to [0, 360): the direction of a straight line drawn between the
+// two points on a flat (Mercator) map. Deliberately not the great-circle
+// heading — that's the shortest route over the globe, which on long hops
+// points somewhere players don't expect (Great Britain → New Zealand starts
+// out heading north over the pole; Sardinia → Tasmania reads as due east).
+// Longitude difference is wrapped to ±180° so the arrow takes the shorter way
+// round the dateline (Tokyo→Seattle comes out east, not west).
+export function rhumbBearingDeg(from: LatLng, to: LatLng): number {
+  let dLngDeg = to.lng - from.lng
+  if (dLngDeg > 180) dLngDeg -= 360
+  if (dLngDeg < -180) dLngDeg += 360
+  const dPsi = Math.log(
+    Math.tan(Math.PI / 4 + toRad(to.lat) / 2) / Math.tan(Math.PI / 4 + toRad(from.lat) / 2)
+  )
+  return ((Math.atan2(toRad(dLngDeg), dPsi) * 180) / Math.PI + 360) % 360
 }
 
 // Index = compass sector, starting at north, going clockwise in 45° steps.
@@ -51,5 +58,5 @@ export function bearingToArrow(bearingDeg: number): string {
 export function buildDirectionalHint(guess: LatLng, target: LatLng, guessName: string): string {
   const miles = haversineMiles(guess, target)
   if (miles < 10) return `🎯 Less than 10 mi away from ${guessName}`
-  return `${Math.round(miles).toLocaleString('en-US')} mi ${bearingToArrow(initialBearingDeg(guess, target))} away from ${guessName}`
+  return `${Math.round(miles).toLocaleString('en-US')} mi ${bearingToArrow(rhumbBearingDeg(guess, target))} away from ${guessName}`
 }

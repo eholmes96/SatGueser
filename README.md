@@ -78,6 +78,7 @@ No formal releases/tags yet — this is a running log of notable changes, most r
 - If wrong guesses run the score clock out before the 30 seconds are up, the round ends as Time's Up and scores 0.
 - The game-over scorecard has a new red column between time and score showing each round's wrong guesses (`0`, `-1`, `-2`, …). The time column still shows the true time.
 - Islands only for now. Other modes, including Daily (which is scored server-side), are unchanged.
+- The wrong-guess arrow (all modes) now points the way the answer lies on a flat map, instead of the starting heading of the shortest route over the globe. Sardinia → Tasmania used to show ➡️ and Great Britain → New Zealand showed ⬆️ (over the pole); both now show ↘️. Distances are unchanged.
 
 **2026-09-25 — Mobile menu layout & share preview**
 - The five-tab mode selector now wraps onto two rows on narrow screens instead of running off the left edge of the phone.
