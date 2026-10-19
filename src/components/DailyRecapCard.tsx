@@ -43,6 +43,7 @@ export function DailyRecapCard({ record, streak, onCopy, copied }: DailyRecapCar
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
         {record.rounds.map((round, i) => {
           const timedOut = round.score === 0
+          const wrong = round.wrongGuesses ?? 0
           return (
             <div key={round.cityName} style={{
               display: 'flex',
@@ -67,6 +68,9 @@ export function DailyRecapCard({ record, streak, onCopy, copied }: DailyRecapCar
               </span>
               <span style={{ color: '#888', fontSize: 13, minWidth: 40, textAlign: 'right' }}>
                 {timedOut ? '—' : `${round.elapsedSeconds.toFixed(1)}s`}
+              </span>
+              <span style={{ color: '#f87171', fontSize: 13, fontWeight: 600, minWidth: 24, textAlign: 'right' }}>
+                {wrong === 0 ? '0' : `-${wrong}`}
               </span>
               <span style={{
                 fontSize: 13,

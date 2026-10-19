@@ -7,8 +7,7 @@ import { playableIslands } from '../utils/islands'
 import { playableAirports } from '../utils/airports'
 import { getEasternDateKey } from '../utils/easternDate'
 import { buildDailyChallengeCities } from '../utils/dailyChallenge'
-import { calculateScore, ROUND_DURATION } from '../utils/scoring'
-import { DIFFICULTY_SCORE_MULTIPLIER } from '../utils/difficultyConfig'
+import { scoreRound, ROUND_DURATION, WRONG_GUESS_PENALTY_SECONDS } from '../utils/scoring'
 import {
   getDailyChallengeStorage,
   getTodayStatus,
@@ -34,7 +33,13 @@ export interface GameState {
   activeCityIndex: number
   roundScores: number[]
   roundElapsedTimes: number[]
+  // Wrong guesses per finished round, and the running count for the current
+  // one (each costs WRONG_GUESS_PENALTY_SECONDS on the score clock).
+  roundWrongGuesses: number[]
+  wrongGuesses: number
   totalScore: number
+  // True time into the round — what the zoom runs on. The score clock is this
+  // plus wrongGuesses * WRONG_GUESS_PENALTY_SECONDS.
   elapsedSeconds: number
   // Eastern-time date key captured once when a daily-challenge run starts,
   // so completion is stamped with the day that was actually played even if
@@ -90,6 +95,19 @@ function pickFromDifficulty(
   return selection
 }
 
+// Ends the current round as a 0-point timeout. elapsedSeconds is the true time
+// (kept for the scorecard); the round may have ended early on penalties.
+function timedOut(s: GameState, trueElapsed: number): GameState {
+  return {
+    ...s,
+    phase: 'roundResult',
+    roundScores: [...s.roundScores, 0],
+    roundElapsedTimes: [...s.roundElapsedTimes, trueElapsed],
+    roundWrongGuesses: [...s.roundWrongGuesses, s.wrongGuesses],
+    elapsedSeconds: trueElapsed,
+  }
+}
+
 const INITIAL_STATE: GameState = {
   phase: 'idle',
   difficulty: null,
@@ -99,6 +117,8 @@ const INITIAL_STATE: GameState = {
   activeCityIndex: 0,
   roundScores: [],
   roundElapsedTimes: [],
+  roundWrongGuesses: [],
+  wrongGuesses: 0,
   totalScore: 0,
   elapsedSeconds: 0,
   dailyDateKey: null,
@@ -114,6 +134,10 @@ export function useGameState() {
   const [state, setState] = useState<GameState>(INITIAL_STATE)
   const timerStartRef = useRef<number | null>(null)
   const intervalRef = useRef<number>(0)
+  // Mirrors state.wrongGuesses for the timer interval, which can't see state.
+  // Reset at round boundaries (not in startTimer), so a wrong guess made in
+  // the moment before the clock starts still counts once it does.
+  const wrongGuessesRef = useRef(0)
   // Tracks each mode+difficulty combo's last game's cities separately, so
   // switching modes/tiers doesn't cross-contaminate exclusions.
   const lastGameCitiesRef = useRef<Record<string, Set<string>>>({})
@@ -154,20 +178,13 @@ export function useGameState() {
 
     intervalRef.current = window.setInterval(() => {
       const elapsed = (Date.now() - startedAt) / 1000
+      const penalized = elapsed + wrongGuessesRef.current * WRONG_GUESS_PENALTY_SECONDS
 
-      if (elapsed >= ROUND_DURATION) {
+      if (penalized >= ROUND_DURATION) {
         clearInterval(intervalRef.current)
         timerStartRef.current = null
-        setState(s => {
-          if (s.phase !== 'playing') return s
-          return {
-            ...s,
-            phase: 'roundResult',
-            roundScores: [...s.roundScores, 0],
-            roundElapsedTimes: [...s.roundElapsedTimes, ROUND_DURATION],
-            elapsedSeconds: ROUND_DURATION,
-          }
-        })
+        const trueElapsed = Math.min(elapsed, ROUND_DURATION)
+        setState(s => s.phase === 'playing' ? timedOut(s, trueElapsed) : s)
       } else {
         setState(s => s.phase === 'playing' ? { ...s, elapsedSeconds: elapsed } : s)
       }
@@ -179,11 +196,13 @@ export function useGameState() {
   const startGame = useCallback(() => {
     clearInterval(intervalRef.current)
     timerStartRef.current = null
+    wrongGuessesRef.current = 0
     setState({ ...INITIAL_STATE, phase: 'selectingDifficulty' })
   }, [])
 
   // Called when the player picks a difficulty tile — begins the actual game.
   const selectDifficulty = useCallback((difficulty: Difficulty, mode: Mode = 'us') => {
+    wrongGuessesRef.current = 0
     gameResultSubmittedRef.current = false
     highScoreCheckedRef.current = false
     setIsNewHighScore(false)
@@ -213,6 +232,7 @@ export function useGameState() {
 
     clearInterval(intervalRef.current)
     timerStartRef.current = null
+    wrongGuessesRef.current = 0
     highScoreCheckedRef.current = false
     setIsNewHighScore(false)
     serverHighScorePromiseRef.current = fetchServerHighScore('daily', null)
@@ -229,32 +249,49 @@ export function useGameState() {
   }, [])
 
   const submitGuess = useCallback((cityName: string): boolean => {
+    // Before the clock starts (MapReveal's settle delay / first map load) the
+    // round is at 0s — otherwise one quick wrong guess would count as a full
+    // 30s plus penalty and end the round on the spot.
     const elapsed = timerStartRef.current !== null
       ? (Date.now() - timerStartRef.current) / 1000
-      : ROUND_DURATION
+      : 0
 
     let wasCorrect = false
     setState(s => {
       if (s.phase !== 'playing') return s
       const active = s.cities[s.activeCityIndex]
 
+      const clampedElapsed = Math.min(elapsed, ROUND_DURATION)
+
       if (normalize(cityName) !== normalize(active.displayName)) {
-        return s
+        const wrongGuesses = s.wrongGuesses + 1
+        wrongGuessesRef.current = wrongGuesses
+        // Penalties alone can run the score clock out before the zoom ends.
+        if (elapsed + wrongGuesses * WRONG_GUESS_PENALTY_SECONDS >= ROUND_DURATION) {
+          clearInterval(intervalRef.current)
+          timerStartRef.current = null
+          return timedOut({ ...s, wrongGuesses }, clampedElapsed)
+        }
+        return { ...s, wrongGuesses }
       }
 
-      wasCorrect = true
       clearInterval(intervalRef.current)
       timerStartRef.current = null
 
-      const clampedElapsed = Math.min(elapsed, ROUND_DURATION)
-      const baseScore = calculateScore(clampedElapsed)
-      const score = baseScore * DIFFICULTY_SCORE_MULTIPLIER[active.difficulty]
+      // Same function the daily-submit server re-scores with. 0 means the
+      // score clock had already run out (a guess landing between interval
+      // ticks), so finish it as the timeout the server will also see.
+      const score = scoreRound(clampedElapsed, active.difficulty, s.wrongGuesses)
+      if (score === 0) return timedOut(s, clampedElapsed)
+
+      wasCorrect = true
       const newTotal = s.totalScore + score
       return {
         ...s,
         phase: 'roundResult',
         roundScores: [...s.roundScores, score],
         roundElapsedTimes: [...s.roundElapsedTimes, clampedElapsed],
+        roundWrongGuesses: [...s.roundWrongGuesses, s.wrongGuesses],
         totalScore: newTotal,
         elapsedSeconds: clampedElapsed,
       }
@@ -263,6 +300,7 @@ export function useGameState() {
   }, [])
 
   const nextRound = useCallback(() => {
+    wrongGuessesRef.current = 0
     setState(s => {
       if (s.phase !== 'roundResult') return s
       if (s.round >= ROUNDS_PER_GAME) {
@@ -274,6 +312,7 @@ export function useGameState() {
         round: s.round + 1,
         activeCityIndex: s.activeCityIndex + 1,
         elapsedSeconds: 0,
+        wrongGuesses: 0,
       }
     })
   }, [])
@@ -294,6 +333,7 @@ export function useGameState() {
       difficulty: c.difficulty,
       score: state.roundScores[i] ?? 0,
       elapsedSeconds: state.roundElapsedTimes[i] ?? 0,
+      wrongGuesses: state.roundWrongGuesses[i] ?? 0,
     }))
     const updated = recordCompletion(state.dailyDateKey, { totalScore: state.totalScore, rounds })
     setDailyStatus({ completed: true, record: updated.lastCompleted, streak: updated.streak })
@@ -307,7 +347,7 @@ export function useGameState() {
         setDailyStatus(prev => ({ ...prev, streak: result.currentStreak }))
       }
     })
-  }, [state.phase, state.mode, state.dailyDateKey, state.cities, state.roundScores, state.roundElapsedTimes, state.totalScore])
+  }, [state.phase, state.mode, state.dailyDateKey, state.cities, state.roundScores, state.roundElapsedTimes, state.roundWrongGuesses, state.totalScore])
 
   // Records a finished US/Global/Islands game to the player's personal history
   // exactly once, on the transition into 'gameOver'. These modes aren't a
@@ -327,9 +367,10 @@ export function useGameState() {
       difficulty: c.difficulty,
       score: state.roundScores[i] ?? 0,
       elapsedSeconds: state.roundElapsedTimes[i] ?? 0,
+      wrongGuesses: state.roundWrongGuesses[i] ?? 0,
     }))
     submitGameResult(state.mode, state.difficulty, state.totalScore, rounds)
-  }, [state.phase, state.mode, state.difficulty, state.cities, state.roundScores, state.roundElapsedTimes, state.totalScore])
+  }, [state.phase, state.mode, state.difficulty, state.cities, state.roundScores, state.roundElapsedTimes, state.roundWrongGuesses, state.totalScore])
 
   // Flags a new personal best on gameOver, once per game — across all four
   // modes, keyed per mode+difficulty (Daily is its own single key). Guarded

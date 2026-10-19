@@ -3553,6 +3553,27 @@ function daysBetween(dateKeyA, dateKeyB) {
   return Math.round((Date.UTC(b.y, b.m - 1, b.d) - Date.UTC(a.y, a.m - 1, a.d)) / msPerDay);
 }
 
+// src/utils/difficultyConfig.ts
+var DIFFICULTY_SCORE_MULTIPLIER = {
+  easy: 1,
+  medium: 2,
+  hard: 3,
+  extreme: 4
+};
+
+// src/utils/scoring.ts
+var ROUND_DURATION = 30;
+function calculateScore(elapsedSeconds) {
+  return Math.max(0, Math.round((1e3 - elapsedSeconds * 30) / 10) * 10);
+}
+var WRONG_GUESS_PENALTY_SECONDS = 10 / 3;
+function scoreRound(elapsedSeconds, difficulty, wrongGuesses = 0) {
+  const clamped = Math.min(Math.max(elapsedSeconds, 0), ROUND_DURATION);
+  const scoreClock = clamped + wrongGuesses * WRONG_GUESS_PENALTY_SECONDS;
+  if (clamped >= ROUND_DURATION || scoreClock >= ROUND_DURATION) return 0;
+  return calculateScore(scoreClock) * DIFFICULTY_SCORE_MULTIPLIER[difficulty];
+}
+
 // src/utils/dailyChallenge.ts
 var DAILY_CHALLENGE_EPOCH_DATE_KEY = "2026-07-06";
 var GLOBAL_TWIN_SUFFIX = "-global";
@@ -3627,24 +3648,6 @@ function buildDailyChallengeCities(allCities2, dateKey) {
   return resolveRoundCities(ordered, rng);
 }
 
-// src/utils/difficultyConfig.ts
-var DIFFICULTY_SCORE_MULTIPLIER = {
-  easy: 1,
-  medium: 2,
-  hard: 3,
-  extreme: 4
-};
-
-// src/utils/scoring.ts
-var ROUND_DURATION = 30;
-function calculateScore(elapsedSeconds) {
-  return Math.max(0, Math.round((1e3 - elapsedSeconds * 30) / 10) * 10);
-}
-function scoreRound(elapsedSeconds, difficulty) {
-  const clamped = Math.min(Math.max(elapsedSeconds, 0), ROUND_DURATION);
-  return calculateScore(clamped) * DIFFICULTY_SCORE_MULTIPLIER[difficulty];
-}
-
 // functions-src/submit-daily.ts
 var allCities = Cities_v2_default;
 var SUPABASE_URL = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL;
@@ -3686,8 +3689,10 @@ async function handler(req, res) {
   const verifiedRounds = cities.map((city, i) => {
     const raw = Number(rounds[i]?.elapsedSeconds);
     const elapsed = Number.isFinite(raw) ? Math.min(Math.max(raw, 0), ROUND_DURATION) : ROUND_DURATION;
-    const score = elapsed >= ROUND_DURATION ? 0 : scoreRound(elapsed, city.difficulty);
-    return { difficulty: city.difficulty, elapsedSeconds: elapsed, score };
+    const rawWrong = Number(rounds[i]?.wrongGuesses);
+    const wrongGuesses = Number.isFinite(rawWrong) && rawWrong > 0 ? Math.floor(rawWrong) : 0;
+    const score = scoreRound(elapsed, city.difficulty, wrongGuesses);
+    return { difficulty: city.difficulty, elapsedSeconds: elapsed, wrongGuesses, score };
   });
   const totalScore = verifiedRounds.reduce((sum, r) => sum + r.score, 0);
   const { data, error } = await admin.rpc("submit_daily_run", {

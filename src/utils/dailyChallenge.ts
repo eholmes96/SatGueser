@@ -2,7 +2,8 @@ import type { City, CityWithPoints, Difficulty } from './mapboxUtils'
 import { shuffle, resolveRoundCities } from './roundBuilding'
 import { hashStringToSeed, mulberry32 } from './seededRandom'
 import { daysBetween, previousDateKey } from './easternDate'
-import type { DailyChallengeRecord } from './dailyChallengeStorage'
+import type { DailyChallengeRecord, DailyRoundResult } from './dailyChallengeStorage'
+import { WRONG_GUESS_PENALTY_SECONDS } from './scoring'
 
 // Day #1 of the challenge. Puzzle numbers in the share text count forward
 // from this date. Adjust if the actual ship date slips.
@@ -159,10 +160,13 @@ export function buildDailyChallengeCities(allCities: CityWithPoints[], dateKey: 
   return resolveRoundCities(ordered, rng)
 }
 
-function roundEmoji(elapsedSeconds: number, score: number): string {
-  if (score === 0) return '⬛'
-  if (elapsedSeconds < 10) return '🟩'
-  if (elapsedSeconds < 20) return '🟨'
+// Coloured by the score clock (true time + wrong-guess penalties), so a fast
+// round full of wrong guesses doesn't share as green.
+function roundEmoji(round: DailyRoundResult): string {
+  if (round.score === 0) return '⬛'
+  const scoreClock = round.elapsedSeconds + (round.wrongGuesses ?? 0) * WRONG_GUESS_PENALTY_SECONDS
+  if (scoreClock < 10) return '🟩'
+  if (scoreClock < 20) return '🟨'
   return '🟥'
 }
 
@@ -172,7 +176,7 @@ export function buildShareText(dateKey: string, record: DailyChallengeRecord, st
   const puzzleNumber = daysBetween(DAILY_CHALLENGE_EPOCH_DATE_KEY, dateKey) + 1
   const lines = [
     `SatGueser Daily #${puzzleNumber} — ${record.totalScore} pts`,
-    record.rounds.map(r => roundEmoji(r.elapsedSeconds, r.score)).join(''),
+    record.rounds.map(roundEmoji).join(''),
   ]
   if (streak > 1) {
     lines.push(`🔥 ${streak}-day streak`)
