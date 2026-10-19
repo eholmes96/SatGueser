@@ -47,6 +47,8 @@ Five modes: Daily Challenge, US Cities, Global Cities, Islands, Airports.
 ### Supabase
 Schema, RLS policies, and leaderboard/submit functions live in `supabase/migrations/`. Leaderboard functions are security-definer and expose only display name + score — never email or raw round data.
 
+Supabase grants EXECUTE on every new `public` function to `anon` and `authenticated`, so it's callable via `/rest/v1/rpc/<name>` with the browser key. For any new `security definer` function that isn't meant to be a public API (trigger functions, service-role-only RPCs), add `revoke execute on function … from public, anon, authenticated;` in the same migration (see `submit_daily_run`, and `20261019000000_lock_down_security_definer_functions.sql`). The leaderboard RPCs are currently locked down too: no UI calls them yet, and `display_name` defaults to the email prefix with no way to change it. Re-grant them when a leaderboard UI ships.
+
 ### Content datasets
 - US Cities: easy/medium/hard tiers in `src/data/`
 - Global Cities: 17 hard-tier cities added 2026-08-02 (Kuala Lumpur, Karachi, Tehran, etc.)
