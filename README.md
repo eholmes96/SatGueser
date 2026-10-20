@@ -73,6 +73,12 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
 
+**2026-10-19 — Supabase security advisor fixes**
+- New migration `20261019000000_lock_down_security_definer_functions.sql` revokes public/signed-in EXECUTE on the four `SECURITY DEFINER` functions the Security Advisor flagged. That fixes 8 warnings: each function was flagged once for anon and once for signed-in users.
+  - `handle_new_user` and `rls_auto_enable` are trigger functions that were never meant to be called through the API. Both triggers keep working.
+  - `daily_leaderboard` and `streak_leaderboard` aren't used by the app yet. Because display names default to the player's email prefix, leaving them public let anyone list players' email usernames. They're locked until a leaderboard UI ships; the migration comments include the re-grant.
+- Removed the `@vercel/node` dev dependency, which was only used for two type names in `functions-src/submit-daily.ts` (now declared locally), and ran a non-breaking `npm audit fix` for Vite's helpers. `npm audit` went from 21 vulnerabilities to 0. All 21 were in build tooling that never shipped to players, and the API bundle is byte-identical.
+
 **2026-10-05 — Wrong guesses cost points; arrows follow the flat map**
 - In every mode, each wrong guess moves the round's score clock forward 3⅓ seconds, which works out to −100 points × the difficulty multiplier. The zoom keeps running on true time, so the map never jumps. The timer bar follows the score clock and drops visibly on each wrong guess. (Trialled on Islands first, then rolled out to US Cities, Global, Airports and Daily.)
 - If wrong guesses run the score clock out before the 30 seconds are up, the round ends as Time's Up and scores 0.
