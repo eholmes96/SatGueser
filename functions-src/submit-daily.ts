@@ -1,4 +1,3 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { createClient } from '@supabase/supabase-js'
 // Node's native ESM loader (Node 24 on Vercel) requires the import attribute
 // for JSON; without it the function crashes at load with
@@ -34,6 +33,18 @@ const allCities = citiesV2Json as CityWithPoints[]
 
 const SUPABASE_URL = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL
 const SUPABASE_SECRET_KEY = process.env.SUPABASE_SECRET_KEY
+
+// The slice of Vercel's Node request/response helpers this handler uses.
+// Declared locally rather than importing the types from @vercel/node, which
+// would pull that package's whole build toolchain into devDependencies.
+interface VercelRequest {
+  method?: string
+  headers: { authorization?: string }
+  body?: unknown
+}
+interface VercelResponse {
+  status(code: number): { json(body: unknown): void }
+}
 
 interface SubmitBody {
   dateKey: string
