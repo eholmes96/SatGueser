@@ -11,8 +11,8 @@ Watch a satellite view slowly zoom out from a city, island, or airport, and race
 - **Difficulty**: Easy, Medium, or Hard, which controls how obscure the round's places are. Airports adds a fourth tier, **Extreme** ("Where?"), for places most people couldn't find on a map.
 - **Mode**: Daily Challenge, US Cities, Global, Islands, or Airports — pick before you start.
   - US mode draws from well-known American metros; Global mode adds international cities and matches guesses regardless of accents (e.g. typing "sao paulo" still matches "São Paulo, Brazil").
-  - Islands mode guesses real islands instead of cities, each revealed at its own zoom level (a tiny island like Key West and a landmass like Greenland can't share one zoom range). An optional **Hint** button next to the guess input reveals up to two clues per island, shown as chat-style bubbles; hints don't cost points.
-  - Airports mode guesses real airports, shown as "{City} {Airport Name} (IATA code)" (e.g. "Chicago O'Hare (ORD)") — type the city, the airport's name, or its 3-letter IATA code and any of them autocompletes to the right answer, with IATA-code matches ranked highest, then city-name matches, then airport-name matches. Each airport reveals at its own much tighter zoom range than cities, starting on the terminal rather than the runway. There are 55 airports across four tiers: Easy (the world's busiest hubs), Medium, Hard (known places with unfamiliar airports) and Extreme (places most players have never heard of). Extreme rounds score 4x.
+  - Islands mode guesses real islands instead of cities, each revealed at its own zoom level (51 islands: 12 easy, 20 medium, 19 hard; a tiny island like Key West and a landmass like Greenland can't share one zoom range). An optional **Hint** button next to the guess input reveals up to two clues per island, shown as chat-style bubbles; hints don't cost points.
+  - Airports mode guesses real airports, shown as "{City} {Airport Name} (IATA code)" (e.g. "Chicago O'Hare (ORD)") — type the city, the airport's name, or its 3-letter IATA code and any of them autocompletes to the right answer, with IATA-code matches ranked highest, then city-name matches, then airport-name matches. Each airport reveals at its own much tighter zoom range than cities, starting on the terminal rather than the runway. Like Islands, airports have an optional **Hint** button that reveals up to two clues as chat-style bubbles. There are 55 airports across four tiers: Easy (the world's busiest hubs), Medium, Hard (known places with unfamiliar airports) and Extreme (places most players have never heard of). Extreme rounds score 4x.
   - Daily Challenge has no difficulty picker — everyone gets the same fixed 5-city set (2 easy/2 medium/1 hard, ~30% US/70% non-US) for the day, rotating at midnight Eastern time and playable once per day. Harder rounds score more (2x medium, 3x hard), and you can copy a shareable result once you finish. Airports is not part of the Daily Challenge pool.
 - **New High Score** 🏅 — beating your personal best pops a banner on the game summary. Bests are tracked per mode and, for US/Global/Islands/Airports, per difficulty too (so each tier has its own record) — stored locally, so it works for guests too.
 
@@ -20,7 +20,7 @@ Watch a satellite view slowly zoom out from a city, island, or airport, and race
 
 Optional — the game is fully playable as a guest, with progress and streaks stored in `localStorage`. Sign in with a passwordless email magic link (the account bubble in the bottom-right corner) to:
 
-- **Get on the leaderboards** — your daily scores and streaks are recorded to a daily top-scores board and an all-time streak board, exposed as public functions that return only a display name and score (never email or raw round data). An in-app view of these is still to come; for now the Stats page shows your own history.
+- **Get on the leaderboards** — your daily scores and streaks are recorded to a daily top-scores board and an all-time streak board, implemented as security-definer database functions that return only a display name and score (never email or raw round data). Public EXECUTE on them has been revoked (migration `20261019000000_lock_down_security_definer_functions.sql`) until a leaderboard UI ships, so nothing exposes them yet; for now the Stats page shows your own history.
 - **Keep your streak across devices** — once you're signed in, streaks become server-authoritative.
 - **See your Stats** — open the account menu → **Stats** for a Daily score-over-time line chart and per-difficulty Games/Best/Avg cards for US Cities, Global, Islands, and Airports (including Extreme). Press **Esc** or the × in the top left to close it.
 
@@ -41,7 +41,7 @@ npm install
 cp .env.example .env.local
 ```
 
-Edit `.env.local` and set `VITE_MAPBOX_TOKEN` to a Mapbox public token (get one free at [account.mapbox.com/access-tokens](https://account.mapbox.com/access-tokens/)). `.env.local` is gitignored and should never be committed.
+Edit `.env.local` and set `VITE_MAPBOX_TOKEN` to a Mapbox public token (get one free at [account.mapbox.com/access-tokens](https://account.mapbox.com/access-tokens/)). `.env.local` is gitignored and should never be committed. The Mapbox public token ships in the browser bundle, so URL-restrict it in the Mapbox dashboard to your production domain(s) and `http://localhost:5173`.
 
 The backend (accounts, leaderboards, stats) is **optional** — leave the Supabase vars blank to run fully as a guest on `localStorage`. To enable it, set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` (the `sb_publishable_…` key, from your Supabase project's API settings) and apply the migrations in `supabase/migrations/` via the Supabase SQL editor. See `.env.example` for the full list.
 
@@ -54,9 +54,13 @@ npm run dev
 | Command | Description |
 |---|---|
 | `npm run dev` | Start the local dev server |
-| `npm run build` | Type-check and build for production (outputs to `dist/`) |
+| `npm run build` | Type-check (app, tooling and API function) and build for production (outputs to `dist/`, bundles `api/`) |
+| `npm run build:api` | Bundle the `/api/submit-daily` function from `functions-src/` into `api/` |
+| `npm run check:api` | Rebuild the API bundle and fail if the committed `api/` output is stale |
 | `npm run preview` | Serve the production build locally, to verify before deploying |
 | `npm run lint` | Run oxlint |
+| `npm test` | Run the unit tests (Vitest) |
+| `npm run test:e2e` | Run the Playwright end-to-end tests |
 
 ## Deployment
 
@@ -72,6 +76,26 @@ The `/api/submit-daily` function is pre-bundled from `functions-src/` into a sel
 ## Version history
 
 No formal releases/tags yet — this is a running log of notable changes, most recent first.
+
+**2026-11-17 — Test suite and codebase audit**
+- Added the project's first automated tests:
+  - `npm test`: unit tests for scoring, the Daily draw, dates and storage, the arrows, autocomplete and the datasets, plus the Daily server function with Supabase mocked. Golden files pin the Daily picks for every date to mid-2027.
+  - `npm run test:e2e`: browser tests that play a full game in all 5 modes on a controlled clock.
+- Audited the whole codebase section by section. The full report, including the bug fixes and design changes waiting on a decision, is in [`docs/audit-2026-11.md`](docs/audit-2026-11.md).
+- Applied the fixes that change nothing players see:
+  - `submitGuess` now reports correct guesses reliably.
+  - Scoring and saved data validate their inputs.
+  - The map and guess input no longer re-render on every timer tick.
+  - The result rows, badge and buttons are shared components.
+  - Dead files, CSS and props are removed.
+  - The blog's Markdown is hardened.
+  - The server function is now type-checked in the build, with a new `npm run check:api` stale-bundle check.
+- Dependencies:
+  - `esbuild` is now declared; the API build had only been getting it by accident since October.
+  - Vite 8.1.0 → 8.3.8, which fixes Vite's dev-server advisories.
+  - The deprecated `@types/mapbox-gl` is removed.
+  - `npm audit --omit=dev` reports 0. One dev-only `picomatch` advisory remains, with no fixed release yet.
+- Docs: corrected dataset counts (51 islands; Airports added) and the leaderboard description; added Mapbox token URL-restriction guidance.
 
 **2026-10-19 — Supabase security advisor fixes**
 - New migration `20261019000000_lock_down_security_definer_functions.sql` revokes public/signed-in EXECUTE on the four `SECURITY DEFINER` functions the Security Advisor flagged. That fixes 8 warnings: each function was flagged once for anon and once for signed-in users.
