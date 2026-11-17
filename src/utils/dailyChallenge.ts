@@ -105,15 +105,26 @@ function withoutStarvingPool(pool: CityWithPoints[], excluded: Set<string>, minN
   return filtered.length >= minNeeded ? filtered : pool
 }
 
-// dateKey -> canonical keys of the cities drawn that day. Populated lazily
-// and iteratively (see ensureDailyKeysCached) as far back as the epoch, so
-// each day's exclusion window only ever depends on already-computed days.
-const dailyKeysCache = new Map<string, Set<string>>()
+// Per input dataset (keyed on the caller's array identity), dateKey ->
+// canonical keys of the cities drawn that day. Populated lazily and
+// iteratively (see ensureDailyKeysCached) as far back as the epoch, so each
+// day's exclusion window only ever depends on already-computed days. Keyed per
+// dataset so results depend only on (dataset, date), not call order.
+const dailyKeysCaches = new WeakMap<CityWithPoints[], Map<string, Set<string>>>()
+
+function getDailyKeysCache(source: CityWithPoints[]): Map<string, Set<string>> {
+  let cache = dailyKeysCaches.get(source)
+  if (!cache) {
+    cache = new Map()
+    dailyKeysCaches.set(source, cache)
+  }
+  return cache
+}
 
 // The canonical keys used across the LOOKBACK_DAYS days immediately before
 // dateKey. Assumes ensureDailyKeysCached has already been called for at
 // least `dateKey`'s predecessor.
-function getExcludedKeys(dateKey: string): Set<string> {
+function getExcludedKeys(dailyKeysCache: Map<string, Set<string>>, dateKey: string): Set<string> {
   const excluded = new Set<string>()
   let cursor = dateKey
   for (let i = 0; i < LOOKBACK_DAYS; i++) {
@@ -125,13 +136,17 @@ function getExcludedKeys(dateKey: string): Set<string> {
   return excluded
 }
 
-// Fills dailyKeysCache for every day from the epoch up to and including
+// Fills the dataset's keys cache for every day from the epoch up to and including
 // `upToDateKey` that isn't cached yet. Walks forward (oldest day first) so
 // that by the time a given day is computed, every day it might exclude is
 // already sitting in the cache — deliberately iterative rather than
 // recursive, so this stays cheap and stack-safe no matter how many days the
 // challenge has been running.
-function ensureDailyKeysCached(deduped: CityWithPoints[], upToDateKey: string): void {
+function ensureDailyKeysCached(
+  dailyKeysCache: Map<string, Set<string>>,
+  deduped: CityWithPoints[],
+  upToDateKey: string
+): void {
   const missing: string[] = []
   for (
     let d = upToDateKey;
@@ -142,7 +157,7 @@ function ensureDailyKeysCached(deduped: CityWithPoints[], upToDateKey: string): 
   }
 
   for (const d of missing.reverse()) {
-    const { picked } = pickTierCities(deduped, d, getExcludedKeys(d))
+    const { picked } = pickTierCities(deduped, d, getExcludedKeys(dailyKeysCache, d))
     dailyKeysCache.set(d, new Set(picked.map(c => canonicalCityKey(c.name))))
   }
 }
@@ -153,9 +168,10 @@ function ensureDailyKeysCached(deduped: CityWithPoints[], upToDateKey: string): 
 // identical draw.
 export function buildDailyChallengeCities(allCities: CityWithPoints[], dateKey: string): City[] {
   const deduped = dedupeCitiesByCanonicalKey(allCities)
-  ensureDailyKeysCached(deduped, previousDateKey(dateKey))
+  const dailyKeysCache = getDailyKeysCache(allCities)
+  ensureDailyKeysCached(dailyKeysCache, deduped, previousDateKey(dateKey))
 
-  const { picked, rng } = pickTierCities(deduped, dateKey, getExcludedKeys(dateKey))
+  const { picked, rng } = pickTierCities(deduped, dateKey, getExcludedKeys(dailyKeysCache, dateKey))
   const ordered = shuffle(picked, rng)
   return resolveRoundCities(ordered, rng)
 }

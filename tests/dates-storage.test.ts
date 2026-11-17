@@ -84,3 +84,39 @@ describe('high scores', () => {
     expect(getHighScore('us-hard')).toBe(0)
   })
 })
+
+describe('malformed saved data', () => {
+  const put = (key: string, value: unknown) => localStorage.setItem(key, JSON.stringify(value))
+  const DAILY_KEY = 'satgueser.dailyChallenge.v1'
+  const good = { dateKey: '2026-11-01', totalScore: 100, rounds: [] }
+
+  it('falls back to the empty daily record on a bad shape', () => {
+    const empty = { version: 1, streak: 0 }
+    for (const bad of [
+      { version: 1, streak: 'x' },
+      { version: 1, streak: -1 },
+      { version: 1, streak: 1.5 },
+      { version: 1, streak: 1, lastCompleted: { ...good, rounds: null } },
+      { version: 1, streak: 1, lastCompleted: { ...good, totalScore: 'a' } },
+      { version: 1, streak: 1, lastCompleted: { ...good, dateKey: 'yesterday' } },
+      { version: 1, streak: 1, lastCompleted: null },
+      null,
+    ]) {
+      put(DAILY_KEY, bad)
+      expect(getDailyChallengeStorage()).toEqual(empty)
+    }
+  })
+
+  it('still loads valid saved data unchanged', () => {
+    const saved = { version: 1, streak: 4, lastCompleted: good }
+    put(DAILY_KEY, saved)
+    expect(getDailyChallengeStorage()).toEqual(saved)
+  })
+
+  it('keeps only finite-number high scores', () => {
+    put('satgueser.highScores', { 'us-easy': 300, 'us-hard': 'x', 'global-easy': null })
+    expect(getHighScore('us-easy')).toBe(300)
+    expect(getHighScore('us-hard')).toBe(0)
+    expect(getHighScore('global-easy')).toBe(0)
+  })
+})

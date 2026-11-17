@@ -74,3 +74,14 @@ describe('buildShareText', () => {
     expect(buildShareText('2026-07-06', record, 3)).toBe('SatGueser Daily #1 — 100 pts\n🟥\n🔥 3-day streak\nhttps://satgueser.app')
   })
 })
+
+describe('per-dataset cache', () => {
+  it('results depend only on (dataset, date), not on call order', () => {
+    const date = '2026-09-15'
+    const first = describeDay(date)
+    // A different array (and a reduced dataset) must not poison the full one's cache.
+    const reduced = allCities.filter((_, i) => i % 3 !== 0)
+    buildDailyChallengeCities(reduced, date)
+    expect(describeDay(date)).toEqual(first)
+  })
+})

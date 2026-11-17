@@ -95,6 +95,30 @@ function pickFromDifficulty(
   return selection
 }
 
+// Whether a typed/picked name matches the active city's answer. Shared by
+// submitGuess's pre-check and its state updater so both always agree.
+function isCorrectGuess(cityName: string, city: City): boolean {
+  return normalize(cityName) === normalize(city.displayName)
+}
+
+// Per-round results in the shape both the daily-completion effect and the
+// game-result effect persist/submit.
+function buildRoundResults(
+  cities: City[],
+  roundScores: number[],
+  roundElapsedTimes: number[],
+  roundWrongGuesses: number[]
+) {
+  return cities.map((c, i) => ({
+    cityName: c.name,
+    displayName: c.displayName,
+    difficulty: c.difficulty,
+    score: roundScores[i] ?? 0,
+    elapsedSeconds: roundElapsedTimes[i] ?? 0,
+    wrongGuesses: roundWrongGuesses[i] ?? 0,
+  }))
+}
+
 // Ends the current round as a 0-point timeout. elapsedSeconds is the true time
 // (kept for the scorecard); the round may have ended early on penalties.
 function timedOut(s: GameState, trueElapsed: number): GameState {
@@ -132,6 +156,11 @@ export interface DailyStatus {
 
 export function useGameState() {
   const [state, setState] = useState<GameState>(INITIAL_STATE)
+  // Latest committed state, so submitGuess can decide its return value up front
+  // instead of relying on a setState updater having run synchronously (React
+  // only does that when the fiber has no pending work).
+  const stateRef = useRef(state)
+  stateRef.current = state
   const timerStartRef = useRef<number | null>(null)
   const intervalRef = useRef<number>(0)
   // Mirrors state.wrongGuesses for the timer interval, which can't see state.
@@ -141,10 +170,10 @@ export function useGameState() {
   // Tracks each mode+difficulty combo's last game's cities separately, so
   // switching modes/tiers doesn't cross-contaminate exclusions.
   const lastGameCitiesRef = useRef<Record<string, Set<string>>>({})
-  // Guards the US/Global result insert so a re-render (or StrictMode's
-  // double-invoked effects) can't record the same finished game twice.
-  // game_results has no unique constraint, so this dedup must live here; it's
-  // reset when a new US/Global game starts (selectDifficulty).
+  // Guards the US/Global/Islands/Airports result insert so a re-render (or
+  // StrictMode's double-invoked effects) can't record the same finished game
+  // twice. game_results has no unique constraint, so this dedup must live
+  // here; it's reset when a new non-daily game starts (selectDifficulty).
   const gameResultSubmittedRef = useRef(false)
   // Whether the just-finished game set a new personal best (per mode+difficulty),
   // for the game-over "new high score" banner. Set once on gameOver, guarded by
@@ -256,14 +285,27 @@ export function useGameState() {
       ? (Date.now() - timerStartRef.current) / 1000
       : 0
 
+    // Decide the return value before setState: true only for a correct guess on
+    // a live round that still scores > 0 (a correct guess after the score clock
+    // ran out is finished as a timeout below and returns false). The updater
+    // re-checks with the same helper and remains the source of truth for the
+    // state transition.
+    const cur = stateRef.current
     let wasCorrect = false
+    if (cur.phase === 'playing') {
+      const curCity = cur.cities[cur.activeCityIndex]
+      if (isCorrectGuess(cityName, curCity)) {
+        wasCorrect = scoreRound(Math.min(elapsed, ROUND_DURATION), curCity.difficulty, cur.wrongGuesses) > 0
+      }
+    }
+
     setState(s => {
       if (s.phase !== 'playing') return s
       const active = s.cities[s.activeCityIndex]
 
       const clampedElapsed = Math.min(elapsed, ROUND_DURATION)
 
-      if (normalize(cityName) !== normalize(active.displayName)) {
+      if (!isCorrectGuess(cityName, active)) {
         const wrongGuesses = s.wrongGuesses + 1
         wrongGuessesRef.current = wrongGuesses
         // Penalties alone can run the score clock out before the zoom ends.
@@ -284,7 +326,6 @@ export function useGameState() {
       const score = scoreRound(clampedElapsed, active.difficulty, s.wrongGuesses)
       if (score === 0) return timedOut(s, clampedElapsed)
 
-      wasCorrect = true
       const newTotal = s.totalScore + score
       return {
         ...s,
@@ -327,14 +368,7 @@ export function useGameState() {
   // safe even if the effect fires more than once for the same completion.
   useEffect(() => {
     if (state.phase !== 'gameOver' || state.mode !== 'daily' || !state.dailyDateKey) return
-    const rounds = state.cities.map((c, i) => ({
-      cityName: c.name,
-      displayName: c.displayName,
-      difficulty: c.difficulty,
-      score: state.roundScores[i] ?? 0,
-      elapsedSeconds: state.roundElapsedTimes[i] ?? 0,
-      wrongGuesses: state.roundWrongGuesses[i] ?? 0,
-    }))
+    const rounds = buildRoundResults(state.cities, state.roundScores, state.roundElapsedTimes, state.roundWrongGuesses)
     const updated = recordCompletion(state.dailyDateKey, { totalScore: state.totalScore, rounds })
     setDailyStatus({ completed: true, record: updated.lastCompleted, streak: updated.streak })
 
@@ -349,30 +383,23 @@ export function useGameState() {
     })
   }, [state.phase, state.mode, state.dailyDateKey, state.cities, state.roundScores, state.roundElapsedTimes, state.roundWrongGuesses, state.totalScore])
 
-  // Records a finished US/Global/Islands game to the player's personal history
-  // exactly once, on the transition into 'gameOver'. These modes aren't a
-  // leaderboard, so this is a plain best-effort insert (see submitGameResult)
-  // rather than the validated Edge-Function path the Daily Challenge uses. The
-  // ref guard prevents a duplicate row if this effect re-runs for the same
-  // completion.
+  // Records a finished US/Global/Islands/Airports game to the player's
+  // personal history exactly once, on the transition into 'gameOver'. These
+  // modes aren't a leaderboard, so this is a plain best-effort insert (see
+  // submitGameResult) rather than the validated /api/submit-daily path the
+  // Daily Challenge uses. The ref guard prevents a duplicate row if this
+  // effect re-runs for the same completion.
   useEffect(() => {
     if (state.phase !== 'gameOver' || !state.difficulty) return
     if (state.mode !== 'us' && state.mode !== 'global' && state.mode !== 'islands' && state.mode !== 'airports') return
     if (gameResultSubmittedRef.current) return
     gameResultSubmittedRef.current = true
 
-    const rounds = state.cities.map((c, i) => ({
-      cityName: c.name,
-      displayName: c.displayName,
-      difficulty: c.difficulty,
-      score: state.roundScores[i] ?? 0,
-      elapsedSeconds: state.roundElapsedTimes[i] ?? 0,
-      wrongGuesses: state.roundWrongGuesses[i] ?? 0,
-    }))
+    const rounds = buildRoundResults(state.cities, state.roundScores, state.roundElapsedTimes, state.roundWrongGuesses)
     submitGameResult(state.mode, state.difficulty, state.totalScore, rounds)
   }, [state.phase, state.mode, state.difficulty, state.cities, state.roundScores, state.roundElapsedTimes, state.roundWrongGuesses, state.totalScore])
 
-  // Flags a new personal best on gameOver, once per game — across all four
+  // Flags a new personal best on gameOver, once per game — across all five
   // modes, keyed per mode+difficulty (Daily is its own single key). Guarded
   // like the submit effects above so this runs exactly once per game.
   //

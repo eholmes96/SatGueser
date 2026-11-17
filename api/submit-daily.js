@@ -3522,14 +3522,16 @@ function mulberry32(seed) {
 }
 
 // src/utils/easternDate.ts
-var EASTERN_DATE_FORMATTER = new Intl.DateTimeFormat("en-CA", {
+var EASTERN_DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
   timeZone: "America/New_York",
   year: "numeric",
   month: "2-digit",
   day: "2-digit"
 });
 function getEasternDateKey(date = /* @__PURE__ */ new Date()) {
-  return EASTERN_DATE_FORMATTER.format(date);
+  const parts = EASTERN_DATE_FORMATTER.formatToParts(date);
+  const get = (type) => parts.find((p) => p.type === type)?.value ?? "";
+  return `${get("year")}-${get("month")}-${get("day")}`;
 }
 function parseDateKey(dateKey) {
   const [y, m, d] = dateKey.split("-").map(Number);
@@ -3568,8 +3570,10 @@ function calculateScore(elapsedSeconds) {
 }
 var WRONG_GUESS_PENALTY_SECONDS = 10 / 3;
 function scoreRound(elapsedSeconds, difficulty, wrongGuesses = 0) {
+  if (!Number.isFinite(elapsedSeconds)) return 0;
+  const wrong = Math.max(0, Math.floor(wrongGuesses) || 0);
   const clamped = Math.min(Math.max(elapsedSeconds, 0), ROUND_DURATION);
-  const scoreClock = clamped + wrongGuesses * WRONG_GUESS_PENALTY_SECONDS;
+  const scoreClock = clamped + wrong * WRONG_GUESS_PENALTY_SECONDS;
   if (clamped >= ROUND_DURATION || scoreClock >= ROUND_DURATION) return 0;
   return calculateScore(scoreClock) * DIFFICULTY_SCORE_MULTIPLIER[difficulty];
 }
@@ -3618,8 +3622,16 @@ function withoutStarvingPool(pool, excluded, minNeeded) {
   const filtered = pool.filter((c) => !excluded.has(canonicalCityKey(c.name)));
   return filtered.length >= minNeeded ? filtered : pool;
 }
-var dailyKeysCache = /* @__PURE__ */ new Map();
-function getExcludedKeys(dateKey) {
+var dailyKeysCaches = /* @__PURE__ */ new WeakMap();
+function getDailyKeysCache(source) {
+  let cache = dailyKeysCaches.get(source);
+  if (!cache) {
+    cache = /* @__PURE__ */ new Map();
+    dailyKeysCaches.set(source, cache);
+  }
+  return cache;
+}
+function getExcludedKeys(dailyKeysCache, dateKey) {
   const excluded = /* @__PURE__ */ new Set();
   let cursor = dateKey;
   for (let i = 0; i < LOOKBACK_DAYS; i++) {
@@ -3630,20 +3642,21 @@ function getExcludedKeys(dateKey) {
   }
   return excluded;
 }
-function ensureDailyKeysCached(deduped, upToDateKey) {
+function ensureDailyKeysCached(dailyKeysCache, deduped, upToDateKey) {
   const missing = [];
   for (let d = upToDateKey; daysBetween(DAILY_CHALLENGE_EPOCH_DATE_KEY, d) >= 0 && !dailyKeysCache.has(d); d = previousDateKey(d)) {
     missing.push(d);
   }
   for (const d of missing.reverse()) {
-    const { picked } = pickTierCities(deduped, d, getExcludedKeys(d));
+    const { picked } = pickTierCities(deduped, d, getExcludedKeys(dailyKeysCache, d));
     dailyKeysCache.set(d, new Set(picked.map((c) => canonicalCityKey(c.name))));
   }
 }
 function buildDailyChallengeCities(allCities2, dateKey) {
   const deduped = dedupeCitiesByCanonicalKey(allCities2);
-  ensureDailyKeysCached(deduped, previousDateKey(dateKey));
-  const { picked, rng } = pickTierCities(deduped, dateKey, getExcludedKeys(dateKey));
+  const dailyKeysCache = getDailyKeysCache(allCities2);
+  ensureDailyKeysCached(dailyKeysCache, deduped, previousDateKey(dateKey));
+  const { picked, rng } = pickTierCities(deduped, dateKey, getExcludedKeys(dailyKeysCache, dateKey));
   const ordered = shuffle(picked, rng);
   return resolveRoundCities(ordered, rng);
 }

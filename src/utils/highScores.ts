@@ -16,7 +16,14 @@ function readAll(): Record<string, number> {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     const parsed = raw ? JSON.parse(raw) : null
-    return parsed && typeof parsed === 'object' ? (parsed as Record<string, number>) : {}
+    if (!parsed || typeof parsed !== 'object') return {}
+    // Keep only finite-number entries so a corrupted value can't poison the
+    // best-score comparison.
+    const out: Record<string, number> = {}
+    for (const [k, v] of Object.entries(parsed)) {
+      if (typeof v === 'number' && Number.isFinite(v)) out[k] = v
+    }
+    return out
   } catch {
     return {}
   }

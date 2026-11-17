@@ -29,7 +29,7 @@ export function getDifficultyDesc(difficulty: Difficulty, mode: GameMode): strin
 }
 
 // Harder rounds are worth more, in every mode: the base time-based score (see
-// useGameState.ts's calculateScore) is multiplied by the round's own city
+// scoring.ts's calculateScore) is multiplied by the round's own city
 // difficulty, whether that's the single tier picked for a US/Global game or
 // the per-round tier baked into a Daily Challenge's mixed 2/2/1 set.
 export const DIFFICULTY_SCORE_MULTIPLIER: Record<Difficulty, number> = {

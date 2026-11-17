@@ -3,7 +3,7 @@
 // not UTC and not a fixed UTC-5 offset — the challenge rotates at midnight
 // wall-clock time on the US East Coast year-round.
 
-const EASTERN_DATE_FORMATTER = new Intl.DateTimeFormat('en-CA', {
+const EASTERN_DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
   timeZone: 'America/New_York',
   year: 'numeric',
   month: '2-digit',
@@ -11,11 +11,14 @@ const EASTERN_DATE_FORMATTER = new Intl.DateTimeFormat('en-CA', {
 })
 
 // Returns the current (or given) instant's Eastern calendar date as
-// 'YYYY-MM-DD'. 'en-CA' formats dates in that order directly. This is
-// DST-aware because Intl resolves the IANA zone's actual offset for the
-// given instant, rather than assuming a fixed UTC-5.
+// 'YYYY-MM-DD', assembled from formatToParts (no locale is guaranteed to
+// format dates in that order as a string). This is DST-aware because Intl
+// resolves the IANA zone's actual offset for the given instant, rather than
+// assuming a fixed UTC-5.
 export function getEasternDateKey(date: Date = new Date()): string {
-  return EASTERN_DATE_FORMATTER.format(date)
+  const parts = EASTERN_DATE_FORMATTER.formatToParts(date)
+  const get = (type: string) => parts.find(p => p.type === type)?.value ?? ''
+  return `${get('year')}-${get('month')}-${get('day')}`
 }
 
 function parseDateKey(dateKey: string): { y: number; m: number; d: number } {

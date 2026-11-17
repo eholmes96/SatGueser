@@ -28,17 +28,34 @@ export interface DailyChallengeStorage {
 
 const EMPTY_STORAGE: DailyChallengeStorage = { version: 1, streak: 0 }
 
+const DATE_KEY_RE = /^\d{4}-\d{2}-\d{2}$/
+
+function isValidRecord(r: unknown): r is DailyChallengeRecord {
+  if (!r || typeof r !== 'object') return false
+  const rec = r as Record<string, unknown>
+  return typeof rec.dateKey === 'string' && DATE_KEY_RE.test(rec.dateKey) &&
+    typeof rec.totalScore === 'number' && Number.isFinite(rec.totalScore) &&
+    Array.isArray(rec.rounds)
+}
+
+function isValidStorage(p: unknown): p is DailyChallengeStorage {
+  if (!p || typeof p !== 'object') return false
+  const s = p as Record<string, unknown>
+  if (s.version !== 1) return false
+  if (typeof s.streak !== 'number' || !Number.isInteger(s.streak) || s.streak < 0) return false
+  return s.lastCompleted === undefined || isValidRecord(s.lastCompleted)
+}
+
 // Reads and validates whatever's in localStorage. Anything missing, corrupt,
-// or from a future/incompatible schema version falls back to an empty
-// record rather than throwing — this is best-effort client state, not a
-// source of truth that needs to fail loudly.
+// from a future/incompatible schema version, or the wrong shape falls back to
+// an empty record rather than throwing — this is best-effort client state,
+// not a source of truth that needs to fail loudly.
 export function getDailyChallengeStorage(): DailyChallengeStorage {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return EMPTY_STORAGE
     const parsed = JSON.parse(raw)
-    if (parsed?.version !== 1) return EMPTY_STORAGE
-    return parsed as DailyChallengeStorage
+    return isValidStorage(parsed) ? parsed : EMPTY_STORAGE
   } catch {
     return EMPTY_STORAGE
   }

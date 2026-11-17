@@ -62,3 +62,17 @@ describe('scoreRound', () => {
     }
   })
 })
+
+describe('scoreRound out-of-range inputs', () => {
+  it('scores a non-finite elapsed time as a timeout', () => {
+    expect(scoreRound(NaN, 'easy')).toBe(0)
+    expect(scoreRound(Infinity, 'hard')).toBe(0)
+    expect(scoreRound(-Infinity, 'hard')).toBe(0)
+  })
+
+  it('treats negative, fractional or non-finite wrong-guess counts safely', () => {
+    expect(scoreRound(0, 'easy', -3)).toBe(1000)
+    expect(scoreRound(0, 'easy', NaN)).toBe(1000)
+    expect(scoreRound(0, 'easy', 1.9)).toBe(scoreRound(0, 'easy', 1))
+  })
+})
