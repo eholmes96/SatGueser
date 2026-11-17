@@ -30,10 +30,11 @@ for (const i of playableIslands) {
 for (const a of playableAirports) {
   coordsByName.set(normalize(a.displayName), a.points[0])
 }
-// Non-playable airports (the wider ~100-busiest autocomplete pool, see
-// utils/airports.ts) still need coords: guessing one of them wrong should
-// get the same distance/direction hint as any other guess, not silently
-// nothing just because it was never a possible answer.
+// Non-playable airports (the 67 extra busiest-airport entries in
+// data/busiestAirportsExtra.json, alongside the 55 playable ones in
+// data/airports.json — see utils/airports.ts) still need coords: guessing
+// one of them wrong should get the same distance/direction hint as any other
+// guess, not silently nothing just because it was never a possible answer.
 for (const a of EXTRA_AIRPORT_COORDS) {
   coordsByName.set(normalize(a.displayName), a.coords)
 }

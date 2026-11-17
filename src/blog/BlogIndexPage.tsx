@@ -1,14 +1,5 @@
 import { useEffect } from 'react'
-import { posts } from './posts'
-
-const ACCENT = '#4ade80'
-
-function formatDate(iso: string): string {
-  if (!iso) return ''
-  return new Date(`${iso}T00:00:00`).toLocaleDateString('en-US', {
-    year: 'numeric', month: 'long', day: 'numeric',
-  })
-}
+import { ACCENT, formatDate, posts } from './posts'
 
 export function BlogIndexPage({ onNavigate }: { onNavigate: (path: string) => void }) {
   useEffect(() => { document.title = 'Tips & Tricks — SatGueser' }, [])

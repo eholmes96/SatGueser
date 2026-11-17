@@ -1,14 +1,5 @@
 import { useEffect } from 'react'
-import { getPost } from './posts'
-
-const ACCENT = '#4ade80'
-
-function formatDate(iso: string): string {
-  if (!iso) return ''
-  return new Date(`${iso}T00:00:00`).toLocaleDateString('en-US', {
-    year: 'numeric', month: 'long', day: 'numeric',
-  })
-}
+import { ACCENT, formatDate, getPost } from './posts'
 
 export function BlogPostPage({ slug, onNavigate }: { slug: string; onNavigate: (path: string) => void }) {
   const post = getPost(slug)

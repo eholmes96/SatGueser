@@ -4,7 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 // public, client-safe key (it ships in the bundle by design) — row-level
 // security (see supabase/migrations) is what actually protects data, not
 // secrecy of this key. The secret key is never used here; it lives only in the
-// submit-daily Edge Function's secrets.
+// /api/submit-daily Vercel serverless function's environment variables.
 const url = import.meta.env.VITE_SUPABASE_URL as string | undefined
 const publishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined
 

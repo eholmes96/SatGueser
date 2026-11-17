@@ -39,3 +39,11 @@ playwright-report/
 ClaudeSpeak.txt
 .vercel
 .env*
+!.env.example
+
+# Test coverage / Playwright blob reports
+coverage/
+blob-report/
+
+# Per-developer Claude Code settings
+.claude/settings.local.json

@@ -9,7 +9,7 @@ import type { DailyRoundResult } from '../utils/dailyChallengeStorage'
 // client's own totals.
 //
 // This is best-effort and non-blocking: guests (no Supabase session) simply
-// skip it and keep their localStorage record, and a network/one-per-day error
+// skip it and keep their localStorage record, and a network/server error
 // is swallowed so a failed sync never breaks the end-of-game UI.
 
 export interface DailySubmitResult {

@@ -52,13 +52,13 @@ Schema, RLS policies, and leaderboard/submit functions live in `supabase/migrati
 Supabase grants EXECUTE on every new `public` function to `anon` and `authenticated`, so it's callable via `/rest/v1/rpc/<name>` with the browser key. For any new `security definer` function that isn't meant to be a public API (trigger functions, service-role-only RPCs), add `revoke execute on function … from public, anon, authenticated;` in the same migration (see `submit_daily_run`, and `20261019000000_lock_down_security_definer_functions.sql`). The leaderboard RPCs are currently locked down too: no UI calls them yet, and `display_name` defaults to the email prefix with no way to change it. Re-grant them when a leaderboard UI ships.
 
 ### Content datasets
-- US Cities: easy/medium/hard tiers in `src/data/`
-- Global Cities: 17 hard-tier cities added 2026-08-02 (Kuala Lumpur, Karachi, Tehran, etc.)
-- Islands: 52 islands with per-island zoom ranges, two hints each
+- US Cities and Global Cities: all 151 cities live in `src/Cities_v2.json` (each with several candidate start points). US has 69 (16 easy / 30 medium / 23 hard); Global has 82 (20 easy / 20 medium / 42 hard). `src/data/*.ts` hold the autocomplete lists + coordinates, not the tiers.
+- Islands: 51 islands (12 easy / 20 medium / 19 hard) in `src/data/islands.json` with per-island zoom ranges, two hints each
+- Airports: 55 playable airports in `src/data/airports.json` (15 easy / 16 medium / 13 hard / 11 extreme) with per-airport zoom + hints; `src/data/busiestAirportsExtra.json` adds 67 autocomplete-only (non-playable) busiest airports
 - Wrong guesses show live distance + compass direction to the answer
 
 ### `/dev` sandbox
-Not linked from the game UI. Lets you preview and tune per-city/island satellite zoom and map style, with Easy/Medium/Hard grouping. Has a "Reset Daily Challenge" button for replaying without waiting for midnight rollover.
+Not linked from the game UI. Lets you preview and tune per-city/island satellite zoom and map style, with a mode toggle (US Cities / Global / Islands / Airports) and per-tier grouping (Easy/Medium/Hard, plus Extreme for Airports and Undetermined for Islands; empty groups are hidden). Has a "Reset Daily Challenge" button for replaying without waiting for midnight rollover.
 
 ### Blog
 Markdown-based Tips & Tricks at `/blog` — frontmatter + `marked`, same content-as-data-file pattern as city/island datasets.
