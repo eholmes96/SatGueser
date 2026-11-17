@@ -1,12 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
-import { MAPBOX_TOKEN, type City } from '../utils/mapboxUtils'
+import { MAPBOX_TOKEN, DEFAULT_START_ZOOM, DEFAULT_END_ZOOM, type City } from '../utils/mapboxUtils'
 import { easeOutQuad } from '../utils/easing'
 
 mapboxgl.accessToken = MAPBOX_TOKEN
-
-const START_ZOOM = 15
-const END_ZOOM = 10
 
 // Time to let the first tiles paint after the camera snap before the round
 // timer/zoom animation begins — replaces the old full-image preload wait.
@@ -20,12 +17,15 @@ interface MapRevealProps {
   roundToken: number
   duration?: number
   onRoundStart?: () => void
-  onAnimationComplete?: () => void
   onError?: (message: string) => void
   debug?: boolean
 }
 
-export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, onAnimationComplete, onError, debug }: MapRevealProps) {
+// memo: App re-renders on every 200ms game-timer tick, but every prop passed
+// here (the city from state.cities, the roundToken, the useCallback'd
+// startTimer, the stable setMapError, a boolean) is referentially stable
+// between ticks, so the map component skips those renders entirely.
+export const MapReveal = memo(function MapReveal({ city, roundToken, duration = 30000, onRoundStart, onError, debug }: MapRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<mapboxgl.Map | null>(null)
   const rafRef = useRef<number>(0)
@@ -39,7 +39,7 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
   const [debugInfo, setDebugInfo] = useState({ lng: 0, lat: 0, zoom: 0 })
   // Drives the friendly "couldn't load the satellite image" retry card.
   // Mode-agnostic — MapReveal only ever sees a City's lat/lng, so this
-  // applies identically whether the round is a US or global city.
+  // applies identically in every mode (US, global, islands, airports, daily).
   const [loadError, setLoadError] = useState(false)
   // Set when Mapbox returns a 403 (token valid, but restricted to specific
   // URLs — the current domain isn't on the token's allow-list, whether
@@ -53,8 +53,6 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
   useEffect(() => { cityRef.current = city }, [city])
   const onRoundStartRef = useRef(onRoundStart)
   useEffect(() => { onRoundStartRef.current = onRoundStart }, [onRoundStart])
-  const onAnimationCompleteRef = useRef(onAnimationComplete)
-  useEffect(() => { onAnimationCompleteRef.current = onAnimationComplete }, [onAnimationComplete])
   const onErrorRef = useRef(onError)
   useEffect(() => { onErrorRef.current = onError }, [onError])
 
@@ -136,10 +134,11 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
     setLoadError(false)
     setTokenRestricted(false)
 
-    // Islands carry their own reveal bounds (islands vary hugely in size);
-    // cities leave these undefined and fall back to the shared 15→10 constants.
-    const startZoom = activeCity.startZoom ?? START_ZOOM
-    const endZoom = activeCity.endZoom ?? END_ZOOM
+    // Islands and airports carry their own reveal bounds (islands vary hugely
+    // in size); cities leave these undefined and fall back to the shared
+    // 15→10 defaults.
+    const startZoom = activeCity.startZoom ?? DEFAULT_START_ZOOM
+    const endZoom = activeCity.endZoom ?? DEFAULT_END_ZOOM
 
     const beginRound = () => {
       map.jumpTo({ center: [activeCity.lng, activeCity.lat], zoom: startZoom })
@@ -157,8 +156,6 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
 
           if (t < 1) {
             rafRef.current = requestAnimationFrame(tick)
-          } else {
-            onAnimationCompleteRef.current?.()
           }
         }
         rafRef.current = requestAnimationFrame(tick)
@@ -290,4 +287,4 @@ export function MapReveal({ city, roundToken, duration = 30000, onRoundStart, on
       )}
     </div>
   )
-}
+})

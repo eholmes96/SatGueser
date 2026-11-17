@@ -1,5 +1,4 @@
-import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from 'react'
-import type { GamePhase } from '../hooks/useGameState'
+import { memo, useState, useRef, useEffect, useCallback, type KeyboardEvent } from 'react'
 import { getSuggestions, type SuggestionPool } from '../utils/suggestionMatching'
 
 function Highlight({ text, query }: { text: string; query: string }) {
@@ -16,12 +15,14 @@ function Highlight({ text, query }: { text: string; query: string }) {
 
 interface CityGuessInputProps {
   onSubmit: (city: string) => boolean
-  disabled?: boolean
-  phase: GamePhase
   citySuggestions: SuggestionPool
 }
 
-export function CityGuessInput({ onSubmit, disabled, phase, citySuggestions }: CityGuessInputProps) {
+// memo: App re-renders on every 200ms game-timer tick. onSubmit (useCallback
+// keyed on the stable submitGuess and the round's city) and citySuggestions (a
+// module-level pool) are stable between ticks, so typing state isn't re-run.
+// Only mounted while a round is being played, and remounts each round.
+export const CityGuessInput = memo(function CityGuessInput({ onSubmit, citySuggestions }: CityGuessInputProps) {
   const [value, setValue] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [highlightedIdx, setHighlightedIdx] = useState(0)
@@ -37,12 +38,11 @@ export function CityGuessInput({ onSubmit, disabled, phase, citySuggestions }: C
     setHighlightedIdx(0)
   }, [value, citySuggestions])
 
-  // Auto-focus at the start of every round so guessing can begin without a click.
+  // Auto-focus on mount — the component remounts at the start of every round,
+  // so guessing can begin without a click.
   useEffect(() => {
-    if (phase === 'playing') {
-      inputRef.current?.focus()
-    }
-  }, [phase])
+    inputRef.current?.focus()
+  }, [])
 
   useEffect(() => {
     const list = listRef.current
@@ -120,7 +120,6 @@ export function CityGuessInput({ onSubmit, disabled, phase, citySuggestions }: C
         value={value}
         onChange={e => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        disabled={disabled}
         placeholder="Type a city name…"
         autoComplete="off"
         autoCorrect="off"
@@ -184,4 +183,4 @@ export function CityGuessInput({ onSubmit, disabled, phase, citySuggestions }: C
       )}
     </div>
   )
-}
+})

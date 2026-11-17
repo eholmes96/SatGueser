@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import citiesV2Json from '../Cities_v2.json'
-import { MAPBOX_TOKEN, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
+import { MAPBOX_TOKEN, DEFAULT_START_ZOOM, DEFAULT_END_ZOOM, type Mode, type Difficulty, type CityWithPoints } from '../utils/mapboxUtils'
 import { islands, ISLAND_CATEGORIES, type Island } from '../utils/islands'
 import { airports, type Airport } from '../utils/airports'
 import { easeOutQuad } from '../utils/easing'
 import { resetDailyChallengeStorage } from '../utils/dailyChallengeStorage'
+import { DIFFICULTY_CONFIG } from '../utils/difficultyConfig'
+import { ROUND_DURATION } from '../utils/scoring'
 
 mapboxgl.accessToken = MAPBOX_TOKEN
 
@@ -24,25 +26,22 @@ type SandboxEntry = SandboxCity | Island | Airport
 const isIsland = (e: SandboxEntry): e is Island => 'areaKm2' in e
 const isAirport = (e: SandboxEntry): e is Airport => 'iata' in e
 // True for any entry with its own hand-tuned zoom bounds (islands, airports)
-// rather than the shared city START_ZOOM/END_ZOOM defaults — gates the
+// rather than the shared city default zoom (DEFAULT_START_ZOOM/END_ZOOM) — gates the
 // zoom-tuning UI (initial bounds + the Set start/end capture buttons).
 const hasCustomZoom = (e: SandboxEntry): e is Island | Airport => isIsland(e) || isAirport(e)
-// Sandbox-local mode: the game's Mode plus a dev-only 'islands'. Kept local so
-// adding it here never leaks into the game's own mode selector.
-type SandboxMode = Mode | 'islands'
-
 const citiesV2 = citiesV2Json as SandboxCity[]
 
 // City reveal defaults. Islands override these per-entry (see DevMapView).
-const START_ZOOM = 15
-const END_ZOOM = 10
-const LEG_DURATION = 30000
+// (DEFAULT_START_ZOOM / DEFAULT_END_ZOOM come from mapboxUtils, shared with MapReveal.)
+// One full-span reveal leg takes the game's round length.
+const LEG_DURATION = ROUND_DURATION * 1000
 
-const MODES: SandboxMode[] = ['us', 'global', 'islands', 'airports']
-const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard', 'extreme']
+const MODES: Mode[] = ['us', 'global', 'islands', 'airports']
+// Every tier any mode uses (Airports has the 4th); empty groups are hidden below.
+const DIFFICULTIES = Object.keys(DIFFICULTY_CONFIG) as Difficulty[]
 // Self-contained copy of the game's mode labels — deliberately not imported
 // from App.tsx, to keep the sandbox fully decoupled from game components.
-const MODE_CONFIG: Record<SandboxMode, { label: string }> = {
+const MODE_CONFIG: Record<Mode, { label: string }> = {
   us: { label: 'US Cities' },
   global: { label: 'Global' },
   islands: { label: 'Islands' },
@@ -81,8 +80,8 @@ const btnStyle: React.CSSProperties = {
 }
 
 function CityPicker({ mode, onModeChange, onSelect }: {
-  mode: SandboxMode
-  onModeChange: (m: SandboxMode) => void
+  mode: Mode
+  onModeChange: (m: Mode) => void
   onSelect: (entry: SandboxEntry) => void
 }) {
   // Islands come from their own dataset with a 4th 'undetermined' bucket; cities
@@ -200,9 +199,9 @@ function CityPicker({ mode, onModeChange, onSelect }: {
 function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }) {
   // Per-island reveal bounds when previewing an island; cities keep the shared
   // 15→10 defaults. Everything below reads these (via refs, so the RAF closures
-  // stay fresh) instead of the old module-level START_ZOOM/END_ZOOM constants.
-  const initialStart = hasCustomZoom(city) ? city.startZoom : START_ZOOM
-  const initialEnd = hasCustomZoom(city) ? city.endZoom : END_ZOOM
+  // stay fresh) rather than DEFAULT_START_ZOOM/DEFAULT_END_ZOOM directly.
+  const initialStart = hasCustomZoom(city) ? city.startZoom : DEFAULT_START_ZOOM
+  const initialEnd = hasCustomZoom(city) ? city.endZoom : DEFAULT_END_ZOOM
 
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<mapboxgl.Map | null>(null)
@@ -270,7 +269,7 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
   }, [])
 
   // Starts a fresh leg from the current zoom toward the edge implied by
-  // directionRef (END_ZOOM if zooming out, START_ZOOM if zooming in), at
+  // directionRef (DEFAULT_END_ZOOM if zooming out, DEFAULT_START_ZOOM if zooming in), at
   // the same rate as the normal 30s/5-zoom-level loop — so a rejoin leg
   // from e.g. 17 down to 15 takes proportionally less time, then the very
   // next leg (15 -> 10) is the classic full-length loop, forever after.
@@ -391,7 +390,7 @@ function DevMapView({ city, onExit }: { city: SandboxEntry; onExit: () => void }
 
   // Jumps to a different point on the SAME city (map instance stays put —
   // see the pointIndex comment above) and restarts the reveal from
-  // START_ZOOM, mirroring handleReset but for the newly selected point.
+  // DEFAULT_START_ZOOM, mirroring handleReset but for the newly selected point.
   const selectPoint = (index: number) => {
     const p = city.points[index]
     if (!p) return
@@ -731,7 +730,7 @@ export function DevSandbox() {
   // Lifted out of CityPicker so it survives returning from the map view —
   // CityPicker unmounts entirely while a city is selected, so state living
   // inside it would otherwise reset back to 'us' every time.
-  const [mode, setMode] = useState<SandboxMode>('us')
+  const [mode, setMode] = useState<Mode>('us')
   const [selectedCity, setSelectedCity] = useState<SandboxEntry | null>(null)
 
   if (!selectedCity) {

@@ -1,16 +1,6 @@
 import type { DailyChallengeRecord } from '../utils/dailyChallengeStorage'
-import { DIFFICULTY_CONFIG } from '../utils/difficultyConfig'
-
-const btnStyle: React.CSSProperties = {
-  padding: '0.55rem 1.5rem',
-  fontSize: 15,
-  fontWeight: 600,
-  borderRadius: 8,
-  border: '1px solid rgba(255,255,255,0.3)',
-  background: 'rgba(255,255,255,0.15)',
-  color: '#fff',
-  cursor: 'pointer',
-}
+import { ScoreBreakdown } from './ScoreBreakdown'
+import { secondaryButtonStyle } from './buttonStyles'
 
 interface DailyRecapCardProps {
   record: DailyChallengeRecord
@@ -40,51 +30,20 @@ export function DailyRecapCard({ record, streak, onCopy, copied }: DailyRecapCar
         Today's Challenge
       </h2>
 
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-        {record.rounds.map((round, i) => {
-          const timedOut = round.score === 0
-          const wrong = round.wrongGuesses ?? 0
-          return (
-            <div key={round.cityName} style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              padding: '0.4rem 0',
-              borderBottom: i < record.rounds.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-            }}>
-              <span style={{ flex: 1, color: '#eee', fontSize: 15, fontWeight: 500 }}>
-                {round.displayName}
-              </span>
-              <span style={{
-                fontSize: 11,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-                minWidth: 46,
-                textAlign: 'right',
-                color: DIFFICULTY_CONFIG[round.difficulty].accent,
-              }}>
-                {DIFFICULTY_CONFIG[round.difficulty].label}
-              </span>
-              <span style={{ color: '#888', fontSize: 13, minWidth: 40, textAlign: 'right' }}>
-                {timedOut ? '—' : `${round.elapsedSeconds.toFixed(1)}s`}
-              </span>
-              <span data-testid="wrong-guesses" style={{ color: '#f87171', fontSize: 13, fontWeight: 600, minWidth: 24, textAlign: 'right' }}>
-                {wrong === 0 ? '0' : `-${wrong}`}
-              </span>
-              <span style={{
-                fontSize: 13,
-                fontWeight: 600,
-                minWidth: 52,
-                textAlign: 'right',
-                color: timedOut ? '#f87171' : '#4ade80',
-              }}>
-                {timedOut ? '0' : `+${round.score}`}
-              </span>
-            </div>
-          )
-        })}
-      </div>
+      {/* No ×N tag and a narrower score column than the game-over card. */}
+      <ScoreBreakdown
+        rows={record.rounds.map(round => ({
+          key: round.cityName,
+          displayName: round.displayName,
+          difficulty: round.difficulty,
+          elapsedSeconds: round.elapsedSeconds,
+          wrongGuesses: round.wrongGuesses ?? 0,
+          score: round.score,
+        }))}
+        showDifficulty
+        showMultiplier={false}
+        scoreMinWidth={52}
+      />
 
       <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
         <span style={{ color: '#888', fontSize: 13 }}>Total</span>
@@ -104,7 +63,7 @@ export function DailyRecapCard({ record, streak, onCopy, copied }: DailyRecapCar
         Come back tomorrow for a new challenge.
       </p>
 
-      <button onClick={onCopy} style={btnStyle}>
+      <button onClick={onCopy} style={secondaryButtonStyle}>
         {copied ? 'Copied!' : 'Copy Result'}
       </button>
     </div>

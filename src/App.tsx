@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useGameState, ROUNDS_PER_GAME } from './hooks/useGameState'
 import type { GameMode } from './utils/mapboxUtils'
+import type { SuggestionPool } from './utils/suggestionMatching'
 import { MapReveal } from './components/MapReveal'
 import { CityGuessInput } from './components/CityGuessInput'
 import { DailyRecapCard } from './components/DailyRecapCard'
+import { ScoreBreakdown } from './components/ScoreBreakdown'
+import { DifficultyBadge } from './components/DifficultyBadge'
+import { secondaryButtonStyle, primaryButtonLargeStyle, primaryButtonCompactStyle, primaryButtonWideStyle } from './components/buttonStyles'
 import { US_CITIES } from './data/usCities'
 import { GLOBAL_CITIES } from './data/globalCities'
 import { ISLAND_NAMES } from './utils/islands'
@@ -13,7 +17,6 @@ import { getGuessCoords } from './utils/guessCoords'
 import { DIFFICULTY_CONFIG, DIFFICULTY_SCORE_MULTIPLIER, getDifficulties, getDifficultyDesc } from './utils/difficultyConfig'
 import { AIRPORT_SUGGESTIONS } from './utils/airports'
 import { ROUND_DURATION, WRONG_GUESS_PENALTY_SECONDS } from './utils/scoring'
-import './App.css'
 
 const DAILY_CITIES = [...US_CITIES, ...GLOBAL_CITIES]
 
@@ -23,6 +26,18 @@ const DAILY_CITIES = [...US_CITIES, ...GLOBAL_CITIES]
 // which ranks above any airport-name match, globally across all entries
 // (see suggestionMatching.ts), and includes extra recognizable airports
 // beyond the playable set (see utils/airports.ts for details).
+
+// Autocomplete pool per mode. A Record keyed by GameMode (rather than a
+// ternary chain) makes TypeScript flag any new mode that lacks a pool. These
+// are module-level so each pool's identity is stable across renders, which
+// keeps the memoized CityGuessInput from re-rendering on every timer tick.
+const SUGGESTION_POOLS: Record<GameMode, SuggestionPool> = {
+  daily: DAILY_CITIES,
+  us: US_CITIES,
+  global: GLOBAL_CITIES,
+  islands: ISLAND_NAMES,
+  airports: AIRPORT_SUGGESTIONS,
+}
 
 type TitleMode = 'idle' | 'difficulty' | 'hiding' | 'gone'
 
@@ -39,17 +54,6 @@ const MODE_CONFIG: Record<GameMode, { label: string }> = {
   airports: { label: 'Airports' },
 }
 const MODES = Object.keys(MODE_CONFIG) as GameMode[]
-
-const btnStyle: React.CSSProperties = {
-  padding: '0.55rem 1.5rem',
-  fontSize: 15,
-  fontWeight: 600,
-  borderRadius: 8,
-  border: '1px solid rgba(255,255,255,0.3)',
-  background: 'rgba(255,255,255,0.15)',
-  color: '#fff',
-  cursor: 'pointer',
-}
 
 // Islands-only Hint UI. A revealed hint appears as a "received" text-message
 // bubble (rounded, with the bottom-left corner squared off as the tail),
@@ -221,7 +225,7 @@ function App() {
         <MapReveal
           city={activeCity}
           roundToken={roundToken}
-          duration={30000}
+          duration={ROUND_DURATION * 1000}
           onRoundStart={startTimer}
           onError={setMapError}
           debug={!!mapError}
@@ -308,16 +312,7 @@ function App() {
           {titleMode === 'idle' && (
             <button
               onClick={startGame}
-              style={{
-                padding: '0.8rem 2.5rem',
-                fontSize: 18,
-                fontWeight: 600,
-                borderRadius: 10,
-                border: 'none',
-                background: '#fff',
-                color: '#111',
-                cursor: 'pointer',
-              }}
+              style={primaryButtonLargeStyle}
             >
               Start Game
             </button>
@@ -374,16 +369,7 @@ function App() {
                 ) : (
                   <button
                     onClick={startDailyChallenge}
-                    style={{
-                      padding: '0.8rem 2.5rem',
-                      fontSize: 18,
-                      fontWeight: 600,
-                      borderRadius: 10,
-                      border: 'none',
-                      background: '#fff',
-                      color: '#111',
-                      cursor: 'pointer',
-                    }}
+                    style={primaryButtonLargeStyle}
                   >
                     Play Daily Challenge
                   </button>
@@ -477,20 +463,7 @@ function App() {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', whiteSpace: 'nowrap' }}>
               <span style={{ fontSize: 14, fontWeight: 600 }}>Round {state.round}/{ROUNDS_PER_GAME}</span>
-              {state.difficulty && (
-                <span style={{
-                  fontSize: 10,
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  color: DIFFICULTY_CONFIG[state.difficulty].accent,
-                  border: `1px solid ${DIFFICULTY_CONFIG[state.difficulty].border}`,
-                  borderRadius: 4,
-                  padding: '1px 5px',
-                }}>
-                  {DIFFICULTY_CONFIG[state.difficulty].label}
-                </span>
-              )}
+              {state.difficulty && <DifficultyBadge difficulty={state.difficulty} size="sm" />}
             </div>
 
             <div style={{ width: 'min(220px, 30vw)', height: 8, background: 'rgba(255,255,255,0.2)', borderRadius: 4, overflow: 'hidden' }}>
@@ -558,9 +531,7 @@ function App() {
             }}>
               <CityGuessInput
                 onSubmit={handleGuess}
-                disabled={false}
-                phase={state.phase}
-                citySuggestions={state.mode === 'airports' ? AIRPORT_SUGGESTIONS : state.mode === 'global' ? GLOBAL_CITIES : state.mode === 'islands' ? ISLAND_NAMES : state.mode === 'daily' ? DAILY_CITIES : US_CITIES}
+                citySuggestions={SUGGESTION_POOLS[state.mode ?? 'us']}
               />
               {activeCity?.hints && activeCity.hints.length > 0 && (
                 <button
@@ -623,7 +594,7 @@ function App() {
                 </span>
               )}
             </p>
-            <button onClick={nextRound} style={btnStyle}>
+            <button onClick={nextRound} style={secondaryButtonStyle}>
               {state.round >= ROUNDS_PER_GAME ? 'Summary' : 'Next Round →'}
             </button>
           </div>
@@ -656,23 +627,10 @@ function App() {
               <h2 style={{ margin: 0, fontSize: '1.5rem', fontWeight: 700, color: '#fff' }}>
                 {state.mode === 'daily' ? 'Daily Challenge Complete' : 'Game Over'}
               </h2>
-              {state.difficulty && (
-                <span style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  color: DIFFICULTY_CONFIG[state.difficulty].accent,
-                  border: `1px solid ${DIFFICULTY_CONFIG[state.difficulty].border}`,
-                  borderRadius: 4,
-                  padding: '2px 6px',
-                }}>
-                  {DIFFICULTY_CONFIG[state.difficulty].label}
-                </span>
-              )}
+              {state.difficulty && <DifficultyBadge difficulty={state.difficulty} size="md" />}
             </div>
 
-            {/* New personal best for this mode+difficulty (all 4 modes). */}
+            {/* New personal best for this mode+difficulty (all modes). */}
             {isNewHighScore && (
               <div style={{
                 alignSelf: 'stretch',
@@ -694,62 +652,21 @@ function App() {
               </div>
             )}
 
-            {/* Per-round breakdown */}
-            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-              {state.cities.map((city, i) => {
-                const score = state.roundScores[i] ?? 0
-                const elapsed = state.roundElapsedTimes[i]
-                const wrong = state.roundWrongGuesses[i] ?? 0
-                const timedOut = score === 0
-                return (
-                  <div key={city.name} style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    padding: '0.4rem 0',
-                    borderBottom: i < state.cities.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
-                  }}>
-                    <span style={{ flex: 1, color: '#eee', fontSize: 15, fontWeight: 500 }}>
-                      {city.displayName}
-                    </span>
-                    {state.mode === 'daily' && (
-                      <span style={{
-                        fontSize: 11,
-                        fontWeight: 700,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.04em',
-                        minWidth: 46,
-                        textAlign: 'right',
-                        color: DIFFICULTY_CONFIG[city.difficulty].accent,
-                      }}>
-                        {DIFFICULTY_CONFIG[city.difficulty].label}
-                      </span>
-                    )}
-                    <span style={{ color: '#888', fontSize: 13, minWidth: 40, textAlign: 'right' }}>
-                      {timedOut ? '—' : `${elapsed?.toFixed(1)}s`}
-                    </span>
-                    <span data-testid="wrong-guesses" style={{ color: '#f87171', fontSize: 13, fontWeight: 600, minWidth: 24, textAlign: 'right' }}>
-                      {wrong === 0 ? '0' : `-${wrong}`}
-                    </span>
-                    <span style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      // Daily mixes ×1/×2/×3 rows; fixed width keeps the columns to its left aligned.
-                      minWidth: state.mode === 'daily' ? 84 : 52,
-                      textAlign: 'right',
-                      color: timedOut ? '#f87171' : '#4ade80',
-                    }}>
-                      {timedOut ? '0' : `+${score}`}
-                      {!timedOut && DIFFICULTY_SCORE_MULTIPLIER[city.difficulty] > 1 && (
-                        <span style={{ fontSize: 11, fontWeight: 600, color: '#888', marginLeft: '0.3rem' }}>
-                          ×{DIFFICULTY_SCORE_MULTIPLIER[city.difficulty]}
-                        </span>
-                      )}
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
+            {/* Per-round breakdown. Daily mixes tiers, so it labels each round's
+                difficulty; other modes are a single tier and omit it. */}
+            <ScoreBreakdown
+              rows={state.cities.map((city, i) => ({
+                key: city.name,
+                displayName: city.displayName,
+                difficulty: city.difficulty,
+                elapsedSeconds: state.roundElapsedTimes[i],
+                wrongGuesses: state.roundWrongGuesses[i] ?? 0,
+                score: state.roundScores[i] ?? 0,
+              }))}
+              showDifficulty={state.mode === 'daily'}
+              showMultiplier
+              scoreMinWidth={state.mode === 'daily' ? 84 : 52}
+            />
 
             {/* Total */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginTop: '0.25rem' }}>
@@ -768,39 +685,15 @@ function App() {
 
             {state.mode === 'daily' ? (
               <div style={{ display: 'flex', gap: '0.75rem' }}>
-                <button onClick={handleCopyResult} style={btnStyle}>
+                <button onClick={handleCopyResult} style={secondaryButtonStyle}>
                   {copied ? 'Copied!' : 'Copy Result'}
                 </button>
-                <button
-                  onClick={startGame}
-                  style={{
-                    padding: '0.55rem 1.5rem',
-                    fontSize: 15,
-                    fontWeight: 600,
-                    borderRadius: 8,
-                    border: 'none',
-                    background: '#fff',
-                    color: '#111',
-                    cursor: 'pointer',
-                  }}
-                >
+                <button onClick={startGame} style={primaryButtonCompactStyle}>
                   Back to Menu
                 </button>
               </div>
             ) : (
-              <button
-                onClick={startGame}
-                style={{
-                  padding: '0.7rem 2.5rem',
-                  fontSize: 15,
-                  fontWeight: 600,
-                  borderRadius: 10,
-                  border: 'none',
-                  background: '#fff',
-                  color: '#111',
-                  cursor: 'pointer',
-                }}
-              >
+              <button onClick={startGame} style={primaryButtonWideStyle}>
                 Play Again
               </button>
             )}

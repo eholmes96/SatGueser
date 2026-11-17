@@ -5,9 +5,10 @@ import { supabase } from '../lib/supabase'
 import { ScoreLineChart, type ScorePoint } from './ScoreLineChart'
 
 // Full-screen player stats overlay, opened from the account menu. Mirrors the
-// main menu's Daily / US / Global segmented selector. The Daily tab charts the
-// player's own daily scores over time (read from daily_results). The US and
-// Global tabs show one card per difficulty (games / best / avg), mirroring the
+// main menu's Daily / US Cities / Global / Islands / Airports segmented
+// selector. The Daily tab charts the player's own daily scores over time (read
+// from daily_results). The other tabs show one card per difficulty (games /
+// best / avg), mirroring the
 // game's Select-Difficulty screen — read from game_results. Both tables are
 // owner-selectable under RLS, so the public key returns only this user's rows.
 
@@ -174,7 +175,7 @@ export function StatsPage({ onClose }: { onClose: () => void }) {
   )
 }
 
-// Per-difficulty summary cards for a US/Global mode, mirroring the game's
+// Per-difficulty summary cards for a non-Daily mode, mirroring the game's
 // Select-Difficulty screen. Always renders every tier the mode offers (zeros
 // when unplayed) so the layout stays stable regardless of history.
 function DifficultyCards({ mode, games }: { mode: Mode; games: GameRow[] }) {
