@@ -1,0 +1,2522 @@
+{
+ "2026-07-06": [
+  "cairo easy 30.0444,31.2357",
+  "sydney easy -33.7969,151.2854",
+  "santiago hard -33.4372,-70.6506",
+  "dublin medium 53.3556,-6.3297",
+  "new-delhi medium 28.5535,77.201"
+ ],
+ "2026-07-07": [
+  "chengdu hard 30.6586,104.0647",
+  "dubai easy 25.1972,55.2744",
+  "philadelphia medium 39.9736,-75.1911",
+  "tokyo easy 35.6595,139.7004",
+  "prague medium 50.0865,14.4114"
+ ],
+ "2026-07-08": [
+  "rome easy 41.86,12.49",
+  "kyiv hard 50.4344,30.557",
+  "st-louis medium 38.6247,-90.1848",
+  "lisbon medium 38.7756,-9.1354",
+  "moscow easy 55.752,37.6175"
+ ],
+ "2026-07-09": [
+  "venice easy 45.431,12.3339",
+  "cape-town medium -33.9628,18.4098",
+  "jacksonville medium 30.2947,-81.3931",
+  "male easy 4.1918,73.529",
+  "dallas hard 32.7894,-96.8028"
+ ],
+ "2026-07-10": [
+  "singapore easy 1.2836,103.8607",
+  "albuquerque hard 35.0819,-106.6122",
+  "sacramento medium 38.5765,-121.4934",
+  "shanghai easy 31.2204,121.4098",
+  "ho-chi-minh-city medium 10.7295,106.7193"
+ ],
+ "2026-07-11": [
+  "beijing easy 39.9086,116.4614",
+  "spokane hard 47.6588,-117.426",
+  "denver medium 39.6766,-104.9619",
+  "mexico-city medium 19.4204,-99.1817",
+  "barcelona easy 41.4145,2.1527"
+ ],
+ "2026-07-12": [
+  "istanbul easy 41.0473,29.0271",
+  "bucharest hard 44.4268,26.0873",
+  "paris easy 48.8584,2.2945",
+  "athens medium 37.9236,23.7078",
+  "madrid medium 40.4168,-3.7038"
+ ],
+ "2026-07-13": [
+  "karachi hard 24.8615,67.0303",
+  "mumbai medium 19.035,72.82",
+  "doha medium 25.2854,51.531",
+  "london easy 51.5007,-0.1246",
+  "rio-de-janeiro easy -22.9711,-43.1822"
+ ],
+ "2026-07-14": [
+  "berlin medium 52.52,13.405",
+  "sydney easy -33.7969,151.2854",
+  "wichita hard 37.6872,-97.3301",
+  "savannah easy 32.0721,-81.0952",
+  "seoul medium 37.5563,126.9236"
+ ],
+ "2026-07-15": [
+  "las-vegas easy 36.1699,-115.1398",
+  "prague medium 50.1176,14.4079",
+  "san-juan easy 18.4712,-66.1246",
+  "copenhagen hard 55.6795,12.591",
+  "bangkok medium 13.7999,100.5502"
+ ],
+ "2026-07-16": [
+  "stockholm medium 59.3728,17.9737",
+  "moscow easy 55.8163,37.6407",
+  "santa-fe medium 35.687,-105.9378",
+  "pittsburgh easy 40.4423,-80.0112",
+  "provincetown hard 42.0526,-70.1786"
+ ],
+ "2026-07-17": [
+  "hong-kong easy 22.2793,114.1628",
+  "venice easy 45.438,12.3358",
+  "helsinki hard 60.1454,24.988",
+  "portland medium 45.5118,-122.5972",
+  "dublin medium 53.3556,-6.3297"
+ ],
+ "2026-07-18": [
+  "boise hard 43.615,-116.2023",
+  "shanghai easy 31.2204,121.4098",
+  "havana medium 23.1092,-82.4297",
+  "lisbon medium 38.6916,-9.216",
+  "dubai easy 25.1972,55.2744"
+ ],
+ "2026-07-19": [
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "budapest medium 47.5147,19.0776",
+  "beijing easy 39.9086,116.4614",
+  "san-francisco easy 37.7951,-122.3965",
+  "auckland hard -36.8485,174.7633"
+ ],
+ "2026-07-20": [
+  "seattle easy 47.5809,-122.4076",
+  "nashville medium 36.195,-86.725",
+  "madrid medium 40.4531,-3.6883",
+  "rome easy 41.9022,12.4539",
+  "guangzhou hard 23.075,113.24"
+ ],
+ "2026-07-21": [
+  "doha medium 25.2854,51.531",
+  "riyadh hard 24.7116,46.6753",
+  "key-west-fl easy 24.5586,-81.7963",
+  "san-jose medium 37.3327,-121.9012",
+  "madison easy 43.0747,-89.3844"
+ ],
+ "2026-07-22": [
+  "sydney easy -33.7969,151.2854",
+  "seoul medium 37.5125,127.1025",
+  "athens medium 37.9236,23.7078",
+  "chennai hard 13.05,80.2824",
+  "singapore easy 1.2836,103.8607"
+ ],
+ "2026-07-23": [
+  "mexico-city medium 19.3467,-99.1618",
+  "taipei hard 25.0421,121.5079",
+  "male easy 4.22,73.543",
+  "istanbul easy 40.9833,29.0333",
+  "prague medium 50.0064,14.4083"
+ ],
+ "2026-07-24": [
+  "berlin medium 52.5147,13.2394",
+  "lima hard -12.0567,-77.1",
+  "rio-de-janeiro easy -22.9519,-43.2105",
+  "amsterdam easy 52.355,5.01",
+  "stockholm medium 59.3728,17.9737"
+ ],
+ "2026-07-25": [
+  "las-vegas easy 36.1126,-115.1767",
+  "miami easy 25.775,-80.1866",
+  "johannesburg hard -26.1076,28.0567",
+  "dublin medium 53.3498,-6.2603",
+  "new-delhi medium 28.5535,77.201"
+ ],
+ "2026-07-26": [
+  "venice easy 45.4342,12.3388",
+  "mumbai medium 19.0178,72.8478",
+  "kuala-lumpur hard 3.1478,101.6944",
+  "lisbon medium 38.7071,-9.1364",
+  "hong-kong easy 22.3771,114.1955"
+ ],
+ "2026-07-27": [
+  "auckland hard -36.8485,174.7633",
+  "minneapolis medium 45.005,-93.25",
+  "beijing easy 39.9928,116.3975",
+  "washington-dc easy 38.9313,-77.0706",
+  "buenos-aires medium -34.5627,-58.4583"
+ ],
+ "2026-07-28": [
+  "shanghai easy 31.1948,121.4368",
+  "madrid medium 40.42,-3.7583",
+  "bucharest hard 44.4711,26.0784",
+  "havana medium 23.1092,-82.4297",
+  "rome easy 41.8902,12.4922"
+ ],
+ "2026-07-29": [
+  "dubai easy 25.2532,55.3657",
+  "bangkok medium 13.7367,100.56",
+  "santa-fe medium 35.687,-105.9378",
+  "colombo hard 6.9344,79.8428",
+  "pittsburgh easy 40.4423,-80.0112"
+ ],
+ "2026-07-30": [
+  "paris easy 48.8388,2.3775",
+  "singapore easy 1.3343,103.8563",
+  "doha medium 25.2609,51.6138",
+  "lagos hard 6.5244,3.3792",
+  "budapest medium 47.535,19.035"
+ ],
+ "2026-07-31": [
+  "tokyo easy 35.6852,139.7528",
+  "chicago easy 41.8827,-87.6233",
+  "orlando hard 28.49,-81.34",
+  "seoul medium 37.5563,126.9236",
+  "prague medium 50.0865,14.4114"
+ ],
+ "2026-08-01": [
+  "amsterdam easy 52.34,4.85",
+  "houston hard 29.7174,-95.3903",
+  "cape-town medium -33.9328,18.4173",
+  "moscow easy 55.8163,37.6407",
+  "ho-chi-minh-city medium 10.7295,106.7193"
+ ],
+ "2026-08-02": [
+  "madison easy 43.0747,-89.3844",
+  "tehran hard 35.7038,51.4088",
+  "dublin medium 53.3498,-6.2603",
+  "mexico-city medium 19.4204,-99.1817",
+  "istanbul easy 40.9833,29.0333"
+ ],
+ "2026-08-03": [
+  "toronto hard 43.6706,-79.2952",
+  "baltimore medium 39.3299,-76.6205",
+  "new-york easy 40.7484,-73.9857",
+  "stockholm medium 59.31,18.1642",
+  "cairo easy 29.9792,31.1342"
+ ],
+ "2026-08-04": [
+  "johannesburg hard -26.2041,28.0473",
+  "washington-dc easy 38.9313,-77.0706",
+  "tampa easy 27.9506,-82.4572",
+  "mumbai medium 18.922,72.8347",
+  "st-louis medium 38.6103,-90.2298"
+ ],
+ "2026-08-05": [
+  "anchorage easy 61.1795,-149.9757",
+  "rome easy 41.9022,12.4539",
+  "kyiv hard 50.4344,30.557",
+  "buenos-aires medium -34.575,-58.4175",
+  "madrid medium 40.4531,-3.6883"
+ ],
+ "2026-08-06": [
+  "sydney easy -33.8568,151.2153",
+  "havana medium 23.1367,-82.3589",
+  "miami easy 25.7443,-80.2106",
+  "riyadh hard 24.7116,46.6753",
+  "new-delhi medium 28.6129,77.2295"
+ ],
+ "2026-08-07": [
+  "berlin medium 52.4875,13.4247",
+  "shanghai easy 31.1948,121.4368",
+  "helsinki hard 60.1454,24.988",
+  "lisbon medium 38.6916,-9.216",
+  "paris easy 48.8963,2.3822"
+ ],
+ "2026-08-08": [
+  "bangkok medium 13.7999,100.5502",
+  "san-francisco easy 37.7694,-122.4862",
+  "dhaka hard 23.8069,90.3687",
+  "singapore easy 1.2836,103.8607",
+  "prague medium 50.1176,14.4079"
+ ],
+ "2026-08-09": [
+  "doha medium 25.2609,51.6138",
+  "oslo hard 59.927,10.7003",
+  "london easy 51.5054,-0.0235",
+  "budapest medium 47.4979,19.0402",
+  "male easy 4.1918,73.529"
+ ],
+ "2026-08-10": [
+  "cape-town medium -33.9628,18.4098",
+  "casablanca hard 33.5928,-7.6184",
+  "tokyo easy 35.6852,139.7528",
+  "dublin medium 53.4213,-6.2701",
+  "dubai easy 25.2532,55.3657"
+ ],
+ "2026-08-11": [
+  "taipei hard 25.0421,121.5079",
+  "mexico-city medium 19.3467,-99.1618",
+  "athens medium 37.9715,23.7257",
+  "new-york easy 40.7484,-73.9857",
+  "las-vegas easy 36.1126,-115.1767"
+ ],
+ "2026-08-12": [
+  "barcelona easy 41.4145,2.1527",
+  "mumbai medium 19.0178,72.8478",
+  "beijing easy 39.9928,116.3975",
+  "seoul medium 37.5563,126.9236",
+  "charlotte hard 35.2447,-80.8028"
+ ],
+ "2026-08-13": [
+  "madison easy 43.0747,-89.3844",
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "chengdu hard 30.6586,104.0647",
+  "hong-kong easy 22.281,114.1288",
+  "madrid medium 40.4531,-3.6883"
+ ],
+ "2026-08-14": [
+  "medellin hard 6.2716,-75.5654",
+  "rio-de-janeiro easy -22.9711,-43.1822",
+  "stockholm medium 59.3251,18.0711",
+  "havana medium 23.1367,-82.3589",
+  "chicago easy 41.9484,-87.6553"
+ ],
+ "2026-08-15": [
+  "berlin medium 52.52,13.405",
+  "colombo hard 6.9224,79.8442",
+  "paris easy 48.8388,2.3775",
+  "lisbon medium 38.7756,-9.1354",
+  "cairo easy 30.0808,31.3238"
+ ],
+ "2026-08-16": [
+  "providence hard 41.7793,-71.4145",
+  "singapore easy 1.3343,103.8563",
+  "new-delhi medium 28.6562,77.241",
+  "long-beach medium 33.7701,-118.1937",
+  "sydney easy -33.8908,151.2743"
+ ],
+ "2026-08-17": [
+  "santiago hard -33.426,-70.6088",
+  "cincinnati medium 39.1364,-84.4547",
+  "cleveland medium 41.4636,-81.7025",
+  "london easy 51.5007,-0.1246",
+  "pittsburgh easy 40.4423,-80.0112"
+ ],
+ "2026-08-18": [
+  "amsterdam easy 52.3702,4.8952",
+  "doha medium 25.2609,51.6138",
+  "accra hard 5.5453,-0.1935",
+  "tampa easy 27.9756,-82.5332",
+  "los-angeles medium 34.1184,-118.3004"
+ ],
+ "2026-08-19": [
+  "guangzhou hard 23.1867,113.2967",
+  "dubai easy 25.2532,55.3657",
+  "bangkok medium 13.7367,100.56",
+  "male easy 4.1918,73.529",
+  "athens medium 37.9236,23.7078"
+ ],
+ "2026-08-20": [
+  "cape-town medium -33.95,18.3775",
+  "sedona medium 34.7987,-111.7648",
+  "tokyo easy 35.7148,139.7967",
+  "las-vegas easy 36.1699,-115.1398",
+  "tehran hard 35.6997,51.338"
+ ],
+ "2026-08-21": [
+  "ho-chi-minh-city medium 10.7295,106.7193",
+  "seoul medium 37.5665,126.978",
+  "madison easy 43.0766,-89.4125",
+  "manila hard 14.5352,120.9822",
+  "moscow easy 55.8163,37.6407"
+ ],
+ "2026-08-22": [
+  "beijing easy 39.9163,116.3972",
+  "mexico-city medium 19.3467,-99.1618",
+  "raleigh hard 35.8317,-78.6389",
+  "havana medium 23.1167,-82.3",
+  "hong-kong easy 22.2793,114.1628"
+ ],
+ "2026-08-23": [
+  "budapest medium 47.5147,19.0776",
+  "shanghai easy 31.2204,121.4098",
+  "madrid medium 40.4168,-3.7038",
+  "addis-ababa hard 9.0359,38.7503",
+  "san-francisco easy 37.8199,-122.4783"
+ ],
+ "2026-08-24": [
+  "mumbai medium 19.0178,72.8478",
+  "san-antonio hard 29.4658,-98.4331",
+  "barcelona easy 41.3809,2.1228",
+  "lisbon medium 38.7071,-9.1364",
+  "new-york easy 40.7026,-74.0164"
+ ],
+ "2026-08-25": [
+  "rome easy 41.86,12.49",
+  "rio-de-janeiro easy -22.9122,-43.2302",
+  "dublin medium 53.4213,-6.2701",
+  "new-delhi medium 28.6562,77.241",
+  "phoenix hard 33.4569,-111.9459"
+ ],
+ "2026-08-26": [
+  "buenos-aires medium -34.6084,-58.3732",
+  "karachi hard 24.8007,67.0294",
+  "singapore easy 1.2836,103.8607",
+  "tampa easy 27.9756,-82.5332",
+  "doha medium 25.2609,51.6138"
+ ],
+ "2026-08-27": [
+  "kyiv hard 50.4501,30.5234",
+  "berlin medium 52.5147,13.2394",
+  "paris easy 48.8584,2.2945",
+  "bangkok medium 13.7527,100.493",
+  "washington-dc easy 38.8893,-77.0254"
+ ],
+ "2026-08-28": [
+  "london easy 51.5054,-0.0235",
+  "boise hard 43.5644,-116.2228",
+  "prague medium 50.0865,14.4114",
+  "stockholm medium 59.3251,18.0711",
+  "honolulu easy 21.2793,-157.8292"
+ ],
+ "2026-08-29": [
+  "amsterdam easy 52.3702,4.8952",
+  "tokyo easy 35.6852,139.7528",
+  "seoul medium 37.5563,126.9236",
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "medellin hard 6.2486,-75.5658"
+ ],
+ "2026-08-30": [
+  "cape-town medium -33.95,18.3775",
+  "cairo easy 29.9792,31.1342",
+  "austin hard 30.2672,-97.7431",
+  "athens medium 37.9715,23.7257",
+  "savannah easy 32.0721,-81.0952"
+ ],
+ "2026-08-31": [
+  "hong-kong easy 22.281,114.1288",
+  "jakarta hard -6.1223,106.8317",
+  "male easy 4.1918,73.529",
+  "mexico-city medium 19.3467,-99.1618",
+  "portland medium 45.5118,-122.5972"
+ ],
+ "2026-09-01": [
+  "havana medium 23.1092,-82.4297",
+  "moscow easy 55.8163,37.6407",
+  "budapest medium 47.5147,19.0776",
+  "shanghai easy 31.1948,121.4368",
+  "kuala-lumpur hard 3.1579,101.7116"
+ ],
+ "2026-09-02": [
+  "atlanta hard 33.7603,-84.3935",
+  "philadelphia medium 39.9496,-75.1503",
+  "dublin medium 53.4213,-6.2701",
+  "barcelona easy 41.4145,2.1527",
+  "sydney easy -33.7969,151.2854"
+ ],
+ "2026-09-03": [
+  "anchorage easy 61.1926,-149.9989",
+  "rome easy 41.86,12.49",
+  "new-delhi medium 28.6129,77.2295",
+  "minneapolis medium 45.005,-93.25",
+  "auckland hard -36.9008,174.7827"
+ ],
+ "2026-09-04": [
+  "bangkok medium 13.7367,100.56",
+  "istanbul easy 41.0473,29.0271",
+  "asheville hard 35.4362,-82.5418",
+  "singapore easy 1.2836,103.8607",
+  "madrid medium 40.42,-3.7583"
+ ],
+ "2026-09-05": [
+  "accra hard 5.5453,-0.1935",
+  "miami easy 25.7907,-80.13",
+  "denver medium 39.7392,-104.9903",
+  "paris easy 48.8963,2.3822",
+  "jacksonville medium 30.2947,-81.3931"
+ ],
+ "2026-09-06": [
+  "seoul medium 37.5125,127.1025",
+  "amsterdam easy 52.34,4.85",
+  "dubai easy 25.2532,55.3657",
+  "milwaukee medium 42.9989,-87.8973",
+  "colombo hard 6.9224,79.8442"
+ ],
+ "2026-09-07": [
+  "raleigh hard 35.7847,-78.6821",
+  "rio-de-janeiro easy -22.9122,-43.2302",
+  "tucson medium 32.2967,-111.1622",
+  "cairo easy 30.0444,31.2357",
+  "mumbai medium 18.922,72.8347"
+ ],
+ "2026-09-08": [
+  "johannesburg hard -26.2378,27.9926",
+  "venice easy 45.4342,12.3388",
+  "tokyo easy 35.7148,139.7967",
+  "stockholm medium 59.31,18.1642",
+  "athens medium 37.9715,23.7257"
+ ],
+ "2026-09-09": [
+  "hong-kong easy 22.3771,114.1955",
+  "berlin medium 52.52,13.405",
+  "santiago hard -33.4372,-70.6506",
+  "ho-chi-minh-city medium 10.7295,106.7193",
+  "moscow easy 55.752,37.6175"
+ ],
+ "2026-09-10": [
+  "beijing easy 39.9928,116.3975",
+  "nairobi hard -1.2921,36.8219",
+  "long-beach medium 33.8177,-118.1516",
+  "oakland medium 37.7955,-122.3231",
+  "tampa easy 28.0064,-82.4548"
+ ],
+ "2026-09-11": [
+  "nashville medium 36.155,-86.835",
+  "rome easy 41.86,12.49",
+  "kansas-city hard 39.1128,-94.5342",
+  "anchorage easy 61.1926,-149.9989",
+  "mexico-city medium 19.4204,-99.1817"
+ ],
+ "2026-09-12": [
+  "lagos hard 6.5244,3.3792",
+  "istanbul easy 41.0473,29.0271",
+  "barcelona easy 41.4145,2.1527",
+  "dublin medium 53.3498,-6.2603",
+  "prague medium 50.0064,14.4083"
+ ],
+ "2026-09-13": [
+  "casablanca hard 33.5928,-7.6184",
+  "male easy 4.22,73.543",
+  "lisbon medium 38.7071,-9.1364",
+  "doha medium 25.2609,51.6138",
+  "seattle easy 47.6553,-122.3035"
+ ],
+ "2026-09-14": [
+  "karachi hard 24.8007,67.0294",
+  "sacramento medium 38.6058,-121.4453",
+  "london easy 51.5055,-0.0754",
+  "detroit medium 42.3576,-83.0666",
+  "dubai easy 25.1412,55.1853"
+ ],
+ "2026-09-15": [
+  "seoul medium 37.5125,127.1025",
+  "bangkok medium 13.7527,100.493",
+  "kuala-lumpur hard 3.1478,101.6944",
+  "new-york easy 40.7484,-73.9857",
+  "san-francisco easy 37.7694,-122.4862"
+ ],
+ "2026-09-16": [
+  "madrid medium 40.4168,-3.7038",
+  "paris easy 48.8584,2.2945",
+  "amsterdam easy 52.34,4.85",
+  "jacksonville medium 30.2947,-81.3931",
+  "quito hard -0.2201,-78.5123"
+ ],
+ "2026-09-17": [
+  "havana medium 23.1092,-82.4297",
+  "pittsburgh easy 40.4344,-79.9425",
+  "tokyo easy 35.7148,139.7967",
+  "auckland hard -36.8485,174.7633",
+  "ho-chi-minh-city medium 10.7295,106.7193"
+ ],
+ "2026-09-18": [
+  "athens medium 37.9236,23.7078",
+  "shanghai easy 31.2204,121.4098",
+  "washington-dc easy 38.9313,-77.0706",
+  "buenos-aires medium -34.5627,-58.4583",
+  "fresno hard 36.7378,-119.7871"
+ ],
+ "2026-09-19": [
+  "mumbai medium 19.0178,72.8478",
+  "berlin medium 52.4875,13.4247",
+  "accra hard 5.5453,-0.1935",
+  "san-juan easy 18.4586,-66.0755",
+  "anchorage easy 61.2181,-149.9003"
+ ],
+ "2026-09-20": [
+  "long-beach medium 33.8177,-118.1516",
+  "rio-de-janeiro easy -22.9519,-43.2105",
+  "venice easy 45.431,12.3339",
+  "oklahoma-city hard 35.51,-97.49",
+  "norfolk medium 36.8946,-76.2012"
+ ],
+ "2026-09-21": [
+  "cairo easy 30.0808,31.3238",
+  "new-delhi medium 28.5535,77.201",
+  "doha medium 25.2609,51.6138",
+  "miami easy 25.7443,-80.2106",
+  "san-antonio hard 29.426,-98.4861"
+ ],
+ "2026-09-22": [
+  "cape-town medium -33.9628,18.4098",
+  "asheville hard 35.4362,-82.5418",
+  "dublin medium 53.3498,-6.2603",
+  "key-west-fl easy 24.5586,-81.7963",
+  "dubai easy 25.1412,55.1853"
+ ],
+ "2026-09-23": [
+  "budapest medium 47.535,19.035",
+  "seoul medium 37.5125,127.1025",
+  "orlando hard 28.49,-81.34",
+  "beijing easy 39.9928,116.3975",
+  "sydney easy -33.8908,151.2743"
+ ],
+ "2026-09-24": [
+  "lisbon medium 38.7756,-9.1354",
+  "el-paso medium 31.795,-106.455",
+  "kyiv hard 50.4501,30.5234",
+  "london easy 51.5007,-0.1246",
+  "istanbul easy 41.0473,29.0271"
+ ],
+ "2026-09-25": [
+  "santa-fe medium 35.6858,-105.9236",
+  "madrid medium 40.4168,-3.7038",
+  "zurich hard 47.4114,8.5478",
+  "hong-kong easy 22.281,114.1288",
+  "moscow easy 55.8163,37.6407"
+ ],
+ "2026-09-26": [
+  "honolulu easy 21.2793,-157.8292",
+  "stockholm medium 59.3251,18.0711",
+  "barcelona easy 41.3809,2.1228",
+  "ho-chi-minh-city medium 10.7295,106.7193",
+  "boise hard 43.615,-116.2023"
+ ],
+ "2026-09-27": [
+  "mexico-city medium 19.3467,-99.1618",
+  "madison easy 43.1399,-89.3375",
+  "auckland hard -36.8485,174.7633",
+  "paris easy 48.8388,2.3775",
+  "prague medium 50.0064,14.4083"
+ ],
+ "2026-09-28": [
+  "anchorage easy 61.1926,-149.9989",
+  "cincinnati medium 39.1364,-84.4547",
+  "providence hard 41.7793,-71.4145",
+  "havana medium 23.1092,-82.4297",
+  "tokyo easy 35.7148,139.7967"
+ ],
+ "2026-09-29": [
+  "mumbai medium 19.0178,72.8478",
+  "san-antonio hard 29.4614,-98.4736",
+  "savannah easy 32.0721,-81.0952",
+  "st-louis medium 38.6103,-90.2298",
+  "rome easy 41.9022,12.4539"
+ ],
+ "2026-09-30": [
+  "bangkok medium 13.7999,100.5502",
+  "denver medium 39.7392,-104.9903",
+  "cairo easy 29.9792,31.1342",
+  "lima hard -12.0464,-77.0428",
+  "singapore easy 1.254,103.8238"
+ ],
+ "2026-10-01": [
+  "rio-de-janeiro easy -22.9122,-43.2302",
+  "seoul medium 37.5563,126.9236",
+  "seattle easy 47.6062,-122.3321",
+  "buenos-aires medium -34.6084,-58.3732",
+  "oklahoma-city hard 35.4676,-97.5164"
+ ],
+ "2026-10-02": [
+  "dublin medium 53.3498,-6.2603",
+  "doha medium 25.2609,51.6138",
+  "nairobi hard -1.3,36.75",
+  "london easy 51.5054,-0.0235",
+  "shanghai easy 31.2204,121.4098"
+ ],
+ "2026-10-03": [
+  "amsterdam easy 52.34,4.85",
+  "lisbon medium 38.7071,-9.1364",
+  "athens medium 37.9236,23.7078",
+  "addis-ababa hard 9.0107,38.7613",
+  "venice easy 45.4342,12.3388"
+ ],
+ "2026-10-04": [
+  "san-diego medium 32.7341,-117.1449",
+  "riyadh hard 24.6912,46.6851",
+  "buffalo medium 42.8447,-78.8163",
+  "dubai easy 25.1412,55.1853",
+  "hong-kong easy 22.281,114.1288"
+ ],
+ "2026-10-05": [
+  "las-vegas easy 36.1126,-115.1767",
+  "sydney easy -33.8908,151.2743",
+  "mexico-city medium 19.4204,-99.1817",
+  "new-delhi medium 28.6129,77.2295",
+  "vienna hard 48.1858,16.3122"
+ ],
+ "2026-10-06": [
+  "prague medium 50.1176,14.4079",
+  "paris easy 48.8963,2.3822",
+  "bogota hard 4.6483,-74.0648",
+  "berlin medium 52.4875,13.4247",
+  "istanbul easy 41.0473,29.0271"
+ ],
+ "2026-10-07": [
+  "beijing easy 39.9163,116.3972",
+  "new-orleans easy 30.0005,-90.0952",
+  "boise hard 43.615,-116.2023",
+  "san-jose medium 37.3327,-121.9012",
+  "mumbai medium 19.0178,72.8478"
+ ],
+ "2026-10-08": [
+  "madrid medium 40.42,-3.7583",
+  "tokyo easy 35.6595,139.7004",
+  "barcelona easy 41.3809,2.1228",
+  "dhaka hard 23.8433,90.3978",
+  "stockholm medium 59.3251,18.0711"
+ ],
+ "2026-10-09": [
+  "el-paso medium 31.795,-106.455",
+  "cairo easy 30.0444,31.2357",
+  "guangzhou hard 23.1867,113.2967",
+  "bangkok medium 13.7367,100.56",
+  "moscow easy 55.752,37.6175"
+ ],
+ "2026-10-10": [
+  "male easy 4.1755,73.5093",
+  "singapore easy 1.254,103.8238",
+  "memphis medium 35.1495,-90.049",
+  "dublin medium 53.3498,-6.2603",
+  "oslo hard 59.927,10.7003"
+ ],
+ "2026-10-11": [
+  "chennai hard 13.05,80.2824",
+  "doha medium 25.3592,51.5286",
+  "new-york easy 40.7484,-73.9857",
+  "madison easy 43.0766,-89.4125",
+  "norfolk medium 36.8946,-76.2012"
+ ],
+ "2026-10-12": [
+  "cape-town medium -33.9628,18.4098",
+  "miami easy 25.7443,-80.2106",
+  "zurich hard 47.3467,8.5626",
+  "venice easy 45.4342,12.3388",
+  "ho-chi-minh-city medium 10.8188,106.652"
+ ],
+ "2026-10-13": [
+  "tehran hard 35.7038,51.4088",
+  "mexico-city medium 19.3467,-99.1618",
+  "shanghai easy 31.1948,121.4368",
+  "lisbon medium 38.7071,-9.1364",
+  "san-francisco easy 37.7694,-122.4862"
+ ],
+ "2026-10-14": [
+  "new-delhi medium 28.6129,77.2295",
+  "milwaukee medium 42.9989,-87.8973",
+  "sydney easy -33.8568,151.2153",
+  "warsaw hard 52.1657,20.9671",
+  "hong-kong easy 22.281,114.1288"
+ ],
+ "2026-10-15": [
+  "nashville medium 36.1612,-86.7775",
+  "tampa easy 27.9756,-82.5332",
+  "seoul medium 37.5125,127.1025",
+  "bogota hard 4.6483,-74.0648",
+  "key-west-fl easy 24.5586,-81.7963"
+ ],
+ "2026-10-16": [
+  "detroit medium 42.3398,-82.9857",
+  "london easy 51.5055,-0.0754",
+  "pittsburgh easy 40.4423,-80.0112",
+  "lima hard -12.0567,-77.1",
+  "madrid medium 40.42,-3.7583"
+ ],
+ "2026-10-17": [
+  "tokyo easy 35.7148,139.7967",
+  "barcelona easy 41.4145,2.1527",
+  "havana medium 23.1367,-82.3589",
+  "prague medium 50.1176,14.4079",
+  "des-moines hard 41.591,-93.6034"
+ ],
+ "2026-10-18": [
+  "colombo hard 6.9344,79.8428",
+  "singapore easy 1.254,103.8238",
+  "berlin medium 52.4875,13.4247",
+  "buenos-aires medium -34.6084,-58.3732",
+  "cairo easy 30.0808,31.3238"
+ ],
+ "2026-10-19": [
+  "mumbai medium 19.0178,72.8478",
+  "paris easy 48.8584,2.2945",
+  "stockholm medium 59.31,18.1642",
+  "rio-de-janeiro easy -22.9122,-43.2302",
+  "chennai hard 13.085,80.2101"
+ ],
+ "2026-10-20": [
+  "new-orleans easy 29.9575,-90.063",
+  "moscow easy 55.8163,37.6407",
+  "athens medium 38.0294,23.7797",
+  "lagos hard 6.4698,3.3778",
+  "budapest medium 47.5147,19.0776"
+ ],
+ "2026-10-21": [
+  "sedona medium 34.8278,-111.769",
+  "istanbul easy 41.0082,28.9784",
+  "fresno hard 36.8135,-119.7462",
+  "cincinnati medium 39.1425,-84.5054",
+  "shanghai easy 31.2397,121.49"
+ ],
+ "2026-10-22": [
+  "lisbon medium 38.7071,-9.1364",
+  "honolulu easy 21.2793,-157.8292",
+  "san-juan easy 18.4586,-66.0755",
+  "brussels hard 50.8949,4.3415",
+  "doha medium 25.2609,51.6138"
+ ],
+ "2026-10-23": [
+  "atlanta hard 33.6407,-84.4277",
+  "denver medium 39.7477,-104.949",
+  "dubai easy 25.1412,55.1853",
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "key-west-fl easy 24.5465,-81.7975"
+ ],
+ "2026-10-24": [
+  "rome easy 41.86,12.49",
+  "louisville medium 38.2415,-85.6874",
+  "portland medium 45.4823,-122.6339",
+  "beijing easy 39.9086,116.4614",
+  "zurich hard 47.4114,8.5478"
+ ],
+ "2026-10-25": [
+  "johannesburg hard -26.1076,28.0567",
+  "hong-kong easy 22.3771,114.1955",
+  "mexico-city medium 19.3467,-99.1618",
+  "norfolk medium 36.8508,-76.2859",
+  "pittsburgh easy 40.4344,-79.9425"
+ ],
+ "2026-10-26": [
+  "addis-ababa hard 9.0107,38.7613",
+  "new-delhi medium 28.5535,77.201",
+  "savannah easy 32.0721,-81.0952",
+  "cairo easy 29.9792,31.1342",
+  "bangkok medium 13.7367,100.56"
+ ],
+ "2026-10-27": [
+  "barcelona easy 41.3809,2.1228",
+  "london easy 51.5055,-0.0754",
+  "berlin medium 52.5147,13.2394",
+  "havana medium 23.1167,-82.3",
+  "omaha hard 41.2565,-95.9345"
+ ],
+ "2026-10-28": [
+  "amsterdam easy 52.3702,4.8952",
+  "san-diego medium 32.6859,-117.1831",
+  "new-orleans easy 29.9226,-90.1263",
+  "toronto hard 43.6465,-79.4637",
+  "cape-town medium -33.95,18.3775"
+ ],
+ "2026-10-29": [
+  "tokyo easy 35.6852,139.7528",
+  "sydney easy -33.7969,151.2854",
+  "detroit medium 42.3576,-83.0666",
+  "quito hard -0.2201,-78.5123",
+  "mumbai medium 19.0178,72.8478"
+ ],
+ "2026-10-30": [
+  "lagos hard 6.4698,3.3778",
+  "istanbul easy 41.0082,28.9784",
+  "prague medium 50.0865,14.4114",
+  "lisbon medium 38.7071,-9.1364",
+  "paris easy 48.8584,2.2945"
+ ],
+ "2026-10-31": [
+  "nairobi hard -1.3,36.75",
+  "dubai easy 25.1972,55.2744",
+  "stockholm medium 59.3728,17.9737",
+  "doha medium 25.3592,51.5286",
+  "key-west-fl easy 24.5561,-81.7595"
+ ],
+ "2026-11-01": [
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "oakland medium 37.8058,-122.2508",
+  "las-vegas easy 36.1126,-115.1767",
+  "charlotte hard 35.193,-80.839",
+  "shanghai easy 31.2204,121.4098"
+ ],
+ "2026-11-02": [
+  "rome easy 41.9022,12.4539",
+  "indianapolis medium 39.795,-86.2339",
+  "almaty hard 43.238,76.945",
+  "budapest medium 47.5147,19.0776",
+  "rio-de-janeiro easy -22.9519,-43.2105"
+ ],
+ "2026-11-03": [
+  "madrid medium 40.4168,-3.7038",
+  "male easy 4.1918,73.529",
+  "singapore easy 1.254,103.8238",
+  "buenos-aires medium -34.6084,-58.3732",
+  "addis-ababa hard 9.0107,38.7613"
+ ],
+ "2026-11-04": [
+  "los-angeles medium 34.0739,-118.24",
+  "beijing easy 39.9928,116.3975",
+  "havana medium 23.1092,-82.4297",
+  "hong-kong easy 22.281,114.1288",
+  "provincetown hard 42.0645,-70.2478"
+ ],
+ "2026-11-05": [
+  "berlin medium 52.52,13.405",
+  "anchorage easy 61.1795,-149.9757",
+  "johannesburg hard -26.2378,27.9926",
+  "madison easy 43.1399,-89.3375",
+  "salt-lake-city medium 40.7707,-111.8911"
+ ],
+ "2026-11-06": [
+  "london easy 51.5054,-0.0235",
+  "san-diego medium 32.6859,-117.1831",
+  "mumbai medium 19.035,72.82",
+  "des-moines hard 41.5868,-93.625",
+  "amsterdam easy 52.3702,4.8952"
+ ],
+ "2026-11-07": [
+  "sydney easy -33.8568,151.2153",
+  "mexico-city medium 19.3467,-99.1618",
+  "new-orleans easy 29.9575,-90.063",
+  "taipei hard 25.033,121.5654",
+  "prague medium 50.0064,14.4083"
+ ],
+ "2026-11-08": [
+  "bangkok medium 13.7527,100.493",
+  "tokyo easy 35.7148,139.7967",
+  "new-delhi medium 28.5535,77.201",
+  "bucharest hard 44.4711,26.0784",
+  "dubai easy 25.1972,55.2744"
+ ],
+ "2026-11-09": [
+  "tampa easy 27.9506,-82.4572",
+  "minneapolis medium 45.005,-93.25",
+  "casablanca hard 33.6086,-7.6325",
+  "boston medium 42.3467,-71.0972",
+  "chicago easy 41.7943,-87.5907"
+ ],
+ "2026-11-10": [
+  "doha medium 25.2854,51.531",
+  "venice easy 45.438,12.3358",
+  "cape-town medium -33.9328,18.4173",
+  "rome easy 41.86,12.49",
+  "boise hard 43.615,-116.2023"
+ ],
+ "2026-11-11": [
+  "louisville medium 38.2527,-85.7585",
+  "istanbul easy 41.0082,28.9784",
+  "male easy 4.1918,73.529",
+  "athens medium 37.9236,23.7078",
+  "vienna hard 48.235,16.42"
+ ],
+ "2026-11-12": [
+  "shanghai easy 31.2204,121.4098",
+  "milwaukee medium 42.9989,-87.8973",
+  "beijing easy 39.9928,116.3975",
+  "copenhagen hard 55.6795,12.591",
+  "ho-chi-minh-city medium 10.7725,106.698"
+ ],
+ "2026-11-13": [
+  "seoul medium 37.5125,127.1025",
+  "cairo easy 30.0808,31.3238",
+  "denver medium 39.6766,-104.9619",
+  "helsinki hard 60.1454,24.988",
+  "rio-de-janeiro easy -22.9122,-43.2302"
+ ],
+ "2026-11-14": [
+  "detroit medium 42.3398,-82.9857",
+  "hong-kong easy 22.281,114.1288",
+  "paris easy 48.8388,2.3775",
+  "mumbai medium 18.922,72.8347",
+  "brussels hard 50.8014,4.3378"
+ ],
+ "2026-11-15": [
+  "nairobi hard -1.3,36.75",
+  "singapore easy 1.2836,103.8607",
+  "havana medium 23.1167,-82.3",
+  "new-york easy 40.7484,-73.9857",
+  "stockholm medium 59.31,18.1642"
+ ],
+ "2026-11-16": [
+  "london easy 51.5054,-0.0235",
+  "berlin medium 52.5147,13.2394",
+  "buenos-aires medium -34.575,-58.4175",
+  "raleigh hard 35.8317,-78.6389",
+  "barcelona easy 41.3809,2.1228"
+ ],
+ "2026-11-17": [
+  "jakarta hard -6.1754,106.8272",
+  "tokyo easy 35.6595,139.7004",
+  "indianapolis medium 39.8103,-86.1633",
+  "dubai easy 25.1972,55.2744",
+  "bangkok medium 13.7367,100.56"
+ ],
+ "2026-11-18": [
+  "taipei hard 25.033,121.5654",
+  "rome easy 41.86,12.49",
+  "amsterdam easy 52.34,4.85",
+  "new-delhi medium 28.5535,77.201",
+  "cape-town medium -33.9628,18.4098"
+ ],
+ "2026-11-19": [
+  "madison easy 43.1399,-89.3375",
+  "guangzhou hard 23.075,113.24",
+  "venice easy 45.431,12.3339",
+  "mexico-city medium 19.3467,-99.1618",
+  "madrid medium 40.42,-3.7583"
+ ],
+ "2026-11-20": [
+  "beijing easy 39.9086,116.4614",
+  "athens medium 38.0294,23.7797",
+  "pittsburgh easy 40.4614,-79.9614",
+  "chengdu hard 30.6339,104.0847",
+  "doha medium 25.2854,51.531"
+ ],
+ "2026-11-21": [
+  "moscow easy 55.752,37.6175",
+  "palm-springs medium 33.8303,-116.5453",
+  "male easy 4.1755,73.5093",
+  "oklahoma-city hard 35.51,-97.49",
+  "san-jose medium 37.3639,-121.9289"
+ ],
+ "2026-11-22": [
+  "seattle easy 47.5809,-122.4076",
+  "warsaw hard 52.1657,20.9671",
+  "ho-chi-minh-city medium 10.7295,106.7193",
+  "sydney easy -33.8568,151.2153",
+  "mumbai medium 19.035,72.82"
+ ],
+ "2026-11-23": [
+  "san-francisco easy 37.7951,-122.3965",
+  "budapest medium 47.5147,19.0776",
+  "savannah easy 32.0721,-81.0952",
+  "kuala-lumpur hard 3.1579,101.7116",
+  "detroit medium 42.3398,-82.9857"
+ ],
+ "2026-11-24": [
+  "buenos-aires medium -34.6084,-58.3732",
+  "paris easy 48.8963,2.3822",
+  "accra hard 5.556,-0.1969",
+  "miami easy 25.775,-80.1866",
+  "havana medium 23.1167,-82.3"
+ ],
+ "2026-11-25": [
+  "philadelphia medium 39.9061,-75.1665",
+  "orlando hard 28.49,-81.34",
+  "berlin medium 52.52,13.405",
+  "tokyo easy 35.6852,139.7528",
+  "rio-de-janeiro easy -22.9519,-43.2105"
+ ],
+ "2026-11-26": [
+  "zurich hard 47.3467,8.5626",
+  "tucson medium 32.2967,-111.1622",
+  "new-delhi medium 28.6562,77.241",
+  "chicago easy 41.9484,-87.6553",
+  "london easy 51.5007,-0.1246"
+ ],
+ "2026-11-27": [
+  "prague medium 50.0064,14.4083",
+  "lisbon medium 38.6916,-9.216",
+  "rome easy 41.9022,12.4539",
+  "guadalajara hard 20.6767,-103.3475",
+  "tampa easy 27.9506,-82.4572"
+ ],
+ "2026-11-28": [
+  "shanghai easy 31.2397,121.49",
+  "cape-town medium -33.9328,18.4173",
+  "madrid medium 40.4168,-3.7038",
+  "copenhagen hard 55.7333,12.5667",
+  "hong-kong easy 22.3771,114.1955"
+ ],
+ "2026-11-29": [
+  "oakland medium 37.8044,-122.2712",
+  "dublin medium 53.3556,-6.3297",
+  "santiago hard -33.4372,-70.6506",
+  "new-orleans easy 30.0005,-90.0952",
+  "washington-dc easy 38.8898,-76.9683"
+ ],
+ "2026-11-30": [
+  "key-west-fl easy 24.5465,-81.7975",
+  "des-moines hard 41.534,-93.6631",
+  "santa-fe medium 35.6167,-106.0892",
+  "beijing easy 39.9086,116.4614",
+  "nashville medium 36.155,-86.835"
+ ],
+ "2026-12-01": [
+  "buffalo medium 42.8864,-78.8784",
+  "brussels hard 50.8949,4.3415",
+  "long-beach medium 33.7542,-118.2165",
+  "moscow easy 55.7033,37.5303",
+  "istanbul easy 40.9833,29.0333"
+ ],
+ "2026-12-02": [
+  "sydney easy -33.8568,151.2153",
+  "memphis medium 35.0989,-90.0128",
+  "amsterdam easy 52.34,4.85",
+  "lagos hard 6.5244,3.3792",
+  "denver medium 39.7392,-104.9903"
+ ],
+ "2026-12-03": [
+  "mumbai medium 19.0178,72.8478",
+  "dubai easy 25.2532,55.3657",
+  "san-juan easy 18.4394,-66.0018",
+  "minneapolis medium 44.9778,-93.265",
+  "quito hard -0.2151,-78.5063"
+ ],
+ "2026-12-04": [
+  "male easy 4.1918,73.529",
+  "berlin medium 52.5147,13.2394",
+  "tokyo easy 35.7148,139.7967",
+  "riyadh hard 24.7116,46.6753",
+  "baltimore medium 39.2627,-76.5797"
+ ],
+ "2026-12-05": [
+  "london easy 51.5007,-0.1246",
+  "almaty hard 43.238,76.945",
+  "bangkok medium 13.7999,100.5502",
+  "havana medium 23.1367,-82.3589",
+  "rome easy 41.8902,12.4922"
+ ],
+ "2026-12-06": [
+  "paris easy 48.8388,2.3775",
+  "johannesburg hard -26.2041,28.0473",
+  "buenos-aires medium -34.6084,-58.3732",
+  "singapore easy 1.2836,103.8607",
+  "new-delhi medium 28.6129,77.2295"
+ ],
+ "2026-12-07": [
+  "cairo easy 30.0444,31.2357",
+  "montevideo hard -34.9138,-56.1441",
+  "stockholm medium 59.3728,17.9737",
+  "new-orleans easy 30.0005,-90.0952",
+  "seoul medium 37.5665,126.978"
+ ],
+ "2026-12-08": [
+  "seattle easy 47.6553,-122.3035",
+  "hong-kong easy 22.281,114.1288",
+  "copenhagen hard 55.7333,12.5667",
+  "cape-town medium -33.9328,18.4173",
+  "budapest medium 47.5147,19.0776"
+ ],
+ "2026-12-09": [
+  "phoenix hard 33.5183,-111.9647",
+  "venice easy 45.4342,12.3388",
+  "beijing easy 39.9163,116.3972",
+  "prague medium 50.0865,14.4114",
+  "milwaukee medium 43.028,-87.9712"
+ ],
+ "2026-12-10": [
+  "toronto hard 43.6706,-79.2952",
+  "madrid medium 40.42,-3.7583",
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "sydney easy -33.7969,151.2854",
+  "rio-de-janeiro easy -22.9122,-43.2302"
+ ],
+ "2026-12-11": [
+  "vienna hard 48.235,16.42",
+  "honolulu easy 21.262,-157.8055",
+  "lisbon medium 38.6916,-9.216",
+  "anchorage easy 61.1795,-149.9757",
+  "athens medium 38.0294,23.7797"
+ ],
+ "2026-12-12": [
+  "tucson medium 32.2319,-110.9501",
+  "doha medium 25.2609,51.6138",
+  "amsterdam easy 52.355,5.01",
+  "barcelona easy 41.3809,2.1228",
+  "zurich hard 47.4114,8.5478"
+ ],
+ "2026-12-13": [
+  "savannah easy 32.0721,-81.0952",
+  "guadalajara hard 20.6767,-103.3475",
+  "dublin medium 53.4213,-6.2701",
+  "tampa easy 28.0064,-82.4548",
+  "boston medium 42.3601,-71.0589"
+ ],
+ "2026-12-14": [
+  "los-angeles medium 34.0739,-118.24",
+  "pittsburgh easy 40.4344,-79.9425",
+  "albuquerque hard 35.0819,-106.6122",
+  "bangkok medium 13.7999,100.5502",
+  "las-vegas easy 36.1126,-115.1767"
+ ],
+ "2026-12-15": [
+  "houston hard 29.7396,-95.4613",
+  "london easy 51.5054,-0.0235",
+  "new-delhi medium 28.6129,77.2295",
+  "seoul medium 37.5665,126.978",
+  "singapore easy 1.254,103.8238"
+ ],
+ "2026-12-16": [
+  "seattle easy 47.6553,-122.3035",
+  "jakarta hard -6.2186,106.8022",
+  "stockholm medium 59.3251,18.0711",
+  "cincinnati medium 39.1364,-84.4547",
+  "san-francisco easy 37.7951,-122.3965"
+ ],
+ "2026-12-17": [
+  "budapest medium 47.535,19.035",
+  "mexico-city medium 19.3467,-99.1618",
+  "dubai easy 25.2532,55.3657",
+  "accra hard 5.5453,-0.1935",
+  "male easy 4.22,73.543"
+ ],
+ "2026-12-18": [
+  "key-west-fl easy 24.5465,-81.7975",
+  "denver medium 39.7392,-104.9903",
+  "oslo hard 59.927,10.7003",
+  "cape-town medium -33.9628,18.4098",
+  "tokyo easy 35.7148,139.7967"
+ ],
+ "2026-12-19": [
+  "casablanca hard 33.5928,-7.6184",
+  "san-juan easy 18.4394,-66.0018",
+  "moscow easy 55.8163,37.6407",
+  "sedona medium 34.8278,-111.769",
+  "buenos-aires medium -34.6084,-58.3732"
+ ],
+ "2026-12-20": [
+  "salt-lake-city medium 40.7226,-111.8563",
+  "berlin medium 52.5147,13.2394",
+  "amsterdam easy 52.355,5.01",
+  "kyiv hard 50.4501,30.5234",
+  "istanbul easy 40.9833,29.0333"
+ ],
+ "2026-12-21": [
+  "oakland medium 37.7955,-122.3231",
+  "madrid medium 40.4168,-3.7038",
+  "shanghai easy 31.1948,121.4368",
+  "washington-dc easy 38.8898,-76.9683",
+  "oklahoma-city hard 35.4676,-97.5164"
+ ],
+ "2026-12-22": [
+  "copenhagen hard 55.6297,12.5787",
+  "bangkok medium 13.7367,100.56",
+  "hong-kong easy 22.3771,114.1955",
+  "tampa easy 27.9506,-82.4572",
+  "philadelphia medium 39.9061,-75.1665"
+ ],
+ "2026-12-23": [
+  "dublin medium 53.3556,-6.3297",
+  "sydney easy -33.8568,151.2153",
+  "seoul medium 37.5563,126.9236",
+  "rio-de-janeiro easy -22.9711,-43.1822",
+  "guangzhou hard 23.1066,113.3247"
+ ],
+ "2026-12-24": [
+  "memphis medium 35.1495,-90.049",
+  "spokane hard 47.6588,-117.426",
+  "cairo easy 29.9792,31.1342",
+  "prague medium 50.0865,14.4114",
+  "paris easy 48.8388,2.3775"
+ ],
+ "2026-12-25": [
+  "guadalajara hard 20.6721,-103.3765",
+  "venice easy 45.438,12.3358",
+  "new-orleans easy 29.9575,-90.063",
+  "tucson medium 32.2967,-111.1622",
+  "cleveland medium 41.5044,-81.6079"
+ ],
+ "2026-12-26": [
+  "seattle easy 47.6062,-122.3321",
+  "warsaw hard 52.2547,21.0397",
+  "cape-town medium -33.95,18.3775",
+  "los-angeles medium 34.0739,-118.24",
+  "tokyo easy 35.6595,139.7004"
+ ],
+ "2026-12-27": [
+  "bogota hard 4.6483,-74.0648",
+  "detroit medium 42.3315,-83.0467",
+  "chicago easy 41.9484,-87.6553",
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "moscow easy 55.8163,37.6407"
+ ],
+ "2026-12-28": [
+  "austin hard 30.2672,-97.7431",
+  "singapore easy 1.254,103.8238",
+  "santa-fe medium 35.6167,-106.0892",
+  "sacramento medium 38.6058,-121.4453",
+  "beijing easy 39.9086,116.4614"
+ ],
+ "2026-12-29": [
+  "new-delhi medium 28.5535,77.201",
+  "doha medium 25.2854,51.531",
+  "new-york easy 40.7026,-74.0164",
+  "dallas hard 32.8218,-96.7422",
+  "rome easy 41.8902,12.4922"
+ ],
+ "2026-12-30": [
+  "shanghai easy 31.1948,121.4368",
+  "buenos-aires medium -34.5627,-58.4583",
+  "barcelona easy 41.3809,2.1228",
+  "kyiv hard 50.4344,30.557",
+  "madrid medium 40.4531,-3.6883"
+ ],
+ "2026-12-31": [
+  "male easy 4.1918,73.529",
+  "rio-de-janeiro easy -22.9711,-43.1822",
+  "havana medium 23.1367,-82.3589",
+  "dublin medium 53.3556,-6.3297",
+  "copenhagen hard 55.7333,12.5667"
+ ],
+ "2027-01-01": [
+  "paris easy 48.8963,2.3822",
+  "columbus hard 39.998,-82.8919",
+  "lisbon medium 38.7756,-9.1354",
+  "milwaukee medium 43.0389,-87.9065",
+  "dubai easy 25.2532,55.3657"
+ ],
+ "2027-01-02": [
+  "venice easy 45.4342,12.3388",
+  "sydney easy -33.8568,151.2153",
+  "stockholm medium 59.31,18.1642",
+  "budapest medium 47.4979,19.0402",
+  "medellin hard 6.2486,-75.5658"
+ ],
+ "2027-01-03": [
+  "athens medium 37.9236,23.7078",
+  "oslo hard 59.927,10.7003",
+  "cape-town medium -33.9328,18.4173",
+  "honolulu easy 21.2793,-157.8292",
+  "istanbul easy 41.0473,29.0271"
+ ],
+ "2027-01-04": [
+  "amsterdam easy 52.3702,4.8952",
+  "tampa easy 27.9506,-82.4572",
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "karachi hard 24.8615,67.0303",
+  "bangkok medium 13.7527,100.493"
+ ],
+ "2027-01-05": [
+  "moscow easy 55.8163,37.6407",
+  "philadelphia medium 39.9496,-75.1503",
+  "phoenix hard 33.5183,-111.9647",
+  "minneapolis medium 45.005,-93.25",
+  "singapore easy 1.3343,103.8563"
+ ],
+ "2027-01-06": [
+  "rome easy 41.86,12.49",
+  "berlin medium 52.52,13.405",
+  "new-delhi medium 28.5535,77.201",
+  "dallas hard 32.7488,-96.8281",
+  "cairo easy 30.0444,31.2357"
+ ],
+ "2027-01-07": [
+  "tokyo easy 35.6852,139.7528",
+  "zurich hard 47.3467,8.5626",
+  "london easy 51.5007,-0.1246",
+  "doha medium 25.2854,51.531",
+  "buenos-aires medium -34.5627,-58.4583"
+ ],
+ "2027-01-08": [
+  "helsinki hard 60.1699,24.9524",
+  "st-louis medium 38.6376,-90.2896",
+  "san-juan easy 18.4394,-66.0018",
+  "las-vegas easy 36.1126,-115.1767",
+  "seoul medium 37.5125,127.1025"
+ ],
+ "2027-01-09": [
+  "male easy 4.1918,73.529",
+  "dhaka hard 23.8069,90.3687",
+  "havana medium 23.1367,-82.3589",
+  "prague medium 50.1176,14.4079",
+  "chicago easy 41.7943,-87.5907"
+ ],
+ "2027-01-10": [
+  "sacramento medium 38.6058,-121.4453",
+  "new-york easy 40.7484,-73.9857",
+  "lisbon medium 38.6916,-9.216",
+  "guangzhou hard 23.1867,113.2967",
+  "washington-dc easy 38.8893,-77.0254"
+ ],
+ "2027-01-11": [
+  "cape-town medium -33.95,18.3775",
+  "new-orleans easy 29.9226,-90.1263",
+  "memphis medium 35.1495,-90.049",
+  "beijing easy 39.9928,116.3975",
+  "jakarta hard -6.1223,106.8317"
+ ],
+ "2027-01-12": [
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "johannesburg hard -26.1076,28.0567",
+  "venice easy 45.438,12.3358",
+  "milwaukee medium 43.028,-87.9712",
+  "pittsburgh easy 40.4614,-79.9614"
+ ],
+ "2027-01-13": [
+  "mexico-city medium 19.3467,-99.1618",
+  "cheyenne hard 41.14,-104.8202",
+  "shanghai easy 31.2204,121.4098",
+  "stockholm medium 59.31,18.1642",
+  "barcelona easy 41.3809,2.1228"
+ ],
+ "2027-01-14": [
+  "cairo easy 29.9792,31.1342",
+  "oklahoma-city hard 35.51,-97.49",
+  "madrid medium 40.42,-3.7583",
+  "bangkok medium 13.7527,100.493",
+  "honolulu easy 21.3069,-157.865"
+ ],
+ "2027-01-15": [
+  "rome easy 41.86,12.49",
+  "new-delhi medium 28.6562,77.241",
+  "amsterdam easy 52.3702,4.8952",
+  "doha medium 25.2854,51.531",
+  "manila hard 14.5352,120.9822"
+ ],
+ "2027-01-16": [
+  "tehran hard 35.7038,51.4088",
+  "mumbai medium 19.035,72.82",
+  "dubai easy 25.2532,55.3657",
+  "tucson medium 32.2217,-110.9265",
+  "singapore easy 1.254,103.8238"
+ ],
+ "2027-01-17": [
+  "los-angeles medium 34.043,-118.2673",
+  "portland medium 45.4823,-122.6339",
+  "tokyo easy 35.7148,139.7967",
+  "atlanta hard 33.7879,-84.3733",
+  "moscow easy 55.752,37.6175"
+ ],
+ "2027-01-18": [
+  "hong-kong easy 22.2793,114.1628",
+  "berlin medium 52.52,13.405",
+  "rio-de-janeiro easy -22.9519,-43.2105",
+  "denver medium 39.7477,-104.949",
+  "bucharest hard 44.4268,26.0873"
+ ],
+ "2027-01-19": [
+  "male easy 4.1918,73.529",
+  "dallas hard 32.8218,-96.7422",
+  "lisbon medium 38.7071,-9.1364",
+  "paris easy 48.8963,2.3822",
+  "prague medium 50.0064,14.4083"
+ ],
+ "2027-01-20": [
+  "buenos-aires medium -34.6084,-58.3732",
+  "budapest medium 47.5147,19.0776",
+  "beijing easy 39.9086,116.4614",
+  "zurich hard 47.3769,8.5417",
+  "istanbul easy 41.0082,28.9784"
+ ],
+ "2027-01-21": [
+  "nashville medium 36.155,-86.835",
+  "venice easy 45.4342,12.3388",
+  "riyadh hard 24.7116,46.6753",
+  "seoul medium 37.5665,126.978",
+  "barcelona easy 41.3809,2.1228"
+ ],
+ "2027-01-22": [
+  "madrid medium 40.42,-3.7583",
+  "quito hard -0.2151,-78.5063",
+  "sydney easy -33.8568,151.2153",
+  "athens medium 37.9236,23.7078",
+  "tampa easy 27.9506,-82.4572"
+ ],
+ "2027-01-23": [
+  "london easy 51.5055,-0.0754",
+  "guadalajara hard 20.6767,-103.3475",
+  "shanghai easy 31.1948,121.4368",
+  "havana medium 23.1092,-82.4297",
+  "indianapolis medium 39.7685,-86.158"
+ ],
+ "2027-01-24": [
+  "mumbai medium 18.922,72.8347",
+  "des-moines hard 41.5868,-93.625",
+  "dublin medium 53.3498,-6.2603",
+  "key-west-fl easy 24.5465,-81.7975",
+  "amsterdam easy 52.34,4.85"
+ ],
+ "2027-01-25": [
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "madison easy 43.1399,-89.3375",
+  "cairo easy 29.9792,31.1342",
+  "boston medium 42.377,-71.1167",
+  "santiago hard -33.426,-70.6088"
+ ],
+ "2027-01-26": [
+  "almaty hard 43.2333,76.9694",
+  "las-vegas easy 36.1725,-115.085",
+  "sacramento medium 38.5765,-121.4934",
+  "new-delhi medium 28.6129,77.2295",
+  "pittsburgh easy 40.4614,-79.9614"
+ ],
+ "2027-01-27": [
+  "provincetown hard 42.0526,-70.1786",
+  "tokyo easy 35.6595,139.7004",
+  "new-york easy 40.7484,-73.9857",
+  "berlin medium 52.5147,13.2394",
+  "milwaukee medium 43.0389,-87.9065"
+ ],
+ "2027-01-28": [
+  "singapore easy 1.254,103.8238",
+  "doha medium 25.2854,51.531",
+  "anchorage easy 61.1795,-149.9757",
+  "prague medium 50.0064,14.4083",
+  "fresno hard 36.7378,-119.7871"
+ ],
+ "2027-01-29": [
+  "barcelona easy 41.3874,2.1686",
+  "buenos-aires medium -34.575,-58.4175",
+  "addis-ababa hard 9.0359,38.7503",
+  "tucson medium 32.2967,-111.1622",
+  "istanbul easy 41.0473,29.0271"
+ ],
+ "2027-01-30": [
+  "denver medium 39.7392,-104.9903",
+  "hong-kong easy 22.3771,114.1955",
+  "kansas-city hard 39.1128,-94.5342",
+  "paris easy 48.8963,2.3822",
+  "athens medium 38.0294,23.7797"
+ ],
+ "2027-01-31": [
+  "rome easy 41.86,12.49",
+  "london easy 51.5055,-0.0754",
+  "stockholm medium 59.3251,18.0711",
+  "bangkok medium 13.7527,100.493",
+  "zurich hard 47.3467,8.5626"
+ ],
+ "2027-02-01": [
+  "chicago easy 41.7943,-87.5907",
+  "asheville hard 35.5407,-82.5514",
+  "shanghai easy 31.2204,121.4098",
+  "jacksonville medium 30.3322,-81.6557",
+  "madrid medium 40.4168,-3.7038"
+ ],
+ "2027-02-02": [
+  "mumbai medium 19.0178,72.8478",
+  "miami easy 25.7907,-80.13",
+  "havana medium 23.1367,-82.3589",
+  "des-moines hard 41.534,-93.6631",
+  "amsterdam easy 52.34,4.85"
+ ],
+ "2027-02-03": [
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "san-jose medium 37.3327,-121.9012",
+  "copenhagen hard 55.6297,12.5787",
+  "moscow easy 55.752,37.6175",
+  "tampa easy 27.9506,-82.4572"
+ ],
+ "2027-02-04": [
+  "sacramento medium 38.6058,-121.4453",
+  "santiago hard -33.4636,-70.6119",
+  "key-west-fl easy 24.5586,-81.7963",
+  "seoul medium 37.5665,126.978",
+  "tokyo easy 35.7148,139.7967"
+ ],
+ "2027-02-05": [
+  "lisbon medium 38.7071,-9.1364",
+  "seattle easy 47.6062,-122.3321",
+  "nairobi hard -1.2921,36.8219",
+  "madison easy 43.0766,-89.4125",
+  "santa-fe medium 35.6858,-105.9236"
+ ],
+ "2027-02-06": [
+  "sydney easy -33.8908,151.2743",
+  "mexico-city medium 19.4204,-99.1817",
+  "dublin medium 53.4213,-6.2701",
+  "medellin hard 6.2716,-75.5654",
+  "dubai easy 25.1412,55.1853"
+ ],
+ "2027-02-07": [
+  "wichita hard 37.6872,-97.3301",
+  "athens medium 37.9715,23.7257",
+  "san-juan easy 18.4712,-66.1246",
+  "sedona medium 34.7987,-111.7648",
+  "savannah easy 32.0721,-81.0952"
+ ],
+ "2027-02-08": [
+  "anchorage easy 61.1926,-149.9989",
+  "berlin medium 52.5147,13.2394",
+  "new-orleans easy 29.9575,-90.063",
+  "nashville medium 36.1612,-86.7775",
+  "bucharest hard 44.4711,26.0784"
+ ],
+ "2027-02-09": [
+  "bangkok medium 13.7367,100.56",
+  "budapest medium 47.4979,19.0402",
+  "barcelona easy 41.3874,2.1686",
+  "raleigh hard 35.8317,-78.6389",
+  "singapore easy 1.3343,103.8563"
+ ],
+ "2027-02-10": [
+  "venice easy 45.4342,12.3388",
+  "louisville medium 38.202,-85.7693",
+  "paris easy 48.8584,2.2945",
+  "albuquerque hard 35.0819,-106.6122",
+  "new-delhi medium 28.5535,77.201"
+ ],
+ "2027-02-11": [
+  "houston hard 29.7174,-95.3903",
+  "stockholm medium 59.3251,18.0711",
+  "rio-de-janeiro easy -22.9122,-43.2302",
+  "buenos-aires medium -34.575,-58.4175",
+  "beijing easy 39.9086,116.4614"
+ ],
+ "2027-02-12": [
+  "shanghai easy 31.1948,121.4368",
+  "philadelphia medium 39.9736,-75.1911",
+  "tokyo easy 35.6852,139.7528",
+  "lima hard -12.0567,-77.1",
+  "madrid medium 40.42,-3.7583"
+ ],
+ "2027-02-13": [
+  "moscow easy 55.8163,37.6407",
+  "cairo easy 29.9792,31.1342",
+  "oslo hard 59.927,10.7003",
+  "portland medium 45.5189,-122.6713",
+  "mumbai medium 19.0178,72.8478"
+ ],
+ "2027-02-14": [
+  "hong-kong easy 22.3771,114.1955",
+  "manila hard 14.5352,120.9822",
+  "prague medium 50.1176,14.4079",
+  "milwaukee medium 43.028,-87.9712",
+  "madison easy 43.1399,-89.3375"
+ ],
+ "2027-02-15": [
+  "dublin medium 53.3556,-6.3297",
+  "seoul medium 37.5125,127.1025",
+  "amsterdam easy 52.3702,4.8952",
+  "fresno hard 36.8397,-119.7639",
+  "rome easy 41.86,12.49"
+ ],
+ "2027-02-16": [
+  "oklahoma-city hard 35.42,-97.5231",
+  "sydney easy -33.8568,151.2153",
+  "istanbul easy 41.0082,28.9784",
+  "cape-town medium -33.9628,18.4098",
+  "berlin medium 52.52,13.405"
+ ],
+ "2027-02-17": [
+  "los-angeles medium 34.043,-118.2673",
+  "singapore easy 1.2836,103.8607",
+  "havana medium 23.1367,-82.3589",
+  "riyadh hard 24.6912,46.6851",
+  "dubai easy 25.1972,55.2744"
+ ],
+ "2027-02-18": [
+  "lisbon medium 38.7071,-9.1364",
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "male easy 4.22,73.543",
+  "seattle easy 47.6553,-122.3035",
+  "helsinki hard 60.1454,24.988"
+ ],
+ "2027-02-19": [
+  "cincinnati medium 39.1364,-84.4547",
+  "venice easy 45.438,12.3358",
+  "san-antonio hard 29.4658,-98.4331",
+  "bangkok medium 13.7527,100.493",
+  "anchorage easy 61.2181,-149.9003"
+ ],
+ "2027-02-20": [
+  "athens medium 38.0294,23.7797",
+  "mexico-city medium 19.3467,-99.1618",
+  "beijing easy 39.9086,116.4614",
+  "santiago hard -33.426,-70.6088",
+  "london easy 51.5007,-0.1246"
+ ],
+ "2027-02-21": [
+  "rio-de-janeiro easy -22.9122,-43.2302",
+  "cairo easy 30.0808,31.3238",
+  "lima hard -12.0464,-77.0428",
+  "memphis medium 35.0989,-90.0128",
+  "minneapolis medium 44.9778,-93.265"
+ ],
+ "2027-02-22": [
+  "hong-kong easy 22.2793,114.1628",
+  "toronto hard 43.6511,-79.3809",
+  "budapest medium 47.535,19.035",
+  "paris easy 48.8388,2.3775",
+  "doha medium 25.2609,51.6138"
+ ],
+ "2027-02-23": [
+  "bogota hard 4.6483,-74.0648",
+  "seoul medium 37.5665,126.978",
+  "buenos-aires medium -34.6084,-58.3732",
+  "rome easy 41.9022,12.4539",
+  "shanghai easy 31.2204,121.4098"
+ ],
+ "2027-02-24": [
+  "mumbai medium 19.0178,72.8478",
+  "sydney easy -33.8908,151.2743",
+  "copenhagen hard 55.7333,12.5667",
+  "moscow easy 55.7033,37.5303",
+  "berlin medium 52.5147,13.2394"
+ ],
+ "2027-02-25": [
+  "istanbul easy 41.0082,28.9784",
+  "oslo hard 59.9075,10.7529",
+  "dubai easy 25.1972,55.2744",
+  "dublin medium 53.4213,-6.2701",
+  "stockholm medium 59.3251,18.0711"
+ ],
+ "2027-02-26": [
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "lisbon medium 38.7071,-9.1364",
+  "amsterdam easy 52.34,4.85",
+  "riyadh hard 24.6912,46.6851",
+  "male easy 4.22,73.543"
+ ],
+ "2027-02-27": [
+  "zurich hard 47.4114,8.5478",
+  "madrid medium 40.42,-3.7583",
+  "barcelona easy 41.3809,2.1228",
+  "havana medium 23.1092,-82.4297",
+  "singapore easy 1.254,103.8238"
+ ],
+ "2027-02-28": [
+  "athens medium 37.9715,23.7257",
+  "seattle easy 47.5809,-122.4076",
+  "dhaka hard 23.7808,90.4147",
+  "prague medium 50.1176,14.4079",
+  "venice easy 45.431,12.3339"
+ ],
+ "2027-03-01": [
+  "vienna hard 48.2085,16.3731",
+  "tokyo easy 35.6595,139.7004",
+  "cape-town medium -33.9328,18.4173",
+  "bangkok medium 13.7527,100.493",
+  "cairo easy 30.0444,31.2357"
+ ],
+ "2027-03-02": [
+  "bucharest hard 44.4711,26.0784",
+  "budapest medium 47.535,19.035",
+  "paris easy 48.8388,2.3775",
+  "mexico-city medium 19.4204,-99.1817",
+  "beijing easy 39.9163,116.3972"
+ ],
+ "2027-03-03": [
+  "rio-de-janeiro easy -22.9122,-43.2302",
+  "addis-ababa hard 9.0359,38.7503",
+  "shanghai easy 31.2397,121.49",
+  "buenos-aires medium -34.5627,-58.4583",
+  "indianapolis medium 39.8103,-86.1633"
+ ],
+ "2027-03-04": [
+  "sydney easy -33.8568,151.2153",
+  "mumbai medium 19.035,72.82",
+  "hong-kong easy 22.2793,114.1628",
+  "nairobi hard -1.3,36.75",
+  "new-delhi medium 28.6562,77.241"
+ ],
+ "2027-03-05": [
+  "key-west-fl easy 24.5465,-81.7975",
+  "dublin medium 53.3498,-6.2603",
+  "stockholm medium 59.3251,18.0711",
+  "kuala-lumpur hard 3.1579,101.7116",
+  "london easy 51.5007,-0.1246"
+ ],
+ "2027-03-06": [
+  "istanbul easy 40.9833,29.0333",
+  "tehran hard 35.7038,51.4088",
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "seoul medium 37.5665,126.978",
+  "savannah easy 32.0721,-81.0952"
+ ],
+ "2027-03-07": [
+  "male easy 4.22,73.543",
+  "berlin medium 52.5147,13.2394",
+  "dubai easy 25.2532,55.3657",
+  "doha medium 25.2854,51.531",
+  "copenhagen hard 55.6297,12.5787"
+ ],
+ "2027-03-08": [
+  "athens medium 38.0294,23.7797",
+  "amsterdam easy 52.34,4.85",
+  "memphis medium 35.1495,-90.049",
+  "rome easy 41.9022,12.4539",
+  "colombo hard 6.9344,79.8428"
+ ],
+ "2027-03-09": [
+  "cape-town medium -33.9328,18.4173",
+  "venice easy 45.4342,12.3388",
+  "san-diego medium 32.7341,-117.1449",
+  "chennai hard 13.0418,80.2341",
+  "tokyo easy 35.6595,139.7004"
+ ],
+ "2027-03-10": [
+  "havana medium 23.1167,-82.3",
+  "barcelona easy 41.4145,2.1527",
+  "madrid medium 40.4531,-3.6883",
+  "quito hard -0.2151,-78.5063",
+  "cairo easy 29.9792,31.1342"
+ ],
+ "2027-03-11": [
+  "buenos-aires medium -34.5627,-58.4583",
+  "beijing easy 39.9163,116.3972",
+  "tucson medium 32.2319,-110.9501",
+  "spokane hard 47.6588,-117.426",
+  "shanghai easy 31.1948,121.4368"
+ ],
+ "2027-03-12": [
+  "denver medium 39.6766,-104.9619",
+  "medellin hard 6.2486,-75.5658",
+  "singapore easy 1.254,103.8238",
+  "mumbai medium 19.035,72.82",
+  "sydney easy -33.8568,151.2153"
+ ],
+ "2027-03-13": [
+  "prague medium 50.1176,14.4079",
+  "dublin medium 53.3556,-6.3297",
+  "auckland hard -36.8485,174.7633",
+  "san-juan easy 18.4394,-66.0018",
+  "moscow easy 55.7033,37.5303"
+ ],
+ "2027-03-14": [
+  "istanbul easy 41.0082,28.9784",
+  "casablanca hard 33.5928,-7.6184",
+  "bangkok medium 13.7527,100.493",
+  "stockholm medium 59.3251,18.0711",
+  "london easy 51.5054,-0.0235"
+ ],
+ "2027-03-15": [
+  "baltimore medium 39.2856,-76.6122",
+  "warsaw hard 52.2297,21.0122",
+  "new-delhi medium 28.6562,77.241",
+  "san-francisco easy 37.7951,-122.3965",
+  "dubai easy 25.1412,55.1853"
+ ],
+ "2027-03-16": [
+  "boston medium 42.3467,-71.0972",
+  "anchorage easy 61.2181,-149.9003",
+  "male easy 4.1918,73.529",
+  "kyiv hard 50.4501,30.5234",
+  "athens medium 38.0294,23.7797"
+ ],
+ "2027-03-17": [
+  "fresno hard 36.8397,-119.7639",
+  "berlin medium 52.52,13.405",
+  "budapest medium 47.5147,19.0776",
+  "hong-kong easy 22.3771,114.1955",
+  "amsterdam easy 52.355,5.01"
+ ],
+ "2027-03-18": [
+  "atlanta hard 33.7879,-84.3733",
+  "paris easy 48.8963,2.3822",
+  "cape-town medium -33.9628,18.4098",
+  "savannah easy 32.1276,-81.2021",
+  "seoul medium 37.5563,126.9236"
+ ],
+ "2027-03-19": [
+  "rome easy 41.8902,12.4922",
+  "minneapolis medium 45.005,-93.25",
+  "madrid medium 40.4531,-3.6883",
+  "chennai hard 13.0418,80.2341",
+  "rio-de-janeiro easy -22.9519,-43.2105"
+ ],
+ "2027-03-20": [
+  "buenos-aires medium -34.5627,-58.4583",
+  "mumbai medium 19.035,72.82",
+  "karachi hard 24.8615,67.0303",
+  "beijing easy 39.9086,116.4614",
+  "tokyo easy 35.6852,139.7528"
+ ],
+ "2027-03-21": [
+  "mexico-city medium 19.4204,-99.1817",
+  "washington-dc easy 38.8893,-77.0254",
+  "boise hard 43.5644,-116.2228",
+  "venice easy 45.4342,12.3388",
+  "ho-chi-minh-city medium 10.8188,106.652"
+ ],
+ "2027-03-22": [
+  "havana medium 23.1092,-82.4297",
+  "moscow easy 55.752,37.6175",
+  "prague medium 50.1176,14.4079",
+  "bucharest hard 44.4268,26.0873",
+  "barcelona easy 41.3874,2.1686"
+ ],
+ "2027-03-23": [
+  "doha medium 25.3592,51.5286",
+  "new-delhi medium 28.5535,77.201",
+  "jakarta hard -6.1223,106.8317",
+  "dubai easy 25.1972,55.2744",
+  "sydney easy -33.8568,151.2153"
+ ],
+ "2027-03-24": [
+  "shanghai easy 31.2204,121.4098",
+  "athens medium 37.9715,23.7257",
+  "anchorage easy 61.2181,-149.9003",
+  "dublin medium 53.4213,-6.2701",
+  "toronto hard 43.6706,-79.2952"
+ ],
+ "2027-03-25": [
+  "hong-kong easy 22.2793,114.1628",
+  "amsterdam easy 52.34,4.85",
+  "budapest medium 47.5147,19.0776",
+  "addis-ababa hard 9.0107,38.7613",
+  "bangkok medium 13.7999,100.5502"
+ ],
+ "2027-03-26": [
+  "london easy 51.5054,-0.0235",
+  "paris easy 48.8388,2.3775",
+  "indianapolis medium 39.7685,-86.158",
+  "seoul medium 37.5125,127.1025",
+  "taipei hard 25.033,121.5654"
+ ],
+ "2027-03-27": [
+  "sedona medium 34.8278,-111.769",
+  "san-antonio hard 29.4658,-98.4331",
+  "cairo easy 30.0808,31.3238",
+  "rome easy 41.9022,12.4539",
+  "madrid medium 40.42,-3.7583"
+ ],
+ "2027-03-28": [
+  "san-francisco easy 37.7951,-122.3965",
+  "berlin medium 52.4875,13.4247",
+  "guadalajara hard 20.6767,-103.3475",
+  "stockholm medium 59.3728,17.9737",
+  "male easy 4.1755,73.5093"
+ ],
+ "2027-03-29": [
+  "buenos-aires medium -34.575,-58.4175",
+  "mexico-city medium 19.4204,-99.1817",
+  "singapore easy 1.3343,103.8563",
+  "orlando hard 28.5421,-81.379",
+  "key-west-fl easy 24.5561,-81.7595"
+ ],
+ "2027-03-30": [
+  "istanbul easy 41.0082,28.9784",
+  "casablanca hard 33.6086,-7.6325",
+  "beijing easy 39.9086,116.4614",
+  "mumbai medium 18.922,72.8347",
+  "lisbon medium 38.6916,-9.216"
+ ],
+ "2027-03-31": [
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "venice easy 45.4342,12.3388",
+  "tokyo easy 35.6852,139.7528",
+  "havana medium 23.1367,-82.3589",
+  "providence hard 41.824,-71.4128"
+ ],
+ "2027-04-01": [
+  "rio-de-janeiro easy -22.9519,-43.2105",
+  "doha medium 25.2854,51.531",
+  "dubai easy 25.1412,55.1853",
+  "brussels hard 50.8949,4.3415",
+  "cape-town medium -33.9628,18.4098"
+ ],
+ "2027-04-02": [
+  "atlanta hard 33.7603,-84.3935",
+  "barcelona easy 41.4145,2.1527",
+  "sydney easy -33.7969,151.2854",
+  "budapest medium 47.5147,19.0776",
+  "long-beach medium 33.8177,-118.1516"
+ ],
+ "2027-04-03": [
+  "amsterdam easy 52.3702,4.8952",
+  "prague medium 50.0865,14.4114",
+  "quito hard -0.2151,-78.5063",
+  "indianapolis medium 39.795,-86.2339",
+  "london easy 51.5054,-0.0235"
+ ],
+ "2027-04-04": [
+  "helsinki hard 60.1699,24.9524",
+  "shanghai easy 31.2204,121.4098",
+  "paris easy 48.8963,2.3822",
+  "dublin medium 53.4213,-6.2701",
+  "athens medium 37.9236,23.7078"
+ ],
+ "2027-04-05": [
+  "pittsburgh easy 40.4344,-79.9425",
+  "moscow easy 55.7033,37.5303",
+  "seoul medium 37.5665,126.978",
+  "nashville medium 36.1612,-86.7775",
+  "omaha hard 41.2565,-95.9345"
+ ],
+ "2027-04-06": [
+  "santa-fe medium 35.6167,-106.0892",
+  "male easy 4.1918,73.529",
+  "cairo easy 30.0808,31.3238",
+  "kansas-city hard 39.16,-94.575",
+  "buenos-aires medium -34.575,-58.4175"
+ ],
+ "2027-04-07": [
+  "addis-ababa hard 9.0107,38.7613",
+  "hong-kong easy 22.3771,114.1955",
+  "lisbon medium 38.7071,-9.1364",
+  "new-delhi medium 28.6129,77.2295",
+  "rome easy 41.8902,12.4922"
+ ],
+ "2027-04-08": [
+  "stockholm medium 59.3728,17.9737",
+  "singapore easy 1.3343,103.8563",
+  "bangkok medium 13.7527,100.493",
+  "nairobi hard -1.3,36.75",
+  "seattle easy 47.6062,-122.3321"
+ ],
+ "2027-04-09": [
+  "anchorage easy 61.1926,-149.9989",
+  "medellin hard 6.2486,-75.5658",
+  "istanbul easy 40.9833,29.0333",
+  "berlin medium 52.4875,13.4247",
+  "ho-chi-minh-city medium 10.7295,106.7193"
+ ],
+ "2027-04-10": [
+  "provincetown hard 42.05,-70.1837",
+  "beijing easy 39.9086,116.4614",
+  "havana medium 23.1092,-82.4297",
+  "madrid medium 40.4168,-3.7038",
+  "barcelona easy 41.3874,2.1686"
+ ],
+ "2027-04-11": [
+  "prague medium 50.0064,14.4083",
+  "orlando hard 28.49,-81.34",
+  "sydney easy -33.8908,151.2743",
+  "cape-town medium -33.9328,18.4173",
+  "tokyo easy 35.6595,139.7004"
+ ],
+ "2027-04-12": [
+  "athens medium 37.9715,23.7257",
+  "shanghai easy 31.1948,121.4368",
+  "portland medium 45.5118,-122.5972",
+  "venice easy 45.431,12.3339",
+  "columbus hard 40.0067,-83.0305"
+ ],
+ "2027-04-13": [
+  "moscow easy 55.8163,37.6407",
+  "chicago easy 41.8827,-87.6233",
+  "doha medium 25.3592,51.5286",
+  "dublin medium 53.3556,-6.3297",
+  "taipei hard 25.0421,121.5079"
+ ],
+ "2027-04-14": [
+  "seoul medium 37.5665,126.978",
+  "johannesburg hard -26.1076,28.0567",
+  "budapest medium 47.535,19.035",
+  "new-york easy 40.7829,-73.9654",
+  "cairo easy 30.0808,31.3238"
+ ],
+ "2027-04-15": [
+  "male easy 4.1755,73.5093",
+  "lisbon medium 38.6916,-9.216",
+  "mumbai medium 18.922,72.8347",
+  "wichita hard 37.6836,-97.3395",
+  "amsterdam easy 52.3702,4.8952"
+ ],
+ "2027-04-16": [
+  "fresno hard 36.8397,-119.7639",
+  "paris easy 48.8388,2.3775",
+  "stockholm medium 59.3251,18.0711",
+  "rome easy 41.86,12.49",
+  "salt-lake-city medium 40.7707,-111.8911"
+ ],
+ "2027-04-17": [
+  "san-jose medium 37.3327,-121.9012",
+  "seattle easy 47.6062,-122.3321",
+  "mexico-city medium 19.4326,-99.1332",
+  "las-vegas easy 36.1126,-115.1767",
+  "bogota hard 4.5981,-74.0758"
+ ],
+ "2027-04-18": [
+  "havana medium 23.1367,-82.3589",
+  "istanbul easy 41.0473,29.0271",
+  "madrid medium 40.4531,-3.6883",
+  "singapore easy 1.3343,103.8563",
+  "zurich hard 47.3769,8.5417"
+ ],
+ "2027-04-19": [
+  "berlin medium 52.5147,13.2394",
+  "london easy 51.5054,-0.0235",
+  "sydney easy -33.7969,151.2854",
+  "jakarta hard -6.1223,106.8317",
+  "bangkok medium 13.7999,100.5502"
+ ],
+ "2027-04-20": [
+  "barcelona easy 41.4145,2.1527",
+  "new-delhi medium 28.6562,77.241",
+  "rio-de-janeiro easy -22.9519,-43.2105",
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "copenhagen hard 55.6795,12.591"
+ ],
+ "2027-04-21": [
+  "cape-town medium -33.9328,18.4173",
+  "moscow easy 55.7033,37.5303",
+  "minneapolis medium 45.005,-93.25",
+  "warsaw hard 52.2547,21.0397",
+  "venice easy 45.431,12.3339"
+ ],
+ "2027-04-22": [
+  "dubai easy 25.1972,55.2744",
+  "st-louis medium 38.6247,-90.1848",
+  "tokyo easy 35.7148,139.7967",
+  "columbus hard 40.0067,-83.0305",
+  "seoul medium 37.5665,126.978"
+ ],
+ "2027-04-23": [
+  "doha medium 25.2854,51.531",
+  "beijing easy 39.9163,116.3972",
+  "vienna hard 48.235,16.42",
+  "denver medium 39.6766,-104.9619",
+  "amsterdam easy 52.3702,4.8952"
+ ],
+ "2027-04-24": [
+  "mumbai medium 18.922,72.8347",
+  "helsinki hard 60.1454,24.988",
+  "male easy 4.22,73.543",
+  "palm-springs medium 33.8305,-116.6122",
+  "rome easy 41.8902,12.4922"
+ ],
+ "2027-04-25": [
+  "paris easy 48.8388,2.3775",
+  "shanghai easy 31.1948,121.4368",
+  "athens medium 37.9236,23.7078",
+  "lisbon medium 38.7756,-9.1354",
+  "atlanta hard 33.7603,-84.3935"
+ ],
+ "2027-04-26": [
+  "cairo easy 29.9792,31.1342",
+  "oslo hard 59.9075,10.7529",
+  "budapest medium 47.5147,19.0776",
+  "boston medium 42.377,-71.1167",
+  "pittsburgh easy 40.4423,-80.0112"
+ ],
+ "2027-04-27": [
+  "key-west-fl easy 24.5561,-81.7595",
+  "bangkok medium 13.7999,100.5502",
+  "miami easy 25.7907,-80.13",
+  "buenos-aires medium -34.6084,-58.3732",
+  "omaha hard 41.2565,-95.9345"
+ ],
+ "2027-04-28": [
+  "berlin medium 52.4875,13.4247",
+  "barcelona easy 41.4145,2.1527",
+  "mexico-city medium 19.4326,-99.1332",
+  "honolulu easy 21.3069,-157.865",
+  "johannesburg hard -26.2041,28.0473"
+ ],
+ "2027-04-29": [
+  "detroit medium 42.3398,-82.9857",
+  "prague medium 50.0064,14.4083",
+  "tehran hard 35.6997,51.338",
+  "madison easy 43.0766,-89.4125",
+  "anchorage easy 61.2181,-149.9003"
+ ],
+ "2027-04-30": [
+  "venice easy 45.4342,12.3388",
+  "providence hard 41.8787,-71.3826",
+  "moscow easy 55.7033,37.5303",
+  "stockholm medium 59.31,18.1642",
+  "baltimore medium 39.2856,-76.6122"
+ ],
+ "2027-05-01": [
+  "san-antonio hard 29.4614,-98.4736",
+  "chicago easy 41.9484,-87.6553",
+  "new-delhi medium 28.6562,77.241",
+  "istanbul easy 40.9833,29.0333",
+  "doha medium 25.3592,51.5286"
+ ],
+ "2027-05-02": [
+  "madrid medium 40.4531,-3.6883",
+  "quito hard -0.2201,-78.5123",
+  "seattle easy 47.5809,-122.4076",
+  "ho-chi-minh-city medium 10.7725,106.698",
+  "washington-dc easy 38.8893,-77.0254"
+ ],
+ "2027-05-03": [
+  "copenhagen hard 55.6795,12.591",
+  "san-francisco easy 37.7694,-122.4862",
+  "new-york easy 40.7026,-74.0164",
+  "oakland medium 37.7955,-122.3231",
+  "havana medium 23.1092,-82.4297"
+ ],
+ "2027-05-04": [
+  "oklahoma-city hard 35.51,-97.49",
+  "dublin medium 53.3556,-6.3297",
+  "pittsburgh easy 40.4344,-79.9425",
+  "budapest medium 47.4979,19.0402",
+  "rio-de-janeiro easy -22.9711,-43.1822"
+ ],
+ "2027-05-05": [
+  "tampa easy 27.9506,-82.4572",
+  "lisbon medium 38.6916,-9.216",
+  "london easy 51.5054,-0.0235",
+  "athens medium 37.9236,23.7078",
+  "zurich hard 47.3467,8.5626"
+ ],
+ "2027-05-06": [
+  "miami easy 25.775,-80.1866",
+  "san-juan easy 18.4712,-66.1246",
+  "medellin hard 6.2716,-75.5654",
+  "cape-town medium -33.9328,18.4173",
+  "st-louis medium 38.6247,-90.1848"
+ ],
+ "2027-05-07": [
+  "singapore easy 1.3343,103.8563",
+  "anchorage easy 61.1795,-149.9757",
+  "mumbai medium 19.035,72.82",
+  "casablanca hard 33.6086,-7.6325",
+  "berlin medium 52.5147,13.2394"
+ ],
+ "2027-05-08": [
+  "barcelona easy 41.4145,2.1527",
+  "seoul medium 37.5665,126.978",
+  "toronto hard 43.6511,-79.3809",
+  "key-west-fl easy 24.5465,-81.7975",
+  "san-jose medium 37.3639,-121.9289"
+ ],
+ "2027-05-09": [
+  "new-delhi medium 28.6562,77.241",
+  "cairo easy 30.0444,31.2357",
+  "moscow easy 55.8163,37.6407",
+  "chengdu hard 30.6969,104.0967",
+  "portland medium 45.4823,-122.6339"
+ ],
+ "2027-05-10": [
+  "philadelphia medium 39.9496,-75.1503",
+  "baltimore medium 39.2627,-76.5797",
+  "amsterdam easy 52.355,5.01",
+  "tokyo easy 35.6852,139.7528",
+  "lagos hard 6.4698,3.3778"
+ ],
+ "2027-05-11": [
+  "rome easy 41.8902,12.4922",
+  "almaty hard 43.238,76.945",
+  "prague medium 50.0064,14.4083",
+  "hong-kong easy 22.3771,114.1955",
+  "sacramento medium 38.5606,-121.4238"
+ ],
+ "2027-05-12": [
+  "san-francisco easy 37.7694,-122.4862",
+  "guangzhou hard 23.075,113.24",
+  "palm-springs medium 33.8303,-116.5453",
+  "stockholm medium 59.3728,17.9737",
+  "new-orleans easy 29.9575,-90.063"
+ ],
+ "2027-05-13": [
+  "havana medium 23.1167,-82.3",
+  "venice easy 45.438,12.3358",
+  "seattle easy 47.5809,-122.4076",
+  "orlando hard 28.49,-81.34",
+  "doha medium 25.2609,51.6138"
+ ],
+ "2027-05-14": [
+  "medellin hard 6.2486,-75.5658",
+  "shanghai easy 31.2397,121.49",
+  "sedona medium 34.8278,-111.769",
+  "pittsburgh easy 40.4614,-79.9614",
+  "athens medium 38.0294,23.7797"
+ ],
+ "2027-05-15": [
+  "beijing easy 39.9928,116.3975",
+  "dublin medium 53.3556,-6.3297",
+  "mexico-city medium 19.4204,-99.1817",
+  "atlanta hard 33.6407,-84.4277",
+  "honolulu easy 21.3069,-157.865"
+ ],
+ "2027-05-16": [
+  "bangkok medium 13.7367,100.56",
+  "sydney easy -33.8568,151.2153",
+  "paris easy 48.8388,2.3775",
+  "lisbon medium 38.6916,-9.216",
+  "oslo hard 59.9075,10.7529"
+ ],
+ "2027-05-17": [
+  "auckland hard -36.8485,174.7633",
+  "new-delhi medium 28.6129,77.2295",
+  "memphis medium 35.1495,-90.049",
+  "barcelona easy 41.4145,2.1527",
+  "cairo easy 29.9792,31.1342"
+ ],
+ "2027-05-18": [
+  "key-west-fl easy 24.5465,-81.7975",
+  "jakarta hard -6.2186,106.8022",
+  "cape-town medium -33.95,18.3775",
+  "oakland medium 37.8044,-122.2712",
+  "london easy 51.5007,-0.1246"
+ ],
+ "2027-05-19": [
+  "buffalo medium 42.8864,-78.8784",
+  "tampa easy 27.9756,-82.5332",
+  "johannesburg hard -26.1076,28.0567",
+  "seoul medium 37.5563,126.9236",
+  "amsterdam easy 52.3702,4.8952"
+ ],
+ "2027-05-20": [
+  "prague medium 50.1176,14.4079",
+  "moscow easy 55.7033,37.5303",
+  "las-vegas easy 36.1699,-115.1398",
+  "colombo hard 6.9224,79.8442",
+  "stockholm medium 59.3728,17.9737"
+ ],
+ "2027-05-21": [
+  "palm-springs medium 33.8305,-116.6122",
+  "singapore easy 1.3343,103.8563",
+  "rome easy 41.8902,12.4922",
+  "sacramento medium 38.5765,-121.4934",
+  "manila hard 14.5995,120.9842"
+ ],
+ "2027-05-22": [
+  "havana medium 23.1367,-82.3589",
+  "budapest medium 47.5147,19.0776",
+  "istanbul easy 41.0082,28.9784",
+  "male easy 4.1755,73.5093",
+  "kuala-lumpur hard 3.1478,101.6944"
+ ],
+ "2027-05-23": [
+  "doha medium 25.3592,51.5286",
+  "berlin medium 52.5147,13.2394",
+  "honolulu easy 21.2793,-157.8292",
+  "san-francisco easy 37.7694,-122.4862",
+  "quito hard -0.2151,-78.5063"
+ ],
+ "2027-05-24": [
+  "rio-de-janeiro easy -22.9519,-43.2105",
+  "mexico-city medium 19.4204,-99.1817",
+  "anchorage easy 61.2181,-149.9003",
+  "jacksonville medium 30.3322,-81.6557",
+  "dhaka hard 23.8433,90.3978"
+ ],
+ "2027-05-25": [
+  "cincinnati medium 39.1364,-84.4547",
+  "ho-chi-minh-city medium 10.7295,106.7193",
+  "chicago easy 41.9484,-87.6553",
+  "almaty hard 43.2333,76.9694",
+  "new-orleans easy 29.9575,-90.063"
+ ],
+ "2027-05-26": [
+  "addis-ababa hard 9.0107,38.7613",
+  "los-angeles medium 34.043,-118.2673",
+  "dubai easy 25.2532,55.3657",
+  "venice easy 45.431,12.3339",
+  "boston medium 42.377,-71.1167"
+ ],
+ "2027-05-27": [
+  "madison easy 43.1399,-89.3375",
+  "paris easy 48.8963,2.3822",
+  "new-delhi medium 28.6129,77.2295",
+  "san-jose medium 37.3327,-121.8896",
+  "spokane hard 47.6588,-117.426"
+ ],
+ "2027-05-28": [
+  "barcelona easy 41.4145,2.1527",
+  "seoul medium 37.5665,126.978",
+  "accra hard 5.5453,-0.1935",
+  "bangkok medium 13.7999,100.5502",
+  "new-york easy 40.7829,-73.9654"
+ ],
+ "2027-05-29": [
+  "bucharest hard 44.4711,26.0784",
+  "athens medium 37.9236,23.7078",
+  "key-west-fl easy 24.5586,-81.7963",
+  "stockholm medium 59.3251,18.0711",
+  "shanghai easy 31.2397,121.49"
+ ],
+ "2027-05-30": [
+  "pittsburgh easy 40.4344,-79.9425",
+  "buffalo medium 42.8447,-78.8163",
+  "tehran hard 35.7038,51.4088",
+  "london easy 51.5007,-0.1246",
+  "cape-town medium -33.95,18.3775"
+ ],
+ "2027-05-31": [
+  "tucson medium 32.2967,-111.1622",
+  "sydney easy -33.8568,151.2153",
+  "asheville hard 35.5407,-82.5514",
+  "hong-kong easy 22.2793,114.1628",
+  "lisbon medium 38.7756,-9.1354"
+ ],
+ "2027-06-01": [
+  "rome easy 41.86,12.49",
+  "kyiv hard 50.4344,30.557",
+  "moscow easy 55.7033,37.5303",
+  "milwaukee medium 43.0389,-87.9065",
+  "portland medium 45.5118,-122.5972"
+ ],
+ "2027-06-02": [
+  "rio-de-janeiro easy -22.9711,-43.1822",
+  "kuala-lumpur hard 3.1579,101.7116",
+  "istanbul easy 41.0082,28.9784",
+  "mexico-city medium 19.4326,-99.1332",
+  "havana medium 23.1092,-82.4297"
+ ],
+ "2027-06-03": [
+  "prague medium 50.0865,14.4114",
+  "buenos-aires medium -34.5627,-58.4583",
+  "cairo easy 29.9792,31.1342",
+  "addis-ababa hard 9.0359,38.7503",
+  "singapore easy 1.2836,103.8607"
+ ],
+ "2027-06-04": [
+  "new-delhi medium 28.6562,77.241",
+  "paris easy 48.8388,2.3775",
+  "santiago hard -33.426,-70.6088",
+  "denver medium 39.7392,-104.9903",
+  "amsterdam easy 52.355,5.01"
+ ],
+ "2027-06-05": [
+  "seattle easy 47.6062,-122.3321",
+  "charlotte hard 35.2251,-80.8434",
+  "miami easy 25.775,-80.1866",
+  "madrid medium 40.4168,-3.7038",
+  "los-angeles medium 34.043,-118.2673"
+ ],
+ "2027-06-06": [
+  "key-west-fl easy 24.5586,-81.7963",
+  "barcelona easy 41.4145,2.1527",
+  "memphis medium 35.1495,-90.049",
+  "austin hard 30.245,-97.81",
+  "san-jose medium 37.3327,-121.9012"
+ ],
+ "2027-06-07": [
+  "budapest medium 47.5147,19.0776",
+  "ho-chi-minh-city medium 10.8188,106.652",
+  "venice easy 45.438,12.3358",
+  "almaty hard 43.238,76.945",
+  "male easy 4.1755,73.5093"
+ ],
+ "2027-06-08": [
+  "cape-town medium -33.95,18.3775",
+  "tokyo easy 35.7148,139.7967",
+  "london easy 51.5055,-0.0754",
+  "montevideo hard -34.9058,-56.199",
+  "berlin medium 52.5147,13.2394"
+ ],
+ "2027-06-09": [
+  "doha medium 25.3592,51.5286",
+  "rome easy 41.86,12.49",
+  "jakarta hard -6.2186,106.8022",
+  "athens medium 38.0294,23.7797",
+  "moscow easy 55.752,37.6175"
+ ],
+ "2027-06-10": [
+  "dubai easy 25.2532,55.3657",
+  "hong-kong easy 22.2793,114.1628",
+  "bangkok medium 13.7527,100.493",
+  "raleigh hard 35.7847,-78.6821",
+  "mumbai medium 18.922,72.8347"
+ ],
+ "2027-06-11": [
+  "casablanca hard 33.6086,-7.6325",
+  "sedona medium 34.7987,-111.7648",
+  "buenos-aires medium -34.5627,-58.4583",
+  "madison easy 43.0766,-89.4125",
+  "savannah easy 32.1276,-81.2021"
+ ],
+ "2027-06-12": [
+  "rio-de-janeiro easy -22.9519,-43.2105",
+  "san-antonio hard 29.4658,-98.4331",
+  "anchorage easy 61.1926,-149.9989",
+  "norfolk medium 36.8508,-76.2859",
+  "mexico-city medium 19.4204,-99.1817"
+ ],
+ "2027-06-13": [
+  "prague medium 50.0064,14.4083",
+  "oslo hard 59.9075,10.7529",
+  "paris easy 48.8584,2.2945",
+  "seoul medium 37.5665,126.978",
+  "sydney easy -33.7969,151.2854"
+ ],
+ "2027-06-14": [
+  "vienna hard 48.2085,16.3731",
+  "new-orleans easy 30.0005,-90.0952",
+  "jacksonville medium 30.3322,-81.6557",
+  "new-delhi medium 28.5535,77.201",
+  "barcelona easy 41.3809,2.1228"
+ ],
+ "2027-06-15": [
+  "dhaka hard 23.8433,90.3978",
+  "pittsburgh easy 40.4423,-80.0112",
+  "budapest medium 47.535,19.035",
+  "dublin medium 53.3556,-6.3297",
+  "cairo easy 30.0444,31.2357"
+ ],
+ "2027-06-16": [
+  "helsinki hard 60.1454,24.988",
+  "tokyo easy 35.7148,139.7967",
+  "madrid medium 40.4531,-3.6883",
+  "venice easy 45.438,12.3358",
+  "ho-chi-minh-city medium 10.7725,106.698"
+ ],
+ "2027-06-17": [
+  "athens medium 37.9715,23.7257",
+  "amsterdam easy 52.3702,4.8952",
+  "berlin medium 52.5147,13.2394",
+  "istanbul easy 41.0473,29.0271",
+  "lagos hard 6.5833,3.35"
+ ],
+ "2027-06-18": [
+  "cape-town medium -33.9328,18.4173",
+  "washington-dc easy 38.8898,-76.9683",
+  "cheyenne hard 41.14,-104.8202",
+  "bangkok medium 13.7527,100.493",
+  "rome easy 41.8902,12.4922"
+ ],
+ "2027-06-19": [
+  "lisbon medium 38.7756,-9.1354",
+  "shanghai easy 31.2397,121.49",
+  "buenos-aires medium -34.575,-58.4175",
+  "singapore easy 1.3343,103.8563",
+  "kuala-lumpur hard 3.1579,101.7116"
+ ],
+ "2027-06-20": [
+  "doha medium 25.2609,51.6138",
+  "male easy 4.1918,73.529",
+  "mexico-city medium 19.4204,-99.1817",
+  "san-antonio hard 29.4614,-98.4736",
+  "beijing easy 39.9163,116.3972"
+ ],
+ "2027-06-21": [
+  "savannah easy 32.0721,-81.0952",
+  "boston medium 42.3467,-71.0972",
+  "casablanca hard 33.6086,-7.6325",
+  "mumbai medium 19.0178,72.8478",
+  "new-york easy 40.7026,-74.0164"
+ ],
+ "2027-06-22": [
+  "paris easy 48.8388,2.3775",
+  "santiago hard -33.4636,-70.6119",
+  "rio-de-janeiro easy -22.9519,-43.2105",
+  "stockholm medium 59.31,18.1642",
+  "havana medium 23.1092,-82.4297"
+ ],
+ "2027-06-23": [
+  "seoul medium 37.5665,126.978",
+  "budapest medium 47.4979,19.0402",
+  "miami easy 25.775,-80.1866",
+  "cairo easy 30.0444,31.2357",
+  "kyiv hard 50.4501,30.5234"
+ ],
+ "2027-06-24": [
+  "moscow easy 55.752,37.6175",
+  "hong-kong easy 22.2793,114.1628",
+  "st-louis medium 38.6247,-90.1848",
+  "buffalo medium 42.9339,-78.8653",
+  "colombo hard 6.9344,79.8428"
+ ],
+ "2027-06-25": [
+  "lima hard -12.0985,-77.0335",
+  "new-orleans easy 30.0005,-90.0952",
+  "dublin medium 53.3556,-6.3297",
+  "berlin medium 52.52,13.405",
+  "istanbul easy 41.0473,29.0271"
+ ],
+ "2027-06-26": [
+  "amsterdam easy 52.355,5.01",
+  "sacramento medium 38.5765,-121.4934",
+  "ho-chi-minh-city medium 10.7295,106.7193",
+  "tokyo easy 35.6852,139.7528",
+  "orlando hard 28.49,-81.34"
+ ],
+ "2027-06-27": [
+  "rome easy 41.8902,12.4922",
+  "prague medium 50.1176,14.4079",
+  "london easy 51.5055,-0.0754",
+  "dallas hard 32.8218,-96.7422",
+  "lisbon medium 38.7756,-9.1354"
+ ],
+ "2027-06-28": [
+  "venice easy 45.431,12.3339",
+  "doha medium 25.2854,51.531",
+  "barcelona easy 41.3809,2.1228",
+  "quito hard -0.2151,-78.5063",
+  "new-delhi medium 28.6562,77.241"
+ ],
+ "2027-06-29": [
+  "madrid medium 40.4168,-3.7038",
+  "buenos-aires medium -34.575,-58.4175",
+  "singapore easy 1.2836,103.8607",
+  "copenhagen hard 55.6795,12.591",
+  "male easy 4.1918,73.529"
+ ],
+ "2027-06-30": [
+  "tucson medium 32.2217,-110.9265",
+  "detroit medium 42.3576,-83.0666",
+  "rio-de-janeiro easy -22.9711,-43.1822",
+  "key-west-fl easy 24.5586,-81.7963",
+  "austin hard 30.2672,-97.7431"
+ ]
+}

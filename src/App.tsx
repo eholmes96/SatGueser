@@ -494,7 +494,7 @@ function App() {
             </div>
 
             <div style={{ width: 'min(220px, 30vw)', height: 8, background: 'rgba(255,255,255,0.2)', borderRadius: 4, overflow: 'hidden' }}>
-              <div style={{
+              <div data-testid="timer-fill" style={{
                 width: `${timerPct}%`,
                 height: '100%',
                 background: barColor,
@@ -542,7 +542,7 @@ function App() {
             {directionHints.length > 0 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                 {directionHints.map((hint, i) => (
-                  <div key={i} style={hintBubbleStyle}>{hint}</div>
+                  <div key={i} data-testid="direction-hint" style={hintBubbleStyle}>{hint}</div>
                 ))}
               </div>
             )}
@@ -728,7 +728,7 @@ function App() {
                     <span style={{ color: '#888', fontSize: 13, minWidth: 40, textAlign: 'right' }}>
                       {timedOut ? '—' : `${elapsed?.toFixed(1)}s`}
                     </span>
-                    <span style={{ color: '#f87171', fontSize: 13, fontWeight: 600, minWidth: 24, textAlign: 'right' }}>
+                    <span data-testid="wrong-guesses" style={{ color: '#f87171', fontSize: 13, fontWeight: 600, minWidth: 24, textAlign: 'right' }}>
                       {wrong === 0 ? '0' : `-${wrong}`}
                     </span>
                     <span style={{

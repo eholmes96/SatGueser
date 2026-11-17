@@ -1,0 +1,231 @@
+{
+ "us": {
+  "san": [
+   "San Francisco",
+   "San Diego",
+   "San Antonio",
+   "San Jose",
+   "Santa Fe",
+   "San Juan"
+  ],
+  "new": [
+   "New York",
+   "New Orleans",
+   "New Haven"
+  ],
+  "por": [
+   "Portland, OR",
+   "Bridgeport"
+  ],
+  "sai": [],
+  "st.": [
+   "St. Louis"
+  ],
+  "lon": [
+   "Long Beach"
+  ],
+  "par": [],
+  "isl": [],
+  "gre": [
+   "Greenville",
+   "Greensboro"
+  ],
+  "mad": [
+   "Madison"
+  ],
+  "chi": [
+   "Chicago",
+   "Wichita"
+  ],
+  "int": [],
+  "jfk": [],
+  "kef": [],
+  "são": [],
+  "bay": [
+   "Palm Bay"
+  ],
+  "cit": [
+   "Kansas City",
+   "Oklahoma City",
+   "Salt Lake City"
+  ]
+ },
+ "global": {
+  "san": [
+   "San Francisco, USA",
+   "Santiago, Chile",
+   "San José, Costa Rica",
+   "Busan, South Korea"
+  ],
+  "new": [
+   "New York, USA",
+   "New Delhi, India",
+   "Auckland, New Zealand",
+   "Wellington, New Zealand"
+  ],
+  "por": [
+   "Porto, Portugal",
+   "Singapore",
+   "Lisbon, Portugal",
+   "Sapporo, Japan"
+  ],
+  "sai": [],
+  "st.": [
+   "St. Petersburg, Russia"
+  ],
+  "lon": [
+   "London, England",
+   "Barcelona, Spain"
+  ],
+  "par": [
+   "Paris, France"
+  ],
+  "isl": [
+   "Bratislava, Slovakia"
+  ],
+  "gre": [
+   "Athens, Greece",
+   "Zagreb, Croatia"
+  ],
+  "mad": [
+   "Madrid, Spain"
+  ],
+  "chi": [
+   "Beijing, China",
+   "Shanghai, China",
+   "Guangzhou, China",
+   "Shenzhen, China",
+   "Chengdu, China",
+   "Xi'an, China",
+   "Ho Chi Minh City, Vietnam",
+   "Karachi, Pakistan"
+  ],
+  "int": [],
+  "jfk": [],
+  "kef": [],
+  "são": [
+   "São Paulo, Brazil"
+  ],
+  "bay": [],
+  "cit": [
+   "Mexico City, Mexico",
+   "Ho Chi Minh City, Vietnam",
+   "Panama City, Panama"
+  ]
+ },
+ "islands": {
+  "san": [
+   "Santorini"
+  ],
+  "new": [
+   "New Zealand",
+   "New Guinea",
+   "New Caledonia"
+  ],
+  "por": [],
+  "sai": [],
+  "st.": [],
+  "lon": [
+   "Long Island"
+  ],
+  "par": [],
+  "isl": [
+   "Long Island",
+   "Mackinac Island",
+   "Prince Edward Island",
+   "Easter Island"
+  ],
+  "gre": [
+   "Greenland",
+   "Great Britain"
+  ],
+  "mad": [
+   "Madagascar"
+  ],
+  "chi": [],
+  "int": [],
+  "jfk": [],
+  "kef": [],
+  "são": [],
+  "bay": [],
+  "cit": []
+ },
+ "airports": {
+  "san": [
+   "San Francisco International Airport (SFO)",
+   "Santiago Arturo Merino Benítez (SCL)"
+  ],
+  "new": [
+   "New York John F. Kennedy (JFK)",
+   "New York LaGuardia (LGA)",
+   "Newark Liberty (EWR)"
+  ],
+  "por": [
+   "Singapore Changi (SIN)",
+   "Dubai International Airport (DXB)",
+   "Hong Kong International Airport (HKG)",
+   "Istanbul Airport (IST)",
+   "Frankfurt Airport (FRA)",
+   "Los Angeles International Airport (LAX)",
+   "Denver International Airport (DEN)",
+   "Miami International Airport (MIA)"
+  ],
+  "sai": [],
+  "st.": [
+   "St. Barthélemy Gustaf III (SBH)"
+  ],
+  "lon": [
+   "London Heathrow (LHR)",
+   "Longyearbyen Svalbard Airport (LYR)",
+   "London Gatwick (LGW)",
+   "Barcelona El Prat (BCN)"
+  ],
+  "par": [
+   "Paris Charles de Gaulle (CDG)",
+   "Paro International Airport (PBH)"
+  ],
+  "isl": [
+   "Lord Howe Island Airport (LDH)",
+   "Faroe Islands Vágar (FAE)",
+   "Skiathos Island National Airport (JSI)"
+  ],
+  "gre": [],
+  "mad": [
+   "Madrid Barajas (MAD)",
+   "Madeira Cristiano Ronaldo International (FNC)",
+   "Doha Hamad International (DOH)"
+  ],
+  "chi": [
+   "Chicago O'Hare (ORD)",
+   "Ho Chi Minh City Tan Son Nhat (SGN)",
+   "Karachi Jinnah (KHI)",
+   "Amsterdam Schiphol (AMS)"
+  ],
+  "int": [
+   "Sint Maarten Princess Juliana International (SXM)",
+   "Dubai International Airport (DXB)",
+   "Hong Kong International Airport (HKG)",
+   "Los Angeles International Airport (LAX)",
+   "Denver International Airport (DEN)",
+   "Miami International Airport (MIA)",
+   "Cairo International Airport (CAI)",
+   "Wellington International Airport (WLG)"
+  ],
+  "jfk": [
+   "New York John F. Kennedy (JFK)"
+  ],
+  "kef": [
+   "Reykjavík Keflavík (KEF)"
+  ],
+  "são": [
+   "São Paulo Guarulhos (GRU)"
+  ],
+  "bay": [],
+  "cit": [
+   "Mexico City Benito Juárez (MEX)",
+   "Panama City Tocumen (PTY)",
+   "Kuwait City International Airport (KWI)",
+   "Ho Chi Minh City Tan Son Nhat (SGN)"
+  ]
+ }
+}

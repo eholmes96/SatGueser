@@ -33,6 +33,7 @@ dist-ssr
 
 # Playwright test artifacts
 test-results/
+playwright-report/
 
 # Scratch file for copying prompts/context to an external AI assistant
 ClaudeSpeak.txt

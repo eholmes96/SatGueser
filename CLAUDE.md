@@ -19,6 +19,8 @@ Satellite-zoom geography guessing game. Players watch a satellite view zoom out 
 | `npm run build` | Type-check + Vite build + bundle API function |
 | `npm run build:api` | Bundle `/api/submit-daily` from `functions-src/` via `scripts/build-api.mjs` |
 | `npm run lint` | Run oxlint |
+| `npm test` | Unit tests (vitest, `tests/`): scoring, Daily picks, dates/storage, geo, autocomplete, dataset invariants, the submit-daily handler |
+| `npm run test:e2e` | Browser tests (Playwright, `e2e/`): a full game in all 5 modes on a fake clock, with Mapbox stubbed and Supabase off |
 
 ## Env vars
 
@@ -65,4 +67,6 @@ Markdown-based Tips & Tricks at `/blog` — frontmatter + `marked`, same content
 
 - README.md has a "Version history" section (most-recent-first dated changelog). Check it before assuming something is not done. Update it the same way after finishing new work.
 - Magic-link sign-in requires both the production URL and `http://localhost:5173/**` registered under Supabase → Authentication → URL Configuration.
-- No test suite — linting only (`npm run lint`).
+- Run `npm run lint`, `npm test` and `npm run test:e2e` before pushing. In cloud sessions, set `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium` for the e2e run; locally, `npx playwright install chromium` once.
+- `tests/__golden__/` holds golden files: the Daily picks for every date to mid-2027, and autocomplete results for fixed queries. A failure there means a change altered which cities a day draws (which also changes server scoring) or how autocomplete ranks. Only regenerate with `npx vitest run -u` when that change is intended.
+- The e2e tests find elements by `data-testid` (`timer-fill`, `direction-hint`, `wrong-guesses`). Keep those attributes when refactoring.

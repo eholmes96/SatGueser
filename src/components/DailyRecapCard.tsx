@@ -69,7 +69,7 @@ export function DailyRecapCard({ record, streak, onCopy, copied }: DailyRecapCar
               <span style={{ color: '#888', fontSize: 13, minWidth: 40, textAlign: 'right' }}>
                 {timedOut ? '—' : `${round.elapsedSeconds.toFixed(1)}s`}
               </span>
-              <span style={{ color: '#f87171', fontSize: 13, fontWeight: 600, minWidth: 24, textAlign: 'right' }}>
+              <span data-testid="wrong-guesses" style={{ color: '#f87171', fontSize: 13, fontWeight: 600, minWidth: 24, textAlign: 'right' }}>
                 {wrong === 0 ? '0' : `-${wrong}`}
               </span>
               <span style={{
